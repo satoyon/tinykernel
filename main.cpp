@@ -4,6 +4,7 @@
 #include "pico/stdlib.h"
 
 #include "tinykernel/kernel.hpp"
+#include "tinykernel/actor.hpp"
 
 #include "pico/multicore.h"
 
@@ -17,15 +18,40 @@
     } while (0)
 
 // ---------------------------------------------------------------------------
-// Static task (registered at link time via TK_TASK): toggles the onboard LED.
-void task_led(void* arg) {
+// Actor demonstration: Receiver Actor waiting for messages.
+// It consumes 0 CPU cycles while waiting, and immediately wakes up on post().
+enum AppMsgId : uint32_t {
+    MSG_LED_TOGGLE = 1,
+    MSG_PING       = 2,
+};
+
+class LedActor : public tk::Actor<8> {
+protected:
+    void on_message(const tk::Message& msg) override {
+        if (msg.id == MSG_LED_TOGGLE) {
+            bool state = !gpio_get(25);
+            gpio_put(25, state);
+            P("LedActor: received MSG_LED_TOGGLE (seq=%lu) -> LED %s, now=%llu ms\n",
+              (unsigned long)msg.arg, state ? "ON" : "OFF", (unsigned long long)tk::now_ms());
+        } else {
+            P("LedActor: received unknown msg id=%lu, arg=%lu\n",
+              (unsigned long)msg.id, (unsigned long)msg.arg);
+        }
+    }
+};
+
+static LedActor g_led_actor;
+
+// Sender task: periodically posts messages to LedActor
+static void task_sender(void* arg) {
     (void)arg;
+    uint32_t seq = 0;
     for (;;) {
-        gpio_put(25, !gpio_get(25));
-        tk::sleep_ms(200);
+        tk::sleep_ms(500);
+        P("Sender: posting MSG_LED_TOGGLE seq=%lu...\n", (unsigned long)seq);
+        g_led_actor.post(MSG_LED_TOGGLE, seq++);
     }
 }
-TK_TASK(task_led, tk::PRIO_NORMAL)
 
 // ---------------------------------------------------------------------------
 // Static task: FPU self-check. Runs the same deterministic float/double sequence
@@ -100,15 +126,17 @@ int main() {
     gpio_set_dir(25, GPIO_OUT);
 
     printf("tinykernel: registering dynamic tasks...\n");
+    g_led_actor.start(tk::PRIO_NORMAL);
+    auto h_sender = tk::create(task_sender, nullptr, tk::PRIO_NORMAL);
     auto h_hi = tk::create(task_hi, nullptr, tk::PRIO_HIGH);
     auto h_dy = tk::create(task_dying, nullptr, tk::PRIO_LOW);
     auto h_pr = tk::create(task_print, nullptr, tk::PRIO_NORMAL);
-    if (h_hi.slot == 0xFF || h_dy.slot == 0xFF || h_pr.slot == 0xFF) {
+    if (!g_led_actor.handle().is_valid() || !h_sender.is_valid() || !h_hi.is_valid() || !h_dy.is_valid() || !h_pr.is_valid()) {
         printf("tinykernel: task creation FAILED\n");
         for (;;) {
         }
     }
 
-    printf("tinykernel: starting scheduler (preemptive, core M33 only)\n");
+    printf("tinykernel: starting scheduler (preemptive, dual-core M33)\n");
     tk::start();  // never returns
 }

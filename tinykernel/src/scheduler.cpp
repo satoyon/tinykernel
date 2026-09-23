@@ -17,7 +17,7 @@ namespace {
 
 constexpr uint32_t TK_NUM_CORES = 2;
 
-enum class State : uint8_t { Free = 0, Ready, Running, Sleeping, Terminated };
+enum class State : uint8_t { Free = 0, Ready, Running, Sleeping, Blocked, Terminated };
 
 struct TaskSlot {
     State state;
@@ -307,4 +307,28 @@ bool tk::lock() {
 
 void tk::unlock(bool was_enabled) {
     sched_unlock(was_enabled ? 0 : 1);
+}
+
+uint32_t tk::detail::sched_lock() {
+    return ::sched_lock();
+}
+
+void tk::detail::sched_unlock(uint32_t save) {
+    ::sched_unlock(save);
+}
+
+void tk::detail::block_current_task_locked() {
+    uint32_t core = get_core_num();
+    TaskSlot& cur = g_slots[g_cur[core]];
+    cur.state = State::Blocked;
+    tk_port_trigger_pendsv();
+}
+
+void tk::detail::wake_task_locked(TaskHandle handle) {
+    if (handle.slot >= TK_MAX_TASKS) return;
+    TaskSlot& s = g_slots[handle.slot];
+    if (s.state == State::Blocked) {
+        s.state = State::Ready;
+        tk_port_trigger_pendsv();
+    }
 }

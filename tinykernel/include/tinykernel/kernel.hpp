@@ -38,7 +38,8 @@ enum Prio : uint32_t {
 };
 
 struct TaskHandle {
-    uint8_t slot;  // 0xFF on failure
+    uint8_t slot{0xFF};  // 0xFF on failure
+    bool is_valid() const { return slot != 0xFF; }
 };
 
 // Create a task. Must be called before tk::start() (Phase 1 restriction).
@@ -61,6 +62,10 @@ void unlock(bool was_enabled);
 
 namespace detail {
 void static_register(const char* name, TaskFn fn, uint32_t prio);
+uint32_t sched_lock();
+void sched_unlock(uint32_t save);
+void block_current_task_locked();
+void wake_task_locked(TaskHandle handle);
 }  // namespace detail
 
 }  // namespace tk
