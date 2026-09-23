@@ -37,20 +37,20 @@ pico_sdk_init()
 add_subdirectory(tinykernel)
 
 # Add executable demo
-add_executable(tinykernel_app main.cpp)
+add_executable(tinykernel main.cpp)
 
-pico_set_program_name(tinykernel_app "tinykernel")
-pico_set_program_version(tinykernel_app "0.1")
+pico_set_program_name(tinykernel "tinykernel")
+pico_set_program_version(tinykernel "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(tinykernel_app 1)
-pico_enable_stdio_usb(tinykernel_app 0)
+pico_enable_stdio_uart(tinykernel 1)
+pico_enable_stdio_usb(tinykernel 0)
 
 # Link libraries
-target_link_libraries(tinykernel_app
+target_link_libraries(tinykernel
         pico_stdlib
-        tinykernel
+        tinykernel_lib
 )
 
-pico_add_extra_outputs(tinykernel_app)
+pico_add_extra_outputs(tinykernel)
 

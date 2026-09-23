@@ -5,10 +5,13 @@
 
 #include "tinykernel/kernel.hpp"
 
+#include "pico/multicore.h"
+
 // Atomic printf helper: stdio is shared, so wrap each call with the kernel lock.
 #define P(...)                                  \
     do {                                       \
         bool _lk = tk::lock();                 \
+        printf("[C%u] ", (unsigned)get_core_num()); \
         printf(__VA_ARGS__);                   \
         tk::unlock(_lk);                       \
     } while (0)

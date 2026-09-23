@@ -22,16 +22,24 @@
     .global tk_port_start
     .global tk_port_make_frame
 
-// clobbers r3
+// clobbers r2, r3
 .macro save_fpu_to_scratch
-    ldr     r3, =tk_fpu_scratch
+    ldr     r3, =0xd0000000           // SIO_BASE
+    ldr     r3, [r3]                  // CPUID (0 or 1)
+    lsls    r3, r3, #7                // core * 128 (sizeof(FpuCtx))
+    ldr     r2, =tk_fpu_scratch
+    adds    r3, r2, r3                // &tk_fpu_scratch[core]
     vstmia  r3!, {d0-d7}
     vstmia  r3!, {d8-d15}
 .endm
 
-// clobbers r3
+// clobbers r2, r3
 .macro restore_fpu_from_scratch
-    ldr     r3, =tk_fpu_scratch
+    ldr     r3, =0xd0000000           // SIO_BASE
+    ldr     r3, [r3]                  // CPUID (0 or 1)
+    lsls    r3, r3, #7                // core * 128 (sizeof(FpuCtx))
+    ldr     r2, =tk_fpu_scratch
+    adds    r3, r2, r3                // &tk_fpu_scratch[core]
     vldmia  r3!, {d0-d7}
     vldmia  r3!, {d8-d15}
 .endm
