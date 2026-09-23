@@ -66,6 +66,8 @@ uint32_t sched_lock();
 void sched_unlock(uint32_t save);
 void block_current_task_locked();
 void wake_task_locked(TaskHandle handle);
+uint8_t current_task_slot();
+uint8_t find_highest_prio_waiter(uint16_t wait_mask);
 }  // namespace detail
 
 }  // namespace tk

@@ -50,6 +50,9 @@ public:
     TaskHandle handle() const { return handle_; }
 
 protected:
+    // タスク起動時にイベントループ開始直前に呼ばれる初期化関数（タスクコンテキスト内）
+    virtual void on_start() {}
+
     // 派生クラスでオーバーライドしてメッセージを処理する
     virtual void on_message(const Message& msg) = 0;
 
@@ -59,6 +62,7 @@ private:
     }
 
     void event_loop() {
+        on_start();
         for (;;) {
             Message msg{};
             uint32_t save = detail::sched_lock();

@@ -5,6 +5,7 @@
 
 #include "tinykernel/kernel.hpp"
 #include "tinykernel/actor.hpp"
+#include "tinykernel/sync.hpp"
 
 #include "pico/multicore.h"
 
@@ -27,6 +28,14 @@ enum AppMsgId : uint32_t {
 
 class LedActor : public tk::Actor<8> {
 protected:
+    void on_start() override {
+        // Hardware initialization within task context
+        gpio_init(25);
+        gpio_set_dir(25, GPIO_OUT);
+        gpio_put(25, 0);
+        P("LedActor: initialized GPIO 25 in on_start()\n");
+    }
+
     void on_message(const tk::Message& msg) override {
         if (msg.id == MSG_LED_TOGGLE) {
             bool state = !gpio_get(25);
@@ -47,9 +56,49 @@ static void task_sender(void* arg) {
     (void)arg;
     uint32_t seq = 0;
     for (;;) {
-        tk::sleep_ms(500);
+        tk::sleep_ms(600);
         P("Sender: posting MSG_LED_TOGGLE seq=%lu...\n", (unsigned long)seq);
         g_led_actor.post(MSG_LED_TOGGLE, seq++);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Mutex demonstration: Two tasks contend for a shared counter protected by Mutex
+static tk::Mutex g_counter_mutex;
+static uint32_t g_shared_counter = 0;
+
+static void task_mutex_worker(void* arg) {
+    const char* tag = static_cast<const char*>(arg);
+    for (;;) {
+        {
+            tk::LockGuard<tk::Mutex> guard(g_counter_mutex);
+            g_shared_counter++;
+            P("[%s] holds mutex: counter=%lu\n", tag, (unsigned long)g_shared_counter);
+            volatile uint32_t n = 0;
+            while (n < 100000u) ++n;
+        }  // guard destructor automatically calls unlock()
+        tk::sleep_ms(350);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Semaphore demonstration: Signaler wakes up Waiter task
+static tk::BinarySemaphore g_demo_sem(0, 1);  // Initially 0 (blocked)
+
+static void task_sem_waiter(void* arg) {
+    (void)arg;
+    for (;;) {
+        g_demo_sem.acquire();  // Blocks until release() is called
+        P("SemWaiter: >>> WOKEN UP by semaphore! now=%llu ms\n", (unsigned long long)tk::now_ms());
+    }
+}
+
+static void task_sem_signaler(void* arg) {
+    (void)arg;
+    for (;;) {
+        tk::sleep_ms(1000);
+        P("SemSignaler: releasing semaphore...\n");
+        g_demo_sem.release();
     }
 }
 
@@ -79,59 +128,25 @@ void task_fpu(void* arg) {
         } else {
             P("FPU ok    f: %8.6f   d: %.9f\n", (double)fa, da);
         }
-        tk::sleep_ms(300);
+        tk::sleep_ms(500);
     }
 }
 TK_TASK(task_fpu, tk::PRIO_NORMAL)
 
-// ---------------------------------------------------------------------------
-// Dynamic task (higher priority): busy-spins for a few ms to demonstrate that it
-// preempts the lower-priority tasks immediately.
-static void task_hi(void* arg) {
-    (void)arg;
-    for (;;) {
-        volatile uint32_t n = 0;
-        while (n < 500000u) ++n;
-        P("HI   prio=%u busy-spin done, now=%llu ms\n", (unsigned)tk::PRIO_HIGH, (unsigned long long)tk::now_ms());
-        tk::sleep_ms(700);
-    }
-}
-
-// ---------------------------------------------------------------------------
-// Dynamic task: prints a few times and then exits.
-static void task_dying(void* arg) {
-    (void)arg;
-    for (int i = 1; i <= 3; ++i) {
-        P("DYING %d (now=%llu ms)\n", i, (unsigned long long)tk::now_ms());
-        tk::sleep_ms(250);
-    }
-    P("DYING calling tk::exit()\n");
-    tk::exit(0);
-}
-
-// ---------------------------------------------------------------------------
-// Dynamic task: plain periodic printer at normal priority.
-static void task_print(void* arg) {
-    (void)arg;
-    uint32_t count = 0;
-    for (;;) {
-        P("A    #%lu now=%llu ms\n", (unsigned long)count++, (unsigned long long)tk::now_ms());
-        tk::sleep_ms(150);
-    }
-}
-
 int main() {
     stdio_init_all();
-    gpio_init(25);
-    gpio_set_dir(25, GPIO_OUT);
 
     printf("tinykernel: registering dynamic tasks...\n");
     g_led_actor.start(tk::PRIO_NORMAL);
     auto h_sender = tk::create(task_sender, nullptr, tk::PRIO_NORMAL);
-    auto h_hi = tk::create(task_hi, nullptr, tk::PRIO_HIGH);
-    auto h_dy = tk::create(task_dying, nullptr, tk::PRIO_LOW);
-    auto h_pr = tk::create(task_print, nullptr, tk::PRIO_NORMAL);
-    if (!g_led_actor.handle().is_valid() || !h_sender.is_valid() || !h_hi.is_valid() || !h_dy.is_valid() || !h_pr.is_valid()) {
+    auto h_mtx_a  = tk::create(task_mutex_worker, const_cast<char*>("Mtx-A"), tk::PRIO_NORMAL);
+    auto h_mtx_b  = tk::create(task_mutex_worker, const_cast<char*>("Mtx-B"), tk::PRIO_NORMAL);
+    auto h_waiter = tk::create(task_sem_waiter, nullptr, tk::PRIO_HIGH);
+    auto h_sig    = tk::create(task_sem_signaler, nullptr, tk::PRIO_NORMAL);
+
+    if (!g_led_actor.handle().is_valid() || !h_sender.is_valid() ||
+        !h_mtx_a.is_valid() || !h_mtx_b.is_valid() ||
+        !h_waiter.is_valid() || !h_sig.is_valid()) {
         printf("tinykernel: task creation FAILED\n");
         for (;;) {
         }
