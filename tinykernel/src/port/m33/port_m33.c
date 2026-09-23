@@ -20,12 +20,14 @@ void tk_port_init(uint32_t ticks_per_sec) {
     uint32_t clk = clock_get_hz(clk_sys);
     systick_hw->rvr = ((clk + ticks_per_sec / 2u) / ticks_per_sec - 1u) & 0x00FFFFFFu;
 
-    // Run SVC and SysTick at the lowest priority (15 of 15 on M33) so peripheral
-    // ISRs always preempt them. Byte offsets follow CMSIS __NVIC_SetPriority:
+    // Run PendSV at the lowest priority (15 of 15 on M33) so peripheral ISRs
+    // and SysTick always preempt it, ensuring context switches happen only when all
+    // higher-priority interrupt handling is complete. SysTick runs at priority 14.
+    // Byte offsets follow CMSIS __NVIC_SetPriority:
     // SHPR base = SCB+0x18, byte index = ((IRQn) & 0xF) - 4.
     uint8_t* shpr = (uint8_t*)&scb_hw->shpr[0];
-    shpr[((int32_t)(-5) & 0xF) - 4] = 15u << 4;  // SVCall
-    shpr[((int32_t)(-1) & 0xF) - 4] = 15u << 4;  // SysTick
+    shpr[((int32_t)(-2) & 0xF) - 4] = 15u << 4;  // PendSV (priority 15: lowest)
+    shpr[((int32_t)(-1) & 0xF) - 4] = 14u << 4;  // SysTick (priority 14)
 
     // NOTE: SysTick is intentionally NOT enabled here. tk_port_start() enables it
     // (ENABLE|TICKINT|CLKSOURCE) in asm, right before jumping into the first task,

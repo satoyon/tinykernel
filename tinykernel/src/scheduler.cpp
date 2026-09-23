@@ -19,11 +19,6 @@ namespace {
 
 enum class State : uint8_t { Free = 0, Ready, Sleeping, Terminated };
 
-// Must match the reason constants passed in r1 by context.S.
-enum Reason : int { REASON_TICK = 1, REASON_SVC = 2 };
-
-enum PendingOp : uint8_t { OP_NONE = 0, OP_YIELD, OP_SLEEP, OP_EXIT };
-
 struct TaskSlot {
     State state;
     tk::TaskFn fn;
@@ -46,8 +41,6 @@ static uint8_t g_cur = 0;
 static int64_t g_tick = 0;
 static bool g_started = false;
 static uint8_t g_rr_last[16] = {0};
-static PendingOp g_pending_op = OP_NONE;
-static int32_t g_pending_ticks = 0;
 
 constexpr uint32_t kIdlePrio = 15u;
 constexpr int32_t kSliceTicks = (int32_t)(((uint64_t)TK_TIME_SLICE_MS * TK_TICKS_PER_SEC + 999u) / 1000u);
@@ -97,17 +90,6 @@ static uint32_t select_next(bool force_switch) {
     return pick_round_robin((uint32_t)level);
 }
 
-static inline void tk_svc(void) {
-    __asm__ volatile("svc #0" ::: "memory");
-}
-
-// Called by the trampoline when a task function simply returns.
-extern "C" void tk_task_return_trampoline(void) {
-    g_pending_op = OP_EXIT;
-    tk_svc();
-    for (;;) __asm__ volatile("wfi");
-}
-
 }  // namespace
 
 // Referenced (unmangled) from context.S: scratch area the port asm uses to move FPU
@@ -116,50 +98,39 @@ extern "C" {
     alignas(8) FpuCtx tk_fpu_scratch = {};
 }
 
-extern "C" uintptr_t tk_reschedule(uintptr_t cur_sp, int reason) {
-    TaskSlot& cur = g_slots[g_cur];
-    bool force = false;
-
-    if (reason == REASON_TICK) {
-        ++g_tick;
-        for (uint32_t i = 1; i < TK_MAX_TASKS; ++i) {
-            TaskSlot& s = g_slots[i];
-            if (s.state == State::Sleeping && g_tick >= s.wake_tick) s.state = State::Ready;
-        }
-        if (!cur.is_idle) {
-            --cur.slice_left;
-            if (cur.slice_left <= 0) {
-                cur.slice_left = kSliceTicks;
-                force = true;
+// SysTick interrupt handler: advances ticks, wakes sleeping tasks, and triggers PendSV when needed.
+extern "C" void isr_systick(void) {
+    ++g_tick;
+    bool need_switch = false;
+    for (uint32_t i = 1; i < TK_MAX_TASKS; ++i) {
+        TaskSlot& s = g_slots[i];
+        if (s.state == State::Sleeping && g_tick >= s.wake_tick) {
+            s.state = State::Ready;
+            if (s.prio < g_slots[g_cur].prio) {
+                need_switch = true;
             }
         }
-    } else if (reason == REASON_SVC) {
-        switch (g_pending_op) {
-            case OP_YIELD:
-                force = true;
-                break;
-            case OP_SLEEP:
-                cur.state = State::Sleeping;
-                cur.wake_tick = g_tick + g_pending_ticks;
-                force = true;
-                break;
-            case OP_EXIT:
-                // Phase 1: the slot and its stack are not reclaimed.
-                cur.state = State::Terminated;
-                force = true;
-                break;
-            default:
-                break;
-        }
-        g_pending_op = OP_NONE;
     }
+    TaskSlot& cur = g_slots[g_cur];
+    if (!cur.is_idle) {
+        --cur.slice_left;
+        if (cur.slice_left <= 0) {
+            cur.slice_left = kSliceTicks;
+            need_switch = true;
+        }
+    }
+    if (need_switch) {
+        tk_port_trigger_pendsv();
+    }
+}
 
-    uint32_t next = select_next(force);
-    if (next == g_cur) return 0;  // keep the current context running
-
+// PendSV context switch function: saves cur_sp, selects next task, and returns next SP.
+extern "C" uintptr_t tk_switch_context(uintptr_t cur_sp) {
+    TaskSlot& cur = g_slots[g_cur];
     cur.sp = cur_sp;
     memcpy(&cur.fpu, &tk_fpu_scratch, sizeof(cur.fpu));
 
+    uint32_t next = select_next(/*force_switch=*/true);
     TaskSlot& nxt = g_slots[next];
     if (nxt.sp == 0) {
         nxt.sp = tk_port_make_frame(reinterpret_cast<uint8_t*>(&g_stacks[next][0]),
@@ -237,23 +208,36 @@ void tk::start() {
 }
 
 void tk::yield() {
-    g_pending_op = OP_YIELD;
-    tk_svc();
+    bool lk = tk::lock();
+    g_slots[g_cur].slice_left = 0;
+    tk_port_trigger_pendsv();
+    tk::unlock(lk);
 }
 
 void tk::sleep_ms(uint32_t ms) {
     uint64_t ticks = ((uint64_t)ms * TK_TICKS_PER_SEC + 999u) / 1000u;
     if (ticks < 1u) ticks = 1u;
-    g_pending_ticks = (int32_t)(ticks > 0x7FFFFFFFu ? 0x7FFFFFFFu : ticks);
-    g_pending_op = OP_SLEEP;
-    tk_svc();
+    int32_t sleep_ticks = (int32_t)(ticks > 0x7FFFFFFFu ? 0x7FFFFFFFu : ticks);
+
+    bool lk = tk::lock();
+    TaskSlot& cur = g_slots[g_cur];
+    cur.state = State::Sleeping;
+    cur.wake_tick = g_tick + sleep_ticks;
+    tk_port_trigger_pendsv();
+    tk::unlock(lk);
 }
 
 void tk::exit(int code) {
     (void)code;
-    g_pending_op = OP_EXIT;
-    tk_svc();
+    bool lk = tk::lock();
+    g_slots[g_cur].state = State::Terminated;
+    tk_port_trigger_pendsv();
+    tk::unlock(lk);
     for (;;) __asm__ volatile("wfi");  // unreachable: the scheduler switches away
+}
+
+extern "C" void tk_task_return_trampoline(void) {
+    tk::exit(0);
 }
 
 uint64_t tk::now_ms() {

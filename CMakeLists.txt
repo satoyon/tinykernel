@@ -33,38 +33,24 @@ project(tinykernel C CXX ASM)
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-# Tinykernel: minimal preemptive task scheduler (Cortex-M33 / RP2350)
+# Tinykernel library
+add_subdirectory(tinykernel)
 
-add_library(tinykernel_lib STATIC
-        src/scheduler.cpp
-        src/port/m33/port_m33.c
-        src/port/m33/context.S
-)
-target_include_directories(tinykernel_lib PUBLIC
-        ${CMAKE_CURRENT_LIST_DIR}/include
-)
-target_link_libraries(tinykernel_lib PUBLIC pico_stdlib)
+# Add executable demo
+add_executable(tinykernel_app main.cpp)
 
-# Add executable. Default name is the project name, version 0.1
-
-add_executable(tinykernel main.cpp )
-
-pico_set_program_name(tinykernel "tinykernel")
-pico_set_program_version(tinykernel "0.1")
+pico_set_program_name(tinykernel_app "tinykernel")
+pico_set_program_version(tinykernel_app "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(tinykernel 1)
-pico_enable_stdio_usb(tinykernel 0)
+pico_enable_stdio_uart(tinykernel_app 1)
+pico_enable_stdio_usb(tinykernel_app 0)
 
-# Add the standard library to the build
-target_link_libraries(tinykernel
+# Link libraries
+target_link_libraries(tinykernel_app
         pico_stdlib
-        tinykernel_lib)
-
-# Add the standard include files to the build
-target_include_directories(tinykernel PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}
+        tinykernel
 )
 
-pico_add_extra_outputs(tinykernel)
+pico_add_extra_outputs(tinykernel_app)
 

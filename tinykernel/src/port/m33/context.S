@@ -15,11 +15,10 @@
     .syntax unified
     .thumb
 
-    .extern tk_reschedule
+    .extern tk_switch_context
     .extern tk_fpu_scratch
     .extern tk_task_return_trampoline
-    .global isr_systick
-    .global isr_svcall
+    .global isr_pendsv
     .global tk_port_start
     .global tk_port_make_frame
 
@@ -37,24 +36,12 @@
     vldmia  r3!, {d8-d15}
 .endm
 
-// Shared dispatch for SysTick (preemption tick) and SVCall (yield/sleep/exit).
+// PendSV Handler: dedicated context switch handler running at the lowest priority.
 // Hardware has already pushed the Core8 frame to the current task's PSP.
 // Handler mode automatically runs on MSP.
-    .type isr_systick,%function
+    .type isr_pendsv,%function
     .thumb_func
-isr_systick:
-    movs    r1, #1                    // REASON_TICK
-    b       tk_dispatch_common
-
-    .type isr_svcall,%function
-    .thumb_func
-isr_svcall:
-    movs    r1, #2                    // REASON_SVC
-    b       tk_dispatch_common
-
-    .type tk_dispatch_common,%function
-    .thumb_func
-tk_dispatch_common:
+isr_pendsv:
     // 1. Get current task stack pointer (PSP)
     mrs     r0, psp
 
@@ -64,31 +51,26 @@ tk_dispatch_common:
     // 3. Save FPU state to global scratch buffer
     save_fpu_to_scratch
 
-    // 4. Preserve EXC_RETURN (lr) and reason (r1) on MSP (8-byte stack alignment)
-    push    {r1, lr}
+    // 4. Preserve EXC_RETURN (lr) on MSP (push 2 registers for 8-byte stack alignment)
+    push    {r0, lr}
 
-    // 5. Call scheduler: r0 = cur_sp, r1 = reason
-    // Returns next task's SP in r0, or 0 to keep running current task.
-    bl      tk_reschedule
+    // 5. Call scheduler: r0 = cur_sp
+    // Returns next task's SP in r0.
+    bl      tk_switch_context
 
-    // 6. Restore FPU state for next (or continuing) task
+    // 6. Restore FPU state for next task
     restore_fpu_from_scratch
 
-    // 7. Restore EXC_RETURN (lr) and r1 from MSP
+    // 7. Restore EXC_RETURN (lr) from MSP
     pop     {r1, lr}
 
-    // 8. If r0 == 0, keep current task running
-    cmp     r0, #0
-    beq     .keep_running
-
-    // 9. Switch to new task: restore R4-R11 from new task's stack
+    // 8. Restore R4-R11 from new task's stack
     ldmia   r0!, {r4-r11}
 
-    // 10. Update PSP with new task's SP (points to Core8 hardware frame)
+    // 9. Update PSP with new task's SP (points to Core8 hardware frame)
     msr     psp, r0
 
-.keep_running:
-    // 11. Exception return: hardware pops Core8 frame from PSP and returns to Thread mode
+    // 10. Exception return: hardware pops Core8 frame from PSP and returns to Thread mode
     bx      lr
 
 // Start the first task.
