@@ -15,9 +15,9 @@
 #define TK_TIME_SLICE_MS 10u
 #endif
 
-// Total number of task slots (slot 0 is reserved for the built-in idle task).
+// Total number of task slots (slot 0 is reserved for core 0 idle, slot 1 for core 1 idle).
 #ifndef TK_MAX_TASKS
-#define TK_MAX_TASKS 16u
+#define TK_MAX_TASKS 32u
 #endif
 
 // Stack size per task, in bytes. Stacks come from a static pool (no malloc).
@@ -75,6 +75,8 @@ public:
     PreemptGuard& operator=(const PreemptGuard&) = delete;
 };
 
+using task_mask_t = uint32_t;
+
 namespace detail {
 void static_register(const char* name, TaskFn fn, uint32_t prio);
 uint32_t sched_lock();
@@ -82,7 +84,7 @@ void sched_unlock(uint32_t save);
 void block_current_task_locked();
 void wake_task_locked(TaskHandle handle);
 uint8_t current_task_slot();
-uint8_t find_highest_prio_waiter(uint16_t wait_mask);
+uint8_t find_highest_prio_waiter(task_mask_t wait_mask);
 }  // namespace detail
 
 }  // namespace tk

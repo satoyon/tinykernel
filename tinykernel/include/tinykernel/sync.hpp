@@ -18,7 +18,7 @@ public:
         uint32_t save = detail::sched_lock();
         while (count_ <= 0) {
             uint8_t slot = detail::current_task_slot();
-            wait_mask_ |= (1u << slot);
+            wait_mask_ |= (task_mask_t{1} << slot);
             detail::block_current_task_locked();
             detail::sched_unlock(save);
             // 他タスクから release() されて再開したら再チェック
@@ -49,7 +49,7 @@ public:
         if (wait_mask_ != 0) {
             uint8_t slot = detail::find_highest_prio_waiter(wait_mask_);
             if (slot != 0xFF) {
-                wait_mask_ &= ~(1u << slot);
+                wait_mask_ &= ~(task_mask_t{1} << slot);
                 detail::wake_task_locked(TaskHandle{slot});
             }
         }
@@ -66,7 +66,7 @@ public:
 private:
     int32_t count_;
     int32_t max_count_;
-    uint16_t wait_mask_{0};
+    task_mask_t wait_mask_{0};
 };
 
 using BinarySemaphore = Semaphore;
@@ -83,7 +83,7 @@ public:
         uint32_t save = detail::sched_lock();
         uint8_t my_slot = detail::current_task_slot();
         while (locked_) {
-            wait_mask_ |= (1u << my_slot);
+            wait_mask_ |= (task_mask_t{1} << my_slot);
             detail::block_current_task_locked();
             detail::sched_unlock(save);
             save = detail::sched_lock();
@@ -118,7 +118,7 @@ public:
             if (wait_mask_ != 0) {
                 uint8_t slot = detail::find_highest_prio_waiter(wait_mask_);
                 if (slot != 0xFF) {
-                    wait_mask_ &= ~(1u << slot);
+                    wait_mask_ &= ~(task_mask_t{1} << slot);
                     detail::wake_task_locked(TaskHandle{slot});
                 }
             }
@@ -136,7 +136,7 @@ public:
 private:
     bool locked_{false};
     uint8_t owner_slot_{0xFF};
-    uint16_t wait_mask_{0};
+    task_mask_t wait_mask_{0};
 };
 
 // ===========================================================================

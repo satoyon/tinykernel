@@ -343,11 +343,13 @@ uint8_t tk::detail::current_task_slot() {
     return g_cur[get_core_num()];
 }
 
-uint8_t tk::detail::find_highest_prio_waiter(uint16_t wait_mask) {
+static_assert(TK_MAX_TASKS <= sizeof(tk::task_mask_t) * 8, "TK_MAX_TASKS must fit in task_mask_t");
+
+uint8_t tk::detail::find_highest_prio_waiter(task_mask_t wait_mask) {
     uint8_t best_slot = 0xFF;
     uint32_t best_prio = 0xFFFFFFFFu;
     for (uint32_t i = 0; i < TK_MAX_TASKS; ++i) {
-        if (wait_mask & (1u << i)) {
+        if (wait_mask & (task_mask_t{1} << i)) {
             if (g_slots[i].prio < best_prio) {
                 best_prio = g_slots[i].prio;
                 best_slot = (uint8_t)i;
