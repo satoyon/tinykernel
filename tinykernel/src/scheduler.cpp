@@ -38,6 +38,7 @@ alignas(16) static TaskSlot g_slots[TK_MAX_TASKS];  // slot 0 = idle0, slot 1 = 
 alignas(8) static char g_stacks[TK_MAX_TASKS][TK_DEFAULT_STACK_SIZE];
 
 static uint8_t g_cur[TK_NUM_CORES] = {0, 1};
+static volatile uint32_t g_preempt_disabled[TK_NUM_CORES] = {0, 0};
 static int64_t g_tick = 0;
 static bool g_started = false;
 static uint8_t g_rr_last[16] = {0};
@@ -147,6 +148,11 @@ extern "C" uintptr_t tk_switch_context(uintptr_t cur_sp) {
     uint32_t save = sched_lock();
 
     TaskSlot& cur = g_slots[g_cur[core]];
+    if (g_preempt_disabled[core] > 0 && cur.state == State::Running) {
+        sched_unlock(save);
+        return cur_sp;
+    }
+
     cur.sp = cur_sp;
     memcpy(&cur.fpu, &tk_fpu_scratch[core], sizeof(cur.fpu));
     if (cur.state == State::Running) {
@@ -349,4 +355,23 @@ uint8_t tk::detail::find_highest_prio_waiter(uint16_t wait_mask) {
         }
     }
     return best_slot;
+}
+
+void tk::preempt_disable() {
+    uint32_t core = get_core_num();
+    uint32_t save = sched_lock();
+    ++g_preempt_disabled[core];
+    sched_unlock(save);
+}
+
+void tk::preempt_enable() {
+    uint32_t core = get_core_num();
+    uint32_t save = sched_lock();
+    if (g_preempt_disabled[core] > 0) {
+        --g_preempt_disabled[core];
+        if (g_preempt_disabled[core] == 0) {
+            tk_port_trigger_pendsv();
+        }
+    }
+    sched_unlock(save);
 }

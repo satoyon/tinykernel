@@ -60,6 +60,21 @@ uint64_t now_ms();
 bool lock();
 void unlock(bool was_enabled);
 
+// Preemption disable/enable for the current core without disabling interrupts.
+// Useful for peripheral transactions (I2C, SPI) that should not be interrupted by other tasks.
+// Nesting is supported.
+void preempt_disable();
+void preempt_enable();
+
+class PreemptGuard {
+public:
+    PreemptGuard() { preempt_disable(); }
+    ~PreemptGuard() { preempt_enable(); }
+
+    PreemptGuard(const PreemptGuard&) = delete;
+    PreemptGuard& operator=(const PreemptGuard&) = delete;
+};
+
 namespace detail {
 void static_register(const char* name, TaskFn fn, uint32_t prio);
 uint32_t sched_lock();

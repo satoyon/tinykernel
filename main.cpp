@@ -131,22 +131,41 @@ void task_fpu(void* arg) {
         tk::sleep_ms(500);
     }
 }
-TK_TASK(task_fpu, tk::PRIO_NORMAL)
+// ---------------------------------------------------------------------------
+// Preemption Guard demonstration: Simulates an atomic peripheral transaction (e.g. I2C)
+// During PreemptGuard, no task switch occurs even if time slices expire or interrupts fire.
+static void task_preempt_demo(void* arg) {
+    (void)arg;
+    for (;;) {
+        tk::sleep_ms(2000);
+        {
+            tk::PreemptGuard guard;
+            uint64_t t0 = tk::now_ms();
+            P("PreemptDemo: >>> START atomic section (preemption disabled), t0=%llu ms\n", (unsigned long long)t0);
+            // Busy wait 60ms (exceeds the 20ms time slice, but preemption is blocked!)
+            // Meanwhile SysTick interrupt keeps running, so now_ms() keeps updating!
+            while (tk::now_ms() - t0 < 60) {
+            }
+            P("PreemptDemo: <<< END atomic section, now=%llu ms (SysTick kept advancing!)\n", (unsigned long long)tk::now_ms());
+        }  // guard destructor calls preempt_enable() -> deferred task switches happen now!
+    }
+}
 
 int main() {
     stdio_init_all();
 
     printf("tinykernel: registering dynamic tasks...\n");
     g_led_actor.start(tk::PRIO_NORMAL);
-    auto h_sender = tk::create(task_sender, nullptr, tk::PRIO_NORMAL);
-    auto h_mtx_a  = tk::create(task_mutex_worker, const_cast<char*>("Mtx-A"), tk::PRIO_NORMAL);
-    auto h_mtx_b  = tk::create(task_mutex_worker, const_cast<char*>("Mtx-B"), tk::PRIO_NORMAL);
-    auto h_waiter = tk::create(task_sem_waiter, nullptr, tk::PRIO_HIGH);
-    auto h_sig    = tk::create(task_sem_signaler, nullptr, tk::PRIO_NORMAL);
+    auto h_sender  = tk::create(task_sender, nullptr, tk::PRIO_NORMAL);
+    auto h_mtx_a   = tk::create(task_mutex_worker, const_cast<char*>("Mtx-A"), tk::PRIO_NORMAL);
+    auto h_mtx_b   = tk::create(task_mutex_worker, const_cast<char*>("Mtx-B"), tk::PRIO_NORMAL);
+    auto h_waiter  = tk::create(task_sem_waiter, nullptr, tk::PRIO_HIGH);
+    auto h_sig     = tk::create(task_sem_signaler, nullptr, tk::PRIO_NORMAL);
+    auto h_preempt = tk::create(task_preempt_demo, nullptr, tk::PRIO_NORMAL);
 
     if (!g_led_actor.handle().is_valid() || !h_sender.is_valid() ||
         !h_mtx_a.is_valid() || !h_mtx_b.is_valid() ||
-        !h_waiter.is_valid() || !h_sig.is_valid()) {
+        !h_waiter.is_valid() || !h_sig.is_valid() || !h_preempt.is_valid()) {
         printf("tinykernel: task creation FAILED\n");
         for (;;) {
         }
