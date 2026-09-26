@@ -19,10 +19,9 @@
     } while (0)
 
 // ---------------------------------------------------------------------------
-// Actor demonstration: Receiver Actor waiting for typed messages by-value.
-// The message (including the embedded string payload) is copied directly into the
-// actor's queue, so sender tasks can pass local/stack variables safely without
-// lifetime or dangling pointer issues.
+// Actor demonstration: 1-to-N Pub/Sub via EventHub.
+// Senders call tk::publish(msg) without needing to know any Actor instance!
+// All actors subscribed to AppMessage receive their own copy in their queues.
 struct AppMessage {
     uint32_t seq;
     char text[32];  // Embedded payload held safely by the queue!
@@ -31,7 +30,6 @@ struct AppMessage {
 class LedActor : public tk::Actor<AppMessage, 8> {
 protected:
     void on_start() override {
-        // Hardware initialization within task context
         gpio_init(25);
         gpio_set_dir(25, GPIO_OUT);
         gpio_put(25, 0);
@@ -41,27 +39,38 @@ protected:
     void on_message(const AppMessage& msg) override {
         bool state = !gpio_get(25);
         gpio_put(25, state);
-        P("LedActor: received seq=%lu text=\"%s\" -> LED %s, now=%llu ms\n",
+        P("LedActor: seq=%lu text=\"%s\" -> LED %s, now=%llu ms\n",
           (unsigned long)msg.seq, msg.text, state ? "ON" : "OFF", (unsigned long long)tk::now_ms());
     }
 };
 
-static LedActor g_led_actor;
+// Second actor subscribed to the exact same AppMessage type!
+class LogActor : public tk::Actor<AppMessage, 8> {
+protected:
+    void on_message(const AppMessage& msg) override {
+        P("LogActor:  [AUDIT] seq=%lu text=\"%s\", now=%llu ms\n",
+          (unsigned long)msg.seq, msg.text, (unsigned long long)tk::now_ms());
+    }
+};
 
-// Sender task: periodically posts messages to LedActor
+static LedActor g_led_actor;
+static LogActor g_log_actor;
+
+// Sender task: publishes messages anonymously (without knowing who the actors are!)
 static void task_sender(void* arg) {
     (void)arg;
     uint32_t seq = 0;
     for (;;) {
-        tk::sleep_ms(600);
+        tk::sleep_ms(800);
         // Local variable allocated on task_sender's stack
         AppMessage msg{};
         msg.seq = seq++;
         snprintf(msg.text, sizeof(msg.text), "Ping #%lu", (unsigned long)msg.seq);
 
-        P("Sender: posting text=\"%s\"...\n", msg.text);
-        g_led_actor.post(msg);  // Copied by-value into g_led_actor's queue!
-    }  // msg on stack is destroyed here, but g_led_actor safely holds the copy!
+        // Anonymous 1-to-N publish!
+        size_t n = tk::publish(msg);
+        P("Sender: published text=\"%s\" to %lu subscriber(s)!\n", msg.text, (unsigned long)n);
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -158,6 +167,7 @@ int main() {
 
     printf("tinykernel: registering dynamic tasks...\n");
     g_led_actor.start(tk::PRIO_NORMAL);
+    g_log_actor.start(tk::PRIO_NORMAL);
     auto h_sender  = tk::create(task_sender, nullptr, tk::PRIO_NORMAL);
     auto h_mtx_a   = tk::create(task_mutex_worker, const_cast<char*>("Mtx-A"), tk::PRIO_NORMAL);
     auto h_mtx_b   = tk::create(task_mutex_worker, const_cast<char*>("Mtx-B"), tk::PRIO_NORMAL);
@@ -165,7 +175,8 @@ int main() {
     auto h_sig     = tk::create(task_sem_signaler, nullptr, tk::PRIO_NORMAL);
     auto h_preempt = tk::create(task_preempt_demo, nullptr, tk::PRIO_NORMAL);
 
-    if (!g_led_actor.handle().is_valid() || !h_sender.is_valid() ||
+    if (!g_led_actor.handle().is_valid() || !g_log_actor.handle().is_valid() ||
+        !h_sender.is_valid() ||
         !h_mtx_a.is_valid() || !h_mtx_b.is_valid() ||
         !h_waiter.is_valid() || !h_sig.is_valid() || !h_preempt.is_valid()) {
         printf("tinykernel: task creation FAILED\n");

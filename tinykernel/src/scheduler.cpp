@@ -45,11 +45,19 @@ static uint8_t g_rr_last[16] = {0};
 
 static spin_lock_t* g_sched_lock = nullptr;
 
+static inline void ensure_sched_lock(void) {
+    if (!g_sched_lock) {
+        int lock_num = spin_lock_claim_unused(true);
+        g_sched_lock = spin_lock_instance(lock_num);
+    }
+}
+
 constexpr uint32_t kIdlePrio = 15u;
 constexpr int32_t kSliceTicks = (int32_t)(((uint64_t)TK_TIME_SLICE_MS * TK_TICKS_PER_SEC + 999u) / 1000u);
 static_assert(kSliceTicks >= 1, "time slice must be at least one tick");
 
 static inline uint32_t sched_lock(void) {
+    ensure_sched_lock();
     return spin_lock_blocking(g_sched_lock);
 }
 
@@ -240,8 +248,7 @@ void tk::start() {
     if (g_started) for (;;) __asm__ volatile("wfi");
     g_started = true;
 
-    int lock_num = spin_lock_claim_unused(true);
-    g_sched_lock = spin_lock_instance(lock_num);
+    ensure_sched_lock();
 
     // Core 0 Idle Task
     TaskSlot& idle0 = g_slots[0];

@@ -13,16 +13,111 @@ struct Message {
     uintptr_t arg;
 };
 
+// ===========================================================================
+// EventHub: Ultra-lightweight type-based Pub/Sub dispatcher
+// ===========================================================================
+template <typename MsgType, size_t MaxSubscribers = 4>
+class EventHub {
+    struct Subscriber {
+        void* actor{nullptr};
+        bool (*post_fn)(void*, const MsgType&){nullptr};
+    };
+
+    static inline Subscriber subs_[MaxSubscribers]{};
+    static inline size_t count_{0};
+
+public:
+    static bool subscribe(void* actor, bool (*post_fn)(void*, const MsgType&)) {
+        uint32_t save = detail::sched_lock();
+        if (count_ >= MaxSubscribers) {
+            detail::sched_unlock(save);
+            return false;
+        }
+        for (size_t i = 0; i < count_; ++i) {
+            if (subs_[i].actor == actor) {
+                detail::sched_unlock(save);
+                return true;  // Already registered
+            }
+        }
+        subs_[count_++] = {actor, post_fn};
+        detail::sched_unlock(save);
+        return true;
+    }
+
+    static bool unsubscribe(void* actor) {
+        uint32_t save = detail::sched_lock();
+        for (size_t i = 0; i < count_; ++i) {
+            if (subs_[i].actor == actor) {
+                for (size_t j = i; j + 1 < count_; ++j) {
+                    subs_[j] = subs_[j + 1];
+                }
+                count_--;
+                detail::sched_unlock(save);
+                return true;
+            }
+        }
+        detail::sched_unlock(save);
+        return false;
+    }
+
+    // Publish message to all registered actors
+    static size_t publish(const MsgType& msg) {
+        Subscriber local_subs[MaxSubscribers];
+        size_t n = 0;
+        {
+            uint32_t save = detail::sched_lock();
+            n = count_;
+            for (size_t i = 0; i < n; ++i) {
+                local_subs[i] = subs_[i];
+            }
+            detail::sched_unlock(save);
+        }
+
+        size_t delivered = 0;
+        for (size_t i = 0; i < n; ++i) {
+            if (local_subs[i].post_fn && local_subs[i].post_fn(local_subs[i].actor, msg)) {
+                delivered++;
+            }
+        }
+        return delivered;
+    }
+
+    static size_t subscriber_count() {
+        uint32_t save = detail::sched_lock();
+        size_t n = count_;
+        detail::sched_unlock(save);
+        return n;
+    }
+};
+
+// Global publish functions (No actor instance required)
+template <typename MsgType>
+inline size_t publish(const MsgType& msg) {
+    return EventHub<MsgType>::publish(msg);
+}
+
+inline size_t publish(uint32_t id, uintptr_t arg = 0) {
+    return publish(Message{id, arg});
+}
+
+// ===========================================================================
+// Actor: Message-driven task base class
+// ===========================================================================
 template <typename MsgType = Message, size_t QueueSize = 8>
 class Actor {
     static_assert(QueueSize > 0, "QueueSize must be greater than 0");
 
 public:
     Actor() = default;
-    virtual ~Actor() = default;
+    virtual ~Actor() {
+        EventHub<MsgType>::unsubscribe(this);
+    }
 
-    // タスクとして起動する。tk::start() より前に呼ぶ。
+    // タスクとして起動し、EventHub に自身を自動登録する
     bool start(uint32_t prio = PRIO_NORMAL) {
+        EventHub<MsgType>::subscribe(this, [](void* obj, const MsgType& m) {
+            return static_cast<Actor<MsgType, QueueSize>*>(obj)->post(m);
+        });
         handle_ = tk::create(task_entry, this, prio);
         return handle_.is_valid();
     }
