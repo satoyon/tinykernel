@@ -19,14 +19,16 @@
     } while (0)
 
 // ---------------------------------------------------------------------------
-// Actor demonstration: Receiver Actor waiting for messages.
-// It consumes 0 CPU cycles while waiting, and immediately wakes up on post().
-enum AppMsgId : uint32_t {
-    MSG_LED_TOGGLE = 1,
-    MSG_PING       = 2,
+// Actor demonstration: Receiver Actor waiting for typed messages by-value.
+// The message (including the embedded string payload) is copied directly into the
+// actor's queue, so sender tasks can pass local/stack variables safely without
+// lifetime or dangling pointer issues.
+struct AppMessage {
+    uint32_t seq;
+    char text[32];  // Embedded payload held safely by the queue!
 };
 
-class LedActor : public tk::Actor<8> {
+class LedActor : public tk::Actor<AppMessage, 8> {
 protected:
     void on_start() override {
         // Hardware initialization within task context
@@ -36,16 +38,11 @@ protected:
         P("LedActor: initialized GPIO 25 in on_start()\n");
     }
 
-    void on_message(const tk::Message& msg) override {
-        if (msg.id == MSG_LED_TOGGLE) {
-            bool state = !gpio_get(25);
-            gpio_put(25, state);
-            P("LedActor: received MSG_LED_TOGGLE (seq=%lu) -> LED %s, now=%llu ms\n",
-              (unsigned long)msg.arg, state ? "ON" : "OFF", (unsigned long long)tk::now_ms());
-        } else {
-            P("LedActor: received unknown msg id=%lu, arg=%lu\n",
-              (unsigned long)msg.id, (unsigned long)msg.arg);
-        }
+    void on_message(const AppMessage& msg) override {
+        bool state = !gpio_get(25);
+        gpio_put(25, state);
+        P("LedActor: received seq=%lu text=\"%s\" -> LED %s, now=%llu ms\n",
+          (unsigned long)msg.seq, msg.text, state ? "ON" : "OFF", (unsigned long long)tk::now_ms());
     }
 };
 
@@ -57,9 +54,14 @@ static void task_sender(void* arg) {
     uint32_t seq = 0;
     for (;;) {
         tk::sleep_ms(600);
-        P("Sender: posting MSG_LED_TOGGLE seq=%lu...\n", (unsigned long)seq);
-        g_led_actor.post(MSG_LED_TOGGLE, seq++);
-    }
+        // Local variable allocated on task_sender's stack
+        AppMessage msg{};
+        msg.seq = seq++;
+        snprintf(msg.text, sizeof(msg.text), "Ping #%lu", (unsigned long)msg.seq);
+
+        P("Sender: posting text=\"%s\"...\n", msg.text);
+        g_led_actor.post(msg);  // Copied by-value into g_led_actor's queue!
+    }  // msg on stack is destroyed here, but g_led_actor safely holds the copy!
 }
 
 // ---------------------------------------------------------------------------
