@@ -1,0 +1,95 @@
+\doxysection{kernel.\+hpp}
+\hypertarget{kernel_8hpp_source}{}\label{kernel_8hpp_source}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp}}
+\doxymbox{\hyperlink{kernel_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ tinykernel:\ minimal\ preemptive\ task\ scheduler\ for\ RP2350\ (Pico\ 2,\ Cortex-\/M33)}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}pico/runtime.h"{}}\ \ \textcolor{comment}{//\ PICO\_RUNTIME\_INIT\_FUNC\ (static\ task\ registration)}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ TK\_TICKS\_PER\_SEC}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ TK\_TICKS\_PER\_SEC\ 1000u}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifndef\ TK\_TIME\_SLICE\_MS}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ TK\_TIME\_SLICE\_MS\ 10u}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ TK\_MAX\_TASKS}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ TK\_MAX\_TASKS\ 32u}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#ifndef\ TK\_DEFAULT\_STACK\_SIZE}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ TK\_DEFAULT\_STACK\_SIZE\ (4\ *\ 1024)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacetk}{tk}}\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{using\ }\doxymbox{\hyperlink{namespacetk_a8908cf1e54cdc4e14ac3003126722cfc}{TaskFn}}\ =\ void\ (*)(\textcolor{keywordtype}{void}*\ arg);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{enum}\ \doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50e}{Prio}}\ :\ uint32\_t\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50eabbefd771d1fb2ac0708c1bd5371e5a75}{PRIO\_REALTIME}}\ =\ 1,\ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50ea614240a3a3fc1094c6daa0fdca92ba37}{PRIO\_HIGH}}\ \ \ \ \ =\ 5,\ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca}{PRIO\_NORMAL}}\ \ \ =\ 9,\ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50eacf084edcfe985b77c205a37c3bd60519}{PRIO\_LOW}}\ \ \ \ \ \ =\ 13,\ \ }
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{structtk_1_1_task_handle}{TaskHandle}}\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{structtk_1_1_task_handle_a425e4877384e92ad75fee388bd54a7c3}{slot}}\{0xFF\};\ \ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{structtk_1_1_task_handle_afe8adf95998f82fe6d03a80700ef7927}{is\_valid}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{structtk_1_1_task_handle_a425e4877384e92ad75fee388bd54a7c3}{slot}}\ !=\ 0xFF;\ \}}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00066\ TaskHandle\ \doxymbox{\hyperlink{namespacetk_a6e721332f5a7d85998345ed218de7394}{create}}(\doxymbox{\hyperlink{namespacetk_a8908cf1e54cdc4e14ac3003126722cfc}{TaskFn}}\ fn,\ \textcolor{keywordtype}{void}*\ arg\ =\ \textcolor{keyword}{nullptr},\ uint32\_t\ prio\ =\ \doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca}{PRIO\_NORMAL}});}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00074\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{namespacetk_a675f1829b87e2a43239b6f80a526d0ed}{start}}();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{namespacetk_a8081956b0a19b87d5b7c81b772373397}{yield}}();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{namespacetk_aae83f84121085578a7568437a8dc2447}{sleep\_ms}}(uint32\_t\ ms);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00099\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{namespacetk_aba50cfc62cb8be71cf96df7f495a7a3d}{exit}}(\textcolor{keywordtype}{int}\ code\ =\ 0);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00106\ uint64\_t\ \doxymbox{\hyperlink{namespacetk_a46e15375fba47cbd1a93278f17e77848}{now\_ms}}();}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00115\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{namespacetk_a6540aa25eb8562f6d6c8b37977d6cfe8}{lock}}();}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00122\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{namespacetk_a752b12f6862815c94a52347af52578b7}{unlock}}(\textcolor{keywordtype}{bool}\ was\_enabled);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00132\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{namespacetk_a3254a7e2a9f5ed3abe44e8cf62a8dcfe}{preempt\_disable}}();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00141\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{namespacetk_a70e6ee5f456e67a24ce13ff0fd04e4d9}{preempt\_enable}}();}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classtk_1_1_preempt_guard_a39e396ce51420c942e7d6549ec63f88e}{PreemptGuard}}\ \{}
+\DoxyCodeLine{00157\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00158\ \ \ \ \ \doxymbox{\hyperlink{classtk_1_1_preempt_guard_a39e396ce51420c942e7d6549ec63f88e}{PreemptGuard}}()\ \{\ \doxymbox{\hyperlink{namespacetk_a3254a7e2a9f5ed3abe44e8cf62a8dcfe}{preempt\_disable}}();\ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \doxymbox{\hyperlink{classtk_1_1_preempt_guard_a329ea4d806861d9455168aeb01f41f86}{\string~PreemptGuard}}()\ \{\ \doxymbox{\hyperlink{namespacetk_a70e6ee5f456e67a24ce13ff0fd04e4d9}{preempt\_enable}}();\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \doxymbox{\hyperlink{classtk_1_1_preempt_guard_a360ac2b073064abc0f21db3127e7f389}{PreemptGuard}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classtk_1_1_preempt_guard_a39e396ce51420c942e7d6549ec63f88e}{PreemptGuard}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00162\ \ \ \ \ \doxymbox{\hyperlink{classtk_1_1_preempt_guard_a39e396ce51420c942e7d6549ec63f88e}{PreemptGuard}}\&\ \doxymbox{\hyperlink{classtk_1_1_preempt_guard_ad651c301bd81f95866e1cd380c2a2417}{operator=}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classtk_1_1_preempt_guard_a39e396ce51420c942e7d6549ec63f88e}{PreemptGuard}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00163\ \};}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{keyword}{using\ }\doxymbox{\hyperlink{namespacetk_add371a241ec6c1695ef4e67935317edd}{task\_mask\_t}}\ =\ uint32\_t;}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacetk_1_1detail}{detail}}\ \{}
+\DoxyCodeLine{00168\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{namespacetk_1_1detail_a447e4ec89b3f2748451891219b7e3738}{static\_register}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \doxymbox{\hyperlink{namespacetk_a8908cf1e54cdc4e14ac3003126722cfc}{TaskFn}}\ fn,\ uint32\_t\ prio);}
+\DoxyCodeLine{00169\ uint32\_t\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{sched\_lock}}();}
+\DoxyCodeLine{00170\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{sched\_unlock}}(uint32\_t\ save);}
+\DoxyCodeLine{00171\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{namespacetk_1_1detail_a400363f36b5fb5dfc8aec11334471d0d}{block\_current\_task\_locked}}();}
+\DoxyCodeLine{00172\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{namespacetk_1_1detail_ab19385598f18560cb574cc86174ececa}{wake\_task\_locked}}(\doxymbox{\hyperlink{structtk_1_1_task_handle}{TaskHandle}}\ handle);}
+\DoxyCodeLine{00173\ uint8\_t\ \doxymbox{\hyperlink{namespacetk_1_1detail_a73a80d92a172d565201f99e8f31278e4}{current\_task\_slot}}();}
+\DoxyCodeLine{00174\ uint8\_t\ \doxymbox{\hyperlink{namespacetk_1_1detail_a70ba35e0daee086ad86770f1e39c9b35}{find\_highest\_prio\_waiter}}(\doxymbox{\hyperlink{namespacetk_add371a241ec6c1695ef4e67935317edd}{task\_mask\_t}}\ wait\_mask);}
+\DoxyCodeLine{00175\ \}\ \ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \}\ \ \textcolor{comment}{//\ namespace\ tk}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#define\ TK\_TASK(fn,\ prio)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\ \ \ \ static\ void\ tk\_register\_\#\#fn(void)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ ::tk::detail::static\_register(\#fn,\ fn,\ (prio));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\ \ \ \ PICO\_RUNTIME\_INIT\_FUNC(tk\_register\_\#\#fn,\ "{}ZZ900"{});}}
+
+\end{DoxyCode}

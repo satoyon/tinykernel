@@ -1,0 +1,66 @@
+\doxysection{tk::detail Namespace Reference}
+\hypertarget{namespacetk_1_1detail}{}\label{namespacetk_1_1detail}\index{tk::detail@{tk::detail}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{namespacetk_1_1detail_a447e4ec89b3f2748451891219b7e3738}{static\+\_\+register}} (const char \texorpdfstring{$\ast$}{*}name, \doxymbox{\hyperlink{namespacetk_a8908cf1e54cdc4e14ac3003126722cfc}{Task\+Fn}} fn, uint32\+\_\+t prio)
+\item 
+uint32\+\_\+t \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{sched\+\_\+lock}} ()
+\item 
+void \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{sched\+\_\+unlock}} (uint32\+\_\+t save)
+\item 
+void \doxymbox{\hyperlink{namespacetk_1_1detail_a400363f36b5fb5dfc8aec11334471d0d}{block\+\_\+current\+\_\+task\+\_\+locked}} ()
+\item 
+void \doxymbox{\hyperlink{namespacetk_1_1detail_ab19385598f18560cb574cc86174ececa}{wake\+\_\+task\+\_\+locked}} (\doxymbox{\hyperlink{structtk_1_1_task_handle}{Task\+Handle}} handle)
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{namespacetk_1_1detail_a73a80d92a172d565201f99e8f31278e4}{current\+\_\+task\+\_\+slot}} ()
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{namespacetk_1_1detail_a70ba35e0daee086ad86770f1e39c9b35}{find\+\_\+highest\+\_\+prio\+\_\+waiter}} (\doxymbox{\hyperlink{namespacetk_add371a241ec6c1695ef4e67935317edd}{task\+\_\+mask\+\_\+t}} wait\+\_\+mask)
+\end{DoxyCompactItemize}
+
+
+\label{namespacetk_1_1detail_doc-func-members}
+\Hypertarget{namespacetk_1_1detail_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacetk_1_1detail_a400363f36b5fb5dfc8aec11334471d0d}\index{tk::detail@{tk::detail}!block\_current\_task\_locked@{block\_current\_task\_locked}}
+\index{block\_current\_task\_locked@{block\_current\_task\_locked}!tk::detail@{tk::detail}}
+\doxysubsubsection{\texorpdfstring{block\_current\_task\_locked()}{block\_current\_task\_locked()}}
+{\footnotesize\ttfamily \label{namespacetk_1_1detail_a400363f36b5fb5dfc8aec11334471d0d} 
+void tk::\+detail::\+block\+\_\+current\+\_\+task\+\_\+locked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespacetk_1_1detail_a73a80d92a172d565201f99e8f31278e4}\index{tk::detail@{tk::detail}!current\_task\_slot@{current\_task\_slot}}
+\index{current\_task\_slot@{current\_task\_slot}!tk::detail@{tk::detail}}
+\doxysubsubsection{\texorpdfstring{current\_task\_slot()}{current\_task\_slot()}}
+{\footnotesize\ttfamily \label{namespacetk_1_1detail_a73a80d92a172d565201f99e8f31278e4} 
+uint8\+\_\+t tk::\+detail::\+current\+\_\+task\+\_\+slot (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespacetk_1_1detail_a70ba35e0daee086ad86770f1e39c9b35}\index{tk::detail@{tk::detail}!find\_highest\_prio\_waiter@{find\_highest\_prio\_waiter}}
+\index{find\_highest\_prio\_waiter@{find\_highest\_prio\_waiter}!tk::detail@{tk::detail}}
+\doxysubsubsection{\texorpdfstring{find\_highest\_prio\_waiter()}{find\_highest\_prio\_waiter()}}
+{\footnotesize\ttfamily \label{namespacetk_1_1detail_a70ba35e0daee086ad86770f1e39c9b35} 
+uint8\+\_\+t tk::\+detail::\+find\+\_\+highest\+\_\+prio\+\_\+waiter (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{namespacetk_add371a241ec6c1695ef4e67935317edd}{task\+\_\+mask\+\_\+t}}}]{wait\+\_\+mask}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}\index{tk::detail@{tk::detail}!sched\_lock@{sched\_lock}}
+\index{sched\_lock@{sched\_lock}!tk::detail@{tk::detail}}
+\doxysubsubsection{\texorpdfstring{sched\_lock()}{sched\_lock()}}
+{\footnotesize\ttfamily \label{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523} 
+uint32\+\_\+t tk::\+detail::\+sched\+\_\+lock (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}\index{tk::detail@{tk::detail}!sched\_unlock@{sched\_unlock}}
+\index{sched\_unlock@{sched\_unlock}!tk::detail@{tk::detail}}
+\doxysubsubsection{\texorpdfstring{sched\_unlock()}{sched\_unlock()}}
+{\footnotesize\ttfamily \label{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b} 
+void tk::\+detail::\+sched\+\_\+unlock (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{save}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespacetk_1_1detail_a447e4ec89b3f2748451891219b7e3738}\index{tk::detail@{tk::detail}!static\_register@{static\_register}}
+\index{static\_register@{static\_register}!tk::detail@{tk::detail}}
+\doxysubsubsection{\texorpdfstring{static\_register()}{static\_register()}}
+{\footnotesize\ttfamily \label{namespacetk_1_1detail_a447e4ec89b3f2748451891219b7e3738} 
+void tk::\+detail::\+static\+\_\+register (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{\doxymbox{\hyperlink{namespacetk_a8908cf1e54cdc4e14ac3003126722cfc}{Task\+Fn}}}]{fn}{, }\item[{uint32\+\_\+t}]{prio}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespacetk_1_1detail_ab19385598f18560cb574cc86174ececa}\index{tk::detail@{tk::detail}!wake\_task\_locked@{wake\_task\_locked}}
+\index{wake\_task\_locked@{wake\_task\_locked}!tk::detail@{tk::detail}}
+\doxysubsubsection{\texorpdfstring{wake\_task\_locked()}{wake\_task\_locked()}}
+{\footnotesize\ttfamily \label{namespacetk_1_1detail_ab19385598f18560cb574cc86174ececa} 
+void tk::\+detail::\+wake\+\_\+task\+\_\+locked (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{structtk_1_1_task_handle}{Task\+Handle}}}]{handle}{}\end{DoxyParamCaption})}
+

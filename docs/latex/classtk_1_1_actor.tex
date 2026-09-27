@@ -1,0 +1,214 @@
+\doxysection{tk::Actor\texorpdfstring{$<$}{<} Msg\+Type, Queue\+Size \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classtk_1_1_actor}{}\label{classtk_1_1_actor}\index{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}
+
+
+メッセージ駆動型タスク (アクター) の基底クラス  
+
+
+
+
+{\ttfamily \+\#include $<$actor.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classtk_1_1_actor_a776aef8cdcfb4416ef976697eb518ed5}{Actor}} ()=default
+\item 
+virtual \doxymbox{\hyperlink{classtk_1_1_actor_abfc63a514a3ae7cdbdf9ceee81c3b0fc}{\texorpdfstring{$\sim$}{\string~}\+Actor}} ()
+\item 
+bool \doxymbox{\hyperlink{classtk_1_1_actor_ac98ec3132f2ded910a6899b030c06f3f}{start}} (uint32\+\_\+t prio=\doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca}{PRIO\+\_\+\+NORMAL}})
+\begin{DoxyCompactList}\small\item\em \doxylink{classtk_1_1_actor}{Actor} をタスクとして生成し、\+Event\+Hub へ自動登録します \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{classtk_1_1_actor_a224e6be4dca0d1500f2121e97bd0f92d}{post}} (const Msg\+Type \&msg)
+\begin{DoxyCompactList}\small\item\em この \doxylink{classtk_1_1_actor}{Actor} のメッセージキューへ直接メッセージを送信します (コピー渡し) \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{classtk_1_1_actor_a863f28d824aaa78c75789166b1c2a010}{post}} (Msg\+Type \&\&msg)
+\begin{DoxyCompactList}\small\item\em この \doxylink{classtk_1_1_actor}{Actor} のメッセージキューへ直接メッセージを送信します (ムーブ渡し) \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename U = Msg\+Type$>$ }\\std::\+enable\+\_\+if$<$ std::\+is\+\_\+same$<$ U, \doxymbox{\hyperlink{structtk_1_1_message}{Message}} $>$::\+value, bool $>$::\+type \doxymbox{\hyperlink{classtk_1_1_actor_a5c4f4f2f1b8011a37773617e34218c2d}{post}} (uint32\+\_\+t id, uintptr\+\_\+t arg=0)
+\begin{DoxyCompactList}\small\item\em \doxylink{structtk_1_1_message}{tk::\+\+Message} 型の場合のコンビニエンス送信関数 \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{structtk_1_1_task_handle}{Task\+Handle}} \doxymbox{\hyperlink{classtk_1_1_actor_a60a2752360fa7185ec7776f2a6ef766a}{handle}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \doxymbox{\hyperlink{classtk_1_1_actor_afb31ec0d50d1ac97e6a4ce148a96f78d}{on\+\_\+start}} ()
+\begin{DoxyCompactList}\small\item\em タスク起動時、イベントループ突入直前に1度だけ呼ばれる初期化関数 \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{classtk_1_1_actor_a1147554d6ddb64d822285ca5a03506a4}{on\+\_\+message}} (const Msg\+Type \&msg)=0
+\begin{DoxyCompactList}\small\item\em メッセージ受信時に呼ばれるハンドラ関数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Msg\+Type = Message, size\+\_\+t Queue\+Size = 8$>$\newline
+class tk::\+\+Actor$<$ Msg\+Type, Queue\+Size $>$}
+メッセージ駆動型タスク (アクター) の基底クラス 
+
+固定長リングバッファ付きのメッセージキューを持ち、メッセージ到着時に自動起床して {\ttfamily \doxylink{classtk_1_1_actor_a1147554d6ddb64d822285ca5a03506a4}{on\+\_\+message()}} を実行します。メッセージが無い時は CPU を消費せずブロック待機します。
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Msg\+Type} & 受信するメッセージの型 (デフォルト: \doxylink{structtk_1_1_message}{tk::\+\+Message}) \\
+\hline
+{\em Queue\+Size} & メッセージキューの最大保持件数 (デフォルト: 8)\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{struct\ }SensorMsg\ \{\ \textcolor{keywordtype}{float}\ temp;\ \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }SensorActor\ :\ \textcolor{keyword}{public}\ tk::Actor<SensorMsg,\ 8>\ \{}
+\DoxyCodeLine{\textcolor{keyword}{protected}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classtk_1_1_actor_afb31ec0d50d1ac97e6a4ce148a96f78d}{on\_start}}()\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ デバイスの初期化}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classtk_1_1_actor_a1147554d6ddb64d822285ca5a03506a4}{on\_message}}(\textcolor{keyword}{const}\ SensorMsg\&\ msg)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Temp:\ \%.1f\(\backslash\)n"{}},\ msg.temp);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+ 
+
+\label{classtk_1_1_actor_doc-constructors}
+\Hypertarget{classtk_1_1_actor_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classtk_1_1_actor_a776aef8cdcfb4416ef976697eb518ed5}\index{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!Actor@{Actor}}
+\index{Actor@{Actor}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}
+\doxysubsubsection{\texorpdfstring{Actor()}{Actor()}}
+{\footnotesize\ttfamily \label{classtk_1_1_actor_a776aef8cdcfb4416ef976697eb518ed5} 
+template$<$typename Msg\+Type = Message, size\+\_\+t Queue\+Size = 8$>$ \\
+\doxymbox{\hyperlink{classtk_1_1_actor}{tk::\+\+Actor}}$<$ Msg\+Type, Queue\+Size $>$::\+\+Actor (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classtk_1_1_actor_abfc63a514a3ae7cdbdf9ceee81c3b0fc}\index{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!````~Actor@{\texorpdfstring{$\sim$}{\string~}Actor}}
+\index{````~Actor@{\texorpdfstring{$\sim$}{\string~}Actor}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Actor()}{\string~Actor()}}
+{\footnotesize\ttfamily \label{classtk_1_1_actor_abfc63a514a3ae7cdbdf9ceee81c3b0fc} 
+template$<$typename Msg\+Type = Message, size\+\_\+t Queue\+Size = 8$>$ \\
+virtual \doxymbox{\hyperlink{classtk_1_1_actor}{tk::\+\+Actor}}$<$ Msg\+Type, Queue\+Size $>$::\+\texorpdfstring{$\sim$}{\string~}\doxymbox{\hyperlink{classtk_1_1_actor_a776aef8cdcfb4416ef976697eb518ed5}{Actor}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\label{classtk_1_1_actor_doc-func-members}
+\Hypertarget{classtk_1_1_actor_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classtk_1_1_actor_a60a2752360fa7185ec7776f2a6ef766a}\index{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!handle@{handle}}
+\index{handle@{handle}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}
+\doxysubsubsection{\texorpdfstring{handle()}{handle()}}
+{\footnotesize\ttfamily \label{classtk_1_1_actor_a60a2752360fa7185ec7776f2a6ef766a} 
+template$<$typename Msg\+Type = Message, size\+\_\+t Queue\+Size = 8$>$ \\
+\doxymbox{\hyperlink{structtk_1_1_task_handle}{Task\+Handle}} \doxymbox{\hyperlink{classtk_1_1_actor}{tk::\+\+Actor}}$<$ Msg\+Type, Queue\+Size $>$::\+handle (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+この \doxylink{classtk_1_1_actor}{Actor} のタスクハンドルを取得 \Hypertarget{classtk_1_1_actor_a1147554d6ddb64d822285ca5a03506a4}\index{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!on\_message@{on\_message}}
+\index{on\_message@{on\_message}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}
+\doxysubsubsection{\texorpdfstring{on\_message()}{on\_message()}}
+{\footnotesize\ttfamily \label{classtk_1_1_actor_a1147554d6ddb64d822285ca5a03506a4} 
+template$<$typename Msg\+Type = Message, size\+\_\+t Queue\+Size = 8$>$ \\
+virtual void \doxymbox{\hyperlink{classtk_1_1_actor}{tk::\+\+Actor}}$<$ Msg\+Type, Queue\+Size $>$::\+on\+\_\+message (\begin{DoxyParamCaption}\item[{const Msg\+Type \&}]{msg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+メッセージ受信時に呼ばれるハンドラ関数 
+
+キューから取り出されたメッセージの実体への参照が渡されます。 派生クラスで必ず実装します。
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 受信したメッセージ \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classtk_1_1_actor_afb31ec0d50d1ac97e6a4ce148a96f78d}\index{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!on\_start@{on\_start}}
+\index{on\_start@{on\_start}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}
+\doxysubsubsection{\texorpdfstring{on\_start()}{on\_start()}}
+{\footnotesize\ttfamily \label{classtk_1_1_actor_afb31ec0d50d1ac97e6a4ce148a96f78d} 
+template$<$typename Msg\+Type = Message, size\+\_\+t Queue\+Size = 8$>$ \\
+virtual void \doxymbox{\hyperlink{classtk_1_1_actor}{tk::\+\+Actor}}$<$ Msg\+Type, Queue\+Size $>$::\+on\+\_\+start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+タスク起動時、イベントループ突入直前に1度だけ呼ばれる初期化関数 
+
+タスクコンテキスト内で実行されるため、{\ttfamily \doxylink{namespacetk_aae83f84121085578a7568437a8dc2447}{tk::\+sleep\+\_\+ms()}} を使った初期化ウェイトも安全に行えます。 必要に応じて派生クラスでオーバーライドします。 \Hypertarget{classtk_1_1_actor_a224e6be4dca0d1500f2121e97bd0f92d}\index{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!post@{post}}
+\index{post@{post}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}
+\doxysubsubsection{\texorpdfstring{post()}{post()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classtk_1_1_actor_a224e6be4dca0d1500f2121e97bd0f92d} 
+template$<$typename Msg\+Type = Message, size\+\_\+t Queue\+Size = 8$>$ \\
+bool \doxymbox{\hyperlink{classtk_1_1_actor}{tk::\+\+Actor}}$<$ Msg\+Type, Queue\+Size $>$::\+post (\begin{DoxyParamCaption}\item[{const Msg\+Type \&}]{msg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+この \doxylink{classtk_1_1_actor}{Actor} のメッセージキューへ直接メッセージを送信します (コピー渡し) 
+
+スレッドセーフ・割り込みセーフ・マルチコアセーフです。
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 送信するメッセージ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 送信成功, false キューが満杯 
+\end{DoxyReturn}
+\Hypertarget{classtk_1_1_actor_a863f28d824aaa78c75789166b1c2a010}\index{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!post@{post}}
+\index{post@{post}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}
+\doxysubsubsection{\texorpdfstring{post()}{post()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classtk_1_1_actor_a863f28d824aaa78c75789166b1c2a010} 
+template$<$typename Msg\+Type = Message, size\+\_\+t Queue\+Size = 8$>$ \\
+bool \doxymbox{\hyperlink{classtk_1_1_actor}{tk::\+\+Actor}}$<$ Msg\+Type, Queue\+Size $>$::\+post (\begin{DoxyParamCaption}\item[{Msg\+Type \&\&}]{msg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+この \doxylink{classtk_1_1_actor}{Actor} のメッセージキューへ直接メッセージを送信します (ムーブ渡し) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 送信するメッセージ (ムーブ) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 送信成功, false キューが満杯 
+\end{DoxyReturn}
+\Hypertarget{classtk_1_1_actor_a5c4f4f2f1b8011a37773617e34218c2d}\index{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!post@{post}}
+\index{post@{post}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}
+\doxysubsubsection{\texorpdfstring{post()}{post()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classtk_1_1_actor_a5c4f4f2f1b8011a37773617e34218c2d} 
+template$<$typename Msg\+Type = Message, size\+\_\+t Queue\+Size = 8$>$ \\
+template$<$typename U = Msg\+Type$>$ \\
+std::\+enable\+\_\+if$<$ std::\+is\+\_\+same$<$ U, \doxymbox{\hyperlink{structtk_1_1_message}{Message}} $>$::\+value, bool $>$::\+type \doxymbox{\hyperlink{classtk_1_1_actor}{tk::\+\+Actor}}$<$ Msg\+Type, Queue\+Size $>$::\+post (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{id}{, }\item[{uintptr\+\_\+t}]{arg}{ = {\ttfamily 0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxylink{structtk_1_1_message}{tk::\+\+Message} 型の場合のコンビニエンス送信関数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & メッセージ\+ID \\
+\hline
+{\em arg} & 引数 (省略時: 0) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 送信成功, false キューが満杯 
+\end{DoxyReturn}
+\Hypertarget{classtk_1_1_actor_ac98ec3132f2ded910a6899b030c06f3f}\index{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!start@{start}}
+\index{start@{start}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{classtk_1_1_actor_ac98ec3132f2ded910a6899b030c06f3f} 
+template$<$typename Msg\+Type = Message, size\+\_\+t Queue\+Size = 8$>$ \\
+bool \doxymbox{\hyperlink{classtk_1_1_actor}{tk::\+\+Actor}}$<$ Msg\+Type, Queue\+Size $>$::\+start (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{prio}{ = {\ttfamily \doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca}{PRIO\+\_\+\+NORMAL}}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxylink{classtk_1_1_actor}{Actor} をタスクとして生成し、\+Event\+Hub へ自動登録します 
+
+{\ttfamily \doxylink{namespacetk_a675f1829b87e2a43239b6f80a526d0ed}{tk::\+start()}} を呼び出す前に登録する必要があります。
+
+
+\begin{DoxyParams}{Parameters}
+{\em prio} & タスク優先度 (省略時: \doxylink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca}{tk::\+\+PRIO\+\_\+\+NORMAL}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 登録成功, false 登録失敗 (タスク枠上限など) 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\doxymbox{\hyperlink{actor_8hpp}{actor.\+hpp}}\end{DoxyCompactItemize}

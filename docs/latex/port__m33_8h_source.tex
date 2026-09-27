@@ -1,0 +1,34 @@
+\doxysection{port\+\_\+m33.\+h}
+\hypertarget{port__m33_8h_source}{}\label{port__m33_8h_source}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.h@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.h}}
+\doxymbox{\hyperlink{port__m33_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}hardware/structs/scb.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ One-\/time\ port\ setup:\ FPU\ context\ policy\ +\ SysTick\ +\ PendSV\ priority.\ Called\ from\ tk::start().}}
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{port__m33_8c_ac9d435a65b90e71074dd44f97b1103f8}{tk\_port\_init}}(uint32\_t\ ticks\_per\_sec);}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ Build\ a\ task's\ initial\ stack\ frame.\ Returns\ the\ SP\ to\ start\ with.}}
+\DoxyCodeLine{00015\ uintptr\_t\ \doxymbox{\hyperlink{port__m33_8h_a57df28e1d96b701ef5b9713cae179462}{tk\_port\_make\_frame}}(uint8\_t*\ base,\ uint32\_t\ size\_bytes,\ \textcolor{keywordtype}{void}*\ entry\_fn,\ \textcolor{keywordtype}{void}*\ arg);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Jump\ into\ the\ first\ task\ (r0\ =\ SP\ from\ tk\_port\_make\_frame).\ Never\ returns.}}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{port__m33_8h_aaf06c4f2c498c86ed2c595d9bfe4caab}{tk\_port\_start}}(uintptr\_t\ sp);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Trigger\ a\ PendSV\ exception\ to\ initiate\ context\ switching.}}
+\DoxyCodeLine{00021\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ tk\_port\_trigger\_pendsv(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ scb\_hw-\/>icsr\ =\ 1u\ <<\ 28;\ \ \textcolor{comment}{//\ SCB\_ICSR\_PENDSVSET\_Msk}}
+\DoxyCodeLine{00023\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}isb"{}}\ :::\ \textcolor{stringliteral}{"{}memory"{}});}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

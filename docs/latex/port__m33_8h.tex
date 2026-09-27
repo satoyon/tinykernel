@@ -1,0 +1,36 @@
+\doxysection{C:/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+src/\+port/\+m33/\+port\+\_\+m33.h File Reference}
+\hypertarget{port__m33_8h}{}\label{port__m33_8h}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.h@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.h}}
+{\ttfamily \+\#include $<$stdint.\+h$>$}\newline
+{\ttfamily \+\#include "{}hardware/\+structs/\+scb.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{port__m33_8h_ac9d435a65b90e71074dd44f97b1103f8}{tk\+\_\+port\+\_\+init}} (uint32\+\_\+t ticks\+\_\+per\+\_\+sec)
+\item 
+uintptr\+\_\+t \doxymbox{\hyperlink{port__m33_8h_a57df28e1d96b701ef5b9713cae179462}{tk\+\_\+port\+\_\+make\+\_\+frame}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}base, uint32\+\_\+t size\+\_\+bytes, void \texorpdfstring{$\ast$}{*}entry\+\_\+fn, void \texorpdfstring{$\ast$}{*}arg)
+\item 
+void \doxymbox{\hyperlink{port__m33_8h_aaf06c4f2c498c86ed2c595d9bfe4caab}{tk\+\_\+port\+\_\+start}} (uintptr\+\_\+t sp)
+\end{DoxyCompactItemize}
+
+
+\label{port__m33_8h_doc-func-members}
+\Hypertarget{port__m33_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{port__m33_8h_ac9d435a65b90e71074dd44f97b1103f8}\index{port\_m33.h@{port\_m33.h}!tk\_port\_init@{tk\_port\_init}}
+\index{tk\_port\_init@{tk\_port\_init}!port\_m33.h@{port\_m33.h}}
+\doxysubsubsection{\texorpdfstring{tk\_port\_init()}{tk\_port\_init()}}
+{\footnotesize\ttfamily \label{port__m33_8h_ac9d435a65b90e71074dd44f97b1103f8} 
+void tk\+\_\+port\+\_\+init (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{ticks\+\_\+per\+\_\+sec}{}\end{DoxyParamCaption})}
+
+\Hypertarget{port__m33_8h_a57df28e1d96b701ef5b9713cae179462}\index{port\_m33.h@{port\_m33.h}!tk\_port\_make\_frame@{tk\_port\_make\_frame}}
+\index{tk\_port\_make\_frame@{tk\_port\_make\_frame}!port\_m33.h@{port\_m33.h}}
+\doxysubsubsection{\texorpdfstring{tk\_port\_make\_frame()}{tk\_port\_make\_frame()}}
+{\footnotesize\ttfamily \label{port__m33_8h_a57df28e1d96b701ef5b9713cae179462} 
+uintptr\+\_\+t tk\+\_\+port\+\_\+make\+\_\+frame (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{base}{, }\item[{uint32\+\_\+t}]{size\+\_\+bytes}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{entry\+\_\+fn}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{arg}{}\end{DoxyParamCaption})}
+
+\Hypertarget{port__m33_8h_aaf06c4f2c498c86ed2c595d9bfe4caab}\index{port\_m33.h@{port\_m33.h}!tk\_port\_start@{tk\_port\_start}}
+\index{tk\_port\_start@{tk\_port\_start}!port\_m33.h@{port\_m33.h}}
+\doxysubsubsection{\texorpdfstring{tk\_port\_start()}{tk\_port\_start()}}
+{\footnotesize\ttfamily \label{port__m33_8h_aaf06c4f2c498c86ed2c595d9bfe4caab} 
+void tk\+\_\+port\+\_\+start (\begin{DoxyParamCaption}\item[{uintptr\+\_\+t}]{sp}{}\end{DoxyParamCaption})}
+

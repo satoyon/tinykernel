@@ -1,0 +1,206 @@
+\doxysection{actor.\+hpp}
+\hypertarget{actor_8hpp_source}{}\label{actor_8hpp_source}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp}}
+\doxymbox{\hyperlink{actor_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{kernel_8hpp}{kernel.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacetk}{tk}}\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{structtk_1_1_message}{Message}}\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ uint32\_t\ \doxymbox{\hyperlink{structtk_1_1_message_a9a7de43cbf3da1821cf18ae924f94c52}{id}};\ \ \ \ }
+\DoxyCodeLine{00016\ \ \ \ \ uintptr\_t\ \doxymbox{\hyperlink{structtk_1_1_message_a570c5c394d2786708ce4830e4087aa9e}{arg}};\ \ }
+\DoxyCodeLine{00017\ \};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ MsgType,\ \textcolor{keywordtype}{size\_t}\ MaxSubscribers\ =\ 4>}
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classtk_1_1_event_hub}{EventHub}}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{struct\ }Subscriber\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ actor\{\textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ bool\ (*post\_fn)(\textcolor{keywordtype}{void}*,\ \textcolor{keyword}{const}\ MsgType\&)\{\textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00033\ \ \ \ \ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ Subscriber\ subs\_[MaxSubscribers]\{\};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{size\_t}\ count\_\{0\};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{classtk_1_1_event_hub_a50ebe29eaa2657604a1c85bf5125d490}{subscribe}}(\textcolor{keywordtype}{void}*\ actor,\ \textcolor{keywordtype}{bool}\ (*post\_fn)(\textcolor{keywordtype}{void}*,\ \textcolor{keyword}{const}\ MsgType\&))\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\_\ >=\ MaxSubscribers)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ count\_;\ ++i)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (subs\_[i].actor\ ==\ actor)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \ \textcolor{comment}{//\ 登録済み}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ subs\_[count\_++]\ =\ \{actor,\ post\_fn\};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{classtk_1_1_event_hub_a09c779ce8c594ea44c831adfd7e287f8}{unsubscribe}}(\textcolor{keywordtype}{void}*\ actor)\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ count\_;\ ++i)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (subs\_[i].actor\ ==\ actor)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ i;\ j\ +\ 1\ <\ count\_;\ ++j)\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ subs\_[j]\ =\ subs\_[j\ +\ 1];}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count\_-\/-\/;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \doxymbox{\hyperlink{classtk_1_1_event_hub_a3a59a641ad3fe121c0da7e1c81dc300b}{publish}}(\textcolor{keyword}{const}\ MsgType\&\ msg)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ Subscriber\ local\_subs[MaxSubscribers];}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ n\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ n\ =\ count\_;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ n;\ ++i)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ local\_subs[i]\ =\ subs\_[i];}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ delivered\ =\ 0;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ n;\ ++i)\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (local\_subs[i].post\_fn\ \&\&\ local\_subs[i].post\_fn(local\_subs[i].actor,\ msg))\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ delivered++;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ delivered;}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \doxymbox{\hyperlink{classtk_1_1_event_hub_ac4cd6ce4e37b74385c7f4352a5516930}{subscriber\_count}}()\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ n\ =\ count\_;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ n;}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ MsgType>}
+\DoxyCodeLine{00135\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{size\_t}\ \doxymbox{\hyperlink{namespacetk_a083495c9bf857a63f6c20a20aac0ca52}{publish}}(\textcolor{keyword}{const}\ MsgType\&\ msg)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classtk_1_1_event_hub_a3a59a641ad3fe121c0da7e1c81dc300b}{EventHub<MsgType>::publish}}(msg);}
+\DoxyCodeLine{00137\ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00146\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{size\_t}\ \doxymbox{\hyperlink{namespacetk_a083495c9bf857a63f6c20a20aac0ca52}{publish}}(uint32\_t\ \textcolor{keywordtype}{id},\ uintptr\_t\ arg\ =\ 0)\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{namespacetk_a083495c9bf857a63f6c20a20aac0ca52}{publish}}(\doxymbox{\hyperlink{structtk_1_1_message}{Message}}\{id,\ arg\});}
+\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00173\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ MsgType\ =\ Message,\ \textcolor{keywordtype}{size\_t}\ QueueSize\ =\ 8>}
+\DoxyCodeLine{00174\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classtk_1_1_actor_a776aef8cdcfb4416ef976697eb518ed5}{Actor}}\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{static\_assert}(QueueSize\ >\ 0,\ \textcolor{stringliteral}{"{}QueueSize\ must\ be\ greater\ than\ 0"{}});}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00178\ \ \ \ \ \doxymbox{\hyperlink{classtk_1_1_actor_a776aef8cdcfb4416ef976697eb518ed5}{Actor}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{classtk_1_1_actor_abfc63a514a3ae7cdbdf9ceee81c3b0fc}{\string~Actor}}()\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classtk_1_1_event_hub_a09c779ce8c594ea44c831adfd7e287f8}{EventHub<MsgType>::unsubscribe}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{classtk_1_1_actor_ac98ec3132f2ded910a6899b030c06f3f}{start}}(uint32\_t\ prio\ =\ \doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca}{PRIO\_NORMAL}})\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classtk_1_1_event_hub_a50ebe29eaa2657604a1c85bf5125d490}{EventHub<MsgType>::subscribe}}(\textcolor{keyword}{this},\ [](\textcolor{keywordtype}{void}*\ obj,\ \textcolor{keyword}{const}\ MsgType\&\ m)\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\doxymbox{\hyperlink{classtk_1_1_actor_a776aef8cdcfb4416ef976697eb518ed5}{Actor<MsgType,\ QueueSize>}}*\textcolor{keyword}{>}(obj)-\/>\doxymbox{\hyperlink{classtk_1_1_actor_a224e6be4dca0d1500f2121e97bd0f92d}{post}}(m);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ handle\_\ =\ \doxymbox{\hyperlink{namespacetk_a6e721332f5a7d85998345ed218de7394}{tk::create}}(task\_entry,\ \textcolor{keyword}{this},\ prio);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ handle\_.is\_valid();}
+\DoxyCodeLine{00197\ \ \ \ \ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{classtk_1_1_actor_a224e6be4dca0d1500f2121e97bd0f92d}{post}}(\textcolor{keyword}{const}\ MsgType\&\ msg)\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\_\ >=\ QueueSize)\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ queue\_[tail\_]\ =\ msg;}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ tail\_\ =\ (tail\_\ +\ 1)\ \%\ QueueSize;}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ count\_++;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (waiting\_)\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ waiting\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_ab19385598f18560cb574cc86174ececa}{detail::wake\_task\_locked}}(handle\_);}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00222\ \ \ \ \ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{classtk_1_1_actor_a863f28d824aaa78c75789166b1c2a010}{post}}(MsgType\&\&\ msg)\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\_\ >=\ QueueSize)\ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ queue\_[tail\_]\ =\ std::move(msg);}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ tail\_\ =\ (tail\_\ +\ 1)\ \%\ QueueSize;}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ count\_++;}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (waiting\_)\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ waiting\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_ab19385598f18560cb574cc86174ececa}{detail::wake\_task\_locked}}(handle\_);}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00245\ \ \ \ \ \}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ U\ =\ MsgType>}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keyword}{typename}\ std::enable\_if<std::is\_same<U,\ Message>::value,\ \textcolor{keywordtype}{bool}>::type}
+\DoxyCodeLine{00256\ \ \ \ \ \doxymbox{\hyperlink{classtk_1_1_actor_a5c4f4f2f1b8011a37773617e34218c2d}{post}}(uint32\_t\ \textcolor{keywordtype}{id},\ uintptr\_t\ arg\ =\ 0)\ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classtk_1_1_actor_a224e6be4dca0d1500f2121e97bd0f92d}{post}}(\doxymbox{\hyperlink{structtk_1_1_message}{Message}}\{id,\ arg\});}
+\DoxyCodeLine{00258\ \ \ \ \ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00261\ \ \ \ \ \doxymbox{\hyperlink{structtk_1_1_task_handle}{TaskHandle}}\ \doxymbox{\hyperlink{classtk_1_1_actor_a60a2752360fa7185ec7776f2a6ef766a}{handle}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ handle\_;\ \}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classtk_1_1_actor_afb31ec0d50d1ac97e6a4ce148a96f78d}{on\_start}}()\ \{\}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classtk_1_1_actor_a1147554d6ddb64d822285ca5a03506a4}{on\_message}}(\textcolor{keyword}{const}\ MsgType\&\ msg)\ =\ 0;}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ task\_entry(\textcolor{keywordtype}{void}*\ arg)\ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\doxymbox{\hyperlink{classtk_1_1_actor_a776aef8cdcfb4416ef976697eb518ed5}{Actor<MsgType,\ QueueSize>}}*\textcolor{keyword}{>}(arg)-\/>event\_loop();}
+\DoxyCodeLine{00285\ \ \ \ \ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordtype}{void}\ event\_loop()\ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classtk_1_1_actor_afb31ec0d50d1ac97e6a4ce148a96f78d}{on\_start}}();}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)\ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ MsgType\ msg\{\};}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (count\_\ ==\ 0)\ \{}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ waiting\_\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a400363f36b5fb5dfc8aec11334471d0d}{detail::block\_current\_task\_locked}}();}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ コンテキストスイッチされ、他のタスクが走る。}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ wake\_task\_locked\ で起こされたらここに戻る。}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ msg\ =\ std::move(queue\_[head\_]);}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ head\_\ =\ (head\_\ +\ 1)\ \%\ QueueSize;}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ count\_-\/-\/;}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ waiting\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ メッセージディスパッチ（ロック解除状態で実行）}}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classtk_1_1_actor_a1147554d6ddb64d822285ca5a03506a4}{on\_message}}(msg);}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ MsgType\ queue\_[QueueSize]\{\};}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ head\_\{0\};}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ tail\_\{0\};}
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\_\{0\};}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keywordtype}{bool}\ waiting\_\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00316\ \ \ \ \ TaskHandle\ handle\_\{\};}
+\DoxyCodeLine{00317\ \};}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \}\ \ \textcolor{comment}{//\ namespace\ tk}}
+
+\end{DoxyCode}

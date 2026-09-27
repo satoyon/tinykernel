@@ -1,0 +1,2560 @@
+# Doxyfile 1.18.0
+
+# このファイルは、プロジェクトのドキュメント生成システム Doxygen (www.doxygen.org) で使用される設定を記述します。
+#
+# 二重のハッシュ(##)の後のすべてのテキストはコメントとみなされ、 それが先行するタグの前に配置されます。
+#
+# 単一のハッシュ(#)の後のすべてのテキストはコメントとみなされ、無視されます。 書式は次のとおりです:
+# TAG = value [value, ...]
+# リストの場合、次のようにして項目を追加することもできます:
+# TAG += value [value, ...]
+# 空白を含む値は、引用符(" ")で囲む必要があります。
+#
+# 注意:
+#
+# Doxygen を使用して、使用した設定ファイルをテンプレート設定ファイルと比較します:
+# doxygen -x [configFile]
+# 環境変数や CMake タイプの置換変数を置き換えずに、Doxygen を使用して 使用した設定ファイルをテンプレート設定ファイルと比較します:
+# doxygen -x_noenv [configFile]
+
+#---------------------------------------------------------------------------
+# プロジェクト関連の設定オプション
+#---------------------------------------------------------------------------
+
+# このタグは、設定ファイル内のこれ以降のすべての文字に使用されるエンコーディングを指定します。デフォルトはUTF-
+# 8で、このタグが最初に現れる前のすべてのテキストにも使用されるエンコーディングです。Doxygenは libiconv （または libc に組み込まれたi
+# conv）を使用してトランスコーディングを行います。可能なエンコーディングのリストについては、https://www.gnu.org/software/li
+# biconv/ を参照してください。
+# デフォルト値は UTF-8 です。
+
+DOXYFILE_ENCODING      = UTF-8
+
+# PROJECT_NAME タグは、ドキュメントを生成するプロジェクトを識別する単一の単語（またはDoxywizardを使用していない場合は二重引用符で囲ん
+# だ複数の単語）です。この名前は、生成されるほとんどのページのタイトルなどで使用されます。
+# デフォルト値は My Project です。
+
+PROJECT_NAME           = tinykernel
+
+# PROJECT_NUMBER タグを使用して、プロジェクト番号またはリビジョン番号を入力できます。これは、生成されたドキュメントのアーカイブや、バージョン
+# 管理システムが使用されている場合に便利です。
+
+PROJECT_NUMBER         =
+
+# PROJECT_BRIEF タグを使用すると、各ページの上部に表示されるプロジェクトの簡単な1行説明を提供できます。これにより、読者はプロジェクトの目的を
+# すぐに把握できます。説明は短くしてください。
+
+PROJECT_BRIEF          =
+
+# PROJECT_LOGO タグを使用すると、ドキュメントに含まれるロゴまたはアイコンを指定できます。ロゴの最大高さは55ピクセルを超えてはならず、最大幅は
+# 200ピクセルを超えてはなりません。Doxygenはロゴを出力ディレクトリにコピーします。
+
+PROJECT_LOGO           =
+
+# PROJECT_ICON タグを使用すると、HTMLドキュメントが表示されるときにブラウザのタブに表示されるアイコン（ファビコン）を指定できます。Doxy
+# genはアイコンを出力ディレクトリにコピーします。
+
+PROJECT_ICON           =
+
+# OUTPUT_DIRECTORY タグは、生成されたドキュメントが書き込まれるパス（相対または絶対）を指定するために使用されます。相対パスが入力された場合
+# 、Doxygenが開始された場所からの相対パスになります。空白のままにすると、現在のディレクトリが使用されます。
+
+OUTPUT_DIRECTORY       = C:/Users/yoneda/Documents/Pico_Projects/tinykernel/docs
+
+# CREATE_SUBDIRS タグが YES に設定されている場合、Doxygenは各出力形式の出力ディレクトリの下に最大4096のサブディレクトリ（2レ
+# ベル）を作成し、生成されたファイルをこれらのディレクトリに分散させます。このオプションは、Doxygenに大量のソースファイルを処理させる場合に便利です。す
+# べての生成ファイルを同じディレクトリに置くと、ファイルシステムのパフォーマンス問題が発生する可能性があるためです。サブディレクトリの数は
+# CREATE_SUBDIRS_LEVEL で調整してください。
+# デフォルト値は NO です。
+
+CREATE_SUBDIRS         = NO
+
+# CREATE_SUBDIRS タグが YES に設定されている場合に作成されるサブディレクトリの数を制御します。レベル0は16ディレクトリを表し、レベルの
+# 増加ごとにディレクトリの数が倍になり、レベル8では4096ディレクトリになります。これがデフォルトであり最大値でもあります。サブディレクトリは2レベルで編成
+# され、最初のレベルは常に16ディレクトリの固定数を持っています。
+# 最小値: 0, 最大値: 8, デフォルト値: 8。
+# このタグはタグ CREATE_SUBDIRS を YES に設定する必要があります。
+
+CREATE_SUBDIRS_LEVEL   = 8
+
+# ALLOW_UNICODE_NAMES タグが YES に設定されている場合、Doxygenは生成ファイルの名前に非ASCII文字を使用できます。 NO
+# に設定されている場合、非ASCII文字はエスケープされます。例えば、Unicode U+3044には_xE3_x81_x84が使用されます。
+# デフォルト値は NO です。
+
+ALLOW_UNICODE_NAMES    = NO
+
+# OUTPUT_LANGUAGE タグは、Doxygenによって生成されるすべてのドキュメントが書かれる言語を指定するために使用されます。Doxygenはこ
+# の情報を使用して、適切な言語ですべての定数出力を生成します。
+# 可能な値は:Afrikaans, Arabic, Armenian, Brazilian, Bulgarian, Catalan, Chinese,
+# Chinese-Traditional, Croatian, Czech, Danish, Dutch, English (アメリカ合衆国),
+# Esperanto, Farsi (ペルシア語), Finnish, French, German, Greek, Hindi, Hungarian,
+# Indonesian, Italian, Japanese, Japanese-en (英語メッセージ付き日本語), Korean, Korean-en
+# (英語メッセージ付き韓国語), Latvian, Lithuanian, Macedonian, Norwegian, Persian (ファルシ語),
+# Polish, Portuguese, Romanian, Russian, Serbian, Serbian-Cyrillic, Slovak,
+# Slovene, Spanish, Swedish, Turkish, UkrainianとVietnamese.
+# デフォルト値は English です。
+
+OUTPUT_LANGUAGE        = English
+
+# BRIEF_MEMBER_DESC タグが YES
+# に設定されている場合、Doxygenはファイルおよびクラスのドキュメントにリストされているメンバーの後に概要説明を含めます（ Javadoc
+# と同様）。無効にするには NO に設定してください。
+# デフォルト値は YES です。
+
+BRIEF_MEMBER_DESC      = YES
+
+# REPEAT_BRIEF タグが YES に設定されている場合、Doxygenはメンバーまたは関数の概要説明を詳細な説明の前に追加します。
+#
+# なお、HIDE_UNDOC_MEMBERSとBRIEF_MEMBER_DESCの両方が NO に設定されている場合、概要説明は完全に抑制されます。
+# デフォルト値は YES です。
+
+REPEAT_BRIEF           = YES
+
+# このタグは、各種一覧のテキストを整形するために使用される準インテリジェントな概要説明の省略機能を実装します。このリストの各文字列が概要説明の先頭に見つかった
+# 場合、その文字列はテキストから削除され、リスト全体の処理後の結果が注釈テキストとして使用されます。それ以外の場合、概要説明はそのまま使用されます。空白のまま
+# にすると、次の値が使用されます（$nameは自動的にエンティティ名に置き換えられます）：The $name class, The $name widget,
+# The $name file, is, provides, specifies, contains, represents, a, anとthe.
+
+ABBREVIATE_BRIEF       = "The $name class" \
+                         "The $name widget" \
+                         "The $name file" \
+                         is \
+                         provides \
+                         specifies \
+                         contains \
+                         represents \
+                         a \
+                         an \
+                         the
+
+# ALWAYS_DETAILED_SEC とREPEAT_BRIEFタグの両方が YES
+# に設定されている場合、概要説明しかない場合でも、Doxygenは詳細セクションを生成します。
+# デフォルト値は NO です。
+
+ALWAYS_DETAILED_SEC    = NO
+
+# INLINE_INHERITED_MEMB タグが YES に設定されている場合、Doxygenはクラスのドキュメントに継承されたすべてのメンバーを、それ
+# らのメンバーが通常のクラスメンバーであるかのように表示します。基本クラスのコンストラクタ、デストラクタ、代入演算子は表示されません。
+# デフォルト値は NO です。
+
+INLINE_INHERITED_MEMB  = NO
+
+# FULL_PATH_NAMES タグが YES
+# に設定されている場合、Doxygenはファイルリストとヘッダーファイルのファイル名の前にフルパスを追加します。 NO
+# に設定されている場合、ファイル名を一意にする最短パスが使用されます。
+# デフォルト値は YES です。
+
+FULL_PATH_NAMES        = YES
+
+# STRIP_FROM_PATH タグを使用して、パスのユーザー定義部分を削除できます。削除は、指定された文字列のいずれかがパスの左側部分と一致する場合にの
+# み行われます。このタグを使用して、ファイルリストに相対パスを表示できます。空白のままにすると、Doxygenが実行されるディレクトリが削除対象のパスとして使
+# 用されます。
+#
+# なお、ここでは絶対パスだけでなく、Doxygenの開始ディレクトリからの相対パスも指定できます。
+# このタグはタグ FULL_PATH_NAMES を YES に設定する必要があります。
+
+STRIP_FROM_PATH        =
+
+# STRIP_FROM_INC_PATH タグを使用して、クラスのドキュメントで言及されているパスのユーザー定義部分を削除できます。これは、クラスを使用する
+# ためにどのヘッダーファイルをインクルードするかを読者に伝えます。空白のままにすると、クラス定義を含むヘッダーファイルの名前のみが使用されます。それ以外の場合
+# は、通常-Iフラグを使用してコンパイラに渡されるインクルードパスのリストを指定する必要があります。
+
+STRIP_FROM_INC_PATH    =
+
+# SHORT_NAMES タグが YES
+# に設定されている場合、Doxygenは非常に短い（ただし可読性の低い）ファイル名を生成します。これは、DOS、Mac、CD-
+# ROMのようにファイルシステムが長いファイル名をサポートしない場合に便利です。
+# デフォルト値は NO です。
+
+SHORT_NAMES            = NO
+
+# JAVADOC_AUTOBRIEF タグが YES
+# に設定されている場合、DoxygenはJavadocスタイルのコメントの最初の行（最初のピリオド、疑問符、または感嘆符まで）を概要説明として解釈します。
+# NO
+# に設定されている場合、Javadocスタイルは通常のQtスタイルのコメントと同様に動作します（つまり、概要説明には明示的な@briefコマンドが必要です）。
+# デフォルト値は NO です。
+
+JAVADOC_AUTOBRIEF      = NO
+
+# JAVADOC_BANNER タグが YES に設定されている場合、Doxygenは
+# /***************
+# のような行をJavadocスタイルのコメント「バナー」の開始として解釈します。 NO
+# に設定されている場合、Javadocスタイルは通常のコメントと同様に動作し、Doxygenはそれを解釈しません。
+# デフォルト値は NO です。
+
+JAVADOC_BANNER         = NO
+
+# QT_AUTOBRIEF タグが YES
+# に設定されている場合、DoxygenはQtスタイルのコメントの最初の行（最初のピリオド、疑問符、または感嘆符まで）を概要説明として解釈します。 NO
+# に設定されている場合、Qtスタイルは通常のQtスタイルのコメントと同様に動作します（つまり、概要説明には明示的な\briefコマンドが必要です）。
+# デフォルト値は NO です。
+
+QT_AUTOBRIEF           = NO
+
+# MULTILINE_CPP_IS_BRIEF タグを YES に設定すると、Doxygenは複数行のC++特殊コメントブロック（ //! または ///
+# コメントのブロック）を概要説明として扱います。これは以前のデフォルト動作でした。新しいデフォルトでは、複数行のC++コメントブロックを詳細説明として扱います
+# 。以前の動作を好む場合は、このタグを YES に設定してください。
+#
+# なお、このタグを YES に設定すると、Rational Roseコメントは認識されなくなります。
+# デフォルト値は NO です。
+
+MULTILINE_CPP_IS_BRIEF = NO
+
+# デフォルトでは、Pythonのdocstringは整形済みテキストとして表示され、Doxygenの特殊コマンドは使用できません。
+# PYTHON_DOCSTRING を NO
+# に設定すると、Doxygenの特殊コマンドを使用でき、docstringドキュメントブロックの内容がDoxygenドキュメントとして表示されます。
+# デフォルト値は YES です。
+
+PYTHON_DOCSTRING       = YES
+
+# INHERIT_DOCS タグが YES に設定されている場合、未文書化メンバーは、それが再実装する文書化済みメンバーからドキュメントを継承します。
+# デフォルト値は YES です。
+
+INHERIT_DOCS           = YES
+
+# SEPARATE_MEMBER_PAGES タグが YES に設定されている場合、Doxygenは各メンバーに個別のページを生成します。 NO
+# に設定されている場合、メンバーのドキュメントはそれを含むファイル/クラス/名前空間の一部となります。
+# デフォルト値は NO です。
+
+SEPARATE_MEMBER_PAGES  = NO
+
+# TAB_SIZE タグを使用して、タブのスペース数を設定できます。Doxygenはこの値を使用して、コードフラグメントのタブをスペースに置き換えます。
+# 最小値: 1, 最大値: 16, デフォルト値: 4。
+
+TAB_SIZE               = 4
+
+# このタグを使用して、ドキュメント内でコマンドとして機能するエイリアスを指定できます。エイリアスの形式は次のとおりです：
+# name=value
+# 例えば、
+# "sideeffect=@par Side Effects:^^"
+# を追加すると、ドキュメントに \sideeffect （または @sideeffect ）コマンドを記述でき、「Side Effects:」という見出しの
+# ユーザー定義段落が生成されます。なお、エイリアスの値部分に\nを入れて改行を挿入することはできません（出力結果において）。エイリアスの値部分に^^を入れると
+# 、元のファイルに物理的な改行があるかのように改行を挿入できます。エイリアスの値部分にリテラルの {、}、または , が必要な場合は、バックスラッシュ (\)
+# でエスケープする必要があります。これは、コマンド \{ および \} と競合する可能性があります。これらのコマンドには、バージョン @{ および @}
+# を使用するか、二重エスケープ (\\{ および \\}) を使用することをお勧めします。
+
+ALIASES                =
+
+# プロジェクトがCソースのみで構成されている場合、 OPTIMIZE_OUTPUT_FOR_C タグを YES
+# に設定してください。DoxygenはCにより適した出力を生成します。例えば、使用される名前の一部が異なり、すべてのメンバーのリストは省略されます。
+# デフォルト値は NO です。
+
+OPTIMIZE_OUTPUT_FOR_C  = NO
+
+# プロジェクトがJavaまたはPythonソースのみで構成されている場合、 OPTIMIZE_OUTPUT_JAVA タグを YES
+# に設定してください。Doxygenはその言語により適した出力を生成します。例えば、名前空間はパッケージとして表示され、修飾スコープの表示が異なります。
+# デフォルト値は NO です。
+
+OPTIMIZE_OUTPUT_JAVA   = NO
+
+# プロジェクトがFortranソースで構成されている場合、 OPTIMIZE_FOR_FORTRAN タグを YES
+# に設定してください。DoxygenはFortranに適した出力を生成します。
+# デフォルト値は NO です。
+
+OPTIMIZE_FOR_FORTRAN   = NO
+
+# プロジェクトがVHDLソースで構成されている場合、 OPTIMIZE_OUTPUT_VHDL タグを YES
+# に設定してください。DoxygenはVHDLに適した出力を生成します。
+# デフォルト値は NO です。
+
+OPTIMIZE_OUTPUT_VHDL   = NO
+
+# プロジェクトがSliceソースのみで構成されている場合、 OPTIMIZE_OUTPUT_SLICE タグを YES
+# に設定してください。Doxygenはその言語により適した出力を生成します。例えば、名前空間はモジュールとして表示され、型はより多くのグループに分類されます。
+# デフォルト値は NO です。
+
+OPTIMIZE_OUTPUT_SLICE  = NO
+
+# Doxygenは、解析するファイルの拡張子に応じて使用するパーサーを選択します。このタグを使用すると、特定の拡張子に使用するパーサーを割り当てることができま
+# す。Doxygenには組み込みのマッピングがありますが、このタグを使用して上書きまたは拡張できます。形式はext=languageで、extはファイル拡張子
+# 、languageはDoxygenがサポートするパーサーの1つです：IDL、Java、JavaScript、Csharp（C#）、C、C++、Lex、D、P
+# HP、md（Markdown）、Objective-
+# C、Python、Slice、VHDL、Fortran（固定形式Fortran：FortranFixed、自由形式Fortran：FortranFree、不
+# 明形式Fortran：Fortran。後者の場合、パーサーはコードが固定形式か自由形式かを推測します。これがFortranタイプのファイルのデフォルトです）
+# 。例えば、Doxygenに.incファイルをFortranファイルとして扱わせ（デフォルトはPHP）、
+# .fファイルをCとして扱わせる（デフォルトはFortran）には、inc=Fortran f=Cを使用します。
+#
+# なお、拡張子のないファイルの場合、プレースホルダーとしてno_extensionを使用できます。
+#
+# カスタム拡張子の場合、FILE_PATTERNSも設定する必要があります。そうしないとDoxygenはファイルを読み取りません。no_extensionを指
+# 定する場合は、FILE_PATTERNSに*を追加してください。
+#
+# デフォルトのファイル拡張子マッピングのリストも参照してください。
+
+EXTENSION_MAPPING      =
+
+# MARKDOWN_SUPPORT タグが有効な場合、DoxygenはすべてのコメントをMarkdown形式に従って前処理し、より読みやすいドキュメントを可
+# 能にします。詳細については、https://daringfireball.net/projects/markdown/ を参照してください。Markdown
+# 処理の出力はDoxygenによってさらに処理されるため、MarkdownフォーマットとDoxygen、HTML、およびXMLコマンドを混在させることができま
+# す。下位互換性の問題がある場合にのみ無効にしてください。
+# デフォルト値は YES です。
+
+MARKDOWN_SUPPORT       = YES
+
+# MARKDOWN_STRICT タグが有効な場合、DoxygenのネイティブマークアップとMarkdownが競合する場合でも、コメント内のテキストをMar
+# kdown形式として扱います。これはバッククォートが使用される場合にのみ関係します。Doxygenのネイティブマークアップでは、シングルクォートがバッククォ
+# ートで始まるテキストを終了させ、引用テキストとして扱いますが、Markdownではそのようなテキストはそのまま表示され、2番目の対応するバッククォートが見つ
+# かった場合にのみ終了します。また、Doxygenのネイティブマークアップでは、バッククォートセクション内のダブルクォートをエスケープする必要がありますが、M
+# arkdownでは不要です。
+# デフォルト値は YES です。
+# このタグはタグ MARKDOWN_SUPPORT を YES に設定する必要があります。
+
+MARKDOWN_STRICT        = YES
+
+# TOC_INCLUDE_HEADINGS
+# タグが非ゼロ値に設定されている場合、id属性がなくても、そのレベルまでのすべての見出しが目次に自動的に含まれます。
+# 注: この機能は現在Markdown見出しにのみ適用されます。
+# 最小値: 0, 最大値: 99, デフォルト値: 6。
+# このタグはタグ MARKDOWN_SUPPORT を YES に設定する必要があります。
+
+TOC_INCLUDE_HEADINGS   = 6
+
+# MARKDOWN_ID_STYLE タグを使用して、Markdown見出しの識別子を生成するアルゴリズムを指定できます。なお、各識別子は一意です。
+# 可能な値は:DOXYGEN 0から始まるシーケンス番号が続く固定の'autotoc_md'文字列を使用とGITHUB
+# タイトルの小文字版を使用し、空白は'-'に置換し、句読点文字は削除.
+# デフォルト値は DOXYGEN です。
+# このタグはタグ MARKDOWN_SUPPORT を YES に設定する必要があります。
+
+MARKDOWN_ID_STYLE      = DOXYGEN
+
+# 有効にすると、Doxygenは文書化されたクラスや名前空間に対応する単語を自動的に対応するドキュメントにリンクしようとします。このようなリンクは、単語の前に
+# % 記号を置くことで個別に防止できます。また、 AUTOLINK_SUPPORT を NO に設定することでグローバルに無効化できます。
+# AUTOLINK_IGNORE_WORDS タグにリストされた単語は自動リンクの対象外になります。
+# デフォルト値は YES です。
+
+AUTOLINK_SUPPORT       = YES
+
+# このタグは、AUTOLINK_SUPPORTを介した自動リンク生成が有効な場合に、ドキュメント内で単語の先頭と一致すると自動リンク生成を抑制する単語のリスト
+# を指定します。このリストは、\#や\link、\refコマンドを使用して明示的に作成されたリンクには影響しません。
+# このタグはタグ AUTOLINK_SUPPORT を YES に設定する必要があります。
+
+AUTOLINK_IGNORE_WORDS  =
+
+# STLクラス（std::string、std::vectorなど）を使用しているが、STLソースのタグファイルを入力として含めたくない場合は、このタグを
+# YES に設定する必要があります。これにより、DoxygenはSTLクラスを引数に持つ関数の宣言と定義を一致させることができます（例：func(std::s
+# tring);とfunc(std::string) {}）。また、STLクラスを含む継承図とコラボレーション図もより完全で正確になります。
+# デフォルト値は NO です。
+
+BUILTIN_STL_SUPPORT    = NO
+
+# MicrosoftのC++/CLI言語を使用している場合は、解析サポートを有効にするためにこのオプションを YES に設定する必要があります。
+# デフォルト値は NO です。
+
+CPP_CLI_SUPPORT        = NO
+
+# プロジェクトがsip (see:
+# https://www.riverbankcomputing.com/software)ソースのみで構成されている場合は、 SIP_SUPPORT タグを
+# YES に設定します。Doxygenはそれらを通常のC++と同様に解析しますが、明示的な保護キーワードがない場合、すべてのクラスがプライベート継承ではなくパ
+# ブリック継承を使用すると見なします。
+# デフォルト値は NO です。
+
+SIP_SUPPORT            = NO
+
+# MicrosoftのIDLには、プロパティのゲッターおよびセッターメソッドを示す propget および propput 属性があります。このオプションを
+# YES に設定すると、Doxygenはドキュメント内のgetおよびsetメソッドをプロパティに置き換えます。これは、メソッドが実際に単純型を取得または設定し
+# ている場合にのみ機能します。そうでない場合、またはメソッドを表示したい場合は、このオプションを NO に設定する必要があります。
+# デフォルト値は YES です。
+
+IDL_PROPERTY_SUPPORT   = YES
+
+# ドキュメントでメンバーグループ化が使用され、 DISTRIBUTE_GROUP_DOC タグが YES に設定されている場合、Doxygenはグループの最初
+# のメンバーのドキュメント（存在する場合）をグループの他のメンバーに再利用します。デフォルトでは、グループのすべてのメンバーを明示的に文書化する必要があります
+# 。
+# デフォルト値は NO です。
+
+DISTRIBUTE_GROUP_DOC   = NO
+
+# 構造体またはクラスをグループに追加し、このオプションが有効な場合、ネストされたクラスや構造体も同じグループに追加されます。デフォルトではこのオプションは無効
+# であり、ネストされた複合型は\ingroupを使用して明示的に追加する必要があります。
+# デフォルト値は NO です。
+
+GROUP_NESTED_COMPOUNDS = NO
+
+# SUBGROUPING タグを YES に設定すると、同じタイプのクラスメンバーグループ（例：パブリック関数のグループ）を、そのタイプのサブグループとして
+# 配置できます（例：パブリック関数セクションの下）。サブグループ化を防ぐには NO
+# に設定します。または、\nosubgroupingコマンドを使用してクラスごとに指定することもできます。
+# デフォルト値は YES です。
+
+SUBGROUPING            = YES
+
+# INLINE_GROUPED_CLASSES タグが YES に設定されている場合、クラス、構造体、および共用体は、別のページ（HTMLおよびManページ
+# の場合）またはセクション（LaTeXおよびRTFの場合）ではなく、それらが含まれているグループ内に表示されます（例：\ingroupを使用）。
+#
+# なお、この機能はSEPARATE_MEMBER_PAGESと組み合わせて使用できません。
+# デフォルト値は NO です。
+
+INLINE_GROUPED_CLASSES = NO
+
+# INLINE_SIMPLE_STRUCTS タグが YES に設定されている場合、パブリックデータフィールドまたは単純なtypedefフィールドのみを持つ
+# 構造体、クラス、および共用体は、そのスコープが文書化されていれば、定義されているスコープ（ファイル、名前空間、またはグループ）のドキュメント内にインラインで
+# 表示されます。 NO に設定されている場合、構造体、クラス、および共用体は別のページ（HTMLおよびManページの場合）またはセクション（LaTeXおよびR
+# TFの場合）に表示されます。
+# デフォルト値は NO です。
+
+INLINE_SIMPLE_STRUCTS  = NO
+
+# TYPEDEF_HIDES_STRUCT タグを有効にすると、構造体、共用体、または列挙型のtypedefは、typedef名を持つ構造体、共用体、または
+# 列挙型として文書化されます。例えば、typedef struct TypeS {} TypeTは、ドキュメント内で TypeT
+# という名前の構造体として表示されます。無効な場合、typedefはファイル、名前空間、またはクラスのメンバーとして表示され、構造体は TypeS という名前
+# になります。これは、コーディング規約ですべての複合型をtypedefし、タグ名ではなくtypedef名のみを参照する場合に、Cコードで特に便利です。
+# デフォルト値は NO です。
+
+TYPEDEF_HIDES_STRUCT   = NO
+
+# シンボルルックアップキャッシュのサイズは、 LOOKUP_CACHE_SIZE を使用して設定できます。このキャッシュは、名前とスコープに基づいてシンボルを
+# 解決するために使用されます。これはコストのかかるプロセスであり、同じシンボルがコード内で複数回出現することが多いため、Doxygenは事前に解決されたシンボ
+# ルのキャッシュを保持します。キャッシュが小さすぎると、Doxygenは遅くなります。キャッシュが大きすぎると、メモリが無駄になります。キャッシュサイズは次の
+# 式で与えられます：2^(16+LOOKUP_CACHE_SIZE)。有効な範囲は0..9で、デフォルトは0で、キャッシュサイズは2^16=65536シンボル
+# に対応します。実行の終わりに、Doxygenはキャッシュの使用状況を報告し、速度の観点から最適なキャッシュサイズを提案します。
+# 最小値: 0, 最大値: 9, デフォルト値: 0。
+
+LOOKUP_CACHE_SIZE      = 0
+
+# NUM_PROC_THREADS は、処理中にDoxygenが使用できるスレッド数を指定します。 0 に設定すると、Doxygenはシステムで利用可能なコ
+# ア数に基づいて決定します。CPU負荷と処理速度のバランスをより細かく制御するには、0より大きい値を明示的に設定できます。現時点では、入力処理のみが複数スレッ
+# ドで実行可能です。これはまだ実験的な機能のため、デフォルトは1に設定されており、並列処理は実質的に無効になっています。問題が発生した場合はご報告ください。d
+# otグラフの並列生成は、 DOT_NUM_THREADS 設定で制御されます。
+# 最小値: 0, 最大値: 512, デフォルト値: 1。
+
+NUM_PROC_THREADS       = 1
+
+# TIMESTAMP タグが NO 以外に設定されている場合、生成された各ページにはページが生成された日付または日時が含まれます。 NO
+# に設定すると、複数回の実行結果を比較する際に便利です。
+# 可能な値は:YES, NO, DATETIMEとDATE.
+# デフォルト値は NO です。
+
+TIMESTAMP              = NO
+
+#---------------------------------------------------------------------------
+# ビルド関連の設定オプション
+#---------------------------------------------------------------------------
+
+# EXTRACT_ALL タグが YES に設定されている場合、Doxygenはドキュメントがなくても、すべてのエンティティが文書化されているものとして扱い
+# ます。プライベートクラスメンバーと静的ファイルメンバーは、それぞれEXTRACT_PRIVATEおよびEXTRACT_STATICタグを YES
+# に設定しない限り非表示になります。
+# 注: これにより、WARNINGSが YES に設定されている場合に通常生成される未文書化メンバーに関する警告も無効になります。
+# デフォルト値は NO です。
+
+EXTRACT_ALL            = YES
+
+# EXTRACT_PRIVATE タグが YES に設定されている場合、クラスのすべてのプライベートメンバーがドキュメントに含まれます。
+# デフォルト値は NO です。
+
+EXTRACT_PRIVATE        = NO
+
+# EXTRACT_PRIV_VIRTUAL タグが YES に設定されている場合、クラスの文書化されたプライベート仮想メソッドがドキュメントに含まれます。
+# デフォルト値は NO です。
+
+EXTRACT_PRIV_VIRTUAL   = NO
+
+# EXTRACT_PACKAGE タグが YES に設定されている場合、パッケージまたは内部スコープを持つすべてのメンバーがドキュメントに含まれます。
+# デフォルト値は NO です。
+
+EXTRACT_PACKAGE        = NO
+
+# EXTRACT_STATIC タグが YES に設定されている場合、ファイルのすべての静的メンバーがドキュメントに含まれます。
+# デフォルト値は NO です。
+
+EXTRACT_STATIC         = NO
+
+# EXTRACT_LOCAL_CLASSES タグが YES
+# に設定されている場合、ソースファイル内でローカルに定義されたクラス（および構造体）がドキュメントに含まれます。 NO
+# に設定されている場合、ヘッダーファイルで定義されたクラスのみが含まれます。Javaソースでは効果がありません。
+# デフォルト値は YES です。
+
+EXTRACT_LOCAL_CLASSES  = YES
+
+# このフラグはObjective-Cコードにのみ役立ちます。 YES
+# に設定されている場合、インターフェースではなく実装セクションで定義されたローカルメソッドがドキュメントに含まれます。 NO
+# に設定されている場合、インターフェースのメソッドのみが含まれます。
+# デフォルト値は NO です。
+
+EXTRACT_LOCAL_METHODS  = NO
+
+# このフラグが YES に設定されている場合、匿名名前空間のメンバーが抽出され、ドキュメント内で'anonymous_namespace{file}'という名
+# 前の名前空間として表示されます。ここでfileは匿名名前空間を含むファイルのベース名に置き換えられます。デフォルトでは匿名名前空間は非表示です。
+# デフォルト値は NO です。
+
+EXTRACT_ANON_NSPACES   = NO
+
+# このフラグが YES
+# に設定されている場合、宣言内の無名パラメータの名前は対応する定義から決定されます。デフォルトでは、無名パラメータは出力でも無名のままです。
+# デフォルト値は YES です。
+
+RESOLVE_UNNAMED_PARAMS = YES
+
+# HIDE_UNDOC_MEMBERS タグが YES
+# に設定されている場合、Doxygenは文書化されたクラスまたはファイル内の未文書化メンバーをすべて非表示にします。 NO に設定されている場合、これらのメン
+# バーは各種概要には含まれますが、ドキュメントセクションは生成されません。EXTRACT_ALLが有効な場合、このオプションは効果がありません。
+# デフォルト値は NO です。
+
+HIDE_UNDOC_MEMBERS     = NO
+
+# HIDE_UNDOC_CLASSES タグが YES
+# に設定されている場合、Doxygenはクラス階層で通常表示される未文書化のクラスをすべて非表示にします。 NO に設定されている場合、これらのクラスは各種概
+# 要に含まれます。このオプションを有効にすると、未文書化のC++コンセプトも非表示になります。EXTRACT_ALLが有効な場合、このオプションは効果がありま
+# せん。
+# デフォルト値は NO です。
+
+HIDE_UNDOC_CLASSES     = NO
+
+# HIDE_UNDOC_NAMESPACES タグが YES
+# に設定されている場合、Doxygenは名前空間階層で通常表示される未文書化の名前空間をすべて非表示にします。 NO
+# に設定されている場合、これらの名前空間は各種概要に含まれます。EXTRACT_ALLが有効な場合、このオプションは効果がありません。
+# デフォルト値は YES です。
+
+HIDE_UNDOC_NAMESPACES  = YES
+
+# HIDE_FRIEND_COMPOUNDS タグが YES に設定されている場合、Doxygenはすべてのfriend宣言を非表示にします。 NO
+# に設定されている場合、これらの宣言はドキュメントに含まれます。
+# デフォルト値は NO です。
+
+HIDE_FRIEND_COMPOUNDS  = NO
+
+# HIDE_IN_BODY_DOCS タグが YES
+# に設定されている場合、Doxygenは関数本体内で見つかったドキュメントブロックをすべて非表示にします。 NO
+# に設定されている場合、これらのブロックは関数の詳細ドキュメントブロックに追加されます。
+# デフォルト値は NO です。
+
+HIDE_IN_BODY_DOCS      = NO
+
+# INTERNAL_DOCS タグは、\internalコマンドの後に記述されたドキュメントを含めるかどうかを決定します。タグが NO
+# に設定されている場合、そのドキュメントは除外されます。内部ドキュメントを含めるには YES に設定してください。
+# デフォルト値は NO です。
+
+INTERNAL_DOCS          = NO
+
+# CASE_SENSE_NAMES オプションを正しく設定することで、Doxygenは基盤となるファイルシステムの機能に適切に対応できるようになります。ファ
+# イルシステムが大文字と小文字を区別する場合（同じディレクトリ内で大文字小文字のみが異なる名前のファイルをサポートする場合）、入力にそのようなファイルが含まれ
+# る場合はオプションを YES に設定して適切に処理する必要があります。大文字と小文字を区別しないファイルシステムの場合は、オプションを NO
+# に設定して、大文字小文字のみが異なるシンボル（例： CLASS と Class という2つのクラス）の出力ファイルを適切に処理し、また正確な大文字小文字を指
+# 定せずにファイルを参照できるようにする必要があります。Windows（Cygwinを含む）およびmacOSでは、通常このオプションを NO
+# に設定し、Linuxやその他のUnix系では、通常 YES に設定してください。
+# 可能な値は:SYSTEM, NOとYES.
+# デフォルト値は SYSTEM です。
+
+CASE_SENSE_NAMES       = SYSTEM
+
+# HIDE_SCOPE_NAMES タグが NO
+# に設定されている場合、Doxygenはドキュメント内でメンバーを完全なクラスおよび名前空間スコープ付きで表示します。 YES
+# に設定されている場合、スコープは非表示になります。
+# デフォルト値は NO です。
+
+HIDE_SCOPE_NAMES       = NO
+
+# HIDE_COMPOUND_REFERENCE タグが NO
+# （デフォルト）に設定されている場合、Doxygenはページのタイトルに「クラスリファレンス」などの追加テキストを付加します。 YES
+# に設定されている場合、複合型リファレンスは非表示になります。
+# デフォルト値は NO です。
+
+HIDE_COMPOUND_REFERENCE= NO
+
+# SHOW_HEADERFILE タグが YES
+# に設定されている場合、クラスのドキュメントには、クラスを使用するためにインクルードする必要があるファイルが表示されます。
+# デフォルト値は YES です。
+
+SHOW_HEADERFILE        = YES
+
+# SHOW_INCLUDE_FILES タグが YES
+# に設定されている場合、Doxygenはファイルのドキュメントに、そのファイルがインクルードしているファイルのリストを含めます。
+# デフォルト値は YES です。
+
+SHOW_INCLUDE_FILES     = YES
+
+# SHOW_GROUPED_MEMB_INC タグが YES に設定されている場合、Doxygenはグループ化された各メンバーのドキュメントにインクルード文
+# を追加し、そのメンバーを使用するためにどのファイルをインクルードすべきかを読者に示します。
+# デフォルト値は NO です。
+
+SHOW_GROUPED_MEMB_INC  = NO
+
+# FORCE_LOCAL_INCLUDES タグが YES
+# に設定されている場合、Doxygenはドキュメント内のインクルードファイルを山括弧ではなく二重引用符でリストします。
+# デフォルト値は NO です。
+
+FORCE_LOCAL_INCLUDES   = NO
+
+# INLINE_INFO タグが YES に設定されている場合、インラインメンバーのドキュメントに[inline]タグが挿入されます。
+# デフォルト値は YES です。
+
+INLINE_INFO            = YES
+
+# SORT_MEMBER_DOCS タグが YES
+# に設定されている場合、Doxygenはファイルおよびクラスメンバーの（詳細な）ドキュメントをメンバー名でアルファベット順にソートします。 NO
+# に設定されている場合、メンバーは宣言順に表示されます。
+# デフォルト値は YES です。
+
+SORT_MEMBER_DOCS       = YES
+
+# SORT_BRIEF_DOCS タグが YES
+# に設定されている場合、Doxygenはファイル、名前空間、およびクラスメンバーの概要説明をメンバー名でアルファベット順にソートします。 NO
+# に設定されている場合、メンバーは宣言順に表示されます。なお、これはクラスリスト内のクラスの順序にも影響します。
+# デフォルト値は NO です。
+
+SORT_BRIEF_DOCS        = NO
+
+# SORT_MEMBERS_CTORS_ 1STタグが YES
+# に設定されている場合、Doxygenはクラスメンバーの（概要および詳細）ドキュメントをソートし、コンストラクタとデストラクタを最初に表示します。 NO
+# に設定されている場合、コンストラクタはSORT_BRIEF_DOCSおよびSORT_MEMBER_DOCSで定義された順序で表示されます。
+# 注: SORT_BRIEF_DOCSが NO に設定されている場合、概要メンバードキュメントのソートではこのオプションは無視されます。
+# 注: SORT_MEMBER_DOCSが NO に設定されている場合、詳細メンバードキュメントのソートではこのオプションは無視されます。
+# デフォルト値は NO です。
+
+SORT_MEMBERS_CTORS_1ST = NO
+
+# SORT_GROUP_NAMES タグが YES に設定されている場合、Doxygenはグループ名の階層をアルファベット順にソートします。 NO
+# に設定されている場合、グループ名は定義された順序で表示されます。
+# デフォルト値は NO です。
+
+SORT_GROUP_NAMES       = NO
+
+# SORT_BY_SCOPE_NAME タグが YES に設定されている場合、クラスリストは名前空間を含む完全修飾名でソートされます。 NO
+# に設定されている場合、クラスリストは名前空間部分を除いたクラス名のみでソートされます。
+# 注: このオプションは、HIDE_SCOPE_NAMESが YES に設定されている場合はあまり有用ではありません。
+# 注: このオプションはクラスリストにのみ適用され、アルファベット順リストには適用されません。
+# デフォルト値は NO です。
+
+SORT_BY_SCOPE_NAME     = NO
+
+# STRICT_PROTO_MATCHING オプションが有効で、Doxygenが関数のすべてのパラメータの型解決に失敗した場合、候補が1つしかない場合や、
+# 単純な文字列一致で選択すべき候補が明らかな場合でも、メンバー関数のプロトタイプと実装の一致を拒否します。 STRICT_PROTO_MATCHING
+# を無効にすると、そのような場合でもプロトタイプと実装の一致を受け入れます。
+# デフォルト値は NO です。
+
+STRICT_PROTO_MATCHING  = NO
+
+# GENERATE_TODOLIST タグを使用して、todoリストを有効（ YES ）または無効（ NO
+# ）にできます。このリストは、ドキュメントに\todoコマンドを配置することで作成されます。
+# デフォルト値は YES です。
+
+GENERATE_TODOLIST      = YES
+
+# GENERATE_TESTLIST タグを使用して、テストリストを有効（ YES ）または無効（ NO
+# ）にできます。このリストは、ドキュメントに\testコマンドを配置することで作成されます。
+# デフォルト値は YES です。
+
+GENERATE_TESTLIST      = YES
+
+# GENERATE_BUGLIST タグを使用して、バグリストを有効（ YES ）または無効（ NO
+# ）にできます。このリストは、ドキュメントに\bugコマンドを配置することで作成されます。
+# デフォルト値は YES です。
+
+GENERATE_BUGLIST       = YES
+
+# GENERATE_DEPRECATEDLIST タグを使用して、非推奨リストを有効（ YES ）または無効（ NO
+# ）にできます。このリストは、ドキュメントに\deprecatedコマンドを配置することで作成されます。
+# デフォルト値は YES です。
+
+GENERATE_DEPRECATEDLIST= YES
+
+# GENERATE_REQUIREMENTS タグを使用して、要件ページを有効（ YES ）または無効（ NO
+# ）にできます。有効な場合、このページは、\requirementコマンドを含む少なくとも1つのコメントブロックが入力に現れると自動的に作成されます。
+# デフォルト値は YES です。
+
+GENERATE_REQUIREMENTS  = YES
+
+# REQ_TRACEABILITY_INFO
+# タグは、要件ページにトレーサビリティ情報を表示するかどうかを制御します（\requirementコメントブロック使用時のみ関連）。 NO
+# に設定すると、トレーサビリティ情報は完全に無効になります。 UNSATISFIED_ONLY
+# に設定すると、満足関係が欠けている要件のリストを表示します（\satisfiesコマンド経由）。同様に、 UNVERIFIED_ONLY
+# に設定すると、検証関係が欠けている要件のリストを表示します（\verifiesコマンド経由）。 YES
+# （デフォルト）に設定すると、該当する場合は両方のリストを表示します。
+# 可能な値は:YES, NO, UNSATISFIED_ONLYとUNVERIFIED_ONLY.
+# デフォルト値は YES です。
+# このタグはタグ GENERATE_REQUIREMENTS を YES に設定する必要があります。
+
+REQ_TRACEABILITY_INFO  = YES
+
+# ENABLED_SECTIONS タグを使用して、\if <section_label> ... \endifおよび\cond
+# <section_label> ... \endcondブロックでマークされた条件付きドキュメントセクションを有効にできます。
+
+ENABLED_SECTIONS       =
+
+# MAX_INITIALIZER_LINES タグは、変数またはマクロ/定義の初期値がドキュメントに表示される最大行数を指定します。初期化子がここで指定した
+# 行数を超える場合は非表示になります。初期化子を完全に非表示にするには0を指定します。個々の変数やマクロ/定義の値の表示は、この設定に関係なく、ドキュメント内
+# で\showinitializerまたは\hideinitializerコマンドを使用して制御できます。
+# 最小値: 0, 最大値: 10000, デフォルト値: 30。
+
+MAX_INITIALIZER_LINES  = 30
+
+# SHOW_USED_FILES タグを NO に設定すると、クラスと構造体のドキュメントの下部に生成されるファイルのリストが無効になります。 YES
+# に設定されている場合、リストはドキュメントの生成に使用されたファイルを示します。
+# デフォルト値は YES です。
+
+SHOW_USED_FILES        = YES
+
+# SHOW_FILES タグを NO に設定すると、ファイルページの生成が無効になります。これにより、クイックインデックスとフォルダツリービュー（指定されて
+# いる場合）からファイルエントリが削除されます。
+# デフォルト値は YES です。
+
+SHOW_FILES             = YES
+
+# SHOW_NAMESPACES タグを NO に設定すると、名前空間ページの生成が無効になります。これにより、クイックインデックスとフォルダツリービュー（
+# 指定されている場合）から名前空間エントリが削除されます。
+# デフォルト値は YES です。
+
+SHOW_NAMESPACES        = YES
+
+# FILE_VERSION_FILTER タグを使用して、各ファイルの現在のバージョンを取得するためにDoxygenが呼び出すプログラムまたはスクリプトを指
+# 定できます（通常はバージョン管理システムから取得）。Doxygenはpopen()経由でcommand
+# input_fileコマンドを実行してプログラムを呼び出します。ここで command は FILE_VERSION_FILTER タグの値、
+# input_file はDoxygenが提供する入力ファイル名です。プログラムが標準出力に書き込んだ内容がファイルバージョンとして使用されます。例については
+# ドキュメントを参照してください。
+
+FILE_VERSION_FILTER    =
+
+# LAYOUT_FILE タグを使用して、Doxygenが解析するレイアウトファイルを指定できます。レイアウトファイルは、出力形式に依存しない方法で生成され
+# る出力ファイルのグローバル構造を制御します。Doxygenのデフォルトを表すレイアウトファイルを作成するには、-
+# lオプションを指定してDoxygenを実行します。オプションの後にファイル名を指定できます。省略した場合、 DoxygenLayout
+# .xmlがレイアウトファイル名として使用されます。詳細についてはセクション"Changing the layout of pages" を参照してください。
+#
+# なお、 DoxygenLayout .xmlというファイルを含むディレクトリからDoxygenを実行すると、 LAYOUT_FILE
+# タグが空白でも、Doxygenはそれを自動的に解析します。
+
+LAYOUT_FILE            =
+
+# CITE_BIB_FILES タグを使用して、参照定義を含む1つ以上の bib ファイルを指定できます。これは
+# .bibファイルのリストである必要があります。 .bib拡張子は省略された場合自動的に追加されます。これには bibtex ツールがインストールされている必
+# 要があります。詳細については、https://en.wikipedia.org/wiki/BibTeXも参照してください。LaTeXの場合、参考文献のスタイ
+# ルはLATEX_BIB_STYLEを使用して制御できます。この機能を使用するには、検索パスで bibtex と perl
+# が利用可能である必要があります。参照の作成方法については、\citeも参照してください。
+
+CITE_BIB_FILES         =
+
+# EXTERNAL_TOOL_PATH タグを使用して、 latex や gs
+# などの外部ツールを見つけられるように検索パス（PATH環境変数）を拡張できます。
+# 注: EXTERNAL_TOOL_PATHで指定したディレクトリは、PATH変数で既に指定されているパスの前に、指定した順序で追加されます。
+# 注: このオプションは、DoxywizardからDoxygenを実行する場合のmacOSバージョン14（Sonoma）以降で特に便利です。この場合、PATH
+# へのユーザー定義の変更は無視されるためです。macOSでの典型的な例は、
+# EXTERNAL_TOOL_PATH = /Library/TeX/texbin /usr/local/bin
+# のように設定することで、標準パスと合わせて、外部ツール起動時にDoxygenが使用する完全な検索パスは
+# PATH=/Library/TeX/texbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+# となります。
+
+EXTERNAL_TOOL_PATH     =
+
+#---------------------------------------------------------------------------
+# 警告および進行メッセージに関連する設定オプション
+#---------------------------------------------------------------------------
+
+# QUIET タグを使用して、Doxygenが標準出力に生成するメッセージのオン/オフを切り替えることができます。 QUIET が YES
+# に設定されている場合、メッセージは抑制されます。
+# デフォルト値は NO です。
+
+QUIET                  = NO
+
+# WARNINGS タグを使用して、Doxygenによって標準エラー（ stderr ）に生成される警告メッセージのオン/オフを切り替えることができます。
+# WARNINGS が YES に設定されている場合、警告が有効になります。
+#
+# ヒント：ドキュメントの作成中は警告を有効にしてください。
+# デフォルト値は YES です。
+
+WARNINGS               = YES
+
+# WARN_IF_UNDOCUMENTED タグが YES
+# に設定されている場合、Doxygenは未文書化のメンバーに対して警告を生成します。EXTRACT_ALLが YES
+# に設定されている場合、このフラグは自動的に無効になります。
+# デフォルト値は YES です。
+
+WARN_IF_UNDOCUMENTED   = YES
+
+# WARN_IF_DOC_ERROR タグが YES に設定されている場合、Doxygenはドキュメント内の潜在的なエラー（文書化された関数で一部のパラメー
+# タを2回文書化する、存在しないパラメータを文書化する、マークアップコマンドを誤って使用するなど）に対して警告を生成します。
+# デフォルト値は YES です。
+
+WARN_IF_DOC_ERROR      = YES
+
+# WARN_IF_INCOMPLETE_DOC が YES に設定されている場合、Doxygenは不完全な関数パラメータドキュメントについて警告します。
+# NO に設定されている場合、Doxygenは一部のパラメータにドキュメントがないことを警告なしで受け入れます。
+# デフォルト値は YES です。
+
+WARN_IF_INCOMPLETE_DOC = YES
+
+# この WARN_NO_PARAMDOC
+# オプションを有効にすると、文書化されているがパラメータまたは戻り値のドキュメントがない関数に対する警告を取得できます。 NO
+# に設定されている場合、Doxygenはパラメータドキュメントの誤りについてのみ警告し、ドキュメントの欠落については警告しません。EXTRACT_ALLが
+# YES に設定されている場合、このフラグは自動的に無効になります。WARN_IF_INCOMPLETE_DOCも参照してください。
+# デフォルト値は NO です。
+
+WARN_NO_PARAMDOC       = NO
+
+# WARN_IF_UNDOC_ENUM_VAL オプションが YES に設定されている場合、Doxygenは未文書化の列挙値について警告します。 NO
+# に設定されている場合、Doxygenは未文書化の列挙値を受け入れます。EXTRACT_ALLが YES
+# に設定されている場合、このフラグは自動的に無効になります。
+# デフォルト値は NO です。
+
+WARN_IF_UNDOC_ENUM_VAL = NO
+
+# WARN_LAYOUT_FILE オプションが YES に設定されている場合、Doxygenはユーザー定義のレイアウトファイルの解析中に見つかった問題（欠
+# 落または誤った要素など）について警告します。詳細については、LAYOUT_FILEも参照してください。 NO
+# に設定されている場合、レイアウトファイルの問題は抑制されます。
+# デフォルト値は YES です。
+
+WARN_LAYOUT_FILE       = YES
+
+# WARN_AS_ERROR タグが YES に設定されている場合、Doxygenは警告が発生するとすぐに停止します。 WARN_AS_ERROR タグが
+# FAIL_ON_WARNINGS に設定されている場合、Doxygenは WARN_AS_ERROR タグが NO
+# に設定されているかのように実行を継続しますが、Doxygenプロセスの終了時に、Doxygenは非ゼロのステータスで戻ります。 WARN_AS_ERROR
+# タグが FAIL_ON_WARNINGS_PRINT に設定されている場合、Doxygenは FAIL_ON_WARNINGS のように動作しますが、WAR
+# N_LOGFILEが定義されていない場合、Doxygenは警告メッセージを他のメッセージの間に書き込まず、実行の終了時に書き込みます。WARN_LOGFIL
+# Eが定義されている場合、警告メッセージは定義されたファイルにあることに加えて、実行の終了時にも表示されます。ただし、WARN_LOGFILEが-
+# （つまり標準出力stdout）として定義されている場合を除き、その場合の動作は FAIL_ON_WARNINGS の設定と同じままです。
+# 可能な値は:NO, YES, FAIL_ON_WARNINGSとFAIL_ON_WARNINGS_PRINT.
+# デフォルト値は NO です。
+
+WARN_AS_ERROR          = NO
+
+# WARN_FORMAT タグは、Doxygenが生成できる警告メッセージの形式を決定します。文字列には、警告が発生したファイルと行番号、および警告テキスト
+# に置き換えられる$file、$line、および$textタグが含まれている必要があります。オプションで、形式には$versionを含めることができます。これ
+# は、（FILE_VERSION_FILTERを介して取得できた場合）ファイルのバージョンに置き換えられます。
+# 参照: WARN_LINE_FORMAT
+# デフォルト値は $file:$line: $text です。
+
+WARN_FORMAT            = "$file:$line: $text"
+
+# WARN_FORMATコマンドの$text部分で、より具体的な場所への参照が指定されることがあります。この場所に（Doxygen外部から）ジャンプしやすくす
+# るために、ユーザーはカスタムの「カット」/「ペースト」文字列を定義できます。例：
+# WARN_LINE_FORMAT = "'vi $file +$line'"
+# 参照: WARN_FORMAT
+# デフォルト値は at line $line of file $file です。
+
+WARN_LINE_FORMAT       = "at line $line of file $file"
+
+# WARN_LOGFILE タグを使用して、警告およびエラーメッセージの出力先ファイルを指定できます。空白のままにすると、出力は標準エラー（stderr）に
+# 書き込まれます。指定されたファイルを書き込み用に開けない場合、警告およびエラーメッセージは標準エラーに書き込まれます。ファイルとして-
+# が指定されている場合、警告およびエラーメッセージは標準出力（stdout）に書き込まれます。
+
+WARN_LOGFILE           =
+
+#---------------------------------------------------------------------------
+# 入力ファイルに関連する設定オプション
+#---------------------------------------------------------------------------
+
+# INPUT タグは、文書化されたソースファイルを含むファイルおよび/またはディレクトリを指定するために使用されます。 myfile.cpp
+# のようなファイル名や /usr/src/myproject のようなディレクトリを入力できます。ファイルまたはディレクトリをスペースで区切ってください。FI
+# LE_PATTERNSおよびEXTENSION_MAPPINGも参照してください。
+# 注: このタグが空の場合、現在のディレクトリが検索されます。
+
+INPUT                  = C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel
+
+# このタグを使用して、Doxygenが解析するソースファイルの文字エンコーディングを指定できます。内部的には、DoxygenはUTF-
+# 8エンコーディングを使用します。Doxygenはトランスコーディングにlibiconv（またはlibcに組み込まれたiconv）を使用します。可能なエンコー
+# ディングのリストについては、libiconvのドキュメント (see:
+# https://www.gnu.org/software/libiconv/)を参照してください。
+# 参照: INPUT_FILE_ENCODING
+# デフォルト値は UTF-8 です。
+
+INPUT_ENCODING         = UTF-8
+
+# このタグを使用して、Doxygenが解析するソースファイルの文字エンコーディングを指定できます。 INPUT_FILE_ENCODING タグを使用して、フ
+# ァイルパターンごとに文字エンコーディングを指定できます。Doxygenはファイル名を各パターンと比較し、一致がある場合、デフォルトのINPUT_ENCODI
+# NGの代わりにエンコーディングを適用します。文字エンコーディングは、pattern=encodingの形式のリストです（*.php=ISO-8859-
+# 1のように）。
+# 参照: サポートされているエンコーディングの詳細については、INPUT_ENCODINGを参照してください。
+
+INPUT_FILE_ENCODING    =
+
+# INPUTタグの値にディレクトリが含まれている場合、 FILE_PATTERNS
+# タグを使用して、ディレクトリ内のソースファイルをフィルタリングする1つ以上のワイルドカードパターン（*.cppや*.hのように）を指定できます。
+#
+# カスタム拡張子または直接サポートされていない拡張子の場合、拡張子のEXTENSION_MAPPINGも設定する必要があります。そうしないと、ファイルはDox
+# ygenによって読み取られません。
+#
+# デフォルトでチェックされるファイルパターンのリストは、デフォルトのファイル拡張子マッピングのリストと異なる場合があることに注意してください。
+#
+# 空白のままにすると、次のパターンがテストされます：*.c, *.cc, *.cxx, *.cxxm, *.cpp, *.cppm, *.ccm,
+# *.c++, *.c++m, *.java, *.ii, *.ixx, *.ipp, *.i++, *.inl, *.idl, *.ddl, *.odl,
+# *.h, *.hh, *.hxx, *.hpp, *.h++, *.l, *.cs, *.d, *.php, *.php4, *.php5,
+# *.phtml, *.inc, *.m, *.markdown, *.md, *.mm, *.dox (to be provided as Doxygen
+# C comment), *.py, *.pyw, *.f90, *.f95, *.f03, *.f08, *.f18, *.f, *.for, *.vhd,
+# *.vhdl, *.ucf, *.qsfと*.ice.
+
+FILE_PATTERNS          = *.c \
+                         *.cc \
+                         *.cxx \
+                         *.cxxm \
+                         *.cpp \
+                         *.cppm \
+                         *.ccm \
+                         *.c++ \
+                         *.c++m \
+                         *.java \
+                         *.ii \
+                         *.ixx \
+                         *.ipp \
+                         *.i++ \
+                         *.inl \
+                         *.idl \
+                         *.ddl \
+                         *.odl \
+                         *.h \
+                         *.hh \
+                         *.hxx \
+                         *.hpp \
+                         *.h++ \
+                         *.l \
+                         *.cs \
+                         *.d \
+                         *.php \
+                         *.php4 \
+                         *.php5 \
+                         *.phtml \
+                         *.inc \
+                         *.m \
+                         *.markdown \
+                         *.md \
+                         *.mm \
+                         *.dox \
+                         *.py \
+                         *.pyw \
+                         *.f90 \
+                         *.f95 \
+                         *.f03 \
+                         *.f08 \
+                         *.f18 \
+                         *.f \
+                         *.for \
+                         *.vhd \
+                         *.vhdl \
+                         *.ucf \
+                         *.qsf \
+                         *.ice
+
+# RECURSIVE タグを使用して、入力ファイルのサブディレクトリも検索するかどうかを指定できます。
+# デフォルト値は NO です。
+
+RECURSIVE              = YES
+
+# EXCLUDE タグを使用して、INPUTソースファイルから除外するファイルおよび/またはディレクトリを指定できます。これにより、INPUTタグでルートが
+# 指定されたディレクトリツリーからサブディレクトリを簡単に除外できます。
+#
+# 相対パスは、Doxygenが実行されるディレクトリからの相対パスであることに注意してください。
+
+EXCLUDE                =
+
+# EXCLUDE_SYMLINKS
+# タグを使用して、シンボリックリンク（Unixファイルシステムの機能）であるファイルまたはディレクトリを入力から除外するかどうかを選択できます。
+# デフォルト値は NO です。
+
+EXCLUDE_SYMLINKS       = NO
+
+# INPUTタグの値にディレクトリが含まれている場合、 EXCLUDE_PATTERNS
+# タグを使用して、それらのディレクトリから特定のファイルを除外する1つ以上のワイルドカードパターンを指定できます。
+#
+# ワイルドカードは絶対パスを持つファイルと一致するため、すべてのテストディレクトリを除外するには、例えばパターン*/test/*を使用します。
+
+EXCLUDE_PATTERNS       =
+
+# EXCLUDE_SYMBOLS タグを使用して、出力から除外する1つ以上のシンボル名（名前空間、クラス、関数など）を指定できます。シンボル名は、完全修飾名
+# 、単語、またはワイルドカード*が使用されている場合は部分文字列です。例：ANamespace、AClass、ANamespace::AClass、AName
+# space::*Test
+
+EXCLUDE_SYMBOLS        =
+
+# EXAMPLE_PATH
+# タグを使用して、インクルードされるサンプルコードの断片を含む1つ以上のファイルまたはディレクトリを指定できます（\includeコマンドを参照）。
+
+EXAMPLE_PATH           =
+
+# EXAMPLE_PATHタグの値にディレクトリが含まれている場合、 EXAMPLE_PATTERNS タグを使用して、ディレクトリ内のソースファイルをフィル
+# タリングする1つ以上のワイルドカードパターン（*.cppや*.hのように）を指定できます。空白のままにすると、すべてのファイルがインクルードされます。
+
+EXAMPLE_PATTERNS       = *
+
+# EXAMPLE_RECURSIVE タグが YES に設定されている場合、RECURSIVEタグの値に関係なく、\includeまたは\dontinclu
+# deコマンドで使用する入力ファイルのサブディレクトリが検索されます。
+# デフォルト値は NO です。
+
+EXAMPLE_RECURSIVE      = NO
+
+# IMAGE_PATH
+# タグを使用して、ドキュメントに含める画像が格納された1つ以上のファイルまたはディレクトリを指定できます（\imageコマンドを参照）。
+
+IMAGE_PATH             =
+
+# INPUT_FILTER
+# タグを使用して、Doxygenが各入力ファイルをフィルタリングするために呼び出すプログラムを指定できます。Doxygenは、popen()を介してコマンド：
+#
+# <filter> <input-file>
+#
+# を実行することでフィルタプログラムを呼び出します。ここで、<filter>は INPUT_FILTER タグの値、<input-file>は入力ファイルの名
+# 前です。Doxygenは、フィルタプログラムが標準出力に書き込む出力を使用します。FILTER_PATTERNSが指定されている場合、このタグは無視されます
+# 。
+#
+# フィルタは行を追加または削除してはならないことに注意してください。コードがスキャンされる前に適用されますが、出力コードが生成されるときには適用されません。行
+# が追加または削除されると、アンカーが正しく配置されません。
+#
+# Doxygenは、処理されたデータを標準出力に書き込んでさらに処理するために使用するため、デバッグステートメントや使用されたコマンドのような他のもの（Win
+# dowsバッチファイルの場合は常に@echo OFFを使用）は標準出力に書き込まれるべきではないことに注意してください。
+#
+# カスタム拡張子または直接サポートされていない拡張子の場合、拡張子のEXTENSION_MAPPINGも設定する必要があります。そうしないと、ファイルはDox
+# ygenによって正しく処理されません。
+
+INPUT_FILTER           =
+
+# FILTER_PATTERNS タグを使用して、ファイルパターンごとにフィルタを指定できます。Doxygenはファイル名を各パターンと比較し、一致がある場
+# 合にフィルタを適用します。フィルタは、pattern=filterの形式のリストです（*.cpp=my_cpp_filterのように）。フィルタの使用方法に
+# ついては、INPUT_FILTERを参照してください。 FILTER_PATTERNS
+# タグが空の場合、またはパターンのいずれもファイル名と一致しない場合、INPUT_FILTERが適用されます。
+#
+# カスタム拡張子または直接サポートされていない拡張子の場合、拡張子のEXTENSION_MAPPINGも設定する必要があります。そうしないと、ファイルはDox
+# ygenによって正しく処理されません。
+
+FILTER_PATTERNS        =
+
+# FILTER_SOURCE_FILES タグが YES に設定されている場合、入力フィルタ（INPUT_FILTERを使用して設定されている場合）は、ブラ
+# ウズするソースファイルを生成するために使用される入力ファイルもフィルタリングするために使用されます（つまり、SOURCE_BROWSERが YES
+# に設定されている場合）。
+# デフォルト値は NO です。
+
+FILTER_SOURCE_FILES    = NO
+
+# FILTER_SOURCE_PATTERNS タグを使用して、ファイルパターンごとにソースフィルタを指定できます。パターンはFILTER_PATTERNの
+# 設定を上書きし（ある場合）、*.ext=を使用して特定のパターンのソースフィルタリングを無効にすることもできます（フィルタに名前を付けずに）。
+# このタグはタグ FILTER_SOURCE_FILES を YES に設定する必要があります。
+
+FILTER_SOURCE_PATTERNS =
+
+# USE_MDFILE_AS_MAINPAGE タグが入力の一部であるマークダウンファイルの名前を参照している場合、その内容はメインページ（index.ht
+# ml）に配置されます。これは、例えばGitHubにプロジェクトがあり、紹介ページもDoxygen出力に再利用したい場合に便利です。
+
+USE_MDFILE_AS_MAINPAGE =
+
+# IMPLICIT_DIR_DOCS タグが YES に設定されている場合、プロジェクトのルートのサブディレクトリで見つかったREADME.mdファイルは、
+# README.mdが\dir、\page、または\mainpageコマンドで始まらない限り、そのサブディレクトリのドキュメントとして使用されます。 NO
+# に設定されている場合、ディレクトリドキュメントとして使用されるためには、README.mdファイルは明示的な\dirコマンドで始まる必要があります。
+# デフォルト値は YES です。
+
+IMPLICIT_DIR_DOCS      = YES
+
+# Fortran標準では、固定形式のFortranコードでは、位置72以降のすべての文字がコメントと見なされることが規定されています。一般的な拡張機能は、自動
+# コメントが始まる前により長い行を許可することです。 FORTRAN_COMMENT_AFTER
+# の設定により、自動コメントが始まる前により長い行を処理できるようになります。
+# 最小値: 7, 最大値: 10000, デフォルト値: 72。
+
+FORTRAN_COMMENT_AFTER  = 72
+
+#---------------------------------------------------------------------------
+# ソースブラウジングに関連する設定オプション
+#---------------------------------------------------------------------------
+
+# SOURCE_BROWSER タグが YES
+# に設定されている場合、ソースファイルのリストが生成されます。文書化されたエンティティはこれらのソースと相互参照されます。
+#
+# 注意：生成された出力からすべてのソースコードを取り除くには、VERBATIM_HEADERSも NO に設定されていることを確認してください。
+# デフォルト値は NO です。
+
+SOURCE_BROWSER         = NO
+
+# INLINE_SOURCES タグを YES
+# に設定すると、関数、複数行マクロ、列挙型、またはリスト初期化変数の本体がドキュメントに直接インクルードされます。
+# デフォルト値は NO です。
+
+INLINE_SOURCES         = NO
+
+# STRIP_CODE_COMMENTS タグを YES に設定すると、Doxygenは生成されたソースコード断片から特殊コマンドを含むコメントブロックを非
+# 表示にします。通常のC、C++、Fortranコメントは常に表示されたままです。
+# デフォルト値は YES です。
+
+STRIP_CODE_COMMENTS    = YES
+
+# REFERENCED_BY_RELATION タグが YES
+# に設定されている場合、文書化された各エンティティについて、それを参照する文書化されたすべての関数がリストされます。
+# デフォルト値は NO です。
+
+REFERENCED_BY_RELATION = NO
+
+# REFERENCES_RELATION タグが YES
+# に設定されている場合、文書化された各関数について、その関数によって呼び出し/使用される文書化されたすべてのエンティティがリストされます。
+# デフォルト値は NO です。
+
+REFERENCES_RELATION    = NO
+
+# REFERENCES_LINK_SOURCE タグが YES に設定され、SOURCE_BROWSERタグが YES に設定されている場合、REFEREN
+# CES_RELATIONおよびREFERENCED_BY_RELATIONリストの関数からのハイパーリンクはソースコードにリンクします。それ以外の場合は、ド
+# キュメントにリンクします。
+# デフォルト値は YES です。
+
+REFERENCES_LINK_SOURCE = YES
+
+# SOURCE_TOOLTIPS が有効な場合（デフォルト）、ソースコード内のハイパーリンクにカーソルを合わせると、プロトタイプ、概要説明、定義およびドキュ
+# メントへのリンクなどの追加情報を含むツールチップが表示されます。これによりHTMLファイルが大きくなり、大きなファイルの読み込みが少し遅くなるため、この機能
+# を無効にすることもできます。
+# デフォルト値は YES です。
+# このタグはタグ SOURCE_BROWSER を YES に設定する必要があります。
+
+SOURCE_TOOLTIPS        = YES
+
+# USE_HTAGS タグが YES に設定されている場合、ソースコードへの参照は、Doxygenの組み込みソースブラウザではなく、 htags
+# (1)ツールによって生成されたHTMLを指します。 htags ツールは、GNUのグローバルソースタグ付けシステムの一部です（https://www.gnu
+# .org/software/global/global.htmlを参照）。バージョン4.8.6以上が必要です。
+#
+# 使用するには、次の手順を実行します：
+# - global の最新バージョンをインストールする
+# - 設定ファイルでSOURCE_BROWSERと USE_HTAGS を有効にする
+# - INPUTがソースツリーのルートを指していることを確認する
+# - 通常通り doxygen を実行する
+#
+# Doxygenは htags を呼び出し（それがさらに gtags
+# を呼び出します）、これらのツールはコマンドライン（つまり検索パス内）から利用可能である必要があります。
+#
+# 結果：Doxygenによって生成されたソースブラウザの代わりに、ソースコードへのリンクは htags の出力を指すようになります。
+# デフォルト値は NO です。
+# このタグはタグ SOURCE_BROWSER を YES に設定する必要があります。
+
+USE_HTAGS              = NO
+
+# VERBATIM_HEADERS タグが YES
+# に設定されている場合、Doxygenはインクルードが指定されている各クラスのヘッダーファイルをそのままコピーして出力します。これを無効にするには NO
+# に設定します。
+# 参照: セクション\class。
+# デフォルト値は YES です。
+
+VERBATIM_HEADERS       = YES
+
+# CLANG_ASSISTED_PARSING タグが YES に設定されている場合、Doxygenはclangパーサー (see:
+# http://clang.llvm.org/)を使用して、パフォーマンスは低下しますがより正確な解析を行います。これは、Doxygenの組み込みパーサーが必
+# 要な型情報を欠いているテンプレートを多用したC++コードで特に役立ちます。
+# 注: このオプションの可用性は、DoxygenがCMakeの-Duse_libclang=ONオプションでビルドされたかどうかに依存します。
+# デフォルト値は NO です。
+
+CLANG_ASSISTED_PARSING = NO
+
+# CLANG_ASSISTED_PARSING タグが YES に設定され、 CLANG_ADD_INC_PATHS タグが YES
+# に設定されている場合、Doxygenは各入力のディレクトリをインクルードパスに追加します。
+# デフォルト値は YES です。
+# このタグはタグ CLANG_ASSISTED_PARSING を YES に設定する必要があります。
+
+CLANG_ADD_INC_PATHS    = YES
+
+# clangアシスト解析が有効な場合、コンパイラを呼び出すときに通常使用するコマンドラインオプションをコンパイラに提供できます。インクルードパスは、INPUT
+# およびINCLUDE_PATHで指定されたファイルおよびディレクトリに対してDoxygenによってすでに設定されていることに注意してください。
+# このタグはタグ CLANG_ASSISTED_PARSING を YES に設定する必要があります。
+
+CLANG_OPTIONS          =
+
+# clangアシスト解析が有効な場合、compile_commands.jsonというファイルを含むディレクトリへのパスをclangパーサーに提供できます。こ
+# のファイルは、ソースファイルのビルド時に使用されたオプションを含むコンパイルデータベース (see:
+# http://clang.llvm.org/docs/HowToSetupToolingForLLVM.html)です。これは、clang-
+# checkのようなclangツールに-
+# pオプションを指定することと同等です。これらのオプションはパーサーに渡されます。CLANG_OPTIONSで指定されたオプションも追加されます。
+# 注: このオプションの可用性は、DoxygenがCMakeの-Duse_libclang=ONオプションでビルドされたかどうかに依存します。
+
+CLANG_DATABASE_PATH    =
+
+#---------------------------------------------------------------------------
+# アルファベット順クラスインデックスに関連する設定オプション
+#---------------------------------------------------------------------------
+
+# ALPHABETICAL_INDEX タグが YES に設定されている場合、すべての複合型のアルファベット順インデックスが生成されます。プロジェクトに多数
+# のクラス、構造体、共用体、またはインターフェースが含まれている場合は、これを有効にしてください。
+# デフォルト値は YES です。
+
+ALPHABETICAL_INDEX     = YES
+
+# IGNORE_PREFIX タグを使用して、インデックスヘッダーの生成時に無視されるプレフィックス（またはプレフィックスのリスト）を指定できます。
+# IGNORE_PREFIX タグは、クラス、関数、およびメンバー名に対して機能します。エンティティは、プレフィックスを削除した後に残る名前の最初の文字でアル
+# ファベット順リストに配置されます。
+# このタグはタグ ALPHABETICAL_INDEX を YES に設定する必要があります。
+
+IGNORE_PREFIX          =
+
+#---------------------------------------------------------------------------
+# HTML出力に関連する設定オプション
+#---------------------------------------------------------------------------
+
+# GENERATE_HTML タグが YES に設定されている場合、DoxygenはHTML出力を生成します。
+# デフォルト値は YES です。
+
+GENERATE_HTML          = YES
+
+# HTML_OUTPUT
+# タグは、HTMLドキュメントの出力先を指定するために使用されます。相対パスを入力した場合、OUTPUT_DIRECTORYの値がその前に付加されます。
+# デフォルトのディレクトリは html です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_OUTPUT            = html
+
+# HTML_FILE_EXTENSION タグを使用して、生成される各HTMLページのファイル拡張子を指定できます（例： .htm, .php,
+# .asp）。
+# デフォルト値は .html です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_FILE_EXTENSION    = .html
+
+# HTML_HEADER タグを使用して、生成される各HTMLページのユーザー定義HTMLヘッダーファイルを指定できます。タグが空白のままの場合、Doxyg
+# enは標準ヘッダーを生成します。
+#
+# 有効なHTMLを取得するには、ヘッダーファイルにDoxygenが必要とするすべてのスクリプトとスタイルシートを含める必要があります。これは使用される設定オプ
+# ションに依存します（例：GENERATE_TREEVIEWの設定）。次を使用してデフォルトのヘッダーから始めることを強くお勧めします：
+# doxygen -w html new_header.html new_footer.html new_stylesheet.css
+# YourConfigFile
+# 次にファイル new_header.html を変更します。Doxygenが通常使用するデフォルトヘッダーの生成方法については、セクション"Doxygen
+# usage" も参照してください。
+# 注: ヘッダーは変更される可能性があるため、通常はDoxygenの新しいバージョンにアップグレードする際にデフォルトヘッダーを再生成する必要があります。使用
+# 可能なマーカー名とブロック名の説明については、ドキュメントを参照してください。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_HEADER            =
+
+# HTML_FOOTER タグを使用して、生成される各HTMLページのユーザー定義HTMLフッターを指定できます。タグが空白のままの場合、Doxygenは標
+# 準フッターを生成します。デフォルトのフッターの生成方法とフッター内で使用できる特別なコマンドの詳細については、HTML_HEADERを参照してください。Do
+# xygenが通常使用するデフォルトフッターの生成方法については、セクション"Doxygen usage" も参照してください。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_FOOTER            =
+
+# HTML_STYLESHEET タグを使用して、各HTMLページで使用されるユーザー定義のカスケーディングスタイルシートを指定できます。HTML出力の外観
+# を微調整するために使用できます。空白のままにすると、Doxygenはデフォルトのスタイルシートを生成します。Doxygenが通常使用するスタイルシートの生成
+# 方法については、セクション"Doxygen usage" も参照してください。
+# 注: より堅牢であるため、このタグの代わりにHTML_EXTRA_STYLESHEETを使用することをお勧めします。このタグ（HTML_STYLESHEET
+# ）は将来廃止される予定です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_STYLESHEET        =
+
+# HTML_EXTRA_STYLESHEET タグを使用して、Doxygenによって作成された標準スタイルシートの後にインクルードされる追加のユーザー定義カ
+# スケーディングスタイルシートを指定できます。このオプションを使用すると、特定のスタイルの側面をオーバーライドできます。これは、標準スタイルシートを置き換えな
+# いため、将来の更新に対してより堅牢なHTML_STYLESHEETを使用するよりも推奨されます。Doxygenはスタイルシートファイルを出力ディレクトリにコ
+# ピーします。
+# 注: 追加のスタイルシートファイルの順序は重要です（例：リストの最後のスタイルシートは、リスト内の前のものの設定をオーバーライドします）。
+# 注: スクロールバーのスタイル設定は現在Webkit/Chromiumでオーバーライドできないため、1つ以上の追加スタイルシートが指定されている場合、スタイ
+# ル設定はデフォルトのdoxygen.cssから除外されます。したがって、スクロールバーのカスタマイズが必要な場合は、明示的に追加する必要があります。例につい
+# てはドキュメントを参照してください。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_EXTRA_STYLESHEET  =
+
+# HTML_EXTRA_FILES タグを使用して、HTML出力ディレクトリにコピーする1つ以上の追加画像またはその他のソースファイルを指定できます。これら
+# のファイルはベースHTML出力ディレクトリにコピーされることに注意してください。HTML_HEADERおよび/またはHTML_FOOTERファイルで$rel
+# path^マーカーを使用してこれらのファイルを読み込みます。HTML_STYLESHEETファイルでは、ファイル名のみを使用します。また、ファイルはそのまま
+# コピーされることにも注意してください。コマンドやマーカーは処理されません。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_EXTRA_FILES       =
+
+# HTML_COLORSTYLE タグを使用して、生成されたHTML出力をダークテーマまたはライトテーマでレンダリングするかどうかを指定できます。
+# 可能な値は:LIGHT 常にライトモード出力を生成, DARK 常にダークモード出力を生成, AUTO_LIGHT
+# ユーザー設定に従ってモードを自動設定、設定がない場合はライトモードを使用(デフォルト), AUTO_DARK
+# ユーザー設定に従ってモードを自動設定、設定がない場合はダークモードを使用とTOGGLE ボタンでライトモードとダークモードを切り替え可能.
+# デフォルト値は AUTO_LIGHT です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_COLORSTYLE        = AUTO_LIGHT
+
+# HTML_COLORSTYLE_HUE タグはHTML出力の色相を制御します。Doxygenはこの色に基づいてスタイルシートと背景画像の色を調整します。色
+# 相はカラーホイール上の角度として指定されます。詳細については、https://en.wikipedia.org/wiki/Hueを参照してください。例えば、
+# 値0は赤、60は黄、120は緑、180はシアン、240は青、300は紫、360は再び赤を表します。
+# 最小値: 0, 最大値: 359, デフォルト値: 220。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_COLORSTYLE_HUE    = 220
+
+# HTML_COLORSTYLE_SAT
+# タグはHTML出力の色の純度（または彩度）を制御します。値が0の場合、出力はグレースケールのみを使用します。値が255の場合、最も鮮やかな色が生成されます。
+# 最小値: 0, 最大値: 255, デフォルト値: 100。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_COLORSTYLE_SAT    = 100
+
+# HTML_COLORSTYLE_GAMMA タグはHTML出力の色の輝度成分に適用されるガンマ補正を制御します。100未満の値は出力を徐々に明るくし、10
+# 0を超える値は出力を暗くします。値を100で割ったものが実際に適用されるガンマです。したがって、80はガンマ0.8を表し、値220はガンマ2.2を表し、10
+# 0はガンマを変更しません。
+# 最小値: 40, 最大値: 240, デフォルト値: 80。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_COLORSTYLE_GAMMA  = 80
+
+# HTML_DYNAMIC_MENUS タグが YES に設定されている場合、生成されたHTMLドキュメントには、JavaScriptで動的に作成される垂直
+# ナビゲーションメニューを備えたメインインデックスが含まれます。無効にすると、ナビゲーションインデックスは各HTMLページに静的に埋め込まれた複数レベルのタブ
+# で構成されます。QtヘルプブラウザのようにJavaScriptをサポートしないブラウザに対応するには、このオプションを無効にします。
+# デフォルト値は YES です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_DYNAMIC_MENUS     = YES
+
+# HTML_DYNAMIC_SECTIONS タグが YES
+# に設定されている場合、生成されたHTMLドキュメントには、ページが読み込まれた後に非表示および表示できるセクションが含まれます。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_DYNAMIC_SECTIONS  = NO
+
+# HTML_CODE_FOLDING タグが YES
+# に設定されている場合、クラスと関数は生成されたHTMLソースコードで動的に折りたたみおよび展開できます。
+# デフォルト値は YES です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_CODE_FOLDING      = YES
+
+# HTML_COPY_CLIPBOARD タグが YES に設定されている場合、Doxygenはコードおよびテキスト断片の右上隅にアイコンを表示し、ユーザー
+# がその内容をクリップボードにコピーできるようにします。なお、これはブラウザでサポートされており、かつWebページが安全なコンテキスト (see:
+# https://www.w3.org/TR/secure-
+# contexts/)（https:またはfile:プロトコル）で提供されている場合にのみ機能します。
+# デフォルト値は YES です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_COPY_CLIPBOARD    = YES
+
+# Doxygenはブラウザにいくつかの設定を永続的に保存します（例：Cookieを使用）。デフォルトでは、これらの設定はすべてのプロジェクトでDoxygenが
+# 生成したすべてのHTMLページに適用されます。 HTML_PROJECT_COOKIE
+# タグを使用すると、設定をプロジェクト固有のキーで保存し、ユーザー設定が個別に保存されるようにできます。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_PROJECT_COOKIE    =
+
+# HTML_INDEX_NUM_ENTRIES を使用すると、各種ツリー構造インデックスに最初に表示されるエントリーの推奨数を制御できます。ユーザーは後で動
+# 的にエントリーを展開および折りたたむことができます。Doxygenは、指定された数以下のエントリーが表示されるレベルまでツリーを展開します（完全に折りたたま
+# れたツリーがすでにこの量を超えている場合を除く）。そのため、エントリー数を1に設定すると、デフォルトで完全に折りたたまれたツリーが生成されます。0は無限のエ
+# ントリー数を表す特別な値で、デフォルトで完全に展開されたツリーになります。
+# 最小値: 0, 最大値: 9999, デフォルト値: 100。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_INDEX_NUM_ENTRIES = 100
+
+# GENERATE_DOCSET タグが YES に設定されている場合、OSX 10.5（Leopard）で導入されたAppleのXcode 3統合開発環境
+# (see:
+# https://developer.apple.com/xcode/)の入力として使用できる追加のインデックスファイルが生成されます。ドキュメントセットを作
+# 成するために、DoxygenはHTML出力ディレクトリにMakefileを生成します。 make
+# を実行すると、そのディレクトリにdocsetが生成され、make installを実行すると、docsetが~/Library/Developer/Shar
+# ed/Documentation/DocSetsにインストールされ、Xcodeが起動時にそれを見つけられるようになります。詳細については、https://d
+# eveloper.apple.com/library/archive/featuredarticles/DoxygenXcode/_index.htmlを参
+# 照してください。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+GENERATE_DOCSET        = NO
+
+# このタグはdocsetフィードの名前を決定します。ドキュメントフィードは、単一のプロバイダー（企業や製品スイートなど）からの複数のドキュメントセットをグルー
+# プ化するための上位分類を提供します。
+# デフォルト値は Doxygen generated docs です。
+# このタグはタグ GENERATE_DOCSET を YES に設定する必要があります。
+
+DOCSET_FEEDNAME        = "Doxygen generated docs"
+
+# このタグはdocsetフィードのURLを決定します。ドキュメントフィードは、単一のプロバイダー（企業や製品スイートなど）からの複数のドキュメントセットをグル
+# ープ化するための上位分類を提供します。
+# このタグはタグ GENERATE_DOCSET を YES に設定する必要があります。
+
+DOCSET_FEEDURL         =
+
+# このタグは、ドキュメントセットバンドルを一意に識別する文字列を指定します。これは逆ドメイン名スタイルの文字列である必要があります。例：com.mycompa
+# ny.MyDocSet。Doxygenは名前に .docsetを追加します。
+# デフォルト値は org.doxygen.Project です。
+# このタグはタグ GENERATE_DOCSET を YES に設定する必要があります。
+
+DOCSET_BUNDLE_ID       = org.doxygen.Project
+
+# DOCSET_PUBLISHER_ID タグは、ドキュメントパブリッシャーを一意に識別する文字列を指定します。これは逆ドメイン名スタイルの文字列である必要
+# があります。例：com.mycompany.MyDocSet.documentation。
+# デフォルト値は org.doxygen.Publisher です。
+# このタグはタグ GENERATE_DOCSET を YES に設定する必要があります。
+
+DOCSET_PUBLISHER_ID    = org.doxygen.Publisher
+
+# DOCSET_PUBLISHER_NAME タグはドキュメントパブリッシャーを識別します。
+# デフォルト値は Publisher です。
+# このタグはタグ GENERATE_DOCSET を YES に設定する必要があります。
+
+DOCSET_PUBLISHER_NAME  = Publisher
+
+# GENERATE_HTMLHELP タグが YES に設定されている場合、Doxygenは3つの追加HTMLインデックスファイルを生成します：
+# index.hhp 、 index.hhc 、および index.hhk 。 index.hhp は、Windows上のMicrosoftのHTMLヘルプワ
+# ークショップで読み取ることができるプロジェクトファイルです。2021年初頭、Microsoftは元のページをオフラインにしました（HTMLヘルプワークショッ
+# プはすでに何年もメンテナンスモードでした）。WebアーカイブからHTMLヘルプワークショップをダウンロードできます：インストール実行可能ファイル (see:
+# http://web.archive.org/web/20160201063255/https://download.microsoft.com/downl
+# oad/0/A/9/0A939EF6-E31C-430F-A3DF-DFAE7960D564/htmlhelp.exe)。
+#
+# HTMLヘルプワークショップには、Doxygenによって生成されたすべてのHTML出力を単一のコンパイル済みHTMLファイル（
+# .chm）に変換できるコンパイラが含まれています。コンパイル済みHTMLファイルは現在Windows
+# 98ヘルプ形式として使用されており、将来すべてのWindowsプラットフォームで古いWindowsヘルプ形式（ .hlp）に取って代わります。圧縮HTMLフ
+# ァイルにはインデックスと目次も含まれており、ドキュメント内の単語を検索できます。HTMLワークショップには、圧縮HTMLファイルのビューアも含まれています。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+GENERATE_HTMLHELP      = NO
+
+# CHM_FILE タグを使用して、結果の
+# .chmファイルのファイル名を指定できます。結果をHTML出力ディレクトリに書き込まない場合は、ファイルの前にパスを追加できます。
+# このタグはタグ GENERATE_HTMLHELP を YES に設定する必要があります。
+
+CHM_FILE               =
+
+# HHC_LOCATION タグを使用して、HTMLヘルプコンパイラ（ hhc.exe
+# ）の場所（ファイル名を含む絶対パス）を指定できます。空でない場合、Doxygenは生成された index.hhp
+# でHTMLヘルプコンパイラを実行しようとします。
+# ファイルは完全パスで指定する必要があります。
+# このタグはタグ GENERATE_HTMLHELP を YES に設定する必要があります。
+
+HHC_LOCATION           =
+
+# GENERATE_CHI フラグは、別の .chiインデックスファイルが生成されるか（ YES ）、メインの .chmファイルに含まれるか（ NO
+# ）を制御します。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_HTMLHELP を YES に設定する必要があります。
+
+GENERATE_CHI           = NO
+
+# CHM_INDEX_ENCODING は、HtmlHelpインデックス（ hhk ）、コンテンツ（ hhc
+# ）、およびプロジェクトファイルのコンテンツをエンコードするために使用されます。
+# このタグはタグ GENERATE_HTMLHELP を YES に設定する必要があります。
+
+CHM_INDEX_ENCODING     =
+
+# BINARY_TOC フラグは、 .chmファイルでバイナリ目次を生成するか（ YES ）、通常の目次を生成するか（ NO
+# ）を制御します。さらに、「前へ」および「次へ」ボタンを有効にします。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_HTMLHELP を YES に設定する必要があります。
+
+BINARY_TOC             = NO
+
+# TOC_EXPAND フラグを YES に設定すると、HTMLヘルプドキュメントの目次およびツリービューにグループメンバーの追加項目が追加されます。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_HTMLHELP を YES に設定する必要があります。
+
+TOC_EXPAND             = NO
+
+# SITEMAP_URL タグは、ドキュメントのデプロイ時にユーザーが生成されたドキュメントをサーバー上のどこに配置するかを示す完全なURLを指定するために
+# 使用されます。生成されるサイトマップはsitemap.xmlという名前で、HTML_OUTPUTで指定されたディレクトリに配置されます。
+# SITEMAP_URL が指定されていない場合、サイトマップは生成されません。サイトマッププロトコルの詳細については、https://www.sitemap
+# s.orgを参照してください。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+SITEMAP_URL            =
+
+# GENERATE_QHP タグが YES
+# に設定され、QHP_NAMESPACEとQHP_VIRTUAL_FOLDERの両方が設定されている場合、生成されたHTMLドキュメントのQt圧縮ヘルプ（
+# .qch）を生成するためにQtのqhelpgeneratorの入力として使用できる追加のインデックスファイルが生成されます。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+GENERATE_QHP           = NO
+
+# QHG_LOCATIONタグが指定されている場合、 QCH_FILE タグを使用して結果の
+# .qchファイルのファイル名を指定できます。指定されたパスはHTML出力フォルダーからの相対パスです。
+# このタグはタグ GENERATE_QHP を YES に設定する必要があります。
+
+QCH_FILE               =
+
+# QHP_NAMESPACE
+# タグは、Qtヘルププロジェクト出力を生成するときに使用する名前空間を指定します。詳細については、Qtヘルププロジェクト/名前空間 (see:
+# https://doc.qt.io/archives/qt-4.8/qthelpproject.html#namespace)を参照してください。
+# デフォルト値は org.doxygen.Project です。
+# このタグはタグ GENERATE_QHP を YES に設定する必要があります。
+
+QHP_NAMESPACE          = org.doxygen.Project
+
+# QHP_VIRTUAL_FOLDER
+# タグは、Qtヘルププロジェクト出力を生成するときに使用する仮想フォルダーを指定します。詳細については、Qtヘルププロジェクト/仮想フォルダー (see:
+# https://doc.qt.io/archives/qt-4.8/qthelpproject.html#virtual-
+# folders)を参照してください。
+# デフォルト値は doc です。
+# このタグはタグ GENERATE_QHP を YES に設定する必要があります。
+
+QHP_VIRTUAL_FOLDER     = doc
+
+# QHP_CUST_FILTER_NAME
+# タグが設定されている場合、追加するカスタムフィルターの名前を指定します。詳細については、Qtヘルププロジェクト/カスタムフィルター (see:
+# https://doc.qt.io/archives/qt-4.8/qthelpproject.html#custom-filters)を参照してください。
+# このタグはタグ GENERATE_QHP を YES に設定する必要があります。
+
+QHP_CUST_FILTER_NAME   =
+
+# QHP_CUST_FILTER_ATTRS
+# タグは、追加するカスタムフィルターの属性のリストを指定します。詳細については、Qtヘルププロジェクト/カスタムフィルター (see:
+# https://doc.qt.io/archives/qt-4.8/qthelpproject.html#custom-filters)を参照してください。
+# このタグはタグ GENERATE_QHP を YES に設定する必要があります。
+
+QHP_CUST_FILTER_ATTRS  =
+
+# QHP_SECT_FILTER_ATTRS
+# タグは、このプロジェクトのフィルターセクションが一致する属性のリストを指定します。Qtヘルププロジェクト/フィルター属性 (see:
+# https://doc.qt.io/archives/qt-4.8/qthelpproject.html#filter-attributes)。
+# このタグはタグ GENERATE_QHP を YES に設定する必要があります。
+
+QHP_SECT_FILTER_ATTRS  =
+
+# QHG_LOCATION
+# タグを使用して、Qtのqhelpgeneratorの場所（ファイル名を含む絶対パス）を指定できます。空でない場合、Doxygenは生成された
+# .qhpファイルでqhelpgeneratorを実行しようとします。
+# このタグはタグ GENERATE_QHP を YES に設定する必要があります。
+
+QHG_LOCATION           =
+
+# GENERATE_ECLIPSEHELP タグが YES に設定されている場合、HTMLファイルと共に追加のインデックスファイルが生成され、それらはEcl
+# ipseヘルププラグインを形成します。このプラグインをインストールし、Eclipseのヘルプコンテンツメニューの下で使用できるようにするには、HTMLおよび
+# XMLファイルを含むディレクトリの内容をeclipseのプラグインディレクトリにコピーする必要があります。プラグインディレクトリ内のディレクトリの名前は、E
+# CLIPSE_DOC_ID値と同じである必要があります。コピー後、ヘルプが表示される前にEclipseを再起動する必要があります。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+GENERATE_ECLIPSEHELP   = NO
+
+# Eclipseヘルププラグインの一意の識別子です。プラグインをインストールする際、HTMLおよびXMLファイルを含むディレクトリ名もこの名前にする必要があり
+# ます。各ドキュメントセットには独自の識別子が必要です。
+# デフォルト値は org.doxygen.Project です。
+# このタグはタグ GENERATE_ECLIPSEHELP を YES に設定する必要があります。
+
+ECLIPSE_DOC_ID         = org.doxygen.Project
+
+# 生成されたHTMLページのレイアウトを完全に制御したい場合は、インデックスを無効にして独自のものに置き換える必要がある場合があります。
+# DISABLE_INDEX タグを使用して、各HTMLページの上部にある圧縮インデックス（タブ）をオン/オフできます。 NO の値はインデックスを有効にし、
+# YES の値は無効にします。インデックスのタブにはナビゲーションツリーと同じ情報が含まれているため、GENERATE_TREEVIEWも YES
+# に設定している場合は、このオプションを YES に設定できます。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+DISABLE_INDEX          = NO
+
+# GENERATE_TREEVIEW タグは、階層情報を表示するためのツリー状インデックス構造を生成するかどうかを指定するために使用されます。タグ値が
+# YES に設定されている場合、ツリー状インデックス構造を含むサイドパネルが生成されます（HTMLヘルプ用に生成されるものと同様）。これが機能するには、Jav
+# aScript、DHTML、CSS、フレームをサポートするブラウザが必要です（つまり、最新のブラウザ）。WindowsユーザーはHTMLヘルプ機能を使用した
+# 方が良いでしょう。カスタムスタイルシート（HTML_EXTRA_STYLESHEETを参照）を使用すると、インデックスの外観をさらに微調整できます（"Fin
+# e-tuning the output" を参照）。例として、Doxygenが生成するデフォルトのスタイルシートには、PROJECT_NAMEの代わりにツリ
+# ーのルートに画像を配置する方法を示す例があります。ツリーは基本的にタブインデックスよりも詳細な情報を持っているため、このオプションを有効にする際にDISAB
+# LE_INDEXを YES に設定することを検討できます。
+# デフォルト値は YES です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+GENERATE_TREEVIEW      = YES
+
+# GENERATE_TREEVIEWが YES に設定されている場合、 PAGE_OUTLINE_PANEL オプションは画面の右側に追加のナビゲーションパネ
+# ルを表示するかどうかを決定し、メインページの目次を表示します（例：https://developer.android.com/referenceと同様）。G
+# ENERATE_TREEVIEWが NO に設定されている場合、このオプションは効果がありません。
+# デフォルト値は YES です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+PAGE_OUTLINE_PANEL     = YES
+
+# GENERATE_TREEVIEWが YES に設定されている場合、 FULL_SIDEBAR
+# オプションは、サイドバーがツリービューエリアのみに制限されるか（値 NO ）、ウィンドウの全高に拡張されるか（値 YES ）を決定します。これを YES に
+# 設定すると、例えばhttps://docs.readthedocs.ioに似たレイアウトになり、コンテンツのためのスペースが増えますが、プロジェクトロゴ、タ
+# イトル、説明のためのスペースが減ります。GENERATE_TREEVIEWが NO に設定されている場合、このオプションは効果がありません。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+FULL_SIDEBAR           = NO
+
+# ENUM_VALUES_PER_LINE タグを使用して、生成されたHTMLドキュメントでDoxygenが1行にグループ化する列挙値の数を設定できます。
+#
+# 値が0の場合、概要セクションから列挙値が完全に抑制されることに注意してください。
+# 最小値: 0, 最大値: 20, デフォルト値: 4。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+ENUM_VALUES_PER_LINE   = 4
+
+# SHOW_ENUM_VALUES タグが設定されている場合、Doxygenは列挙ニーモニックの横に列挙値を表示します。
+# デフォルト値は NO です。
+
+SHOW_ENUM_VALUES       = NO
+
+# ツリービューが有効になっている場合（GENERATE_TREEVIEWを参照）、このタグを使用して、ツリーが表示されるフレームの初期幅（ピクセル単位）を設定
+# できます。
+# 最小値: 0, 最大値: 1500, デフォルト値: 250。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+TREEVIEW_WIDTH         = 250
+
+# EXT_LINKS_IN_WINDOW オプションが YES
+# に設定されている場合、Doxygenはタグファイルを介してインポートされた外部シンボルへのリンクを別のウィンドウで開きます。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+EXT_LINKS_IN_WINDOW    = NO
+
+# OBFUSCATE_EMAILS タグが YES に設定されている場合、Doxygenはメールアドレスを難読化します。
+# デフォルト値は YES です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+OBFUSCATE_EMAILS       = YES
+
+# HTML_FORMULA_FORMAT オプションが svg に設定されている場合、Doxygenはpdf2svgツール（https://github.c
+# om/dawbarton/pdf2svgを参照）またはinkscape（https://inkscape.orgを参照）を使用して、HTML出力でPNGの代
+# わりに数式をSVG画像として生成します。これらの画像は、拡大表示時により美しく見えます。
+# 可能な値は:png (デフォルト)とsvg (より美しく表示されますが、pdf2svgまたはinkscapeツールが必要).
+# デフォルト値は png です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+HTML_FORMULA_FORMAT    = png
+
+# このタグを使用して、HTMLドキュメントに画像として埋め込まれるLaTeX数式のフォントサイズを変更します。Doxygenの実行が成功した後にフォントサイズ
+# を変更する場合は、再生成を強制するためにHTML出力ディレクトリからすべてのform_*.png画像を手動で削除する必要があります。
+# 最小値: 8, 最大値: 50, デフォルト値: 10。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+FORMULA_FONTSIZE       = 10
+
+# FORMULA_MACROFILE には、数式の構成要素として使用する新しいLaTeXコマンドを作成するためのLaTeX
+# \newcommandおよび\renewcommandコマンドを記述できます。詳細については、セクション"Including formulas"
+# を参照してください。
+
+FORMULA_MACROFILE      =
+
+# USE_MATHJAX オプションを有効にすると、事前レンダリングされたビットマップの代わりに、クライアント側JavaScriptでレンダリングを行うMa
+# thJax（https://www.mathjax.orgを参照）を使用してLaTeX数式をレンダリングします。LaTeXがインストールされていない場合、ま
+# たはHTML出力で数式をより美しく表示したい場合に使用します。有効にした場合、MathJaxを別途インストールし、MATHJAX_RELPATHオプションで
+# パスを設定する必要がある場合もあります。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+USE_MATHJAX            = NO
+
+# MATHJAX_VERSION を使用すると、使用するMathJaxのバージョンを指定できます。なお、MathJaxのバージョンによって設定要件が異なるた
+# め、バージョンを切り替える際には他のMathJax設定も変更が必要になる場合があります。
+# 可能な値は:MathJax_2, MathJax_3とMathJax_4.
+# デフォルト値は MathJax_2 です。
+# このタグはタグ USE_MATHJAX を YES に設定する必要があります。
+
+MATHJAX_VERSION        = MathJax_2
+
+# MathJaxが有効になっている場合、MathJax出力に使用されるデフォルトの出力形式を設定できます。出力形式の詳細については、MathJaxバージョン2
+# (see:
+# https://docs.mathjax.org/en/v2.7/output.html)、MathJaxバージョン3 (see:
+# https://docs.mathjax.org/en/v3.2/output/index.html)、およびMathJaxバージョン4 (see:
+# https://docs.mathjax.org/en/v4.0/output/index.htm)を参照してください。
+# 可能な値は:HTML-CSS (より遅いですが、最高の互換性があります。これはMathJaxバージョン2の名称で、MathJaxバージョン3では chtml
+# に変換されます), NativeMML (MathML。MathJax 2のみサポート。MathJaxバージョン3では chtml
+# が代わりに使用されます。), chtml (これはMathJaxバージョン3の名称で、MathJaxバージョン2ではHTML-
+# CSSに変換されます)とSVG.
+# デフォルト値は HTML-CSS です。
+# このタグはタグ USE_MATHJAX を YES に設定する必要があります。
+
+MATHJAX_FORMAT         = HTML-CSS
+
+# MathJaxが有効な場合、 MATHJAX_RELPATH オプションを使用してHTML出力ディレクトリからの
+# 相対パスを指定する必要があります。MathJaxバージョン2の場合、宛先ディレクトリには
+# MathJax.jsスクリプトが含まれている必要があります。例えば、 mathjax ディレクトリが HTML出力ディレクトリと同じレベルにある場合、
+# MATHJAX_RELPATH は../mathjax である必要があります。MathJaxバージョン3および4の場合、宛先ディレクトリには
+# tex-<format>.jsスクリプト（<format>はchtmlまたはsvg）が含まれている必要があります。
+# デフォルト値はMathJaxコンテンツ配信ネットワークを指しているため、MathJaxをインストール
+# せずに結果をすぐに確認できます。ただし、デプロイ前にhttps://www.mathjax.orgから
+# MathJaxのローカルコピーをインストールすることを強くお勧めします。 デフォルト値は：
+# - MathJaxバージョン2の場合: https://cdn.jsdelivr.net/npm/mathjax@2
+# - MathJaxバージョン3の場合: https://cdn.jsdelivr.net/npm/mathjax@3
+# - MathJaxバージョン4の場合: https://cdn.jsdelivr.net/npm/mathjax@4
+# このタグはタグ USE_MATHJAX を YES に設定する必要があります。
+
+MATHJAX_RELPATH        =
+
+# MATHJAX_EXTENSIONS タグを使用して、MathJaxレンダリング中に有効にする1つ以上のMathJax拡張機能名を指定できます。例：Mat
+# hJaxバージョン2（https://docs.mathjax.org/en/v2.7/tex.htmlを参照）：
+# MATHJAX_EXTENSIONS = TeX/AMSmath TeX/AMSsymbols
+# 例：MathJaxバージョン3（https://docs.mathjax.org/en/v3.2/input/tex/extensions/を参照）：
+# MATHJAX_EXTENSIONS = ams
+# 例：MathJaxバージョン4（https://docs.mathjax.org/en/v4.0/input/tex/extensions/を参照）：
+# MATHJAX_EXTENSIONS = units
+# Mathjaxバージョン4では、かなり多くの拡張機能がすでに自動的にロードされていることに注意してください。Mathjaxバージョン4でパッケージを無効に
+# するには、マイナス記号を前に付けたパッケージ名を使用できます（-、例：MATHJAX_EXTENSIONS += -textmacros）
+# このタグはタグ USE_MATHJAX を YES に設定する必要があります。
+
+MATHJAX_EXTENSIONS     =
+
+# MATHJAX_CODEFILE タグを使用して、MathJaxコードの起動時に使用されるJavaScriptコードを含むファイルを指定できます。詳細につ
+# いては、MathJaxサイトを参照してください
+# - MathJaxバージョン2 (see:
+# https://docs.mathjax.org/en/v2.7/)
+# - MathJaxバージョン3 (see:
+# https://docs.mathjax.org/en/v3.2/)
+# - MathJaxバージョン4 (see:
+# https://docs.mathjax.org/en/v4.0/)例についてはドキュメントを参照してください。
+# このタグはタグ USE_MATHJAX を YES に設定する必要があります。
+
+MATHJAX_CODEFILE       =
+
+# SEARCHENGINE タグが有効な場合、DoxygenはHTML出力の検索ボックスを生成します。基礎となる検索エンジンはJavaScriptとDHTM
+# Lを使用し、最新のブラウザで動作するはずです。HTMLヘルプ（GENERATE_HTMLHELP）、Qtヘルプ（GENERATE_QHP）、またはdocse
+# ts（GENERATE_DOCSET）を使用している場合、検索機能はすでに存在するため、これは通常無効にする必要があることに注意してください。大規模なプロジ
+# ェクトでは、JavaScriptベースの検索エンジンは遅くなる可能性があるため、SERVER_BASED_SEARCHを有効にすると、より良いソリューション
+# が提供される場合があります。キーボードを使用して検索できます。検索ボックスにジャンプするには、<アクセスキー> + Sを使用します（<アクセスキー>が何であ
+# るかはOSとブラウザに依存しますが、通常は<CTRL>、<ALT>/<option>、またはその両方です）。検索ボックス内で、<下カーソルキー>を使用して検
+# 索結果ウィンドウにジャンプし、<カーソルキー>を使用して結果をナビゲートできます。<Enter>を押して項目を選択するか、<Esc>を押して検索をキャンセル
+# します。カーソルが検索ボックス内にあるときに<Shift>+<下カーソル>を押すと、フィルターオプションを選択できます。ここでも、<カーソルキー>を使用して
+# フィルターを選択し、<Enter>または<Esc>を押してフィルターオプションをアクティブまたはキャンセルします。
+# デフォルト値は YES です。
+# このタグはタグ GENERATE_HTML を YES に設定する必要があります。
+
+SEARCHENGINE           = YES
+
+# SERVER_BASED_SEARCH タグが有効な場合、検索エンジンはJavaScriptを使用するWebクライアントではなくWebサーバーを使用して実
+# 装されます。EXTERNAL_SEARCH設定に応じて、Webサーバーベースの検索には2つの種類があります。無効の場合、Doxygenは検索用のPHPスクリ
+# プトとスクリプトが使用するインデックスファイルを生成します。EXTERNAL_SEARCHが有効な場合、インデックス作成と検索は外部ツールで提供する必要があ
+# ります。詳細については、セクション"External Indexing and Searching" を参照してください。
+# デフォルト値は NO です。
+# このタグはタグ SEARCHENGINE を YES に設定する必要があります。
+
+SERVER_BASED_SEARCH    = NO
+
+# EXTERNAL_SEARCH タグが有効な場合、Doxygenは検索用のPHPスクリプトを生成しなくなります。代わりに、検索結果はXMLファイルに書き込
+# まれ、外部インデクサーによって処理される必要があります。Doxygenは、SEARCHENGINE_URLオプションで指定された外部検索エンジンを呼び出して
+# 検索結果を取得します。
+#
+# Doxygenには、オープンソース検索エンジンライブラリXapian (see:
+# https://xapian.org/)に基づいたサンプルインデクサー（ doxyindexer
+# ）と検索エンジン（doxysearch.cgi）が付属しています。
+#
+# 詳細については、セクション"External Indexing and Searching" を参照してください。
+# デフォルト値は NO です。
+# このタグはタグ SEARCHENGINE を YES に設定する必要があります。
+
+EXTERNAL_SEARCH        = NO
+
+# SEARCHENGINE_URL
+# は、EXTERNAL_SEARCHが有効な場合に検索結果を返す、Webサーバーでホストされている検索エンジンのURLを指定します。
+#
+# Doxygenには、オープンソース検索エンジンライブラリXapian (see:
+# https://xapian.org/)に基づいたサンプルインデクサー（ doxyindexer
+# ）と検索エンジン（doxysearch.cgi）が付属しています。詳細については、セクション"External Indexing and
+# Searching" を参照してください。
+# このタグはタグ SEARCHENGINE を YES に設定する必要があります。
+
+SEARCHENGINE_URL       =
+
+# SERVER_BASED_SEARCHとEXTERNAL_SEARCHの両方が有効な場合、未インデックスの検索データが外部ツールでのインデックス作成用にファ
+# イルに書き込まれます。 SEARCHDATA_FILE タグでこのファイルの名前を指定できます。
+# デフォルトのファイルは searchdata.xml です。
+# このタグはタグ SEARCHENGINE を YES に設定する必要があります。
+
+SEARCHDATA_FILE        = searchdata.xml
+
+# SERVER_BASED_SEARCHとEXTERNAL_SEARCHの両方が有効な場合、 EXTERNAL_SEARCH_ID タグをプロジェクトの識別子
+# として使用できます。これはEXTRA_SEARCH_MAPPINGSと組み合わせて、複数のプロジェクトを横断検索し、結果を適切なプロジェクトにリダイレクトす
+# るのに役立ちます。
+# このタグはタグ SEARCHENGINE を YES に設定する必要があります。
+
+EXTERNAL_SEARCH_ID     =
+
+# EXTRA_SEARCH_MAPPINGS タグを使用すると、この設定ファイルで定義されたプロジェクト以外のDoxygenプロジェクトも検索できるようにな
+# ります。ただし、それらはすべて同じ外部検索インデックスに追加されている必要があります。各プロジェクトには、EXTERNAL_SEARCH_IDで設定された一
+# 意のIDが必要です。検索マッピングは、IDをドキュメントが存在する相対パスにマッピングします。形式は：
+# EXTRA_SEARCH_MAPPINGS = tagname1=loc1 tagname2=loc2 ...
+# このタグはタグ SEARCHENGINE を YES に設定する必要があります。
+
+EXTRA_SEARCH_MAPPINGS  =
+
+#---------------------------------------------------------------------------
+# LaTeX出力に関連する設定オプション
+#---------------------------------------------------------------------------
+
+# GENERATE_LATEX タグが YES に設定されている場合、DoxygenはLaTeX出力を生成します。
+# デフォルト値は YES です。
+
+GENERATE_LATEX         = YES
+
+# LATEX_OUTPUT タグは、LaTeXドキュメントが配置される場所を指定するために使用されます。相対パスが入力された場合、OUTPUT_DIRECT
+# ORYの値がその前に配置されます。
+# デフォルトのディレクトリは latex です。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+LATEX_OUTPUT           = latex
+
+# LATEX_CMD_NAME タグを使用して、呼び出すLaTeXコマンド名を指定できます。
+#
+# USE_PDFLATEXを有効にしない場合、デフォルトは latex です。USE_PDFLATEXを有効にする場合、デフォルトは pdflatex
+# です。後者の場合、 latex が選択されると、 pdflatex
+# によって上書きされます。特定の出力言語では、デフォルトが異なって設定されている可能性があり、これは出力言語の実装に依存します。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+LATEX_CMD_NAME         =
+
+# MAKEINDEX_CMD_NAME タグを使用して、LaTeXのインデックスを生成するコマンド名を指定できます。
+# 注: このタグはMakefile / make.batで使用されます。
+# 参照: 生成された出力ファイル（ .tex）の部分については、LATEX_MAKEINDEX_CMD。
+# デフォルトのファイルは makeindex です。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+MAKEINDEX_CMD_NAME     = makeindex
+
+# LATEX_MAKEINDEX_CMD タグを使用して、LaTeXのインデックスを生成するコマンド名を指定できます。最初の文字としてバックスラッシュ（ \
+# ）がない場合、LaTeXコードに自動的に追加されます。
+# 注: このタグは生成された出力ファイル（ .tex）で使用されます。
+# 参照: Makefile / make.batの部分については、MAKEINDEX_CMD_NAME。
+# デフォルト値は makeindex です。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+LATEX_MAKEINDEX_CMD    = makeindex
+
+# COMPACT_LATEX タグが YES
+# に設定されている場合、DoxygenはよりコンパクトなLaTeXドキュメントを生成します。これは小さなプロジェクトに役立ち、一般的に紙の節約にもなります。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+COMPACT_LATEX          = NO
+
+# PAPER_TYPE タグを使用して、プリンターで使用される用紙タイプを設定できます。
+# 可能な値は:a4 (210 x 297 mm), letter (8.5 x 11 インチ), legal (8.5 x 14 インチ)とexecutive
+# (7.25 x 10.5 インチ).
+# デフォルト値は a4 です。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+PAPER_TYPE             = a4
+
+# EXTRA_PACKAGES
+# タグを使用して、LaTeX出力にインクルードされる1つ以上のLaTeXパッケージ名を指定できます。パッケージは名前のみで指定するか、LaTeX
+# \usepackageコマンドで使用する正しい構文で指定できます。例えばtimesフォントを取得するには、次のように指定できます：
+# EXTRA_PACKAGES=times または EXTRA_PACKAGES={times}
+# amsmathパッケージでintlimitsオプションを使用するには、次のように指定できます：
+# EXTRA_PACKAGES=[intlimits]{amsmath}
+# 空白のままにすると、追加のパッケージはインクルードされません。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+EXTRA_PACKAGES         =
+
+# LATEX_HEADER タグを使用して、生成されたLaTeXドキュメントのユーザー定義LaTeXヘッダーを指定できます。ヘッダーは最初の章までのすべてを
+# 含む必要があります。空白のままにすると、Doxygenは標準ヘッダーを生成します。次を使用してデフォルトのヘッダーから始めることを強くお勧めします：
+# doxygen -w latex new_header.tex new_footer.tex new_stylesheet.sty
+# 次にファイル new_header .texを変更します。Doxygenが通常使用するデフォルトヘッダーの生成方法については、セクション"Doxygen
+# usage" も参照してください。
+#
+# 注意：自分が何をしているかを理解している場合にのみ、ユーザー定義ヘッダーを使用してください！
+# 注: ヘッダーは変更される可能性があるため、通常はDoxygenの新しいバージョンにアップグレードする際にデフォルトヘッダーを再生成する必要があります。使用
+# 可能なマーカー名とブロック名の説明については、ドキュメントを参照してください。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+LATEX_HEADER           =
+
+# LATEX_FOOTER タグを使用して、生成されたLaTeXドキュメントのユーザー定義LaTeXフッターを指定できます。フッターは最後の章以降のすべてを
+# 含む必要があります。空白のままにすると、Doxygenは標準フッターを生成します。デフォルトのフッターの生成方法とフッター内で使用できる特別なコマンドの詳細
+# については、LATEX_HEADERを参照してください。Doxygenが通常使用するデフォルトフッターの生成方法については、セクション"Doxygen
+# usage" も参照してください。注意：自分が何をしているかを理解している場合にのみ、ユーザー定義フッターを使用してください！
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+LATEX_FOOTER           =
+
+# LATEX_EXTRA_STYLESHEET タグを使用して、Doxygenによって作成された標準スタイルシートの後にインクルードされる追加のユーザー定義
+# LaTeXスタイルシートを指定できます。このオプションを使用すると、特定のスタイルの側面をオーバーライドできます。Doxygenはスタイルシートファイルを出
+# 力ディレクトリにコピーします。
+# 注: 追加のスタイルシートファイルの順序は重要です（例：リストの最後のスタイルシートは、リスト内の前のものの設定をオーバーライドします）。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+LATEX_EXTRA_STYLESHEET =
+
+# LATEX_EXTRA_FILES タグを使用して、LATEX_OUTPUT出力ディレクトリにコピーされる1つ以上の追加画像または他のソースファイルを指定
+# できます。ファイルはそのままコピーされることに注意してください。利用可能なコマンドやマーカーはありません。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+LATEX_EXTRA_FILES      =
+
+# PDF_HYPERLINKS タグが YES に設定されている場合、生成されたLaTeXはPDFへの変換（ ps 2pdfまたは pdflatex を使用
+# ）のために準備されます。PDFファイルには、ページ参照の代わりにリンク（HTML出力と同様）が含まれます。これにより、PDFビューアを使用したオンラインブラ
+# ウジングに適した出力になります。
+# デフォルト値は YES です。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+PDF_HYPERLINKS         = YES
+
+# USE_PDFLATEX タグが YES に設定されている場合、DoxygenはLATEX_CMD_NAMEで指定されたエンジンを使用して、LaTeXファ
+# イルから直接PDFファイルを生成します。より高品質のPDFドキュメントを取得するには、このオプションを YES に設定します。
+#
+# エンジンの選択については、セクションLATEX_CMD_NAMEも参照してください。
+# デフォルト値は YES です。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+USE_PDFLATEX           = YES
+
+# LATEX_BATCHMODE タグは、エラーが発生した場合のLaTeXの動作を制御します。
+# 可能な値は:NO ERROR_STOPと同じ, YES BATCHと同じ, BATCH バッチモードでは端末に何も印刷されず、エラーは各エラーで<retur
+# n>が押されたかのようにスクロールされます。TeXが入力またはキーボード入力から要求しようとする欠落ファイル(開かれていない入力ストリームでの\read)は
+# 、ジョブを中止させます, NON_STOP 非停止モードでは診断メッセージが端末に表示されますが、バッチモードと同様にユーザーとの対話はできません,
+# SCROLL スクロールモードでは、TeXは入力するファイルが見つからない場合またはキーボード入力が必要な場合にのみ停止しますとERROR_STOP
+# エラー停止モードでは、TeXは各エラーで停止し、ユーザーの介入を求めます.
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+LATEX_BATCHMODE        = NO
+
+# LATEX_HIDE_INDICES タグが YES
+# に設定されている場合、Doxygenは出力にインデックスの章（ファイルインデックス、複合型インデックスなど）を含めません。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+LATEX_HIDE_INDICES     = NO
+
+# LATEX_BIB_STYLE タグを使用して、参考文献に使用するスタイルを指定できます。例： plainnat 、または ieeetr
+# 。詳細については、https://en.wikipedia.org/wiki/BibTeXおよび\citeを参照してください。
+# デフォルト値は plainnat です。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+LATEX_BIB_STYLE        = plainnat
+
+# LATEX_EMOJI_DIRECTORY タグは、絵文字画像が読み込まれる（相対または絶対）パスを指定するために使用されます。相対パスが入力された場合、
+# LATEX_OUTPUTディレクトリからの相対パスになります。空白のままにすると、LATEX_OUTPUTディレクトリが使用されます。
+# このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
+
+LATEX_EMOJI_DIRECTORY  =
+
+#---------------------------------------------------------------------------
+# RTF出力に関連する設定オプション
+#---------------------------------------------------------------------------
+
+# GENERATE_RTF タグが YES に設定されている場合、DoxygenはRTF出力を生成します。RTF出力はWord
+# 97用に最適化されており、他のRTFリーダー/エディタではあまりきれいに見えない場合があります。
+# デフォルト値は NO です。
+
+GENERATE_RTF           = NO
+
+# RTF_OUTPUT タグは、RTFドキュメントが配置される場所を指定するために使用されます。相対パスが入力された場合、OUTPUT_DIRECTORYの
+# 値がその前に配置されます。
+# デフォルトのディレクトリは rtf です。
+# このタグはタグ GENERATE_RTF を YES に設定する必要があります。
+
+RTF_OUTPUT             = rtf
+
+# COMPACT_RTF タグが YES
+# に設定されている場合、DoxygenはよりコンパクトなRTFドキュメントを生成します。これは小さなプロジェクトに役立ち、一般的に紙の節約にもなります。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_RTF を YES に設定する必要があります。
+
+COMPACT_RTF            = NO
+
+# RTF_HYPERLINKS タグが YES に設定されている場合、生成されたRTFにはハイパーリンクフィールドが含まれます。RTFファイルには、ページ参
+# 照の代わりにリンク（HTML出力と同様）が含まれます。これにより、Wordまたはこれらのフィールドをサポートする他のWord互換リーダーを使用したオンライン
+# ブラウジングに適した出力になります。
+#
+# 注意：WordPad（write）およびその他はリンクをサポートしていません。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_RTF を YES に設定する必要があります。
+
+RTF_HYPERLINKS         = NO
+
+# ファイルからスタイルシート定義をロードします。構文はDoxygenの設定ファイルと同様で、一連の代入文です。置き換えたい定義のみを提供すればよく、省略された
+# 定義はデフォルト値に設定されます。
+#
+# Doxygenが通常使用するデフォルトのスタイルシートの生成方法については、セクション"Doxygen usage" も参照してください。
+# このタグはタグ GENERATE_RTF を YES に設定する必要があります。
+
+RTF_STYLESHEET_FILE    =
+
+# RTFドキュメントの生成で使用されるオプションの変数を設定します。構文はDoxygenの設定ファイルと同様です。テンプレート拡張ファイルは、doxygen
+# -e rtf extensionFileを使用して生成できます。
+# このタグはタグ GENERATE_RTF を YES に設定する必要があります。
+
+RTF_EXTENSIONS_FILE    =
+
+# RTF_EXTRA_FILES タグを使用して、RTF_OUTPUT出力ディレクトリにコピーされる1つ以上の追加画像または他のソースファイルを指定できます
+# 。ファイルはそのままコピーされることに注意してください。利用可能なコマンドやマーカーはありません。
+# このタグはタグ GENERATE_RTF を YES に設定する必要があります。
+
+RTF_EXTRA_FILES        =
+
+#---------------------------------------------------------------------------
+# manページ出力に関連する設定オプション
+#---------------------------------------------------------------------------
+
+# GENERATE_MAN タグが YES に設定されている場合、Doxygenはクラスとファイルのマニュアルページを生成します。
+# デフォルト値は NO です。
+
+GENERATE_MAN           = NO
+
+# MAN_OUTPUT
+# タグは、マニュアルページが配置される場所を指定するために使用されます。相対パスが入力された場合、OUTPUT_DIRECTORYの値がその前に配置されます。
+# man 3ディレクトリが MAN_OUTPUT で指定されたディレクトリ内に作成されます。
+# デフォルトのディレクトリは man です。
+# このタグはタグ GENERATE_MAN を YES に設定する必要があります。
+
+MAN_OUTPUT             = man
+
+# MAN_EXTENSION
+# タグは、生成されたマニュアルページに追加される拡張子を決定します。マニュアルセクションが数字で始まらない場合、数字3が先頭に追加されます。
+# MAN_EXTENSION タグの先頭のピリオド（.）はオプションです。
+# デフォルト値は .3 です。
+# このタグはタグ GENERATE_MAN を YES に設定する必要があります。
+
+MAN_EXTENSION          = .3
+
+# MAN_SUBDIR タグは、マニュアルページが配置される MAN_OUTPUT
+# 内に作成されるディレクトリの名前を決定します。デフォルトでは、manの後に MAN_EXTENSION の先頭の.を除いた文字列が続きます。
+# このタグはタグ GENERATE_MAN を YES に設定する必要があります。
+
+MAN_SUBDIR             =
+
+# MAN_LINKS タグが YES に設定され、Doxygenがman出力を生成する場合、実際のマニュアルページ内の文書化された各エンティティに対して追加
+# のmanファイルが生成されます。これらの追加ファイルは実際のマニュアルページを参照するだけですが、これらがないと man
+# コマンドは正しいページを見つけることができません。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_MAN を YES に設定する必要があります。
+
+MAN_LINKS              = NO
+
+#---------------------------------------------------------------------------
+# XML出力に関連する設定オプション
+#---------------------------------------------------------------------------
+
+# GENERATE_XML タグが YES
+# に設定されている場合、Doxygenはすべてのドキュメントを含むコードの構造を記録したXMLファイルを生成します。
+# デフォルト値は NO です。
+
+GENERATE_XML           = NO
+
+# XML_OUTPUT
+# タグは、XMLページが配置される場所を指定するために使用されます。相対パスが入力された場合、OUTPUT_DIRECTORYの値がその前に配置されます。
+# デフォルトのディレクトリは xml です。
+# このタグはタグ GENERATE_XML を YES に設定する必要があります。
+
+XML_OUTPUT             = xml
+
+# XML_PROGRAMLISTING タグが YES に設定されている場合、Doxygenはプログラムリスト（構文強調表示と相互参照情報を含む）をXML出
+# 力に出力します。これを有効にするとXML出力のサイズが大幅に増加することに注意してください。
+# デフォルト値は YES です。
+# このタグはタグ GENERATE_XML を YES に設定する必要があります。
+
+XML_PROGRAMLISTING     = YES
+
+# XML_NS_MEMB_FILE_SCOPE タグが YES
+# に設定されている場合、DoxygenはHTML出力と同様に、ファイルスコープ内の名前空間メンバーも含めます。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_XML を YES に設定する必要があります。
+
+XML_NS_MEMB_FILE_SCOPE = NO
+
+#---------------------------------------------------------------------------
+# DOCBOOK出力に関連する設定オプション
+#---------------------------------------------------------------------------
+
+# GENERATE_DOCBOOK タグが YES に設定されている場合、DoxygenはPDFの生成に使用できるDocbookファイルを生成します。
+# デフォルト値は NO です。
+
+GENERATE_DOCBOOK       = NO
+
+# DOCBOOK_OUTPUT タグは、Docbookページが配置される場所を指定するために使用されます。相対パスが入力された場合、OUTPUT_DIREC
+# TORYの値がその前に配置されます。
+# デフォルトのディレクトリは docbook です。
+# このタグはタグ GENERATE_DOCBOOK を YES に設定する必要があります。
+
+DOCBOOK_OUTPUT         = docbook
+
+#---------------------------------------------------------------------------
+# AutoGen Definitions出力のための設定オプション
+#---------------------------------------------------------------------------
+
+# GENERATE_AUTOGEN_DEF タグが YES に設定されている場合、Doxygenはすべてのドキュメントを含むコードの構造を記録したAutoG
+# en定義ファイル（https://autogen.sourceforge.net/を参照）を生成します。なお、この機能はまだ実験的であり、現時点では不完全で
+# す。
+# デフォルト値は NO です。
+
+GENERATE_AUTOGEN_DEF   = NO
+
+#---------------------------------------------------------------------------
+# Sqlite3出力に関連する設定オプション
+#---------------------------------------------------------------------------
+
+# GENERATE_SQLITE 3タグが YES に設定されている場合、DoxygenはDoxygenによって発見されたシンボルをテーブルに保存した
+# Sqlite 3データベースを生成します。
+# デフォルト値は NO です。
+
+GENERATE_SQLITE3       = NO
+
+# SQLITE 3_OUTPUTタグは、 Sqlite
+# 3データベースが配置される場所を指定するために使用されます。相対パスが入力された場合、OUTPUT_DIRECTORYの値がその前に配置されます。
+# デフォルトのディレクトリは sqlite3 です。
+# このタグはタグ GENERATE_SQLITE3 を YES に設定する必要があります。
+
+SQLITE3_OUTPUT         = sqlite3
+
+# SQLITE 3_RECREATE_DBタグが YES
+# に設定されている場合、既存のdoxygen_sqlite3.dbデータベースファイルはDoxygenを実行するたびに再作成されます。 NO
+# に設定されている場合、Doxygenはデータベースファイルがすでに存在する場合は警告を出し、変更しません。
+# デフォルト値は YES です。
+# このタグはタグ GENERATE_SQLITE3 を YES に設定する必要があります。
+
+SQLITE3_RECREATE_DB    = YES
+
+#---------------------------------------------------------------------------
+# Perlモジュール出力に関連する設定オプション
+#---------------------------------------------------------------------------
+
+# GENERATE_PERLMOD タグが YES
+# に設定されている場合、Doxygenはすべてのドキュメントを含むコードの構造を記録したPerlモジュールファイルを生成します。
+#
+# なお、この機能はまだ実験的であり、現時点では不完全です。
+# デフォルト値は NO です。
+
+GENERATE_PERLMOD       = NO
+
+# PERLMOD_LATEX タグが YES に設定されている場合、Doxygenは必要な Makefile ルール、 Perl
+# スクリプト、およびLaTeXコードを生成し、Perlモジュール出力からPDFおよびDVI出力を生成できるようにします。
+# デフォルト値は NO です。
+# このタグはタグ GENERATE_PERLMOD を YES に設定する必要があります。
+
+PERLMOD_LATEX          = NO
+
+# PERLMOD_PRETTY タグが YES に設定されている場合、Perlモジュール出力は人間が読みやすいようにきれいにフォーマットされます。これは内部
+# の動作を理解したい場合に便利です。一方、このタグが NO
+# に設定されている場合、Perlモジュール出力のサイズははるかに小さくなりますが、Perlは同様に解析できます。
+# デフォルト値は YES です。
+# このタグはタグ GENERATE_PERLMOD を YES に設定する必要があります。
+
+PERLMOD_PRETTY         = YES
+
+# 生成されたdoxyrules.makeファイルのmake変数名には、 PERLMOD_MAKEVAR_PREFIX に含まれる文字列が先頭に付加されます。こ
+# れは、同じMakefileにインクルードされる異なるdoxyrules.makeファイルが互いの変数を上書きしないようにするのに役立ちます。
+# このタグはタグ GENERATE_PERLMOD を YES に設定する必要があります。
+
+PERLMOD_MAKEVAR_PREFIX =
+
+#---------------------------------------------------------------------------
+# プリプロセッサに関連する設定オプション
+#---------------------------------------------------------------------------
+
+# ENABLE_PREPROCESSING タグが YES
+# に設定されている場合、Doxygenはソースおよびインクルードファイルで見つかったすべてのCプリプロセッサディレクティブを評価します。
+# デフォルト値は YES です。
+
+ENABLE_PREPROCESSING   = YES
+
+# MACRO_EXPANSION タグが YES に設定されている場合、Doxygenはソースコード内のすべてのマクロ名を展開します。 NO
+# に設定されている場合、条件付きコンパイルのみが実行されます。マクロ展開は、EXPAND_ONLY_PREDEFを YES
+# に設定することで制御された方法で行うことができます。
+# デフォルト値は NO です。
+# このタグはタグ ENABLE_PREPROCESSING を YES に設定する必要があります。
+
+MACRO_EXPANSION        = NO
+
+# EXPAND_ONLY_PREDEF およびMACRO_EXPANSIONタグの両方が YES
+# に設定されている場合、マクロ展開はPREDEFINEDおよびEXPAND_AS_DEFINEDタグで指定されたマクロに制限されます。
+# デフォルト値は NO です。
+# このタグはタグ ENABLE_PREPROCESSING を YES に設定する必要があります。
+
+EXPAND_ONLY_PREDEF     = NO
+
+# SEARCH_INCLUDES タグが YES に設定されている場合、 #include
+# が見つかった場合、INCLUDE_PATH内のインクルードファイルが検索されます。
+# デフォルト値は YES です。
+# このタグはタグ ENABLE_PREPROCESSING を YES に設定する必要があります。
+
+SEARCH_INCLUDES        = YES
+
+# INCLUDE_PATH
+# タグを使用して、入力ファイルではないがプリプロセッサによって処理する必要があるインクルードファイルを含む1つ以上のディレクトリを指定できます。
+# INCLUDE_PATH は再帰的ではないため、RECURSIVEの設定はここでは効果がないことに注意してください。
+# このタグはタグ SEARCH_INCLUDES を YES に設定する必要があります。
+
+INCLUDE_PATH           =
+
+# INCLUDE_FILE_PATTERNS タグを使用して、ディレクトリ内のヘッダーファイルをフィルタリングする1つ以上のワイルドカードパターン（*.hや
+# *.hppのように）を指定できます。空白のままにすると、FILE_PATTERNSで指定されたパターンが使用されます。
+# このタグはタグ ENABLE_PREPROCESSING を YES に設定する必要があります。
+
+INCLUDE_FILE_PATTERNS  =
+
+# PREDEFINED タグを使用して、プリプロセッサが起動する前に定義される1つ以上のマクロ名を指定できます（例： gcc
+# の-Dオプションと同様）。タグの引数は、nameまたはname=definitionの形式のマクロのリストです（スペースなし）。定義と =
+# が省略された場合、 =1 が仮定されます。マクロ定義が #undef を介して未定義にされたり、再帰的に展開されたりするのを防ぐには、 =
+# 演算子の代わりに:=演算子を使用します。
+# このタグはタグ ENABLE_PREPROCESSING を YES に設定する必要があります。
+
+PREDEFINED             =
+
+# MACRO_EXPANSIONおよびEXPAND_ONLY_PREDEFタグが YES に設定されている場合、このタグを使用して展開するマクロ名のリストを指
+# 定できます。ソースで見つかったマクロ定義が使用されます。ソースコードで見つかった定義をオーバーライドする異なるマクロ定義を使用する場合は、PREDEFINE
+# Dタグを使用します。
+# このタグはタグ ENABLE_PREPROCESSING を YES に設定する必要があります。
+
+EXPAND_AS_DEFINED      =
+
+# SKIP_FUNCTION_MACROS タグが YES に設定されている場合、Doxygenのプリプロセッサは、単独行にある、すべて大文字の名前を持ち、
+# セミコロンで終わらない関数マクロへのすべての参照を削除します。このような関数マクロは通常ボイラープレートコードに使用され、削除されないとパーサーを混乱させま
+# す。
+# デフォルト値は YES です。
+# このタグはタグ ENABLE_PREPROCESSING を YES に設定する必要があります。
+
+SKIP_FUNCTION_MACROS   = YES
+
+#---------------------------------------------------------------------------
+# 外部参照に関連する設定オプション
+#---------------------------------------------------------------------------
+
+# TAGFILES タグを使用して、1つ以上のタグファイルを指定できます。各タグファイルについて、外部ドキュメントの場所を追加する必要があります。場所なしの
+# タグファイルの形式は次のとおりです：
+# TAGFILES = file1 file2 ...
+# タグファイルの場所の追加は次のように行います：
+# TAGFILES = file1=loc1 "file2 = loc2" ...
+# ここでloc1とloc2は相対パス、絶対パス、またはURLにすることができます。タグファイルの使用の詳細については、セクション"Linking to
+# external documentation" を参照してください。
+# 注: 各タグファイルは一意の名前を持つ必要があります（名前にはパスを含みません）。タグファイルがDoxygenを実行するディレクトリにない場合は、ここでタグ
+# ファイルへのパスも指定する必要があります。
+
+TAGFILES               =
+
+# GENERATE_TAGFILE の後にファイル名が指定されると、Doxygenは読み取った入力ファイルに基づいてタグファイルを作成します。タグファイルの
+# 使用の詳細については、セクション"Linking to external documentation" を参照してください。
+
+GENERATE_TAGFILE       =
+
+# ALLEXTERNALS タグが YES に設定されている場合、すべての外部クラスと名前空間がクラスおよび名前空間インデックスにリストされます。 NO
+# に設定されている場合、継承された外部クラスのみがリストされます。
+# デフォルト値は NO です。
+
+ALLEXTERNALS           = NO
+
+# EXTERNAL_GROUPS タグが YES に設定されている場合、すべての外部グループがトピックインデックスにリストされます。 NO
+# に設定されている場合、現在のプロジェクトのグループのみがリストされます。
+# デフォルト値は YES です。
+
+EXTERNAL_GROUPS        = YES
+
+# EXTERNAL_PAGES タグが YES に設定されている場合、すべての外部ページが関連ページインデックスにリストされます。 NO
+# に設定されている場合、現在のプロジェクトのページのみがリストされます。
+# デフォルト値は YES です。
+
+EXTERNAL_PAGES         = YES
+
+#---------------------------------------------------------------------------
+# ダイアグラム生成ツールに関連する設定オプション
+#---------------------------------------------------------------------------
+
+# HIDE_UNDOC_RELATIONS タグが YES
+# に設定されている場合、継承およびコラボレーショングラフは、ターゲットが未文書化であるかクラスでない場合、継承および使用関係を非表示にします。
+# デフォルト値は YES です。
+
+HIDE_UNDOC_RELATIONS   = YES
+
+# HAVE_DOT タグを YES に設定すると、Doxygenは path から dot
+# ツールが利用可能であると仮定します。このツールはAT&TおよびLucent Bell LabsのGraphviz (see:
+# https://www.graphviz.org/)グラフ可視化ツールキットの一部です。このオプションが NO
+# に設定されている場合、このセクションの他のオプションは効果がありません。
+# デフォルト値は NO です。
+
+HAVE_DOT               = NO
+
+# DOT_NUM_THREADS は、Doxygenが並列で実行できる dot 呼び出しの数を指定します。 0 に設定すると、Doxygenはシステムで利用
+# 可能なプロセッサの数に基づいて決定します。CPU負荷と処理速度のバランスを制御するために、0より大きい値を明示的に設定できます。
+# 最小値: 0, 最大値: 512, デフォルト値: 0。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+DOT_NUM_THREADS        = 0
+
+# DOT_BATCH_SIZE は、Doxygen が1回の dot 呼び出しでコンパイルできる dot グラフの数を指定します。 1
+# に設定すると、Doxygen は各グラフに対して個別に dot を呼び出しますが、特に多くの CPU コアを
+# 持つシステムでは、プロセス作成のオーバーヘッドが大きくなる可能性があります。 DOT_NUM_THREADS と
+# 共にこの設定を使用することで、特定のシステムの dot 処理速度を最適化できます。Doxygen は各スレッドに
+# バランスの取れた作業量を割り当てようとします。処理するグラフの総数が DOT_NUM_THREADS * DOT_BATCH_SIZE を超える場合、
+# dot が処理するための追加バッチが作成されます。
+# 最小値: 1, 最大値: 1000, デフォルト値: 50。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+DOT_BATCH_SIZE         = 50
+
+# DOT_COMMON_ATTR は、ノード、エッジ、およびサブグラフラベルの共通属性です。Doxygenが生成するdotファイルで異なる外観のフォントを使
+# 用したい場合、fontname、fontcolor、およびfontsize属性を指定できます。詳細については、<a href=https://graphvi
+# z.org/doc/info/attrs.html>ノード、エッジ、およびグラフ属性の仕様</a>を参照してください。 dot
+# がフォントを見つけられることを確認する必要があります。これは、標準の場所に配置するか、 DOTFONTPATH
+# 環境変数を設定するか、フォントを含むディレクトリにDOT_FONTPATHを設定することで行います。デフォルトのgraphvizフォントサイズは14です。
+# デフォルト値は fontname=Helvetica,fontsize=10 です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+DOT_COMMON_ATTR        = "fontname=Helvetica,fontsize=10"
+
+# DOT_EDGE_ATTR はDOT_COMMON_ATTRと連結されます。エレガントなスタイルにするには、'arrowhead=open,
+# arrowtail=open, arrowsize=0.5'を追加できます。<a
+# href=https://graphviz.org/doc/info/arrows.html>矢印形状の完全なドキュメント</a>
+# デフォルト値は labelfontname=Helvetica,labelfontsize=10 です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+DOT_EDGE_ATTR          = "labelfontname=Helvetica,labelfontsize=10"
+
+# DOT_NODE_ATTR はDOT_COMMON_ATTRと連結されます。ノードの周りのボックスなしの表示には、'shape=plain'または'sha
+# pe=plaintext'を設定します。<a
+# href=https://www.graphviz.org/doc/info/shapes.html>形状の仕様</a>
+# デフォルト値は shape=box,height=0.2,width=0.4 です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+DOT_NODE_ATTR          = "shape=box,height=0.2,width=0.4"
+
+# DOT_COMMON_ATTRおよび他のdot属性でfontnameにより指定されたフォントを dot が見つけられるパスを設定できます。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+DOT_FONTPATH           =
+
+# CLASS_GRAPH タグが YES または GRAPH または BUILTIN
+# に設定されている場合、Doxygenは文書化された各クラスのグラフを生成し、直接および間接の継承関係を示します。 CLASS_GRAPH タグが YES
+# または GRAPH に設定され、HAVE_DOTも有効な場合、dotがグラフの描画に使用されます。 CLASS_GRAPH タグが YES
+# に設定され、HAVE_DOTが無効な場合、または CLASS_GRAPH タグが BUILTIN
+# に設定されている場合、組み込みジェネレーターが使用されます。 CLASS_GRAPH タグが TEXT に設定されている場合、直接および間接の継承関係がテキ
+# スト/リンクとして表示されます。特定のクラスの継承グラフを明示的に有効にするか、異なる表現を選択するには、\inheritancegraphコマンドを使用で
+# きます。継承グラフを無効にするには、\hideinheritancegraphコマンドを使用できます。
+# 可能な値は:NO, YES, TEXT, GRAPHとBUILTIN.
+# デフォルト値は YES です。
+
+CLASS_GRAPH            = YES
+
+# COLLABORATION_GRAPH タグが YES に設定されている場合、Doxygenは文書化された各クラスのグラフを生成し、クラスと他の文書化され
+# たクラスとの直接および間接の実装依存関係（継承、包含、およびクラス参照変数）を示します。 COLLABORATION_GRAPH が NO に設定されている
+# 場合、コラボレーショングラフを明示的に有効にするには、\collaborationgraphコマンドを使用できます。コラボレーショングラフを無効にするには、
+# \hidecollaborationgraphコマンドを使用できます。
+# デフォルト値は YES です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+COLLABORATION_GRAPH    = YES
+
+# GROUP_GRAPHS タグが YES に設定されている場合、Doxygenはグループのグラフを生成し、グループの直接の依存関係を示します。
+# GROUP_GRAPHS が NO に設定されている場合でも、グループ依存グラフを明示的に有効にするには、\groupgraphコマンドを使用できます。グル
+# ープグラフを無効にするには、\hidegroupgraphコマンドを使用できます。マニュアルのグループ化の章も参照してください。
+# デフォルト値は YES です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+GROUP_GRAPHS           = YES
+
+# UML_LOOK タグが YES
+# に設定されている場合、DoxygenはOMGの統一モデリング言語（UML）と同様のスタイルで継承およびコラボレーションダイアグラムを生成します。
+# デフォルト値は NO です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+UML_LOOK               = NO
+
+# UML_LOOKタグが有効な場合、フィールドとメソッドはクラスノード内に表示されます。多くのフィールドやメソッドと多くのノードがある場合、グラフは有用でない
+# ほど大きくなる可能性があります。 UML_LIMIT_NUM_FIELDS しきい値は、サイズをより管理しやすくするために各タイプのアイテム数を制限します。
+# 制限なしの場合は0に設定します。なお、しきい値は制限が適用される前に50%まで超過する可能性があります。したがって、しきい値を10に設定すると、最大15フィ
+# ールドが表示される可能性がありますが、数が15を超えると、表示されるフィールドの総数は10に制限されます。
+# 最小値: 0, 最大値: 100, デフォルト値: 10。
+# このタグはタグ UML_LOOK を YES に設定する必要があります。
+
+UML_LIMIT_NUM_FIELDS   = 10
+
+# UML_LOOKタグが有効な場合、フィールドラベルは2つのクラスノード間のエッジに沿って表示されます。多くのフィールドと多くのノードがある場合、グラフは雑然
+# としすぎる可能性があります。 UML_MAX_EDGE_LABELS
+# しきい値は、サイズをより管理しやすくするためにアイテム数を制限します。制限なしの場合は0に設定します。
+# 最小値: 0, 最大値: 100, デフォルト値: 10。
+# このタグはタグ UML_LOOK を YES に設定する必要があります。
+
+UML_MAX_EDGE_LABELS    = 10
+
+# DOT_UML_DETAILS タグが NO に設定されている場合、DoxygenはUMLグラフでタイプと引数なしで属性とメソッドを表示します。
+# DOT_UML_DETAILS タグが YES に設定されている場合、DoxygenはUMLグラフで属性とメソッドのタイプと引数を追加します。
+# DOT_UML_DETAILS タグが NONE に設定されている場合、DoxygenはUMLグラフでクラスメンバー情報を持つフィールドを生成しません。クラ
+# ス図はデフォルトのクラス図に似ていますが、関係にUML表記を使用します。
+# 可能な値は:NO, YESとNONE.
+# デフォルト値は NO です。
+# このタグはタグ UML_LOOK を YES に設定する必要があります。
+
+DOT_UML_DETAILS        = NO
+
+# DOT_WRAP_THRESHOLD タグを使用して、1行に表示される最大文字数を設定できます。実際の行の長さがこのしきい値を大幅に超える場合、複数行に分
+# 割されます。見苦しい改行を避けるためにいくつかのヒューリスティックが適用されます。
+# 最小値: 0, 最大値: 1000, デフォルト値: 17。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+DOT_WRAP_THRESHOLD     = 17
+
+# TEMPLATE_RELATIONS タグが YES
+# に設定されている場合、継承およびコラボレーショングラフはテンプレートとそのインスタンス間の関係を示します。
+# デフォルト値は NO です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+TEMPLATE_RELATIONS     = NO
+
+# INCLUDE_GRAPH 、ENABLE_PREPROCESSING、およびSEARCH_INCLUDESタグがすべて YES に設定されている場合、D
+# oxygenは文書化された各ファイルのグラフを生成し、ファイルと他の文書化されたファイルとの直接および間接のインクルード依存関係を示します。
+# INCLUDE_GRAPH が NO に設定されている場合、インクルードグラフを明示的に有効にするには、\includegraphコマンドを使用できます。イ
+# ンクルードグラフを無効にするには、\hideincludegraphコマンドを使用できます。
+# デフォルト値は YES です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+INCLUDE_GRAPH          = YES
+
+# INCLUDED_BY_GRAPH 、ENABLE_PREPROCESSING、およびSEARCH_INCLUDESタグがすべて YES に設定されている
+# 場合、Doxygenは文書化された各ファイルのグラフを生成し、ファイルと他の文書化されたファイルとの直接および間接のインクルード依存関係を示します。
+# INCLUDED_BY_GRAPH が NO に設定されている場合、インクルード元グラフを明示的に有効にするには、\includedbygraphコマンドを
+# 使用できます。インクルード元グラフを無効にするには、\hideincludedbygraphコマンドを使用できます。
+# デフォルト値は YES です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+INCLUDED_BY_GRAPH      = YES
+
+# CALL_GRAPH タグが YES に設定されている場合、Doxygenは各グローバル関数またはクラスメソッドの呼び出し依存グラフを生成します。
+#
+# このオプションを有効にすると実行時間が大幅に増加することに注意してください。したがって、ほとんどの場合、\callgraphコマンドを使用して選択した関数の
+# 呼び出しグラフのみを有効にする方が良いでしょう。呼び出しグラフを無効にするには、\hidecallgraphコマンドを使用できます。
+# デフォルト値は NO です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+CALL_GRAPH             = NO
+
+# CALLER_GRAPH タグが YES に設定されている場合、Doxygenは各グローバル関数またはクラスメソッドの呼び出し元依存グラフを生成します。
+#
+# このオプションを有効にすると実行時間が大幅に増加することに注意してください。したがって、ほとんどの場合、\callergraphコマンドを使用して選択した関
+# 数の呼び出し元グラフのみを有効にする方が良いでしょう。呼び出し元グラフを無効にするには、\hidecallergraphコマンドを使用できます。
+# デフォルト値は NO です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+CALLER_GRAPH           = NO
+
+# GRAPHICAL_HIERARCHY タグが YES
+# に設定されている場合、Doxygenはテキストの代わりにすべてのクラスのグラフィカルな階層図を生成します。
+# デフォルト値は YES です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+GRAPHICAL_HIERARCHY    = YES
+
+# DIRECTORY_GRAPH タグが YES
+# に設定されている場合、Doxygenはディレクトリの他のディレクトリへの依存関係をグラフィカルに示します。依存関係は、ディレクトリ内のファイル間の
+# #include 関係によって決定されます。 DIRECTORY_GRAPH が NO に設定されている場合、ディレクトリグラフを明示的に有効にするには、\
+# directorygraphコマンドを使用できます。ディレクトリグラフを無効にするには、\hidedirectorygraphコマンドを使用できます。
+# デフォルト値は YES です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+DIRECTORY_GRAPH        = YES
+
+# DIR_GRAPH_MAX_DEPTH タグを使用して、 dot によってディレクトリ依存グラフで生成される子ディレクトリレベルの最大数を制限できます。
+# 最小値: 1, 最大値: 25, デフォルト値: 1。
+# このタグはタグ DIRECTORY_GRAPH を YES に設定する必要があります。
+
+DIR_GRAPH_MAX_DEPTH    = 1
+
+# DOT_IMAGE_FORMAT タグを使用して、 dot によって生成される画像の形式を設定できます。画像形式の説明については、 dot
+# ツールのドキュメントの出力形式セクションを参照してください（Graphviz (see:
+# https://www.graphviz.org/)）。
+#
+# なお、svg:cairoおよびsvg:cairo:cairo形式はINTERACTIVE_SVGと組み合わせて使用できません（INTERACTIVE_SVG
+# はNOに設定されます）。
+# 可能な値は:png, jpg, gif, svg, png:gd, png:gd:gd, png:cairo, png:cairo:gd,
+# png:cairo:cairo, png:cairo:gdiplus, png:gdiplus, png:gdiplus:gdiplus,
+# svg:cairo, svg:cairo:cairo, svg:svg, svg:svg:core, gif:cairo, gif:cairo:gd,
+# gif:cairo:gdiplus, gif:gdiplus, gif:gdiplus:gdiplus, gif:gd, gif:gd:gd,
+# jpg:cairo, jpg:cairo:gd, jpg:cairo:gdiplus, jpg:gd, jpg:gd:gd,
+# jpg:gdiplusとjpg:gdiplus:gdiplus.
+# デフォルト値は png です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+DOT_IMAGE_FORMAT       = png
+
+# DOT_IMAGE_FORMATがsvgまたはsvg:svgまたはsvg:svg:coreに設定されている場合、このオプションを YES
+# に設定して、ズームとパンを可能にするインタラクティブSVG画像の生成を有効にできます。
+#
+# なお、Internet Explorer以外の最新のブラウザが必要です。テスト済みで動作するもの：Firefox、Chrome、Safari、Opera。
+#
+# DOT_IMAGE_FORMATがsvg:cairoまたはsvg:cairo:cairoに設定されている場合、このオプションは自動的に無効になります。
+# デフォルト値は NO です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+INTERACTIVE_SVG        = NO
+
+# DOT_PATH タグを使用して、 dot ツールが見つかるパスを指定できます。空白のままにすると、 dot ツールが path
+# で見つかると仮定されます。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+DOT_PATH               =
+
+# DOTFILE_DIRS
+# タグを使用して、ドキュメントにインクルードされるdotファイルを含む1つ以上のディレクトリを指定できます（\dotfileコマンドを参照）。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+DOTFILE_DIRS           =
+
+# Doxygenドキュメントにdiaで作成したダイアグラムを含めることができます。Doxygenはdiaを実行してダイアグラムを生成し、ドキュメントに挿入しま
+# す。 DIA_PATH
+# タグを使用すると、diaバイナリが存在するディレクトリを指定できます。空白のままにすると、diaはデフォルトの検索パスで見つかると仮定されます。
+
+DIA_PATH               =
+
+# DIAFILE_DIRS
+# タグを使用して、ドキュメントにインクルードされるdiaファイルを含む1つ以上のディレクトリを指定できます（\diafileコマンドを参照）。
+
+DIAFILE_DIRS           =
+
+# PlantUMLを使用する場合、 PLANTUML_JAR_PATH タグを使用して、javaが plantuml
+# .jarファイルを見つけられるパス、または使用する jar ファイルのファイル名を指定する必要があります。空白のままにすると、PlantUMLは使用されない
+# か、前処理ステップで呼び出されると仮定されます。この場合、Doxygenは\startumlコマンドに遭遇すると警告を生成し、ダイアグラムの出力を生成しませ
+# ん。
+
+PLANTUML_JAR_PATH      =
+
+# PlantUMLを使用する場合、 PLANTUML_CFG_FILE タグを使用してPlantUMLの設定ファイルを指定できます。
+
+PLANTUML_CFG_FILE      =
+
+# PlantUMLを使用する場合、指定されたパスはPlantUMLブロック内の !include ステートメントで指定されたファイルに対して検索されます。
+
+PLANTUML_INCLUDE_PATH  =
+
+# PLANTUMLFILE_DIRS タグを使用して、ドキュメントにインクルードされるPlantUmlファイルを含む1つ以上のディレクトリを指定できます（\
+# plantumlfileコマンドを参照）。
+
+PLANTUMLFILE_DIRS      =
+
+# CLIレンダリングでMermaidダイアグラムを使用する場合、 MERMAID_PATH タグを使用して、 mmdc （Mermaid CLI）実行可能ファ
+# イルが見つかるディレクトリを指定する必要があります。空白のままにすると、CLIベースのレンダリングは無効になります。HTML出力の場合、JavaScript
+# によるクライアント側レンダリングがデフォルトで使用され、 mmdc は必要ありません。LaTeX/PDF出力の場合、画像を事前生成するために mmdc
+# が必要です。CLIレンダリングが必要だが mmdc が利用できない場合、Doxygenは警告を生成します。
+
+MERMAID_PATH           =
+
+# Mermaidダイアグラムを使用する場合、 MERMAID_CONFIG_FILE タグを使用して、Mermaid CLIツール（ mmdc
+# ）のJSON設定ファイルを指定できます。このファイルには、テーマ設定やその他のMermaid設定オプションを含めることができます。
+
+MERMAID_CONFIG_FILE    =
+
+# MERMAID_RENDER_MODE タグは、Mermaidダイアグラムのレンダリング方法を選択します。
+# 可能な値は:AUTO (HTMLにはクライアント側レンダリングを使用し、LaTeX/PDFおよびその他の形式には mmdc を使用。
+# MERMAID_PATH が設定されていない場合、非HTMLダイアグラムは警告を生成します), CLI (mmdc ツールを使用して画像を事前生成(Node
+# .jsとmermaid-js/mermaid-cliが必要)。すべての出力形式で動作)とCLIENT_SIDE (クライアント側レンダリングのために
+# mermaid.js をHTML出力に埋め込み。 mmdc は不要ですが、HTML出力でのみ動作).
+# デフォルト値は AUTO です。
+
+MERMAID_RENDER_MODE    = AUTO
+
+# MERMAID_JS_URL タグは、クライアント側レンダリングを使用する場合（ MERMAID_RENDER_MODE が CLIENT_SIDE
+# または AUTO ）に mermaid.js をロードするURLを指定します。デフォルトはjsDelivr CDNの最新のMermaid
+# v11を指しています。
+#
+# デフォルトのCDN URLは、生成されたドキュメントを表示する際にインターネットアクセスが必要です。オフライン使用の場合は、
+# mermaid.esm.min.mjs をダウンロードしてこれを相対パスに設定するか、代わりに MERMAID_RENDER_MODE
+# =CLIを使用して画像を事前生成します。
+# 例：
+# -
+# 最新のv11（デフォルト）：https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs
+# - ピン留めされたバージョン：https://cdn.jsdelivr.net/npm/mermaid@11.3.0/dist/mermaid.esm.m
+# in.mjs
+# - ローカルコピー：./mermaid.esm.min.mjs（ユーザーはファイルをHTML出力ディレクトリに配置する必要があります）
+# デフォルト値は https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs です。
+
+MERMAID_JS_URL         = https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs
+
+# MERMAIDFILE_DIRS
+# タグを使用して、ドキュメントにインクルードされるMermaidファイルを含む1つ以上のディレクトリを指定できます（\mermaidfileコマンドを参照）。
+
+MERMAIDFILE_DIRS       =
+
+# DOT_GRAPH_MAX_NODES タグを使用して、グラフに表示されるノードの最大数を設定できます。グラフ内のノード数がこの値を超えると、Doxyge
+# nはグラフを切り詰め、ノードを赤いボックスとして表示することで視覚化します。なお、グラフのルートノードの直接の子の数がすでに
+# DOT_GRAPH_MAX_NODES
+# を超えている場合、グラフは表示されません。また、グラフのサイズはMAX_DOT_GRAPH_DEPTHによってさらに制限される可能性があります。
+# 最小値: 0, 最大値: 10000, デフォルト値: 50。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+DOT_GRAPH_MAX_NODES    = 50
+
+# MAX_DOT_GRAPH_DEPTH タグを使用して、 dot によって生成されるグラフの最大深度を設定できます。深度値3は、最大3エッジを経由するパス
+# でルートから到達可能なノードのみが表示されることを意味します。ルートノードからより遠いノードは省略されます。なお、このオプションを1または2に設定すると、大
+# 規模なコードベースの計算時間を大幅に削減できます。また、グラフのサイズはDOT_GRAPH_MAX_NODESによってさらに制限される可能性があります。深度
+# 0を使用すると、深度の制限はありません。
+# 最小値: 0, 最大値: 1000, デフォルト値: 0。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+MAX_DOT_GRAPH_DEPTH    = 0
+
+# GENERATE_LEGEND タグが YES
+# に設定されている場合、Doxygenはdotによって生成されたグラフの様々なボックスと矢印の意味を説明する凡例ページを生成します。
+# 注: このタグは、UML_LOOKが設定されていないことを前提としています。つまり、継承およびコラボレーションダイアグラムにDoxygenの内部グラフィカル
+# 表現が使用される場合に有効です。
+# デフォルト値は YES です。
+# このタグはタグ HAVE_DOT を YES に設定する必要があります。
+
+GENERATE_LEGEND        = YES
+
+# DOT_CLEANUP タグが YES に設定されている場合、Doxygenは各種グラフを生成するために使用された中間ファイルを削除します。
+#
+# なお、この設定はdotファイルだけでなく、一時的なmscファイルにも適用されます。
+# デフォルト値は YES です。
+
+DOT_CLEANUP            = YES
+
+# Doxygenコメント内で\mscコマンドを使用してメッセージシーケンスチャートを定義できます。 MSCGEN_TOOL
+# タグが空白のまま（デフォルト）の場合、Doxygenはチャートを生成するために組み込みバージョンのmscgenツールを使用します。または、
+# MSCGEN_TOOL タグで外部ツールの名前を指定することもできます。例えば、値としてprogを指定すると、Doxygenはツールをprog -T
+# <outfile_format> -o <outputfile> <inputfile>として呼び出します。外部ツールは、出力ファイル形式「png」、「ep
+# s」、「svg」、および「ismap」をサポートする必要があります。
+
+MSCGEN_TOOL            =
+
+# MSCFILE_DIRS
+# タグを使用して、ドキュメントにインクルードされるmscファイルを含む1つ以上のディレクトリを指定できます（\mscfileコマンドを参照）。
+
+MSCFILE_DIRS           =

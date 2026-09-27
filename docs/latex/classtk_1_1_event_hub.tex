@@ -1,0 +1,114 @@
+\doxysection{tk::Event\+Hub\texorpdfstring{$<$}{<} Msg\+Type, Max\+Subscribers \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classtk_1_1_event_hub}{}\label{classtk_1_1_event_hub}\index{tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}}
+
+
+メッセージ型ごとの超軽量 Pub/\+\+Sub ディスパッチャ  
+
+
+
+
+{\ttfamily \+\#include $<$actor.\+hpp$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \doxymbox{\hyperlink{classtk_1_1_event_hub_a50ebe29eaa2657604a1c85bf5125d490}{subscribe}} (void \texorpdfstring{$\ast$}{*}actor, bool(\texorpdfstring{$\ast$}{*}post\+\_\+fn)(void \texorpdfstring{$\ast$}{*}, const Msg\+Type \&))
+\begin{DoxyCompactList}\small\item\em \doxylink{classtk_1_1_actor}{Actor} をこのメッセージ型の購読者として登録します \end{DoxyCompactList}\item 
+static bool \doxymbox{\hyperlink{classtk_1_1_event_hub_a09c779ce8c594ea44c831adfd7e287f8}{unsubscribe}} (void \texorpdfstring{$\ast$}{*}actor)
+\begin{DoxyCompactList}\small\item\em \doxylink{classtk_1_1_actor}{Actor} の購読登録を解除します \end{DoxyCompactList}\item 
+static size\+\_\+t \doxymbox{\hyperlink{classtk_1_1_event_hub_a3a59a641ad3fe121c0da7e1c81dc300b}{publish}} (const Msg\+Type \&msg)
+\begin{DoxyCompactList}\small\item\em このメッセージ型を購読しているすべての \doxylink{classtk_1_1_actor}{Actor} へ同報配信します \end{DoxyCompactList}\item 
+static size\+\_\+t \doxymbox{\hyperlink{classtk_1_1_event_hub_ac4cd6ce4e37b74385c7f4352a5516930}{subscriber\+\_\+count}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Msg\+Type, size\+\_\+t Max\+Subscribers = 4$>$\newline
+class tk::\+\+Event\+Hub$<$ Msg\+Type, Max\+Subscribers $>$}
+メッセージ型ごとの超軽量 Pub/\+\+Sub ディスパッチャ 
+
+テンプレート引数 {\ttfamily Msg\+Type} ごとにコンパイル時解決される静的レジストリです。 実行時の型検索オーバーヘッドゼロ、動的メモリ確保ゼロで動作します。
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Msg\+Type} & 配信するメッセージの型 \\
+\hline
+{\em Max\+Subscribers} & 同一メッセージ型を購読できる最大 \doxylink{classtk_1_1_actor}{Actor} 数 (デフォルト: 4) \\
+\hline
+\end{DoxyTemplParams}
+
+
+\label{classtk_1_1_event_hub_doc-func-members}
+\Hypertarget{classtk_1_1_event_hub_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classtk_1_1_event_hub_a3a59a641ad3fe121c0da7e1c81dc300b}\index{tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}!publish@{publish}}
+\index{publish@{publish}!tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}}
+\doxysubsubsection{\texorpdfstring{publish()}{publish()}}
+{\footnotesize\ttfamily \label{classtk_1_1_event_hub_a3a59a641ad3fe121c0da7e1c81dc300b} 
+template$<$typename Msg\+Type, size\+\_\+t Max\+Subscribers = 4$>$ \\
+size\+\_\+t \doxymbox{\hyperlink{classtk_1_1_event_hub}{tk::\+\+Event\+Hub}}$<$ Msg\+Type, Max\+Subscribers $>$::\+publish (\begin{DoxyParamCaption}\item[{const Msg\+Type \&}]{msg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+このメッセージ型を購読しているすべての \doxylink{classtk_1_1_actor}{Actor} へ同報配信します 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 配信するメッセージ実体 (各 \doxylink{classtk_1_1_actor}{Actor} のキューへ値コピー) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size\+\_\+t 配信に成功した \doxylink{classtk_1_1_actor}{Actor} の数 
+\end{DoxyReturn}
+\Hypertarget{classtk_1_1_event_hub_a50ebe29eaa2657604a1c85bf5125d490}\index{tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}!subscribe@{subscribe}}
+\index{subscribe@{subscribe}!tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}}
+\doxysubsubsection{\texorpdfstring{subscribe()}{subscribe()}}
+{\footnotesize\ttfamily \label{classtk_1_1_event_hub_a50ebe29eaa2657604a1c85bf5125d490} 
+template$<$typename Msg\+Type, size\+\_\+t Max\+Subscribers = 4$>$ \\
+bool \doxymbox{\hyperlink{classtk_1_1_event_hub}{tk::\+\+Event\+Hub}}$<$ Msg\+Type, Max\+Subscribers $>$::\+subscribe (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{actor}{, }\item[{bool(\texorpdfstring{$\ast$}{*}}]{post\+\_\+fn~}{)(void \texorpdfstring{$\ast$}{*}, const Msg\+Type \&)}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+\doxylink{classtk_1_1_actor}{Actor} をこのメッセージ型の購読者として登録します 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actor} & \doxylink{classtk_1_1_actor}{Actor} インスタンスポインタ \\
+\hline
+{\em post\+\_\+fn} & メッセージ投入関数ポインタ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 登録成功, false 購読者上限に達した 
+\end{DoxyReturn}
+\Hypertarget{classtk_1_1_event_hub_ac4cd6ce4e37b74385c7f4352a5516930}\index{tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}!subscriber\_count@{subscriber\_count}}
+\index{subscriber\_count@{subscriber\_count}!tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}}
+\doxysubsubsection{\texorpdfstring{subscriber\_count()}{subscriber\_count()}}
+{\footnotesize\ttfamily \label{classtk_1_1_event_hub_ac4cd6ce4e37b74385c7f4352a5516930} 
+template$<$typename Msg\+Type, size\+\_\+t Max\+Subscribers = 4$>$ \\
+size\+\_\+t \doxymbox{\hyperlink{classtk_1_1_event_hub}{tk::\+\+Event\+Hub}}$<$ Msg\+Type, Max\+Subscribers $>$::\+subscriber\+\_\+count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+現在の購読者数を取得 \Hypertarget{classtk_1_1_event_hub_a09c779ce8c594ea44c831adfd7e287f8}\index{tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}!unsubscribe@{unsubscribe}}
+\index{unsubscribe@{unsubscribe}!tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}}
+\doxysubsubsection{\texorpdfstring{unsubscribe()}{unsubscribe()}}
+{\footnotesize\ttfamily \label{classtk_1_1_event_hub_a09c779ce8c594ea44c831adfd7e287f8} 
+template$<$typename Msg\+Type, size\+\_\+t Max\+Subscribers = 4$>$ \\
+bool \doxymbox{\hyperlink{classtk_1_1_event_hub}{tk::\+\+Event\+Hub}}$<$ Msg\+Type, Max\+Subscribers $>$::\+unsubscribe (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{actor}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+\doxylink{classtk_1_1_actor}{Actor} の購読登録を解除します 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actor} & 解除する \doxylink{classtk_1_1_actor}{Actor} インスタンスポインタ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 解除成功, false 未登録 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\doxymbox{\hyperlink{actor_8hpp}{actor.\+hpp}}\end{DoxyCompactItemize}
