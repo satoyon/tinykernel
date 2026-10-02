@@ -1,5 +1,7 @@
 # Raspberry Pi Pico 2 (RP2350) 用プリエンプティブマルチタスクカーネル ～ tinykernel
 
+(English version follows the Japanese section)
+
 Raspberry Pi Pico 2 (RP2350 / ARM Cortex-M33) 向けの、シンプルで実用的なリアルタイム・プリエンプティブマルチタスクカーネルです。
 
 ---
@@ -153,6 +155,159 @@ I2C や SPI など、途中でタスク切り替えを起こしたくないペ�
 独自の Pico プロジェクトの `CMakeLists.txt` で `tinykernel` ディレクトリを追加し、リンクするだけで即座に利用できます。
 
 ```cmake
+add_subdirectory(tinykernel)
+
+target_link_libraries(your_project_name
+    pico_stdlib
+    tinykernel_lib
+)
+```
+
+---
+
+## English Description
+
+A simple and practical real-time preemptive multitasking kernel for the Raspberry Pi Pico 2 (RP2350 / ARM Cortex-M33).
+
+## Key Features
+
+- SMP Support (Dual Core): Fully utilizes both Cortex-M33 cores of the RP2350 to automatically execute tasks in parallel and migrate them between cores.
+- Loosely Coupled Inter-Task Communication (Pub/Sub): Equipped with a messaging system that allows safe delivery by specifying only the message type, without needing to know the receiver's Actor instance.
+- Memory Safety via Pass-by-Value: Messages are copied into the queue by value. This eliminates concerns about lifetimes or dangling pointers, even when passing local variables from the stack.
+- Zero-CPU Blocking Wait: Tasks automatically enter a blocked state (State::Blocked) while waiting for messages, semaphores, or mutexes, yielding CPU time to other tasks.
+- Full Hardware FPU Protection: Prevents FPU register corruption during context switches, even when multiple cores and tasks perform floating-point operations simultaneously.
+- Zero Dynamic Allocation (No malloc): All stacks, task slots, and message queues use static or fixed-length memory to prevent memory fragmentation.
+
+## Basic Usage
+
+Register tasks using `tk::create()` (up to 30 user tasks can be registered).
+
+```cpp
+#include "tinykernel/kernel.hpp"
+
+static void your_task(void *arg) {
+    for (;;) {
+        // Do some work here
+        tk::sleep_ms(200); // Yield CPU by sleeping
+    }
+}
+
+int main(void) {
+    stdio_init_all();
+
+    // Register your_task (Task function pointer, argument, priority)
+    tk::create(your_task, nullptr, tk::PRIO_NORMAL);
+
+    // Start the scheduler (Core 1 is booted automatically; execution does not return from here)
+    tk::start();
+
+    for (;;) {}
+}
+```
+
+## Loosely Coupled Communication (Actor & EventHub)
+
+To receive messages, inherit from `tk::Actor<MsgType, QueueSize>`.
+
+```cpp
+#include "tinykernel/actor.hpp"
+
+// 1. Define the message structure to be received by the Actor
+struct YourActionMessage {
+    uint32_t msg;
+    char str[16];
+};
+
+// 2. Create an Actor that waits for messages
+class YourActor : public tk::Actor<YourActionMessage, 8> {
+protected:
+    void on_start() override {
+        // Called once when the task starts (e.g., GPIO or device initialization)
+    }
+
+    void on_message(const YourActionMessage& msg) override {
+        // Automatically woken up and executed upon receiving a message
+        // Safe because 'msg' is copied by value into the queue
+    }
+};
+
+YourActor g_actor;
+
+int main(void) {
+    stdio_init_all();
+
+    // Register and start as a task
+    g_actor.start(tk::PRIO_NORMAL);
+
+    tk::start();
+}
+```
+
+To send messages, call `tk::publish()`.
+
+```cpp
+static void your_sender(void *arg) {
+    for (;;) {
+        YourActionMessage msg{1, "Hello!"};
+
+        // Broadcast to all Actors that accept YourActionMessage (one-to-many)
+        tk::publish(msg);
+
+        tk::sleep_ms(1000);
+    } // Even after 'msg' goes out of scope and its stack is reclaimed, the receiver remains safe!
+}
+
+int main(void) {
+    stdio_init_all();
+
+    g_actor.start(tk::PRIO_NORMAL);
+    tk::create(your_sender, nullptr, tk::PRIO_NORMAL);
+
+    tk::start();
+}
+```
+
+> **Point**: The sender does not need to know the instance or name of the Actor. The EventHub delivers messages directly to the appropriate Actors based solely on the message type.
+
+## Semaphores / Mutexes (`sync.hpp`)
+
+The following primitives are provided for mutual exclusion and synchronization between threads:
+
+```cpp
+#include "tinykernel/sync.hpp"
+
+tk::Mutex g_mutex;
+tk::BinarySemaphore g_sem(0, 1);
+
+// Safe locking using RAII (compatible with std::lock_guard)
+void safe_function() {
+    tk::LockGuard<tk::Mutex> lock(g_mutex);
+    // Critical section...
+} // Automatically unlocked when the scope ends
+```
+
+Waiting tasks are woken up in order of highest priority.
+
+## Peripheral Communication Protection (`tk::PreemptGuard`)
+
+When performing peripheral transactions (such as I2C or SPI) where you want to prevent task switching, `tk::PreemptGuard` allows you to temporarily suppress task switches on the current core without disabling interrupts (like system clocks or timers).
+
+```cpp
+{
+    tk::PreemptGuard guard;
+
+    // Interrupts (SysTick, Timers) continue to run normally, and other cores are unaffected.
+    // However, task switching on this specific core is guaranteed to be blocked!
+    i2c_write_blocking(i2c0, addr, data, len, false);
+
+} // Task switching resumes automatically when the scope ends (pending PendSV is triggered immediately)
+```
+
+## Integration
+
+To integrate `tinykernel` into your Pico project, simply add the directory to your `CMakeLists.txt` and link it:
+
+```cpp
 add_subdirectory(tinykernel)
 
 target_link_libraries(your_project_name
