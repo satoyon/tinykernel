@@ -1,0 +1,568 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="scheduler_8cpp" kind="file" language="C++">
+    <compoundname>scheduler.cpp</compoundname>
+    <includes refid="kernel_8hpp" local="yes">tinykernel/kernel.hpp</includes>
+    <includes local="no">cstring</includes>
+    <includes local="yes">pico/platform.h</includes>
+    <includes local="yes">pico/multicore.h</includes>
+    <includes local="yes">hardware/sync.h</includes>
+    <includes refid="port__m33_8h" local="yes">port/m33/port_m33.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>tinykernel/kernel.hpp</label>
+        <link refid="kernel_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>port/m33/port_m33.h</label>
+        <link refid="port__m33_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp</label>
+        <link refid="scheduler_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>cstring</label>
+      </node>
+      <node id="11">
+        <label>hardware/structs/scb.h</label>
+      </node>
+      <node id="9">
+        <label>hardware/sync.h</label>
+      </node>
+      <node id="8">
+        <label>pico/multicore.h</label>
+      </node>
+      <node id="7">
+        <label>pico/platform.h</label>
+      </node>
+      <node id="5">
+        <label>pico/runtime.h</label>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="struct_fpu_ctx" prot="public">FpuCtx</innerclass>
+    <innernamespace refid="namespacetk">tk</innernamespace>
+    <innernamespace refid="namespacetk_1_1detail">tk::detail</innernamespace>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="scheduler_8cpp_1ad7a9acf1577e1fc4ff193d79edf9e254" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_fpu_ctx" kindref="compound">FpuCtx</ref></type>
+        <definition>FpuCtx tk_fpu_scratch[TK_NUM_CORES]</definition>
+        <argsstring>[TK_NUM_CORES]</argsstring>
+        <name>tk_fpu_scratch</name>
+        <initializer>= {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" line="113" column="20" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="113" bodyend="113"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="scheduler_8cpp_1a4728919288dacba97228c27b1c996108" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void isr_systick</definition>
+        <argsstring>(void)</argsstring>
+        <name>isr_systick</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" line="117" column="17" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="117" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="scheduler_8cpp_1a10d391ed68d7bf5406e9dbcd1c69d1da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uintptr_t</type>
+        <definition>uintptr_t tk_switch_context</definition>
+        <argsstring>(uintptr_t cur_sp)</argsstring>
+        <name>tk_switch_context</name>
+        <param>
+          <type>uintptr_t</type>
+          <declname>cur_sp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" line="154" column="22" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="154" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="scheduler_8cpp_1a155a1d0ce79cec9569b0634e8186ddfd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void core_start_routine</definition>
+        <argsstring>(uint32_t core)</argsstring>
+        <name>core_start_routine</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>core</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" line="222" column="13" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="222" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="scheduler_8cpp_1a3d2cebe4591c5bb602b5de639f66a35f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void core1_entry</definition>
+        <argsstring>(void)</argsstring>
+        <name>core1_entry</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" line="243" column="13" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="243" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="scheduler_8cpp_1ad29ac857f58c5bf7c0220403c6624f32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk_task_return_trampoline</definition>
+        <argsstring>(void)</argsstring>
+        <name>tk_task_return_trampoline</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" line="308" column="17" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="308" bodyend="310"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="kernel_8hpp" kindref="compound">tinykernel/kernel.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pico/platform.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pico/multicore.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;hardware/sync.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="port__m33_8h" kindref="compound">port/m33/port_m33.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="struct_fpu_ctx" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_fpu_ctx" kindref="compound">FpuCtx</ref><sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_fpu_ctx_1ad2c3227e92b86055b7c97fbd0ee5c445" kindref="member">s</ref>[32];</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="struct_fpu_ctx" kindref="compound">FpuCtx</ref>)<sp/>==<sp/>128,<sp/></highlight><highlight class="stringliteral">&quot;FPU<sp/>context<sp/>layout<sp/>must<sp/>match<sp/>context.S&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>uint32_t<sp/>TK_NUM_CORES<sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/>State<sp/>:<sp/>uint8_t<sp/>{<sp/>Free<sp/>=<sp/>0,<sp/>Ready,<sp/>Running,<sp/>Sleeping,<sp/>Blocked,<sp/>Terminated<sp/>};</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">TaskSlot<sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>State<sp/>state;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1a8908cf1e54cdc4e14ac3003126722cfc" kindref="member">tk::TaskFn</ref><sp/>fn;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>arg;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>name;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>prio;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>0..15,<sp/>lower<sp/>is<sp/>higher<sp/>priority</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>uintptr_t<sp/>sp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>saved<sp/>SP<sp/>(points<sp/>at<sp/>the<sp/>core8<sp/>frame);<sp/>0<sp/>=<sp/>not<sp/>started<sp/>yet</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>wake_tick;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>slice_left;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>is_idle;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>FpuCtx<sp/>fpu;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(<ref refid="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" kindref="member">TK_MAX_TASKS</ref><sp/>&lt;=<sp/>255,<sp/></highlight><highlight class="stringliteral">&quot;slot<sp/>index<sp/>must<sp/>fit<sp/>in<sp/>a<sp/>byte&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">alignas</highlight><highlight class="normal">(16)<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>TaskSlot<sp/>g_slots[<ref refid="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" kindref="member">TK_MAX_TASKS</ref>];<sp/><sp/></highlight><highlight class="comment">//<sp/>slot<sp/>0<sp/>=<sp/>idle0,<sp/>slot<sp/>1<sp/>=<sp/>idle1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">alignas</highlight><highlight class="normal">(8)<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>g_stacks[<ref refid="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" kindref="member">TK_MAX_TASKS</ref>][<ref refid="kernel_8hpp_1afde197f9493ef5bdb5b715ce8b52148d" kindref="member">TK_DEFAULT_STACK_SIZE</ref>];</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>uint8_t<sp/>g_cur[TK_NUM_CORES]<sp/>=<sp/>{0,<sp/>1};</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">volatile</highlight><highlight class="normal"><sp/>uint32_t<sp/>g_preempt_disabled[TK_NUM_CORES]<sp/>=<sp/>{0,<sp/>0};</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>int64_t<sp/>g_tick<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>g_started<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>uint8_t<sp/>g_rr_last[16]<sp/>=<sp/>{0};</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>spin_lock_t*<sp/>g_sched_lock<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ensure_sched_lock(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!g_sched_lock)<sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>lock_num<sp/>=<sp/>spin_lock_claim_unused(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>g_sched_lock<sp/>=<sp/>spin_lock_instance(lock_num);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>uint32_t<sp/>kIdlePrio<sp/>=<sp/>15u;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>int32_t<sp/>kSliceTicks<sp/>=<sp/>(int32_t)(((uint64_t)<ref refid="kernel_8hpp_1af32989639aecb5479b4239639fd133f7" kindref="member">TK_TIME_SLICE_MS</ref><sp/>*<sp/><ref refid="kernel_8hpp_1a5c791131c5ad22ed87a8d3ca2cd57d33" kindref="member">TK_TICKS_PER_SEC</ref><sp/>+<sp/>999u)<sp/>/<sp/>1000u);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(kSliceTicks<sp/>&gt;=<sp/>1,<sp/></highlight><highlight class="stringliteral">&quot;time<sp/>slice<sp/>must<sp/>be<sp/>at<sp/>least<sp/>one<sp/>tick&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="namespacetk_1_1detail_1a5b8fa6406a867edf8c4410fcb03c6523" kindref="member">sched_lock</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>ensure_sched_lock();</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>spin_lock_blocking(g_sched_lock);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" kindref="member">sched_unlock</ref>(uint32_t<sp/>save)<sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>spin_unlock(g_sched_lock,<sp/>save);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>idle_fn(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>arg)<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>(void)arg;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(;;)<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__asm__<sp/></highlight><highlight class="keyword">volatile</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;wfi&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>is_runnable(uint32_t<sp/>slot_idx,<sp/>uint32_t<sp/>core)<sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TaskSlot&amp;<sp/>s<sp/>=<sp/>g_slots[slot_idx];</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(s.is_idle)<sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>slot_idx<sp/>==<sp/>core;<sp/></highlight><highlight class="comment">//<sp/>Core<sp/>0<sp/>only<sp/>runs<sp/>idle<sp/>0,<sp/>Core<sp/>1<sp/>only<sp/>runs<sp/>idle<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>s.state<sp/>==<sp/>State::Ready;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Highest<sp/>priority<sp/>level<sp/>with<sp/>at<sp/>least<sp/>one<sp/>runnable<sp/>task<sp/>for<sp/>this<sp/>core.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>int32_t<sp/>find_prio_level(uint32_t<sp/>core)<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uint32_t<sp/>p<sp/>=<sp/>0;<sp/>p<sp/>&lt;<sp/>16u;<sp/>++p)<sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uint32_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" kindref="member">TK_MAX_TASKS</ref>;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(g_slots[i].prio<sp/>==<sp/>p<sp/>&amp;&amp;<sp/>is_runnable(i,<sp/>core))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(int32_t)p;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(int32_t)kIdlePrio;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>uint32_t<sp/>pick_round_robin(uint32_t<sp/>level,<sp/>uint32_t<sp/>core)<sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(level<sp/>==<sp/>kIdlePrio)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>core;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uint32_t<sp/>k<sp/>=<sp/>1;<sp/>k<sp/>&lt;=<sp/><ref refid="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" kindref="member">TK_MAX_TASKS</ref>;<sp/>++k)<sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>i<sp/>=<sp/>(g_rr_last[level]<sp/>+<sp/>k)<sp/>%<sp/><ref refid="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" kindref="member">TK_MAX_TASKS</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(i<sp/>&gt;=<sp/>TK_NUM_CORES<sp/>&amp;&amp;<sp/>g_slots[i].prio<sp/>==<sp/>level<sp/>&amp;&amp;<sp/>is_runnable(i,<sp/>core))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>core;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Choose<sp/>the<sp/>next<sp/>task<sp/>for<sp/>the<sp/>given<sp/>core.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>uint32_t<sp/>select_next(uint32_t<sp/>core)<sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>level<sp/>=<sp/>find_prio_level(core);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(level<sp/>&lt;<sp/>0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>core;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pick_round_robin((uint32_t)level,<sp/>core);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Referenced<sp/>(unmangled)<sp/>from<sp/>context.S:<sp/>scratch<sp/>area<sp/>per-core<sp/>for<sp/>FPU<sp/>state<sp/>transfer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">alignas</highlight><highlight class="normal">(8)<sp/><ref refid="struct_fpu_ctx" kindref="compound">FpuCtx</ref><sp/><ref refid="scheduler_8cpp_1ad7a9acf1577e1fc4ff193d79edf9e254" kindref="member">tk_fpu_scratch</ref>[TK_NUM_CORES]<sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SysTick<sp/>interrupt<sp/>handler:<sp/>advances<sp/>ticks<sp/>on<sp/>Core<sp/>0,<sp/>wakes<sp/>sleeping<sp/>tasks,<sp/>and<sp/>checks<sp/>time<sp/>slices.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="scheduler_8cpp_1a4728919288dacba97228c27b1c996108" kindref="member">isr_systick</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>core<sp/>=<sp/>get_core_num();</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>save<sp/>=<sp/><ref refid="namespacetk_1_1detail_1a5b8fa6406a867edf8c4410fcb03c6523" kindref="member">sched_lock</ref>();</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>need_switch<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(core<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++g_tick;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uint32_t<sp/>i<sp/>=<sp/>TK_NUM_CORES;<sp/>i<sp/>&lt;<sp/><ref refid="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" kindref="member">TK_MAX_TASKS</ref>;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TaskSlot&amp;<sp/>s<sp/>=<sp/>g_slots[i];</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(s.state<sp/>==<sp/>State::Sleeping<sp/>&amp;&amp;<sp/>g_tick<sp/>&gt;=<sp/>s.wake_tick)<sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s.state<sp/>=<sp/>State::Ready;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>need_switch<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>TaskSlot&amp;<sp/>cur<sp/>=<sp/>g_slots[g_cur[core]];</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cur.is_idle)<sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(find_prio_level(core)<sp/>&lt;<sp/>(int32_t)kIdlePrio)<sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>need_switch<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>--cur.slice_left;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cur.slice_left<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cur.slice_left<sp/>=<sp/>kSliceTicks;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>need_switch<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" kindref="member">sched_unlock</ref>(save);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(need_switch)<sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tk_port_trigger_pendsv();</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="comment">//<sp/>PendSV<sp/>context<sp/>switch<sp/>function:<sp/>saves<sp/>cur_sp,<sp/>selects<sp/>next<sp/>task,<sp/>and<sp/>returns<sp/>next<sp/>SP.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>uintptr_t<sp/><ref refid="scheduler_8cpp_1a10d391ed68d7bf5406e9dbcd1c69d1da" kindref="member">tk_switch_context</ref>(uintptr_t<sp/>cur_sp)<sp/>{</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>core<sp/>=<sp/>get_core_num();</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>save<sp/>=<sp/><ref refid="namespacetk_1_1detail_1a5b8fa6406a867edf8c4410fcb03c6523" kindref="member">sched_lock</ref>();</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>TaskSlot&amp;<sp/>cur<sp/>=<sp/>g_slots[g_cur[core]];</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(g_preempt_disabled[core]<sp/>&gt;<sp/>0<sp/>&amp;&amp;<sp/>cur.state<sp/>==<sp/>State::Running)<sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" kindref="member">sched_unlock</ref>(save);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>cur_sp;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>cur.sp<sp/>=<sp/>cur_sp;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>memcpy(&amp;cur.fpu,<sp/>&amp;<ref refid="scheduler_8cpp_1ad7a9acf1577e1fc4ff193d79edf9e254" kindref="member">tk_fpu_scratch</ref>[core],<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(cur.fpu));</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cur.state<sp/>==<sp/>State::Running)<sp/>{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cur.state<sp/>=<sp/>State::Ready;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>next<sp/>=<sp/>select_next(core);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>TaskSlot&amp;<sp/>nxt<sp/>=<sp/>g_slots[next];</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nxt.sp<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nxt.sp<sp/>=<sp/><ref refid="port__m33_8h_1a57df28e1d96b701ef5b9713cae179462" kindref="member">tk_port_make_frame</ref>(</highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="normal">uint8_t*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(&amp;g_stacks[next][0]),</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="kernel_8hpp_1afde197f9493ef5bdb5b715ce8b52148d" kindref="member">TK_DEFAULT_STACK_SIZE</ref>,<sp/></highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(nxt.fn),<sp/>nxt.arg);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>nxt.state<sp/>=<sp/>State::Running;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>memcpy(&amp;<ref refid="scheduler_8cpp_1ad7a9acf1577e1fc4ff193d79edf9e254" kindref="member">tk_fpu_scratch</ref>[core],<sp/>&amp;nxt.fpu,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(nxt.fpu));</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>nxt.slice_left<sp/>=<sp/>kSliceTicks;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>g_rr_last[nxt.prio]<sp/>=<sp/>(uint8_t)next;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>g_cur[core]<sp/>=<sp/>(uint8_t)next;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" kindref="member">sched_unlock</ref>(save);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>nxt.sp;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacetk_1_1detail" kindref="compound">tk::detail</ref><sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1_1detail_1a447e4ec89b3f2748451891219b7e3738" kindref="member">static_register</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>name,<sp/><ref refid="namespacetk_1a8908cf1e54cdc4e14ac3003126722cfc" kindref="member">TaskFn</ref><sp/>fn,<sp/>uint32_t<sp/>prio)<sp/>{</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(prio<sp/>&gt;=<sp/>kIdlePrio)<sp/>prio<sp/>=<sp/>14u;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uint32_t<sp/>i<sp/>=<sp/>TK_NUM_CORES;<sp/>i<sp/>&lt;<sp/><ref refid="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" kindref="member">TK_MAX_TASKS</ref>;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(g_slots[i].state<sp/>==<sp/>State::Free)<sp/>{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>g_slots[i]<sp/>=<sp/>TaskSlot{};</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>g_slots[i].fn<sp/>=<sp/>fn;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>g_slots[i].name<sp/>=<sp/>name;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>g_slots[i].prio<sp/>=<sp/>prio;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>g_slots[i].state<sp/>=<sp/>State::Ready;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>tk::detail</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><ref refid="structtk_1_1_task_handle" kindref="compound">tk::TaskHandle</ref><sp/><ref refid="namespacetk_1a6e721332f5a7d85998345ed218de7394" kindref="member">tk::create</ref>(TaskFn<sp/>fn,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>arg,<sp/>uint32_t<sp/>prio)<sp/>{</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>TaskHandle<sp/>h{0xFF};</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(prio<sp/>&gt;=<sp/>kIdlePrio)<sp/>prio<sp/>=<sp/>14u;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uint32_t<sp/>i<sp/>=<sp/>TK_NUM_CORES;<sp/>i<sp/>&lt;<sp/><ref refid="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" kindref="member">TK_MAX_TASKS</ref>;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(g_slots[i].state<sp/>==<sp/>State::Free)<sp/>{</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>g_slots[i]<sp/>=<sp/>TaskSlot{};</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>g_slots[i].fn<sp/>=<sp/>fn;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>g_slots[i].arg<sp/>=<sp/>arg;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>g_slots[i].name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;dyn&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>g_slots[i].prio<sp/>=<sp/>prio;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>g_slots[i].state<sp/>=<sp/>State::Ready;</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>h.slot<sp/>=<sp/>(uint8_t)i;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>h;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>h;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>core_start_routine(uint32_t<sp/>core)<sp/>{</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="port__m33_8c_1ac9d435a65b90e71074dd44f97b1103f8" kindref="member">tk_port_init</ref>(<ref refid="kernel_8hpp_1a5c791131c5ad22ed87a8d3ca2cd57d33" kindref="member">TK_TICKS_PER_SEC</ref>);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>save<sp/>=<sp/><ref refid="namespacetk_1_1detail_1a5b8fa6406a867edf8c4410fcb03c6523" kindref="member">sched_lock</ref>();</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>next<sp/>=<sp/>select_next(core);</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>TaskSlot&amp;<sp/>nxt<sp/>=<sp/>g_slots[next];</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nxt.sp<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nxt.sp<sp/>=<sp/><ref refid="port__m33_8h_1a57df28e1d96b701ef5b9713cae179462" kindref="member">tk_port_make_frame</ref>(</highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="normal">uint8_t*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(&amp;g_stacks[next][0]),</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="kernel_8hpp_1afde197f9493ef5bdb5b715ce8b52148d" kindref="member">TK_DEFAULT_STACK_SIZE</ref>,<sp/></highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(nxt.fn),<sp/>nxt.arg);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>nxt.state<sp/>=<sp/>State::Running;</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>memcpy(&amp;<ref refid="scheduler_8cpp_1ad7a9acf1577e1fc4ff193d79edf9e254" kindref="member">tk_fpu_scratch</ref>[core],<sp/>&amp;nxt.fpu,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(nxt.fpu));</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/>nxt.slice_left<sp/>=<sp/>kSliceTicks;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/>g_rr_last[nxt.prio]<sp/>=<sp/>(uint8_t)next;</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/>g_cur[core]<sp/>=<sp/>(uint8_t)next;</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" kindref="member">sched_unlock</ref>(save);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="port__m33_8h_1aaf06c4f2c498c86ed2c595d9bfe4caab" kindref="member">tk_port_start</ref>(nxt.sp);<sp/><sp/></highlight><highlight class="comment">//<sp/>never<sp/>returns</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(;;)<sp/>__asm__<sp/></highlight><highlight class="keyword">volatile</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;wfi&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="241"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>core1_entry(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/>core_start_routine(1);</highlight></codeline>
+<codeline lineno="245"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1a675f1829b87e2a43239b6f80a526d0ed" kindref="member">tk::start</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(g_started)<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(;;)<sp/>__asm__<sp/></highlight><highlight class="keyword">volatile</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;wfi&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/>g_started<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>ensure_sched_lock();</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Core<sp/>0<sp/>Idle<sp/>Task</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>TaskSlot&amp;<sp/>idle0<sp/>=<sp/>g_slots[0];</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/>idle0.fn<sp/>=<sp/>idle_fn;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>idle0.name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;idle0&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/>idle0.prio<sp/>=<sp/>kIdlePrio;</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>idle0.is_idle<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>idle0.state<sp/>=<sp/>State::Ready;</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Core<sp/>1<sp/>Idle<sp/>Task</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>TaskSlot&amp;<sp/>idle1<sp/>=<sp/>g_slots[1];</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>idle1.fn<sp/>=<sp/>idle_fn;</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/>idle1.name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;idle1&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>idle1.prio<sp/>=<sp/>kIdlePrio;</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/>idle1.is_idle<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/>idle1.state<sp/>=<sp/>State::Ready;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Launch<sp/>Core<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/>multicore_launch_core1(core1_entry);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Launch<sp/>Core<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/>core_start_routine(0);</highlight></codeline>
+<codeline lineno="274"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1a8081956b0a19b87d5b7c81b772373397" kindref="member">tk::yield</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>core<sp/>=<sp/>get_core_num();</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>save<sp/>=<sp/><ref refid="namespacetk_1_1detail_1a5b8fa6406a867edf8c4410fcb03c6523" kindref="member">sched_lock</ref>();</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>g_slots[g_cur[core]].slice_left<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>tk_port_trigger_pendsv();</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" kindref="member">sched_unlock</ref>(save);</highlight></codeline>
+<codeline lineno="282"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"></highlight></codeline>
+<codeline lineno="284"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1aae83f84121085578a7568437a8dc2447" kindref="member">tk::sleep_ms</ref>(uint32_t<sp/>ms)<sp/>{</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/>ticks<sp/>=<sp/>((uint64_t)ms<sp/>*<sp/><ref refid="kernel_8hpp_1a5c791131c5ad22ed87a8d3ca2cd57d33" kindref="member">TK_TICKS_PER_SEC</ref><sp/>+<sp/>999u)<sp/>/<sp/>1000u;</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ticks<sp/>&lt;<sp/>1u)<sp/>ticks<sp/>=<sp/>1u;</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>sleep_ticks<sp/>=<sp/>(int32_t)(ticks<sp/>&gt;<sp/>0x7FFFFFFFu<sp/>?<sp/>0x7FFFFFFFu<sp/>:<sp/>ticks);</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>core<sp/>=<sp/>get_core_num();</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>save<sp/>=<sp/><ref refid="namespacetk_1_1detail_1a5b8fa6406a867edf8c4410fcb03c6523" kindref="member">sched_lock</ref>();</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/>TaskSlot&amp;<sp/>cur<sp/>=<sp/>g_slots[g_cur[core]];</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/>cur.state<sp/>=<sp/>State::Sleeping;</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/>cur.wake_tick<sp/>=<sp/>g_tick<sp/>+<sp/>sleep_ticks;</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/>tk_port_trigger_pendsv();</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" kindref="member">sched_unlock</ref>(save);</highlight></codeline>
+<codeline lineno="296"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1aba50cfc62cb8be71cf96df7f495a7a3d" kindref="member">tk::exit</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>code)<sp/>{</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/>(void)code;</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>core<sp/>=<sp/>get_core_num();</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>save<sp/>=<sp/><ref refid="namespacetk_1_1detail_1a5b8fa6406a867edf8c4410fcb03c6523" kindref="member">sched_lock</ref>();</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>g_slots[g_cur[core]].state<sp/>=<sp/>State::Terminated;</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/>tk_port_trigger_pendsv();</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" kindref="member">sched_unlock</ref>(save);</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(;;)<sp/>__asm__<sp/></highlight><highlight class="keyword">volatile</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;wfi&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="306"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="scheduler_8cpp_1ad29ac857f58c5bf7c0220403c6624f32" kindref="member">tk_task_return_trampoline</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1aba50cfc62cb8be71cf96df7f495a7a3d" kindref="member">tk::exit</ref>(0);</highlight></codeline>
+<codeline lineno="310"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal">uint64_t<sp/><ref refid="namespacetk_1a46e15375fba47cbd1a93278f17e77848" kindref="member">tk::now_ms</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(uint64_t)g_tick<sp/>*<sp/>1000u<sp/>/<sp/><ref refid="kernel_8hpp_1a5c791131c5ad22ed87a8d3ca2cd57d33" kindref="member">TK_TICKS_PER_SEC</ref>;</highlight></codeline>
+<codeline lineno="314"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight></codeline>
+<codeline lineno="316"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1a6540aa25eb8562f6d6c8b37977d6cfe8" kindref="member">tk::lock</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>save<sp/>=<sp/><ref refid="namespacetk_1_1detail_1a5b8fa6406a867edf8c4410fcb03c6523" kindref="member">sched_lock</ref>();</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>save<sp/>==<sp/>0;<sp/></highlight><highlight class="comment">//<sp/>PRIMASK<sp/>was<sp/>0<sp/>(enabled)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1a752b12f6862815c94a52347af52578b7" kindref="member">tk::unlock</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>was_enabled)<sp/>{</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" kindref="member">sched_unlock</ref>(was_enabled<sp/>?<sp/>0<sp/>:<sp/>1);</highlight></codeline>
+<codeline lineno="323"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal">uint32_t<sp/><ref refid="namespacetk_1_1detail_1a5b8fa6406a867edf8c4410fcb03c6523" kindref="member">tk::detail::sched_lock</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>::sched_lock();</highlight></codeline>
+<codeline lineno="327"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" kindref="member">tk::detail::sched_unlock</ref>(uint32_t<sp/>save)<sp/>{</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/>::sched_unlock(save);</highlight></codeline>
+<codeline lineno="331"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1_1detail_1a400363f36b5fb5dfc8aec11334471d0d" kindref="member">tk::detail::block_current_task_locked</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>core<sp/>=<sp/>get_core_num();</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/>TaskSlot&amp;<sp/>cur<sp/>=<sp/>g_slots[g_cur[core]];</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/>cur.state<sp/>=<sp/>State::Blocked;</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/>tk_port_trigger_pendsv();</highlight></codeline>
+<codeline lineno="338"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1_1detail_1ab19385598f18560cb574cc86174ececa" kindref="member">tk::detail::wake_task_locked</ref>(TaskHandle<sp/>handle)<sp/>{</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(handle.slot<sp/>&gt;=<sp/><ref refid="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" kindref="member">TK_MAX_TASKS</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/>TaskSlot&amp;<sp/>s<sp/>=<sp/>g_slots[handle.slot];</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(s.state<sp/>==<sp/>State::Blocked)<sp/>{</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s.state<sp/>=<sp/>State::Ready;</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tk_port_trigger_pendsv();</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="347"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal">uint8_t<sp/><ref refid="namespacetk_1_1detail_1a73a80d92a172d565201f99e8f31278e4" kindref="member">tk::detail::current_task_slot</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>g_cur[get_core_num()];</highlight></codeline>
+<codeline lineno="351"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(<ref refid="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" kindref="member">TK_MAX_TASKS</ref><sp/>&lt;=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="namespacetk_1add371a241ec6c1695ef4e67935317edd" kindref="member">tk::task_mask_t</ref>)<sp/>*<sp/>8,<sp/></highlight><highlight class="stringliteral">&quot;TK_MAX_TASKS<sp/>must<sp/>fit<sp/>in<sp/>task_mask_t&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"></highlight></codeline>
+<codeline lineno="355"><highlight class="normal">uint8_t<sp/><ref refid="namespacetk_1_1detail_1a70ba35e0daee086ad86770f1e39c9b35" kindref="member">tk::detail::find_highest_prio_waiter</ref>(task_mask_t<sp/>wait_mask)<sp/>{</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>best_slot<sp/>=<sp/>0xFF;</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>best_prio<sp/>=<sp/>0xFFFFFFFFu;</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uint32_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" kindref="member">TK_MAX_TASKS</ref>;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(wait_mask<sp/>&amp;<sp/>(task_mask_t{1}<sp/>&lt;&lt;<sp/>i))<sp/>{</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(g_slots[i].prio<sp/>&lt;<sp/>best_prio)<sp/>{</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>best_prio<sp/>=<sp/>g_slots[i].prio;</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>best_slot<sp/>=<sp/>(uint8_t)i;</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>best_slot;</highlight></codeline>
+<codeline lineno="367"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"></highlight></codeline>
+<codeline lineno="369"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1a3254a7e2a9f5ed3abe44e8cf62a8dcfe" kindref="member">tk::preempt_disable</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>core<sp/>=<sp/>get_core_num();</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>save<sp/>=<sp/><ref refid="namespacetk_1_1detail_1a5b8fa6406a867edf8c4410fcb03c6523" kindref="member">sched_lock</ref>();</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/>++g_preempt_disabled[core];</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" kindref="member">sched_unlock</ref>(save);</highlight></codeline>
+<codeline lineno="374"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"></highlight></codeline>
+<codeline lineno="376"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1a70e6ee5f456e67a24ce13ff0fd04e4d9" kindref="member">tk::preempt_enable</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>core<sp/>=<sp/>get_core_num();</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>save<sp/>=<sp/><ref refid="namespacetk_1_1detail_1a5b8fa6406a867edf8c4410fcb03c6523" kindref="member">sched_lock</ref>();</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(g_preempt_disabled[core]<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>--g_preempt_disabled[core];</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(g_preempt_disabled[core]<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tk_port_trigger_pendsv();</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" kindref="member">sched_unlock</ref>(save);</highlight></codeline>
+<codeline lineno="386"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="classtk_1_1_preempt_guard" kind="class" language="C++" prot="public">
+    <compoundname>tk::PreemptGuard</compoundname>
+    <includes refid="kernel_8hpp" local="no">kernel.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtk_1_1_preempt_guard_1a39e396ce51420c942e7d6549ec63f88e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tk::PreemptGuard::PreemptGuard</definition>
+        <argsstring>()</argsstring>
+        <name>PreemptGuard</name>
+        <qualifiedname>tk::PreemptGuard::PreemptGuard</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="158" column="5" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" bodystart="158" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_preempt_guard_1a329ea4d806861d9455168aeb01f41f86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tk::PreemptGuard::~PreemptGuard</definition>
+        <argsstring>()</argsstring>
+        <name>~PreemptGuard</name>
+        <qualifiedname>tk::PreemptGuard::~PreemptGuard</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="159" column="5" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" bodystart="159" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_preempt_guard_1a360ac2b073064abc0f21db3127e7f389" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tk::PreemptGuard::PreemptGuard</definition>
+        <argsstring>(const PreemptGuard &amp;)=delete</argsstring>
+        <name>PreemptGuard</name>
+        <qualifiedname>tk::PreemptGuard::PreemptGuard</qualifiedname>
+        <param>
+          <type>const PreemptGuard &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="161" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_preempt_guard_1ad651c301bd81f95866e1cd380c2a2417" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classtk_1_1_preempt_guard_1a39e396ce51420c942e7d6549ec63f88e" kindref="member">PreemptGuard</ref> &amp;</type>
+        <definition>PreemptGuard &amp; tk::PreemptGuard::operator=</definition>
+        <argsstring>(const PreemptGuard &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>tk::PreemptGuard::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classtk_1_1_preempt_guard_1a39e396ce51420c942e7d6549ec63f88e" kindref="member">PreemptGuard</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="162" column="18"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>プリエンプション禁止をスコープ単位で安全に管理する RAII クラス </para>
+    </briefdescription>
+    <detaileddescription>
+<para>生成時に自動で <computeroutput><ref refid="namespacetk_1a3254a7e2a9f5ed3abe44e8cf62a8dcfe" kindref="member">tk::preempt_disable()</ref></computeroutput> を呼び、スコープを抜けた際に自動で <computeroutput><ref refid="namespacetk_1a70e6ee5f456e67a24ce13ff0fd04e4d9" kindref="member">tk::preempt_enable()</ref></computeroutput> を呼びます。</para>
+<para><programlisting><codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tk::PreemptGuard<sp/>guard;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>この区間はタスクスイッチが発生しない<sp/>(I2C/SPI通信などに最適)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_write_blocking(...);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>自動でタスクスイッチが再開</highlight></codeline>
+</programlisting> </para>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="156" column="1" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" bodystart="156" bodyend="163"/>
+    <listofallmembers>
+      <member refid="classtk_1_1_preempt_guard_1ad651c301bd81f95866e1cd380c2a2417" prot="public" virt="non-virtual"><scope>tk::PreemptGuard</scope><name>operator=</name></member>
+      <member refid="classtk_1_1_preempt_guard_1a39e396ce51420c942e7d6549ec63f88e" prot="public" virt="non-virtual"><scope>tk::PreemptGuard</scope><name>PreemptGuard</name></member>
+      <member refid="classtk_1_1_preempt_guard_1a360ac2b073064abc0f21db3127e7f389" prot="public" virt="non-virtual"><scope>tk::PreemptGuard</scope><name>PreemptGuard</name></member>
+      <member refid="classtk_1_1_preempt_guard_1a329ea4d806861d9455168aeb01f41f86" prot="public" virt="non-virtual"><scope>tk::PreemptGuard</scope><name>~PreemptGuard</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

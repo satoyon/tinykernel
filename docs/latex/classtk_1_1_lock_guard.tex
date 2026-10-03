@@ -1,5 +1,5 @@
-\doxysection{tk::Lock\+Guard\texorpdfstring{$<$}{<} Lockable \texorpdfstring{$>$}{>} Class Template Reference}
-\hypertarget{classtk_1_1_lock_guard}{}\label{classtk_1_1_lock_guard}\index{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}}
+\doxysection{tk::Lock\+Guard$<$ Lockable $>$ クラステンプレート}
+\label{classtk_1_1_lock_guard}\index{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}}
 
 
 ミューテックスのロックをスコープ単位で安全に管理する RAII クラス (std::\+lock\+\_\+guard 相当)  
@@ -9,80 +9,78 @@
 
 {\ttfamily \+\#include $<$sync.\+hpp$>$}
 
-\doxysubsubsection*{Public Member Functions}
+\doxysubsubsection*{公開メンバ関数}
 \begin{DoxyCompactItemize}
 \item 
-\doxymbox{\hyperlink{classtk_1_1_lock_guard_a3a922c7edf84ce25ef67151c322bb0eb}{Lock\+Guard}} (Lockable \&m)
-\begin{DoxyCompactList}\small\item\em ロック対象を受け取り、即座に \doxylink{namespacetk_a6540aa25eb8562f6d6c8b37977d6cfe8}{lock()} します \end{DoxyCompactList}\item 
-\doxymbox{\hyperlink{classtk_1_1_lock_guard_a52eeb50abee00bd0ed16cfa6618ce40f}{\texorpdfstring{$\sim$}{\string~}\+Lock\+Guard}} ()
+\textbf{ Lock\+Guard} (Lockable \&m)
+\begin{DoxyCompactList}\small\item\em ロック対象を受け取り、即座に \doxyref{lock()}{p.}{namespacetk_a6540aa25eb8562f6d6c8b37977d6cfe8} します \end{DoxyCompactList}\item 
+\textbf{ $\sim$\+Lock\+Guard} ()
 \item 
-\doxymbox{\hyperlink{classtk_1_1_lock_guard_af9bc86bc2036c4b8e54633ddee811604}{Lock\+Guard}} (const Lock\+Guard \&)=delete
+\textbf{ Lock\+Guard} (const Lock\+Guard \&)=delete
 \item 
-\doxymbox{\hyperlink{classtk_1_1_lock_guard_a3a922c7edf84ce25ef67151c322bb0eb}{Lock\+Guard}} \& \doxymbox{\hyperlink{classtk_1_1_lock_guard_a3f121f8aa1307f0f6e6e608cf138340c}{operator=}} (const \doxymbox{\hyperlink{classtk_1_1_lock_guard_a3a922c7edf84ce25ef67151c322bb0eb}{Lock\+Guard}} \&)=delete
+\textbf{ Lock\+Guard} \& \textbf{ operator=} (const \textbf{ Lock\+Guard} \&)=delete
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsection{詳解}
 \subsubsection*{template$<$typename Lockable$>$\newline
 class tk::\+\+Lock\+Guard$<$ Lockable $>$}
 ミューテックスのロックをスコープ単位で安全に管理する RAII クラス (std::\+lock\+\_\+guard 相当) 
 
-構築時に {\ttfamily \doxylink{namespacetk_a6540aa25eb8562f6d6c8b37977d6cfe8}{lock()}} を呼び、デストラクタで自動的に {\ttfamily \doxylink{namespacetk_a752b12f6862815c94a52347af52578b7}{unlock()}} を呼び出します。 途中で return や例外が発生しても確実にロックが解放されます。
+構築時に {\ttfamily \doxyref{lock()}{p.}{namespacetk_a6540aa25eb8562f6d6c8b37977d6cfe8}} を呼び、デストラクタで自動的に {\ttfamily \doxyref{unlock()}{p.}{namespacetk_a752b12f6862815c94a52347af52578b7}} を呼び出します。 途中で return や例外が発生しても確実にロックが解放されます。
 
 
-\begin{DoxyTemplParams}{Template Parameters}
-{\em Lockable} & \doxylink{namespacetk_a6540aa25eb8562f6d6c8b37977d6cfe8}{lock()} と \doxylink{namespacetk_a752b12f6862815c94a52347af52578b7}{unlock()} を持つ型 (例: \doxylink{classtk_1_1_mutex}{tk::\+\+Mutex}) \\
+\begin{DoxyTemplParams}{テンプレート引数}
+{\em Lockable} & \doxyref{lock()}{p.}{namespacetk_a6540aa25eb8562f6d6c8b37977d6cfe8} と \doxyref{unlock()}{p.}{namespacetk_a752b12f6862815c94a52347af52578b7} を持つ型 (例: \doxyref{tk::\+\+Mutex}{p.}{classtk_1_1_mutex}) \\
 \hline
 \end{DoxyTemplParams}
 
 
 \label{classtk_1_1_lock_guard_doc-constructors}
-\Hypertarget{classtk_1_1_lock_guard_doc-constructors}
-\doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classtk_1_1_lock_guard_a3a922c7edf84ce25ef67151c322bb0eb}\index{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}!LockGuard@{LockGuard}}
+\doxysubsection{構築子と解体子}
+\index{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}!LockGuard@{LockGuard}}
 \index{LockGuard@{LockGuard}!tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}}
-\doxysubsubsection{\texorpdfstring{LockGuard()}{LockGuard()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{LockGuard()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \label{classtk_1_1_lock_guard_a3a922c7edf84ce25ef67151c322bb0eb} 
 template$<$typename Lockable$>$ \\
-\doxymbox{\hyperlink{classtk_1_1_lock_guard}{tk::\+\+Lock\+Guard}}$<$ Lockable $>$::\+\+Lock\+Guard (\begin{DoxyParamCaption}\item[{Lockable \&}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+\textbf{ tk::\+\+Lock\+Guard}$<$ Lockable $>$::\+\+Lock\+Guard (\begin{DoxyParamCaption}\item[{Lockable \&}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
 
 
 
-ロック対象を受け取り、即座に \doxylink{namespacetk_a6540aa25eb8562f6d6c8b37977d6cfe8}{lock()} します 
+ロック対象を受け取り、即座に \doxyref{lock()}{p.}{namespacetk_a6540aa25eb8562f6d6c8b37977d6cfe8} します 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{引数}
 {\em m} & ロック対象のミューテックス参照 \\
 \hline
 \end{DoxyParams}
-\Hypertarget{classtk_1_1_lock_guard_a52eeb50abee00bd0ed16cfa6618ce40f}\index{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}!````~LockGuard@{\texorpdfstring{$\sim$}{\string~}LockGuard}}
-\index{````~LockGuard@{\texorpdfstring{$\sim$}{\string~}LockGuard}!tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}}
-\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}LockGuard()}{\string~LockGuard()}}
+\index{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}!````~LockGuard@{$\sim$LockGuard}}
+\index{````~LockGuard@{$\sim$LockGuard}!tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}}
+\doxysubsubsection{$\sim$LockGuard()}
 {\footnotesize\ttfamily \label{classtk_1_1_lock_guard_a52eeb50abee00bd0ed16cfa6618ce40f} 
 template$<$typename Lockable$>$ \\
-\doxymbox{\hyperlink{classtk_1_1_lock_guard}{tk::\+\+Lock\+Guard}}$<$ Lockable $>$::\+\texorpdfstring{$\sim$}{\string~}\doxymbox{\hyperlink{classtk_1_1_lock_guard_a3a922c7edf84ce25ef67151c322bb0eb}{Lock\+Guard}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\textbf{ tk::\+\+Lock\+Guard}$<$ Lockable $>$::\+$\sim$\textbf{ Lock\+Guard} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-スコープ終了時に自動的に \doxylink{namespacetk_a752b12f6862815c94a52347af52578b7}{unlock()} します \Hypertarget{classtk_1_1_lock_guard_af9bc86bc2036c4b8e54633ddee811604}\index{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}!LockGuard@{LockGuard}}
+スコープ終了時に自動的に \doxyref{unlock()}{p.}{namespacetk_a752b12f6862815c94a52347af52578b7} します \index{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}!LockGuard@{LockGuard}}
 \index{LockGuard@{LockGuard}!tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}}
-\doxysubsubsection{\texorpdfstring{LockGuard()}{LockGuard()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxysubsubsection{LockGuard()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \label{classtk_1_1_lock_guard_af9bc86bc2036c4b8e54633ddee811604} 
 template$<$typename Lockable$>$ \\
-\doxymbox{\hyperlink{classtk_1_1_lock_guard}{tk::\+\+Lock\+Guard}}$<$ Lockable $>$::\+\+Lock\+Guard (\begin{DoxyParamCaption}\item[{const Lock\+Guard$<$ Lockable $>$ \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+\textbf{ tk::\+\+Lock\+Guard}$<$ Lockable $>$::\+\+Lock\+Guard (\begin{DoxyParamCaption}\item[{const Lock\+Guard$<$ Lockable $>$ \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 
 
 \label{classtk_1_1_lock_guard_doc-func-members}
-\Hypertarget{classtk_1_1_lock_guard_doc-func-members}
-\doxysubsection{Member Function Documentation}
-\Hypertarget{classtk_1_1_lock_guard_a3f121f8aa1307f0f6e6e608cf138340c}\index{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}!operator=@{operator=}}
+\doxysubsection{関数詳解}
+\index{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}!operator=@{operator=}}
 \index{operator=@{operator=}!tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}}
-\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+\doxysubsubsection{operator=()}
 {\footnotesize\ttfamily \label{classtk_1_1_lock_guard_a3f121f8aa1307f0f6e6e608cf138340c} 
 template$<$typename Lockable$>$ \\
-\doxymbox{\hyperlink{classtk_1_1_lock_guard_a3a922c7edf84ce25ef67151c322bb0eb}{Lock\+Guard}} \& \doxymbox{\hyperlink{classtk_1_1_lock_guard}{tk::\+\+Lock\+Guard}}$<$ Lockable $>$::\+operator= (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{classtk_1_1_lock_guard_a3a922c7edf84ce25ef67151c322bb0eb}{Lock\+Guard}}$<$ Lockable $>$ \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+\textbf{ Lock\+Guard} \& \textbf{ tk::\+\+Lock\+Guard}$<$ Lockable $>$::\+operator= (\begin{DoxyParamCaption}\item[{const \textbf{ Lock\+Guard}$<$ Lockable $>$ \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 
 
-The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+このクラス詳解は次のファイルから抽出されました:\begin{DoxyCompactItemize}
 \item 
-C:\+/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\doxymbox{\hyperlink{sync_8hpp}{sync.\+hpp}}\end{DoxyCompactItemize}
+C:\+/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\textbf{ sync.\+hpp}\end{DoxyCompactItemize}

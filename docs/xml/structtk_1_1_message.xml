@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="structtk_1_1_message" kind="struct" language="C++" prot="public">
+    <compoundname>tk::Message</compoundname>
+    <includes refid="actor_8hpp" local="no">actor.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtk_1_1_message_1a9a7de43cbf3da1821cf18ae924f94c52" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t tk::Message::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <qualifiedname>tk::Message::id</qualifiedname>
+        <briefdescription>
+<para>メッセージ識別子 / コマンドID </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="15" column="14" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtk_1_1_message_1a570c5c394d2786708ce4830e4087aa9e" prot="public" static="no" mutable="no">
+        <type>uintptr_t</type>
+        <definition>uintptr_t tk::Message::arg</definition>
+        <argsstring></argsstring>
+        <name>arg</name>
+        <qualifiedname>tk::Message::arg</qualifiedname>
+        <briefdescription>
+<para>引数 (ポインタまたは整数値) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="16" column="15" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>デフォルトの軽量メッセージ構造体 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="14" column="1" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="14" bodyend="17"/>
+    <listofallmembers>
+      <member refid="structtk_1_1_message_1a570c5c394d2786708ce4830e4087aa9e" prot="public" virt="non-virtual"><scope>tk::Message</scope><name>arg</name></member>
+      <member refid="structtk_1_1_message_1a9a7de43cbf3da1821cf18ae924f94c52" prot="public" virt="non-virtual"><scope>tk::Message</scope><name>id</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

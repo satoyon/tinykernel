@@ -1,70 +1,68 @@
-\doxysection{C:/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+src/\+scheduler.cpp File Reference}
-\hypertarget{scheduler_8cpp}{}\label{scheduler_8cpp}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/scheduler.cpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/scheduler.cpp}}
+\doxysection{C:/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+src/\+scheduler.cpp ファイル}
+\label{scheduler_8cpp}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/scheduler.cpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/scheduler.cpp}}
 {\ttfamily \+\#include "{}tinykernel/\+kernel.\+hpp"{}}\newline
 {\ttfamily \+\#include $<$cstring$>$}\newline
 {\ttfamily \+\#include "{}pico/\+platform.\+h"{}}\newline
 {\ttfamily \+\#include "{}pico/\+multicore.\+h"{}}\newline
 {\ttfamily \+\#include "{}hardware/\+sync.\+h"{}}\newline
 {\ttfamily \+\#include "{}port/\+m33/\+port\+\_\+m33.\+h"{}}\newline
-\doxysubsubsection*{Classes}
+\doxysubsubsection*{クラス}
 \begin{DoxyCompactItemize}
 \item 
-struct \doxymbox{\hyperlink{struct_fpu_ctx}{Fpu\+Ctx}}
+struct \textbf{ Fpu\+Ctx}
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Namespaces}
+\doxysubsubsection*{名前空間}
 \begin{DoxyCompactItemize}
 \item 
-namespace \doxymbox{\hyperlink{namespacetk}{tk}}
+namespace \textbf{ tk}
 \item 
-namespace \doxymbox{\hyperlink{namespacetk_1_1detail}{tk::\+detail}}
+namespace \textbf{ tk::\+detail}
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Functions}
+\doxysubsubsection*{関数}
 \begin{DoxyCompactItemize}
 \item 
-void \doxymbox{\hyperlink{scheduler_8cpp_a4728919288dacba97228c27b1c996108}{isr\+\_\+systick}} (void)
+void \textbf{ isr\+\_\+systick} (void)
 \item 
-uintptr\+\_\+t \doxymbox{\hyperlink{scheduler_8cpp_a10d391ed68d7bf5406e9dbcd1c69d1da}{tk\+\_\+switch\+\_\+context}} (uintptr\+\_\+t cur\+\_\+sp)
+uintptr\+\_\+t \textbf{ tk\+\_\+switch\+\_\+context} (uintptr\+\_\+t cur\+\_\+sp)
 \item 
-void \doxymbox{\hyperlink{namespacetk_1_1detail_a447e4ec89b3f2748451891219b7e3738}{tk::\+detail::\+static\+\_\+register}} (const char \texorpdfstring{$\ast$}{*}name, \doxymbox{\hyperlink{namespacetk_a8908cf1e54cdc4e14ac3003126722cfc}{Task\+Fn}} fn, uint32\+\_\+t prio)
+void \textbf{ tk::\+detail::\+static\+\_\+register} (const char $\ast$name, \textbf{ Task\+Fn} fn, uint32\+\_\+t prio)
 \item 
-void \doxymbox{\hyperlink{scheduler_8cpp_ad29ac857f58c5bf7c0220403c6624f32}{tk\+\_\+task\+\_\+return\+\_\+trampoline}} (void)
+void \textbf{ tk\+\_\+task\+\_\+return\+\_\+trampoline} (void)
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Variables}
+\doxysubsubsection*{変数}
 \begin{DoxyCompactItemize}
 \item 
-\doxymbox{\hyperlink{struct_fpu_ctx}{Fpu\+Ctx}} \doxymbox{\hyperlink{scheduler_8cpp_ad7a9acf1577e1fc4ff193d79edf9e254}{tk\+\_\+fpu\+\_\+scratch}} \+[TK\+\_\+\+NUM\+\_\+\+CORES] = \{\}
+\textbf{ Fpu\+Ctx} \textbf{ tk\+\_\+fpu\+\_\+scratch} [TK\+\_\+\+NUM\+\_\+\+CORES] = \{\}
 \end{DoxyCompactItemize}
 
 
 \label{scheduler_8cpp_doc-func-members}
-\Hypertarget{scheduler_8cpp_doc-func-members}
-\doxysubsection{Function Documentation}
-\Hypertarget{scheduler_8cpp_a4728919288dacba97228c27b1c996108}\index{scheduler.cpp@{scheduler.cpp}!isr\_systick@{isr\_systick}}
+\doxysubsection{関数詳解}
+\index{scheduler.cpp@{scheduler.cpp}!isr\_systick@{isr\_systick}}
 \index{isr\_systick@{isr\_systick}!scheduler.cpp@{scheduler.cpp}}
-\doxysubsubsection{\texorpdfstring{isr\_systick()}{isr\_systick()}}
+\doxysubsubsection{isr\_systick()}
 {\footnotesize\ttfamily \label{scheduler_8cpp_a4728919288dacba97228c27b1c996108} 
 void isr\+\_\+systick (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
-\Hypertarget{scheduler_8cpp_a10d391ed68d7bf5406e9dbcd1c69d1da}\index{scheduler.cpp@{scheduler.cpp}!tk\_switch\_context@{tk\_switch\_context}}
+\index{scheduler.cpp@{scheduler.cpp}!tk\_switch\_context@{tk\_switch\_context}}
 \index{tk\_switch\_context@{tk\_switch\_context}!scheduler.cpp@{scheduler.cpp}}
-\doxysubsubsection{\texorpdfstring{tk\_switch\_context()}{tk\_switch\_context()}}
+\doxysubsubsection{tk\_switch\_context()}
 {\footnotesize\ttfamily \label{scheduler_8cpp_a10d391ed68d7bf5406e9dbcd1c69d1da} 
 uintptr\+\_\+t tk\+\_\+switch\+\_\+context (\begin{DoxyParamCaption}\item[{uintptr\+\_\+t}]{cur\+\_\+sp}{}\end{DoxyParamCaption})}
 
-\Hypertarget{scheduler_8cpp_ad29ac857f58c5bf7c0220403c6624f32}\index{scheduler.cpp@{scheduler.cpp}!tk\_task\_return\_trampoline@{tk\_task\_return\_trampoline}}
+\index{scheduler.cpp@{scheduler.cpp}!tk\_task\_return\_trampoline@{tk\_task\_return\_trampoline}}
 \index{tk\_task\_return\_trampoline@{tk\_task\_return\_trampoline}!scheduler.cpp@{scheduler.cpp}}
-\doxysubsubsection{\texorpdfstring{tk\_task\_return\_trampoline()}{tk\_task\_return\_trampoline()}}
+\doxysubsubsection{tk\_task\_return\_trampoline()}
 {\footnotesize\ttfamily \label{scheduler_8cpp_ad29ac857f58c5bf7c0220403c6624f32} 
 void tk\+\_\+task\+\_\+return\+\_\+trampoline (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
 
 
 \label{scheduler_8cpp_doc-var-members}
-\Hypertarget{scheduler_8cpp_doc-var-members}
-\doxysubsection{Variable Documentation}
-\Hypertarget{scheduler_8cpp_ad7a9acf1577e1fc4ff193d79edf9e254}\index{scheduler.cpp@{scheduler.cpp}!tk\_fpu\_scratch@{tk\_fpu\_scratch}}
+\doxysubsection{変数詳解}
+\index{scheduler.cpp@{scheduler.cpp}!tk\_fpu\_scratch@{tk\_fpu\_scratch}}
 \index{tk\_fpu\_scratch@{tk\_fpu\_scratch}!scheduler.cpp@{scheduler.cpp}}
-\doxysubsubsection{\texorpdfstring{tk\_fpu\_scratch}{tk\_fpu\_scratch}}
+\doxysubsubsection{tk\_fpu\_scratch}
 {\footnotesize\ttfamily \label{scheduler_8cpp_ad7a9acf1577e1fc4ff193d79edf9e254} 
-\doxymbox{\hyperlink{struct_fpu_ctx}{Fpu\+Ctx}} tk\+\_\+fpu\+\_\+scratch\+[TK\+\_\+\+NUM\+\_\+\+CORES] = \{\}}
+\textbf{ Fpu\+Ctx} tk\+\_\+fpu\+\_\+scratch[TK\+\_\+\+NUM\+\_\+\+CORES] = \{\}}
 

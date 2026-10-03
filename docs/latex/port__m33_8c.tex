@@ -1,5 +1,5 @@
-\doxysection{C:/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+src/\+port/\+m33/\+port\+\_\+m33.c File Reference}
-\hypertarget{port__m33_8c}{}\label{port__m33_8c}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.c@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.c}}
+\doxysection{C:/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+src/\+port/\+m33/\+port\+\_\+m33.c ファイル}
+\label{port__m33_8c}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.c@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.c}}
 {\ttfamily \+\#include $<$stdint.\+h$>$}\newline
 {\ttfamily \+\#include "{}hardware/\+clocks.\+h"{}}\newline
 {\ttfamily \+\#include "{}hardware/\+structs/\+clocks.\+h"{}}\newline
@@ -7,43 +7,41 @@
 {\ttfamily \+\#include "{}hardware/\+structs/\+scb.\+h"{}}\newline
 {\ttfamily \+\#include "{}hardware/\+structs/\+systick.\+h"{}}\newline
 {\ttfamily \+\#include "{}port\+\_\+m33.\+h"{}}\newline
-\doxysubsubsection*{Macros}
+\doxysubsubsection*{マクロ定義}
 \begin{DoxyCompactItemize}
 \item 
-\+\#define \doxymbox{\hyperlink{port__m33_8c_a7b53a215b14820fae8b8e7c387f5b3b3}{FPCCR\+\_\+\+ASPEN}}~(1u $<$$<$ 31)
+\+\#define \textbf{ FPCCR\+\_\+\+ASPEN}~(1u $<$$<$ 31)
 \item 
-\+\#define \doxymbox{\hyperlink{port__m33_8c_a6addcb4c27c8943e5908a645233e4b1e}{FPCCR\+\_\+\+LSPEN}}~(1u $<$$<$ 30)
+\+\#define \textbf{ FPCCR\+\_\+\+LSPEN}~(1u $<$$<$ 30)
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Functions}
+\doxysubsubsection*{関数}
 \begin{DoxyCompactItemize}
 \item 
-void \doxymbox{\hyperlink{port__m33_8c_ac9d435a65b90e71074dd44f97b1103f8}{tk\+\_\+port\+\_\+init}} (uint32\+\_\+t ticks\+\_\+per\+\_\+sec)
+void \textbf{ tk\+\_\+port\+\_\+init} (uint32\+\_\+t ticks\+\_\+per\+\_\+sec)
 \end{DoxyCompactItemize}
 
 
 \label{port__m33_8c_doc-define-members}
-\Hypertarget{port__m33_8c_doc-define-members}
-\doxysubsection{Macro Definition Documentation}
-\Hypertarget{port__m33_8c_a7b53a215b14820fae8b8e7c387f5b3b3}\index{port\_m33.c@{port\_m33.c}!FPCCR\_ASPEN@{FPCCR\_ASPEN}}
+\doxysubsection{マクロ定義詳解}
+\index{port\_m33.c@{port\_m33.c}!FPCCR\_ASPEN@{FPCCR\_ASPEN}}
 \index{FPCCR\_ASPEN@{FPCCR\_ASPEN}!port\_m33.c@{port\_m33.c}}
-\doxysubsubsection{\texorpdfstring{FPCCR\_ASPEN}{FPCCR\_ASPEN}}
+\doxysubsubsection{FPCCR\_ASPEN}
 {\footnotesize\ttfamily \label{port__m33_8c_a7b53a215b14820fae8b8e7c387f5b3b3} 
 \+\#define FPCCR\+\_\+\+ASPEN~(1u $<$$<$ 31)}
 
-\Hypertarget{port__m33_8c_a6addcb4c27c8943e5908a645233e4b1e}\index{port\_m33.c@{port\_m33.c}!FPCCR\_LSPEN@{FPCCR\_LSPEN}}
+\index{port\_m33.c@{port\_m33.c}!FPCCR\_LSPEN@{FPCCR\_LSPEN}}
 \index{FPCCR\_LSPEN@{FPCCR\_LSPEN}!port\_m33.c@{port\_m33.c}}
-\doxysubsubsection{\texorpdfstring{FPCCR\_LSPEN}{FPCCR\_LSPEN}}
+\doxysubsubsection{FPCCR\_LSPEN}
 {\footnotesize\ttfamily \label{port__m33_8c_a6addcb4c27c8943e5908a645233e4b1e} 
 \+\#define FPCCR\+\_\+\+LSPEN~(1u $<$$<$ 30)}
 
 
 
 \label{port__m33_8c_doc-func-members}
-\Hypertarget{port__m33_8c_doc-func-members}
-\doxysubsection{Function Documentation}
-\Hypertarget{port__m33_8c_ac9d435a65b90e71074dd44f97b1103f8}\index{port\_m33.c@{port\_m33.c}!tk\_port\_init@{tk\_port\_init}}
+\doxysubsection{関数詳解}
+\index{port\_m33.c@{port\_m33.c}!tk\_port\_init@{tk\_port\_init}}
 \index{tk\_port\_init@{tk\_port\_init}!port\_m33.c@{port\_m33.c}}
-\doxysubsubsection{\texorpdfstring{tk\_port\_init()}{tk\_port\_init()}}
+\doxysubsubsection{tk\_port\_init()}
 {\footnotesize\ttfamily \label{port__m33_8c_ac9d435a65b90e71074dd44f97b1103f8} 
 void tk\+\_\+port\+\_\+init (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{ticks\+\_\+per\+\_\+sec}{}\end{DoxyParamCaption})}
 

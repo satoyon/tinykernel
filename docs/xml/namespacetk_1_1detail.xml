@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="namespacetk_1_1detail" kind="namespace" language="C++">
+    <compoundname>tk::detail</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacetk_1_1detail_1a447e4ec89b3f2748451891219b7e3738" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::detail::static_register</definition>
+        <argsstring>(const char *name, TaskFn fn, uint32_t prio)</argsstring>
+        <name>static_register</name>
+        <qualifiedname>tk::detail::static_register</qualifiedname>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacetk_1a8908cf1e54cdc4e14ac3003126722cfc" kindref="member">TaskFn</ref></type>
+          <declname>fn</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>prio</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" line="188" column="6" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="188" bodyend="200" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="168" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1_1detail_1a5b8fa6406a867edf8c4410fcb03c6523" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t tk::detail::sched_lock</definition>
+        <argsstring>()</argsstring>
+        <name>sched_lock</name>
+        <qualifiedname>tk::detail::sched_lock</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="169" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="325" bodyend="327" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="169" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::detail::sched_unlock</definition>
+        <argsstring>(uint32_t save)</argsstring>
+        <name>sched_unlock</name>
+        <qualifiedname>tk::detail::sched_unlock</qualifiedname>
+        <param>
+          <type>uint32_t</type>
+          <declname>save</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="170" column="6" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="329" bodyend="331" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="170" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1_1detail_1a400363f36b5fb5dfc8aec11334471d0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::detail::block_current_task_locked</definition>
+        <argsstring>()</argsstring>
+        <name>block_current_task_locked</name>
+        <qualifiedname>tk::detail::block_current_task_locked</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="171" column="6" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="333" bodyend="338" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="171" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1_1detail_1ab19385598f18560cb574cc86174ececa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::detail::wake_task_locked</definition>
+        <argsstring>(TaskHandle handle)</argsstring>
+        <name>wake_task_locked</name>
+        <qualifiedname>tk::detail::wake_task_locked</qualifiedname>
+        <param>
+          <type><ref refid="structtk_1_1_task_handle" kindref="compound">TaskHandle</ref></type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="172" column="6" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="340" bodyend="347" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="172" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1_1detail_1a73a80d92a172d565201f99e8f31278e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t tk::detail::current_task_slot</definition>
+        <argsstring>()</argsstring>
+        <name>current_task_slot</name>
+        <qualifiedname>tk::detail::current_task_slot</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="173" column="9" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="349" bodyend="351" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="173" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1_1detail_1a70ba35e0daee086ad86770f1e39c9b35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t tk::detail::find_highest_prio_waiter</definition>
+        <argsstring>(task_mask_t wait_mask)</argsstring>
+        <name>find_highest_prio_waiter</name>
+        <qualifiedname>tk::detail::find_highest_prio_waiter</qualifiedname>
+        <param>
+          <type><ref refid="namespacetk_1add371a241ec6c1695ef4e67935317edd" kindref="member">task_mask_t</ref></type>
+          <declname>wait_mask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="174" column="9" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="355" bodyend="367" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="174" declcolumn="9"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="167" column="1"/>
+  </compounddef>
+</doxygen>

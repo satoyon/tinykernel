@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="classtk_1_1_lock_guard" kind="class" language="C++" prot="public">
+    <compoundname>tk::LockGuard</compoundname>
+    <includes refid="sync_8hpp" local="no">sync.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Lockable</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtk_1_1_lock_guard_1a75d98302f85bc3458b25848aa07f26f0" prot="private" static="no" mutable="no">
+        <type>Lockable &amp;</type>
+        <definition>Lockable&amp; tk::LockGuard&lt; Lockable &gt;::m_</definition>
+        <argsstring></argsstring>
+        <name>m_</name>
+        <qualifiedname>tk::LockGuard::m_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="226" column="14" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="226" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtk_1_1_lock_guard_1a3a922c7edf84ce25ef67151c322bb0eb" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tk::LockGuard&lt; Lockable &gt;::LockGuard</definition>
+        <argsstring>(Lockable &amp;m)</argsstring>
+        <name>LockGuard</name>
+        <qualifiedname>tk::LockGuard::LockGuard</qualifiedname>
+        <param>
+          <type>Lockable &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>ロック対象を受け取り、即座に <ref refid="namespacetk_1a6540aa25eb8562f6d6c8b37977d6cfe8" kindref="member">lock()</ref> します </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ロック対象のミューテックス参照 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="217" column="14" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="217" bodyend="217"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_lock_guard_1a52eeb50abee00bd0ed16cfa6618ce40f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tk::LockGuard&lt; Lockable &gt;::~LockGuard</definition>
+        <argsstring>()</argsstring>
+        <name>~LockGuard</name>
+        <qualifiedname>tk::LockGuard::~LockGuard</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>スコープ終了時に自動的に <ref refid="namespacetk_1a752b12f6862815c94a52347af52578b7" kindref="member">unlock()</ref> します </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="220" column="5" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="220" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_lock_guard_1af9bc86bc2036c4b8e54633ddee811604" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tk::LockGuard&lt; Lockable &gt;::LockGuard</definition>
+        <argsstring>(const LockGuard &amp;)=delete</argsstring>
+        <name>LockGuard</name>
+        <qualifiedname>tk::LockGuard::LockGuard</qualifiedname>
+        <param>
+          <type>const LockGuard &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="222" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_lock_guard_1a3f121f8aa1307f0f6e6e608cf138340c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classtk_1_1_lock_guard_1a3a922c7edf84ce25ef67151c322bb0eb" kindref="member">LockGuard</ref> &amp;</type>
+        <definition>LockGuard &amp; tk::LockGuard&lt; Lockable &gt;::operator=</definition>
+        <argsstring>(const LockGuard &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>tk::LockGuard::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classtk_1_1_lock_guard_1a3a922c7edf84ce25ef67151c322bb0eb" kindref="member">LockGuard</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="223" column="15"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>ミューテックスのロックをスコープ単位で安全に管理する RAII クラス (std::lock_guard 相当) </para>
+    </briefdescription>
+    <detaileddescription>
+<para>構築時に <computeroutput><ref refid="namespacetk_1a6540aa25eb8562f6d6c8b37977d6cfe8" kindref="member">lock()</ref></computeroutput> を呼び、デストラクタで自動的に <computeroutput><ref refid="namespacetk_1a752b12f6862815c94a52347af52578b7" kindref="member">unlock()</ref></computeroutput> を呼び出します。 途中で return や例外が発生しても確実にロックが解放されます。</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Lockable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="namespacetk_1a6540aa25eb8562f6d6c8b37977d6cfe8" kindref="member">lock()</ref> と <ref refid="namespacetk_1a752b12f6862815c94a52347af52578b7" kindref="member">unlock()</ref> を持つ型 (例: <ref refid="classtk_1_1_mutex" kindref="compound">tk::Mutex</ref>) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="211" column="1" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="211" bodyend="227"/>
+    <listofallmembers>
+      <member refid="classtk_1_1_lock_guard_1a3a922c7edf84ce25ef67151c322bb0eb" prot="public" virt="non-virtual"><scope>tk::LockGuard</scope><name>LockGuard</name></member>
+      <member refid="classtk_1_1_lock_guard_1af9bc86bc2036c4b8e54633ddee811604" prot="public" virt="non-virtual"><scope>tk::LockGuard</scope><name>LockGuard</name></member>
+      <member refid="classtk_1_1_lock_guard_1a75d98302f85bc3458b25848aa07f26f0" prot="private" virt="non-virtual"><scope>tk::LockGuard</scope><name>m_</name></member>
+      <member refid="classtk_1_1_lock_guard_1a3f121f8aa1307f0f6e6e608cf138340c" prot="public" virt="non-virtual"><scope>tk::LockGuard</scope><name>operator=</name></member>
+      <member refid="classtk_1_1_lock_guard_1a52eeb50abee00bd0ed16cfa6618ce40f" prot="public" virt="non-virtual"><scope>tk::LockGuard</scope><name>~LockGuard</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

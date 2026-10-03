@@ -1,0 +1,183 @@
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include ディレクトリリファレンス@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include ディレクトリリファレンス}}{9}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33 ディレクトリリファレンス@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33 ディレクトリリファレンス}}{9}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port ディレクトリリファレンス@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port ディレクトリリファレンス}}{9}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src ディレクトリリファレンス@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src ディレクトリリファレンス}}{9}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel ディレクトリリファレンス@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel ディレクトリリファレンス}}{10}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel ディレクトリリファレンス@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel ディレクトリリファレンス}}{10}
+\indexentry{tk@{tk}}{11}
+\indexentry{tk@{tk}!BinarySemaphore@{BinarySemaphore}}{12}
+\indexentry{BinarySemaphore@{BinarySemaphore}!tk@{tk}}{12}
+\indexentry{tk@{tk}!task\_mask\_t@{task\_mask\_t}}{12}
+\indexentry{task\_mask\_t@{task\_mask\_t}!tk@{tk}}{12}
+\indexentry{tk@{tk}!TaskFn@{TaskFn}}{12}
+\indexentry{TaskFn@{TaskFn}!tk@{tk}}{12}
+\indexentry{tk@{tk}!Prio@{Prio}}{13}
+\indexentry{Prio@{Prio}!tk@{tk}}{13}
+\indexentry{PRIO\_REALTIME@{PRIO\_REALTIME}!tk@{tk}}{13}
+\indexentry{tk@{tk}!PRIO\_REALTIME@{PRIO\_REALTIME}}{13}
+\indexentry{PRIO\_HIGH@{PRIO\_HIGH}!tk@{tk}}{13}
+\indexentry{tk@{tk}!PRIO\_HIGH@{PRIO\_HIGH}}{13}
+\indexentry{PRIO\_NORMAL@{PRIO\_NORMAL}!tk@{tk}}{13}
+\indexentry{tk@{tk}!PRIO\_NORMAL@{PRIO\_NORMAL}}{13}
+\indexentry{PRIO\_LOW@{PRIO\_LOW}!tk@{tk}}{13}
+\indexentry{tk@{tk}!PRIO\_LOW@{PRIO\_LOW}}{13}
+\indexentry{tk@{tk}!create@{create}}{13}
+\indexentry{create@{create}!tk@{tk}}{13}
+\indexentry{tk@{tk}!exit@{exit}}{13}
+\indexentry{exit@{exit}!tk@{tk}}{13}
+\indexentry{tk@{tk}!lock@{lock}}{14}
+\indexentry{lock@{lock}!tk@{tk}}{14}
+\indexentry{tk@{tk}!now\_ms@{now\_ms}}{14}
+\indexentry{now\_ms@{now\_ms}!tk@{tk}}{14}
+\indexentry{tk@{tk}!preempt\_disable@{preempt\_disable}}{14}
+\indexentry{preempt\_disable@{preempt\_disable}!tk@{tk}}{14}
+\indexentry{tk@{tk}!preempt\_enable@{preempt\_enable}}{14}
+\indexentry{preempt\_enable@{preempt\_enable}!tk@{tk}}{14}
+\indexentry{tk@{tk}!publish@{publish}}{15}
+\indexentry{publish@{publish}!tk@{tk}}{15}
+\indexentry{tk@{tk}!publish@{publish}}{15}
+\indexentry{publish@{publish}!tk@{tk}}{15}
+\indexentry{tk@{tk}!sleep\_ms@{sleep\_ms}}{16}
+\indexentry{sleep\_ms@{sleep\_ms}!tk@{tk}}{16}
+\indexentry{tk@{tk}!start@{start}}{16}
+\indexentry{start@{start}!tk@{tk}}{16}
+\indexentry{tk@{tk}!unlock@{unlock}}{16}
+\indexentry{unlock@{unlock}!tk@{tk}}{16}
+\indexentry{tk@{tk}!yield@{yield}}{17}
+\indexentry{yield@{yield}!tk@{tk}}{17}
+\indexentry{tk::detail@{tk::detail}}{17}
+\indexentry{tk::detail@{tk::detail}!block\_current\_task\_locked@{block\_current\_task\_locked}}{17}
+\indexentry{block\_current\_task\_locked@{block\_current\_task\_locked}!tk::detail@{tk::detail}}{17}
+\indexentry{tk::detail@{tk::detail}!current\_task\_slot@{current\_task\_slot}}{17}
+\indexentry{current\_task\_slot@{current\_task\_slot}!tk::detail@{tk::detail}}{17}
+\indexentry{tk::detail@{tk::detail}!find\_highest\_prio\_waiter@{find\_highest\_prio\_waiter}}{17}
+\indexentry{find\_highest\_prio\_waiter@{find\_highest\_prio\_waiter}!tk::detail@{tk::detail}}{17}
+\indexentry{tk::detail@{tk::detail}!sched\_lock@{sched\_lock}}{17}
+\indexentry{sched\_lock@{sched\_lock}!tk::detail@{tk::detail}}{17}
+\indexentry{tk::detail@{tk::detail}!sched\_unlock@{sched\_unlock}}{18}
+\indexentry{sched\_unlock@{sched\_unlock}!tk::detail@{tk::detail}}{18}
+\indexentry{tk::detail@{tk::detail}!static\_register@{static\_register}}{18}
+\indexentry{static\_register@{static\_register}!tk::detail@{tk::detail}}{18}
+\indexentry{tk::detail@{tk::detail}!wake\_task\_locked@{wake\_task\_locked}}{18}
+\indexentry{wake\_task\_locked@{wake\_task\_locked}!tk::detail@{tk::detail}}{18}
+\indexentry{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}{19}
+\indexentry{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!Actor@{Actor}}{20}
+\indexentry{Actor@{Actor}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}{20}
+\indexentry{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!````~Actor@{$\sim$Actor}}{20}
+\indexentry{````~Actor@{$\sim$Actor}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}{20}
+\indexentry{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!handle@{handle}}{20}
+\indexentry{handle@{handle}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}{20}
+\indexentry{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!on\_message@{on\_message}}{20}
+\indexentry{on\_message@{on\_message}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}{20}
+\indexentry{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!on\_start@{on\_start}}{21}
+\indexentry{on\_start@{on\_start}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}{21}
+\indexentry{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!post@{post}}{21}
+\indexentry{post@{post}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}{21}
+\indexentry{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!post@{post}}{21}
+\indexentry{post@{post}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}{21}
+\indexentry{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!post@{post}}{21}
+\indexentry{post@{post}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}{21}
+\indexentry{tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}!start@{start}}{22}
+\indexentry{start@{start}!tk::Actor$<$ MsgType, QueueSize $>$@{tk::Actor$<$ MsgType, QueueSize $>$}}{22}
+\indexentry{tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}}{22}
+\indexentry{tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}!publish@{publish}}{23}
+\indexentry{publish@{publish}!tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}}{23}
+\indexentry{tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}!subscribe@{subscribe}}{23}
+\indexentry{subscribe@{subscribe}!tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}}{23}
+\indexentry{tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}!subscriber\_count@{subscriber\_count}}{24}
+\indexentry{subscriber\_count@{subscriber\_count}!tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}}{24}
+\indexentry{tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}!unsubscribe@{unsubscribe}}{24}
+\indexentry{unsubscribe@{unsubscribe}!tk::EventHub$<$ MsgType, MaxSubscribers $>$@{tk::EventHub$<$ MsgType, MaxSubscribers $>$}}{24}
+\indexentry{FpuCtx@{FpuCtx}}{24}
+\indexentry{FpuCtx@{FpuCtx}!s@{s}}{25}
+\indexentry{s@{s}!FpuCtx@{FpuCtx}}{25}
+\indexentry{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}}{25}
+\indexentry{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}!LockGuard@{LockGuard}}{25}
+\indexentry{LockGuard@{LockGuard}!tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}}{25}
+\indexentry{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}!````~LockGuard@{$\sim$LockGuard}}{26}
+\indexentry{````~LockGuard@{$\sim$LockGuard}!tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}}{26}
+\indexentry{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}!LockGuard@{LockGuard}}{26}
+\indexentry{LockGuard@{LockGuard}!tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}}{26}
+\indexentry{tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}!operator=@{operator=}}{26}
+\indexentry{operator=@{operator=}!tk::LockGuard$<$ Lockable $>$@{tk::LockGuard$<$ Lockable $>$}}{26}
+\indexentry{tk::Message@{tk::Message}}{26}
+\indexentry{tk::Message@{tk::Message}!arg@{arg}}{27}
+\indexentry{arg@{arg}!tk::Message@{tk::Message}}{27}
+\indexentry{tk::Message@{tk::Message}!id@{id}}{27}
+\indexentry{id@{id}!tk::Message@{tk::Message}}{27}
+\indexentry{tk::Mutex@{tk::Mutex}}{27}
+\indexentry{tk::Mutex@{tk::Mutex}!Mutex@{Mutex}}{28}
+\indexentry{Mutex@{Mutex}!tk::Mutex@{tk::Mutex}}{28}
+\indexentry{tk::Mutex@{tk::Mutex}!is\_locked@{is\_locked}}{28}
+\indexentry{is\_locked@{is\_locked}!tk::Mutex@{tk::Mutex}}{28}
+\indexentry{tk::Mutex@{tk::Mutex}!lock@{lock}}{28}
+\indexentry{lock@{lock}!tk::Mutex@{tk::Mutex}}{28}
+\indexentry{tk::Mutex@{tk::Mutex}!try\_lock@{try\_lock}}{28}
+\indexentry{try\_lock@{try\_lock}!tk::Mutex@{tk::Mutex}}{28}
+\indexentry{tk::Mutex@{tk::Mutex}!unlock@{unlock}}{28}
+\indexentry{unlock@{unlock}!tk::Mutex@{tk::Mutex}}{28}
+\indexentry{tk::PreemptGuard@{tk::PreemptGuard}}{29}
+\indexentry{tk::PreemptGuard@{tk::PreemptGuard}!PreemptGuard@{PreemptGuard}}{29}
+\indexentry{PreemptGuard@{PreemptGuard}!tk::PreemptGuard@{tk::PreemptGuard}}{29}
+\indexentry{tk::PreemptGuard@{tk::PreemptGuard}!````~PreemptGuard@{$\sim$PreemptGuard}}{29}
+\indexentry{````~PreemptGuard@{$\sim$PreemptGuard}!tk::PreemptGuard@{tk::PreemptGuard}}{29}
+\indexentry{tk::PreemptGuard@{tk::PreemptGuard}!PreemptGuard@{PreemptGuard}}{29}
+\indexentry{PreemptGuard@{PreemptGuard}!tk::PreemptGuard@{tk::PreemptGuard}}{29}
+\indexentry{tk::PreemptGuard@{tk::PreemptGuard}!operator=@{operator=}}{30}
+\indexentry{operator=@{operator=}!tk::PreemptGuard@{tk::PreemptGuard}}{30}
+\indexentry{tk::Semaphore@{tk::Semaphore}}{30}
+\indexentry{tk::Semaphore@{tk::Semaphore}!Semaphore@{Semaphore}}{30}
+\indexentry{Semaphore@{Semaphore}!tk::Semaphore@{tk::Semaphore}}{30}
+\indexentry{tk::Semaphore@{tk::Semaphore}!acquire@{acquire}}{31}
+\indexentry{acquire@{acquire}!tk::Semaphore@{tk::Semaphore}}{31}
+\indexentry{tk::Semaphore@{tk::Semaphore}!count@{count}}{31}
+\indexentry{count@{count}!tk::Semaphore@{tk::Semaphore}}{31}
+\indexentry{tk::Semaphore@{tk::Semaphore}!release@{release}}{31}
+\indexentry{release@{release}!tk::Semaphore@{tk::Semaphore}}{31}
+\indexentry{tk::Semaphore@{tk::Semaphore}!try\_acquire@{try\_acquire}}{31}
+\indexentry{try\_acquire@{try\_acquire}!tk::Semaphore@{tk::Semaphore}}{31}
+\indexentry{tk::TaskHandle@{tk::TaskHandle}}{32}
+\indexentry{tk::TaskHandle@{tk::TaskHandle}!is\_valid@{is\_valid}}{32}
+\indexentry{is\_valid@{is\_valid}!tk::TaskHandle@{tk::TaskHandle}}{32}
+\indexentry{tk::TaskHandle@{tk::TaskHandle}!slot@{slot}}{32}
+\indexentry{slot@{slot}!tk::TaskHandle@{tk::TaskHandle}}{32}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp}}{33}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp}}{34}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp}}{36}
+\indexentry{kernel.hpp@{kernel.hpp}!TK\_DEFAULT\_STACK\_SIZE@{TK\_DEFAULT\_STACK\_SIZE}}{37}
+\indexentry{TK\_DEFAULT\_STACK\_SIZE@{TK\_DEFAULT\_STACK\_SIZE}!kernel.hpp@{kernel.hpp}}{37}
+\indexentry{kernel.hpp@{kernel.hpp}!TK\_MAX\_TASKS@{TK\_MAX\_TASKS}}{37}
+\indexentry{TK\_MAX\_TASKS@{TK\_MAX\_TASKS}!kernel.hpp@{kernel.hpp}}{37}
+\indexentry{kernel.hpp@{kernel.hpp}!TK\_TASK@{TK\_TASK}}{38}
+\indexentry{TK\_TASK@{TK\_TASK}!kernel.hpp@{kernel.hpp}}{38}
+\indexentry{kernel.hpp@{kernel.hpp}!TK\_TICKS\_PER\_SEC@{TK\_TICKS\_PER\_SEC}}{38}
+\indexentry{TK\_TICKS\_PER\_SEC@{TK\_TICKS\_PER\_SEC}!kernel.hpp@{kernel.hpp}}{38}
+\indexentry{kernel.hpp@{kernel.hpp}!TK\_TIME\_SLICE\_MS@{TK\_TIME\_SLICE\_MS}}{38}
+\indexentry{TK\_TIME\_SLICE\_MS@{TK\_TIME\_SLICE\_MS}!kernel.hpp@{kernel.hpp}}{38}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp}}{39}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp}}{40}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp}}{40}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.c@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.c}}{42}
+\indexentry{port\_m33.c@{port\_m33.c}!FPCCR\_ASPEN@{FPCCR\_ASPEN}}{43}
+\indexentry{FPCCR\_ASPEN@{FPCCR\_ASPEN}!port\_m33.c@{port\_m33.c}}{43}
+\indexentry{port\_m33.c@{port\_m33.c}!FPCCR\_LSPEN@{FPCCR\_LSPEN}}{43}
+\indexentry{FPCCR\_LSPEN@{FPCCR\_LSPEN}!port\_m33.c@{port\_m33.c}}{43}
+\indexentry{port\_m33.c@{port\_m33.c}!tk\_port\_init@{tk\_port\_init}}{43}
+\indexentry{tk\_port\_init@{tk\_port\_init}!port\_m33.c@{port\_m33.c}}{43}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.h@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.h}}{43}
+\indexentry{port\_m33.h@{port\_m33.h}!tk\_port\_init@{tk\_port\_init}}{43}
+\indexentry{tk\_port\_init@{tk\_port\_init}!port\_m33.h@{port\_m33.h}}{43}
+\indexentry{port\_m33.h@{port\_m33.h}!tk\_port\_make\_frame@{tk\_port\_make\_frame}}{43}
+\indexentry{tk\_port\_make\_frame@{tk\_port\_make\_frame}!port\_m33.h@{port\_m33.h}}{43}
+\indexentry{port\_m33.h@{port\_m33.h}!tk\_port\_start@{tk\_port\_start}}{43}
+\indexentry{tk\_port\_start@{tk\_port\_start}!port\_m33.h@{port\_m33.h}}{43}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.h@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.h}}{44}
+\indexentry{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/scheduler.cpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/scheduler.cpp}}{44}
+\indexentry{scheduler.cpp@{scheduler.cpp}!isr\_systick@{isr\_systick}}{45}
+\indexentry{isr\_systick@{isr\_systick}!scheduler.cpp@{scheduler.cpp}}{45}
+\indexentry{scheduler.cpp@{scheduler.cpp}!tk\_switch\_context@{tk\_switch\_context}}{45}
+\indexentry{tk\_switch\_context@{tk\_switch\_context}!scheduler.cpp@{scheduler.cpp}}{45}
+\indexentry{scheduler.cpp@{scheduler.cpp}!tk\_task\_return\_trampoline@{tk\_task\_return\_trampoline}}{45}
+\indexentry{tk\_task\_return\_trampoline@{tk\_task\_return\_trampoline}!scheduler.cpp@{scheduler.cpp}}{45}
+\indexentry{scheduler.cpp@{scheduler.cpp}!tk\_fpu\_scratch@{tk\_fpu\_scratch}}{45}
+\indexentry{tk\_fpu\_scratch@{tk\_fpu\_scratch}!scheduler.cpp@{scheduler.cpp}}{45}

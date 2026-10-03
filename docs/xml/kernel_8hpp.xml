@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="kernel_8hpp" kind="file" language="C++">
+    <compoundname>kernel.hpp</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="yes">pico/runtime.h</includes>
+    <includedby refid="actor_8hpp" local="yes">C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp</includedby>
+    <includedby refid="sync_8hpp" local="yes">C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp</includedby>
+    <includedby refid="scheduler_8cpp" local="yes">C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp</label>
+        <link refid="kernel_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>pico/runtime.h</label>
+      </node>
+      <node id="3">
+        <label>stddef.h</label>
+      </node>
+      <node id="2">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp</label>
+        <link refid="actor_8hpp"/>
+      </node>
+      <node id="1">
+        <label>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp</label>
+        <link refid="kernel_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp</label>
+        <link refid="sync_8hpp"/>
+      </node>
+      <node id="4">
+        <label>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp</label>
+        <link refid="scheduler_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structtk_1_1_task_handle" prot="public">tk::TaskHandle</innerclass>
+    <innerclass refid="classtk_1_1_preempt_guard" prot="public">tk::PreemptGuard</innerclass>
+    <innernamespace refid="namespacetk">tk</innernamespace>
+    <innernamespace refid="namespacetk_1_1detail">tk::detail</innernamespace>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="kernel_8hpp_1a5c791131c5ad22ed87a8d3ca2cd57d33" prot="public" static="no">
+        <name>TK_TICKS_PER_SEC</name>
+        <initializer>1000u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>1秒あたりのタイマースケジューラtick数 (Hz) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="11" column="9" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="kernel_8hpp_1af32989639aecb5479b4239639fd133f7" prot="public" static="no">
+        <name>TK_TIME_SLICE_MS</name>
+        <initializer>10u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>同一優先度タスク間のタイムスライス時間 (ミリ秒) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="16" column="9" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" prot="public" static="no">
+        <name>TK_MAX_TASKS</name>
+        <initializer>32u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>最大タスク数 (スロット0はCore0アイドル、スロット1はCore1アイドル専用) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="21" column="9" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="kernel_8hpp_1afde197f9493ef5bdb5b715ce8b52148d" prot="public" static="no">
+        <name>TK_DEFAULT_STACK_SIZE</name>
+        <initializer>(4 * 1024)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>1タスクあたりのスタックサイズ (バイト) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="26" column="9" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="kernel_8hpp_1af57e92069cc01608150a45032c5ad473" prot="public" static="no">
+        <name>TK_TASK</name>
+        <param><defname>fn</defname></param>
+        <param><defname>prio</defname></param>
+        <initializer>static void tk_register_##fn(void) {                              \
+    <ref refid="namespacetk_1_1detail_1a447e4ec89b3f2748451891219b7e3738" kindref="member">::tk::detail::static_register</ref>(#fn, fn, (prio));               \
+}                                                                 \
+PICO_RUNTIME_INIT_FUNC(tk_register_##fn, &quot;ZZ900&quot;);</initializer>
+        <briefdescription>
+<para>リンク時にタスクを自動登録するマクロ (静的タスク登録) </para>
+        </briefdescription>
+        <detaileddescription>
+<para>main() の開始前に Pico SDK のランタイムイニシャライザを利用してタスクを登録します。</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>タスク関数名 (void fn(void* arg)) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>タスク優先度 (例: <ref refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca" kindref="member">tk::PRIO_NORMAL</ref>) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="187" column="9" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" bodystart="187" bodyend="191"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>tinykernel:<sp/>minimal<sp/>preemptive<sp/>task<sp/>scheduler<sp/>for<sp/>RP2350<sp/>(Pico<sp/>2,<sp/>Cortex-M33)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pico/runtime.h&quot;</highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>PICO_RUNTIME_INIT_FUNC<sp/>(static<sp/>task<sp/>registration)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TK_TICKS_PER_SEC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="kernel_8hpp_1a5c791131c5ad22ed87a8d3ca2cd57d33" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TK_TICKS_PER_SEC<sp/>1000u</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TK_TIME_SLICE_MS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="kernel_8hpp_1af32989639aecb5479b4239639fd133f7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TK_TIME_SLICE_MS<sp/>10u</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TK_MAX_TASKS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TK_MAX_TASKS<sp/>32u</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TK_DEFAULT_STACK_SIZE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="kernel_8hpp_1afde197f9493ef5bdb5b715ce8b52148d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TK_DEFAULT_STACK_SIZE<sp/>(4<sp/>*<sp/>1024)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacetk" kindref="compound">tk</ref><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="namespacetk_1a8908cf1e54cdc4e14ac3003126722cfc" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacetk_1a8908cf1e54cdc4e14ac3003126722cfc" kindref="member">TaskFn</ref><sp/>=<sp/>void<sp/>(*)(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>arg);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50e" kindref="member">Prio</ref><sp/>:<sp/>uint32_t<sp/>{</highlight></codeline>
+<codeline lineno="40" refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50eabbefd771d1fb2ac0708c1bd5371e5a75" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50eabbefd771d1fb2ac0708c1bd5371e5a75" kindref="member">PRIO_REALTIME</ref><sp/>=<sp/>1,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50ea614240a3a3fc1094c6daa0fdca92ba37" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50ea614240a3a3fc1094c6daa0fdca92ba37" kindref="member">PRIO_HIGH</ref><sp/><sp/><sp/><sp/><sp/>=<sp/>5,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca" kindref="member">PRIO_NORMAL</ref><sp/><sp/><sp/>=<sp/>9,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50eacf084edcfe985b77c205a37c3bd60519" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50eacf084edcfe985b77c205a37c3bd60519" kindref="member">PRIO_LOW</ref><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>13,<sp/><sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="structtk_1_1_task_handle" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtk_1_1_task_handle" kindref="compound">TaskHandle</ref><sp/>{</highlight></codeline>
+<codeline lineno="50" refid="structtk_1_1_task_handle_1a425e4877384e92ad75fee388bd54a7c3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><ref refid="structtk_1_1_task_handle_1a425e4877384e92ad75fee388bd54a7c3" kindref="member">slot</ref>{0xFF};<sp/><sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="structtk_1_1_task_handle_1afe8adf95998f82fe6d03a80700ef7927" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structtk_1_1_task_handle_1afe8adf95998f82fe6d03a80700ef7927" kindref="member">is_valid</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structtk_1_1_task_handle_1a425e4877384e92ad75fee388bd54a7c3" kindref="member">slot</ref><sp/>!=<sp/>0xFF;<sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal">TaskHandle<sp/><ref refid="namespacetk_1a6e721332f5a7d85998345ed218de7394" kindref="member">create</ref>(<ref refid="namespacetk_1a8908cf1e54cdc4e14ac3003126722cfc" kindref="member">TaskFn</ref><sp/>fn,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>arg<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,<sp/>uint32_t<sp/>prio<sp/>=<sp/><ref refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca" kindref="member">PRIO_NORMAL</ref>);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1a675f1829b87e2a43239b6f80a526d0ed" kindref="member">start</ref>();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1a8081956b0a19b87d5b7c81b772373397" kindref="member">yield</ref>();</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1aae83f84121085578a7568437a8dc2447" kindref="member">sleep_ms</ref>(uint32_t<sp/>ms);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1aba50cfc62cb8be71cf96df7f495a7a3d" kindref="member">exit</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>code<sp/>=<sp/>0);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal">uint64_t<sp/><ref refid="namespacetk_1a46e15375fba47cbd1a93278f17e77848" kindref="member">now_ms</ref>();</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1a6540aa25eb8562f6d6c8b37977d6cfe8" kindref="member">lock</ref>();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1a752b12f6862815c94a52347af52578b7" kindref="member">unlock</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>was_enabled);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1a3254a7e2a9f5ed3abe44e8cf62a8dcfe" kindref="member">preempt_disable</ref>();</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1a70e6ee5f456e67a24ce13ff0fd04e4d9" kindref="member">preempt_enable</ref>();</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156" refid="classtk_1_1_preempt_guard" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classtk_1_1_preempt_guard_1a39e396ce51420c942e7d6549ec63f88e" kindref="member">PreemptGuard</ref><sp/>{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="158" refid="classtk_1_1_preempt_guard_1a39e396ce51420c942e7d6549ec63f88e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtk_1_1_preempt_guard_1a39e396ce51420c942e7d6549ec63f88e" kindref="member">PreemptGuard</ref>()<sp/>{<sp/><ref refid="namespacetk_1a3254a7e2a9f5ed3abe44e8cf62a8dcfe" kindref="member">preempt_disable</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="159" refid="classtk_1_1_preempt_guard_1a329ea4d806861d9455168aeb01f41f86" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtk_1_1_preempt_guard_1a329ea4d806861d9455168aeb01f41f86" kindref="member">~PreemptGuard</ref>()<sp/>{<sp/><ref refid="namespacetk_1a70e6ee5f456e67a24ce13ff0fd04e4d9" kindref="member">preempt_enable</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161" refid="classtk_1_1_preempt_guard_1a360ac2b073064abc0f21db3127e7f389" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtk_1_1_preempt_guard_1a360ac2b073064abc0f21db3127e7f389" kindref="member">PreemptGuard</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtk_1_1_preempt_guard_1a39e396ce51420c942e7d6549ec63f88e" kindref="member">PreemptGuard</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="162" refid="classtk_1_1_preempt_guard_1ad651c301bd81f95866e1cd380c2a2417" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtk_1_1_preempt_guard_1a39e396ce51420c942e7d6549ec63f88e" kindref="member">PreemptGuard</ref>&amp;<sp/><ref refid="classtk_1_1_preempt_guard_1ad651c301bd81f95866e1cd380c2a2417" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtk_1_1_preempt_guard_1a39e396ce51420c942e7d6549ec63f88e" kindref="member">PreemptGuard</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165" refid="namespacetk_1add371a241ec6c1695ef4e67935317edd" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespacetk_1add371a241ec6c1695ef4e67935317edd" kindref="member">task_mask_t</ref><sp/>=<sp/>uint32_t;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167" refid="namespacetk_1_1detail" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacetk_1_1detail" kindref="compound">detail</ref><sp/>{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1_1detail_1a447e4ec89b3f2748451891219b7e3738" kindref="member">static_register</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>name,<sp/><ref refid="namespacetk_1a8908cf1e54cdc4e14ac3003126722cfc" kindref="member">TaskFn</ref><sp/>fn,<sp/>uint32_t<sp/>prio);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal">uint32_t<sp/><ref refid="namespacetk_1_1detail_1a5b8fa6406a867edf8c4410fcb03c6523" kindref="member">sched_lock</ref>();</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" kindref="member">sched_unlock</ref>(uint32_t<sp/>save);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1_1detail_1a400363f36b5fb5dfc8aec11334471d0d" kindref="member">block_current_task_locked</ref>();</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacetk_1_1detail_1ab19385598f18560cb574cc86174ececa" kindref="member">wake_task_locked</ref>(<ref refid="structtk_1_1_task_handle" kindref="compound">TaskHandle</ref><sp/>handle);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal">uint8_t<sp/><ref refid="namespacetk_1_1detail_1a73a80d92a172d565201f99e8f31278e4" kindref="member">current_task_slot</ref>();</highlight></codeline>
+<codeline lineno="174"><highlight class="normal">uint8_t<sp/><ref refid="namespacetk_1_1detail_1a70ba35e0daee086ad86770f1e39c9b35" kindref="member">find_highest_prio_waiter</ref>(<ref refid="namespacetk_1add371a241ec6c1695ef4e67935317edd" kindref="member">task_mask_t</ref><sp/>wait_mask);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>detail</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>tk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187" refid="kernel_8hpp_1af57e92069cc01608150a45032c5ad473" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TK_TASK(fn,<sp/>prio)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="188"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>static<sp/>void<sp/>tk_register_##fn(void)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="189"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>::tk::detail::static_register(#fn,<sp/>fn,<sp/>(prio));<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="190"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="191"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>PICO_RUNTIME_INIT_FUNC(tk_register_##fn,<sp/>&quot;ZZ900&quot;);</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp"/>
+  </compounddef>
+</doxygen>

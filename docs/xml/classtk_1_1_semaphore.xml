@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="classtk_1_1_semaphore" kind="class" language="C++" prot="public">
+    <compoundname>tk::Semaphore</compoundname>
+    <includes refid="sync_8hpp" local="no">sync.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtk_1_1_semaphore_1a1cb192b9e595a70263818f83c6086e06" prot="private" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t tk::Semaphore::count_</definition>
+        <argsstring></argsstring>
+        <name>count_</name>
+        <qualifiedname>tk::Semaphore::count_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="97" column="13" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtk_1_1_semaphore_1a3f2fbcd57ad374cfa458f2214053a230" prot="private" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t tk::Semaphore::max_count_</definition>
+        <argsstring></argsstring>
+        <name>max_count_</name>
+        <qualifiedname>tk::Semaphore::max_count_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="98" column="13" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtk_1_1_semaphore_1a2133460c0c6607a86406fc7ac8dd4c3b" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacetk_1add371a241ec6c1695ef4e67935317edd" kindref="member">task_mask_t</ref></type>
+        <definition>task_mask_t tk::Semaphore::wait_mask_</definition>
+        <argsstring></argsstring>
+        <name>wait_mask_</name>
+        <qualifiedname>tk::Semaphore::wait_mask_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="99" column="17" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="99" bodyend="99"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtk_1_1_semaphore_1a66c5ac90338a6fcc6a9c2f22f1586de8" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tk::Semaphore::Semaphore</definition>
+        <argsstring>(int32_t initial_count=1, int32_t max_count=1)</argsstring>
+        <name>Semaphore</name>
+        <qualifiedname>tk::Semaphore::Semaphore</qualifiedname>
+        <param>
+          <type>int32_t</type>
+          <declname>initial_count</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>int32_t</type>
+          <declname>max_count</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+<para>セマフォを初期化します </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>initial_count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期資源カウント (省略時: 1) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>最大資源カウント (省略時: 1) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="31" column="14" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="31" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_semaphore_1a863ccee07bc701a78342c14503955d73" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::Semaphore::acquire</definition>
+        <argsstring>()</argsstring>
+        <name>acquire</name>
+        <qualifiedname>tk::Semaphore::acquire</qualifiedname>
+        <briefdescription>
+<para>資源を獲得するまで現在のタスクをブロックします </para>
+        </briefdescription>
+        <detaileddescription>
+<para>資源カウントが 0 以下の場合はタスクが休止状態になり、CPU は他タスクへ譲渡されます (CPU消費ゼロ)。 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="39" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="39" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_semaphore_1a3a246c8afc866dc438186d0a53cad5c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tk::Semaphore::try_acquire</definition>
+        <argsstring>()</argsstring>
+        <name>try_acquire</name>
+        <qualifiedname>tk::Semaphore::try_acquire</qualifiedname>
+        <briefdescription>
+<para>資源の獲得を試みます (ノンブロッキング) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true 獲得成功 (カウントが 1 減算された) </para>
+</simplesect>
+<simplesect kind="return"><para>false 資源がないため獲得失敗 (ブロックせず即座に復帰) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="59" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="59" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_semaphore_1a7bb8eb8b0bd69b2f6b0a4d89d0f5b07b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::Semaphore::release</definition>
+        <argsstring>()</argsstring>
+        <name>release</name>
+        <qualifiedname>tk::Semaphore::release</qualifiedname>
+        <briefdescription>
+<para>資源を返却し、待機中タスクがあれば最優先度のタスクを 1 つ起床させます </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="73" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="73" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_semaphore_1ae53b9c57cc25fafb242a21776f112701" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int32_t</type>
+        <definition>int32_t tk::Semaphore::count</definition>
+        <argsstring>() const</argsstring>
+        <name>count</name>
+        <qualifiedname>tk::Semaphore::count</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>現在の資源カウントを取得 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="89" column="13" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="89" bodyend="94"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>計数セマフォ (Counting <ref refid="classtk_1_1_semaphore" kindref="compound">Semaphore</ref>) / バイナリセマフォ </para>
+    </briefdescription>
+    <detaileddescription>
+<para>資源の獲得・返却によるタスク間同期を行います。資源がない場合はタスクが <computeroutput>State::Blocked</computeroutput> に遷移して休止し、返却時に優先度の高いタスクから順に起床します。</para>
+<para><programlisting><codeline><highlight class="normal">tk::Semaphore<sp/>sem(0,<sp/>5);<sp/></highlight><highlight class="comment">//<sp/>初期値0、最大5</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>タスク側<sp/>(資源が空くまでブロック待機)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">sem.acquire();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>シグナル送信側<sp/>(割り込みや他タスクから返却・通知)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">sem.release();</highlight></codeline>
+</programlisting> </para>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="24" column="1" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="24" bodyend="100"/>
+    <listofallmembers>
+      <member refid="classtk_1_1_semaphore_1a863ccee07bc701a78342c14503955d73" prot="public" virt="non-virtual"><scope>tk::Semaphore</scope><name>acquire</name></member>
+      <member refid="classtk_1_1_semaphore_1ae53b9c57cc25fafb242a21776f112701" prot="public" virt="non-virtual"><scope>tk::Semaphore</scope><name>count</name></member>
+      <member refid="classtk_1_1_semaphore_1a1cb192b9e595a70263818f83c6086e06" prot="private" virt="non-virtual"><scope>tk::Semaphore</scope><name>count_</name></member>
+      <member refid="classtk_1_1_semaphore_1a3f2fbcd57ad374cfa458f2214053a230" prot="private" virt="non-virtual"><scope>tk::Semaphore</scope><name>max_count_</name></member>
+      <member refid="classtk_1_1_semaphore_1a7bb8eb8b0bd69b2f6b0a4d89d0f5b07b" prot="public" virt="non-virtual"><scope>tk::Semaphore</scope><name>release</name></member>
+      <member refid="classtk_1_1_semaphore_1a66c5ac90338a6fcc6a9c2f22f1586de8" prot="public" virt="non-virtual"><scope>tk::Semaphore</scope><name>Semaphore</name></member>
+      <member refid="classtk_1_1_semaphore_1a3a246c8afc866dc438186d0a53cad5c2" prot="public" virt="non-virtual"><scope>tk::Semaphore</scope><name>try_acquire</name></member>
+      <member refid="classtk_1_1_semaphore_1a2133460c0c6607a86406fc7ac8dd4c3b" prot="private" virt="non-virtual"><scope>tk::Semaphore</scope><name>wait_mask_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

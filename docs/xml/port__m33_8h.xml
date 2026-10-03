@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="port__m33_8h" kind="file" language="C++">
+    <compoundname>port_m33.h</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includes local="yes">hardware/structs/scb.h</includes>
+    <includedby refid="port__m33_8c" local="yes">C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33/port_m33.c</includedby>
+    <includedby refid="scheduler_8cpp" local="yes">C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33/port_m33.h</label>
+        <link refid="port__m33_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hardware/structs/scb.h</label>
+      </node>
+      <node id="2">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33/port_m33.c</label>
+        <link refid="port__m33_8c"/>
+      </node>
+      <node id="1">
+        <label>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33/port_m33.h</label>
+        <link refid="port__m33_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp</label>
+        <link refid="scheduler_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="port__m33_8h_1ac9d435a65b90e71074dd44f97b1103f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk_port_init</definition>
+        <argsstring>(uint32_t ticks_per_sec)</argsstring>
+        <name>tk_port_init</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>ticks_per_sec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33/port_m33.h" line="12" column="6" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33/port_m33.c" bodystart="14" bodyend="36" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33/port_m33.h" declline="12" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="port__m33_8h_1a57df28e1d96b701ef5b9713cae179462" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uintptr_t</type>
+        <definition>uintptr_t tk_port_make_frame</definition>
+        <argsstring>(uint8_t *base, uint32_t size_bytes, void *entry_fn, void *arg)</argsstring>
+        <name>tk_port_make_frame</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>size_bytes</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>entry_fn</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33/port_m33.h" line="15" column="11" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33/port_m33.h" declline="15" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="port__m33_8h_1aaf06c4f2c498c86ed2c595d9bfe4caab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk_port_start</definition>
+        <argsstring>(uintptr_t sp)</argsstring>
+        <name>tk_port_start</name>
+        <param>
+          <type>uintptr_t</type>
+          <declname>sp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33/port_m33.h" line="18" column="6" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33/port_m33.h" declline="18" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="port__m33_8h_1a3990f2a1d17ff136ea16aab63b670a7e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void tk_port_trigger_pendsv</definition>
+        <argsstring>(void)</argsstring>
+        <name>tk_port_trigger_pendsv</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33/port_m33.h" line="21" column="20" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33/port_m33.h" bodystart="21" bodyend="24"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;hardware/structs/scb.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>One-time<sp/>port<sp/>setup:<sp/>FPU<sp/>context<sp/>policy<sp/>+<sp/>SysTick<sp/>+<sp/>PendSV<sp/>priority.<sp/>Called<sp/>from<sp/>tk::start().</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="port__m33_8c_1ac9d435a65b90e71074dd44f97b1103f8" kindref="member">tk_port_init</ref>(uint32_t<sp/>ticks_per_sec);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Build<sp/>a<sp/>task&apos;s<sp/>initial<sp/>stack<sp/>frame.<sp/>Returns<sp/>the<sp/>SP<sp/>to<sp/>start<sp/>with.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="port__m33_8h_1a57df28e1d96b701ef5b9713cae179462" refkind="member"><highlight class="normal">uintptr_t<sp/><ref refid="port__m33_8h_1a57df28e1d96b701ef5b9713cae179462" kindref="member">tk_port_make_frame</ref>(uint8_t*<sp/>base,<sp/>uint32_t<sp/>size_bytes,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>entry_fn,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>arg);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Jump<sp/>into<sp/>the<sp/>first<sp/>task<sp/>(r0<sp/>=<sp/>SP<sp/>from<sp/>tk_port_make_frame).<sp/>Never<sp/>returns.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="port__m33_8h_1aaf06c4f2c498c86ed2c595d9bfe4caab" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="port__m33_8h_1aaf06c4f2c498c86ed2c595d9bfe4caab" kindref="member">tk_port_start</ref>(uintptr_t<sp/>sp);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Trigger<sp/>a<sp/>PendSV<sp/>exception<sp/>to<sp/>initiate<sp/>context<sp/>switching.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>tk_port_trigger_pendsv(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>scb_hw-&gt;icsr<sp/>=<sp/>1u<sp/>&lt;&lt;<sp/>28;<sp/><sp/></highlight><highlight class="comment">//<sp/>SCB_ICSR_PENDSVSET_Msk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>__asm__<sp/></highlight><highlight class="keyword">volatile</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;isb&quot;</highlight><highlight class="normal"><sp/>:::<sp/></highlight><highlight class="stringliteral">&quot;memory&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33/port_m33.h"/>
+  </compounddef>
+</doxygen>

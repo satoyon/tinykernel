@@ -1,0 +1,313 @@
+\begin{theindex}
+
+  \item {$\sim$Actor}
+    \subitem {tk::Actor$<$ MsgType, QueueSize $>$}, 20
+  \item {$\sim$LockGuard}
+    \subitem {tk::LockGuard$<$ Lockable $>$}, 26
+  \item {$\sim$PreemptGuard}
+    \subitem {tk::PreemptGuard}, 29
+
+  \indexspace
+
+  \item {acquire}
+    \subitem {tk::Semaphore}, 31
+  \item {Actor}
+    \subitem {tk::Actor$<$ MsgType, QueueSize $>$}, 20
+  \item {arg}
+    \subitem {tk::Message}, 27
+
+  \indexspace
+
+  \item {BinarySemaphore}
+    \subitem {tk}, 12
+  \item {block\_current\_task\_locked}
+    \subitem {tk::detail}, 17
+
+  \indexspace
+
+  \item {C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel ディレクトリリファレンス}, 
+		10
+  \item {C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include ディレクトリリファレンス}, 
+		9
+  \item {C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel ディレクトリリファレンス}, 
+		10
+  \item {C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp}, 
+		33, 34
+  \item {C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp}, 
+		36, 39
+  \item {C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp}, 
+		40
+  \item {C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src ディレクトリリファレンス}, 
+		9
+  \item {C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port ディレクトリリファレンス}, 
+		9
+  \item {C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33 ディレクトリリファレンス}, 
+		9
+  \item {C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.c}, 
+		42
+  \item {C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/port/m33/port\_m33.h}, 
+		43, 44
+  \item {C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/src/scheduler.cpp}, 
+		44
+  \item {count}
+    \subitem {tk::Semaphore}, 31
+  \item {create}
+    \subitem {tk}, 13
+  \item {current\_task\_slot}
+    \subitem {tk::detail}, 17
+
+  \indexspace
+
+  \item {exit}
+    \subitem {tk}, 13
+
+  \indexspace
+
+  \item {find\_highest\_prio\_waiter}
+    \subitem {tk::detail}, 17
+  \item {FPCCR\_ASPEN}
+    \subitem {port\_m33.c}, 43
+  \item {FPCCR\_LSPEN}
+    \subitem {port\_m33.c}, 43
+  \item {FpuCtx}, 24
+    \subitem {s}, 25
+
+  \indexspace
+
+  \item {handle}
+    \subitem {tk::Actor$<$ MsgType, QueueSize $>$}, 20
+
+  \indexspace
+
+  \item {id}
+    \subitem {tk::Message}, 27
+  \item {is\_locked}
+    \subitem {tk::Mutex}, 28
+  \item {is\_valid}
+    \subitem {tk::TaskHandle}, 32
+  \item {isr\_systick}
+    \subitem {scheduler.cpp}, 45
+
+  \indexspace
+
+  \item {kernel.hpp}
+    \subitem {TK\_DEFAULT\_STACK\_SIZE}, 37
+    \subitem {TK\_MAX\_TASKS}, 37
+    \subitem {TK\_TASK}, 38
+    \subitem {TK\_TICKS\_PER\_SEC}, 38
+    \subitem {TK\_TIME\_SLICE\_MS}, 38
+
+  \indexspace
+
+  \item {lock}
+    \subitem {tk}, 14
+    \subitem {tk::Mutex}, 28
+  \item {LockGuard}
+    \subitem {tk::LockGuard$<$ Lockable $>$}, 25, 26
+
+  \indexspace
+
+  \item {Mutex}
+    \subitem {tk::Mutex}, 28
+
+  \indexspace
+
+  \item {now\_ms}
+    \subitem {tk}, 14
+
+  \indexspace
+
+  \item {on\_message}
+    \subitem {tk::Actor$<$ MsgType, QueueSize $>$}, 20
+  \item {on\_start}
+    \subitem {tk::Actor$<$ MsgType, QueueSize $>$}, 21
+  \item {operator=}
+    \subitem {tk::LockGuard$<$ Lockable $>$}, 26
+    \subitem {tk::PreemptGuard}, 30
+
+  \indexspace
+
+  \item {port\_m33.c}
+    \subitem {FPCCR\_ASPEN}, 43
+    \subitem {FPCCR\_LSPEN}, 43
+    \subitem {tk\_port\_init}, 43
+  \item {port\_m33.h}
+    \subitem {tk\_port\_init}, 43
+    \subitem {tk\_port\_make\_frame}, 43
+    \subitem {tk\_port\_start}, 43
+  \item {post}
+    \subitem {tk::Actor$<$ MsgType, QueueSize $>$}, 21
+  \item {preempt\_disable}
+    \subitem {tk}, 14
+  \item {preempt\_enable}
+    \subitem {tk}, 14
+  \item {PreemptGuard}
+    \subitem {tk::PreemptGuard}, 29
+  \item {Prio}
+    \subitem {tk}, 13
+  \item {PRIO\_HIGH}
+    \subitem {tk}, 13
+  \item {PRIO\_LOW}
+    \subitem {tk}, 13
+  \item {PRIO\_NORMAL}
+    \subitem {tk}, 13
+  \item {PRIO\_REALTIME}
+    \subitem {tk}, 13
+  \item {publish}
+    \subitem {tk}, 15
+    \subitem {tk::EventHub$<$ MsgType, MaxSubscribers $>$}, 23
+
+  \indexspace
+
+  \item {release}
+    \subitem {tk::Semaphore}, 31
+
+  \indexspace
+
+  \item {s}
+    \subitem {FpuCtx}, 25
+  \item {sched\_lock}
+    \subitem {tk::detail}, 17
+  \item {sched\_unlock}
+    \subitem {tk::detail}, 18
+  \item {scheduler.cpp}
+    \subitem {isr\_systick}, 45
+    \subitem {tk\_fpu\_scratch}, 45
+    \subitem {tk\_switch\_context}, 45
+    \subitem {tk\_task\_return\_trampoline}, 45
+  \item {Semaphore}
+    \subitem {tk::Semaphore}, 30
+  \item {sleep\_ms}
+    \subitem {tk}, 16
+  \item {slot}
+    \subitem {tk::TaskHandle}, 32
+  \item {start}
+    \subitem {tk}, 16
+    \subitem {tk::Actor$<$ MsgType, QueueSize $>$}, 22
+  \item {static\_register}
+    \subitem {tk::detail}, 18
+  \item {subscribe}
+    \subitem {tk::EventHub$<$ MsgType, MaxSubscribers $>$}, 23
+  \item {subscriber\_count}
+    \subitem {tk::EventHub$<$ MsgType, MaxSubscribers $>$}, 24
+
+  \indexspace
+
+  \item {task\_mask\_t}
+    \subitem {tk}, 12
+  \item {TaskFn}
+    \subitem {tk}, 12
+  \item {tk}, 11
+    \subitem {BinarySemaphore}, 12
+    \subitem {create}, 13
+    \subitem {exit}, 13
+    \subitem {lock}, 14
+    \subitem {now\_ms}, 14
+    \subitem {preempt\_disable}, 14
+    \subitem {preempt\_enable}, 14
+    \subitem {Prio}, 13
+    \subitem {PRIO\_HIGH}, 13
+    \subitem {PRIO\_LOW}, 13
+    \subitem {PRIO\_NORMAL}, 13
+    \subitem {PRIO\_REALTIME}, 13
+    \subitem {publish}, 15
+    \subitem {sleep\_ms}, 16
+    \subitem {start}, 16
+    \subitem {task\_mask\_t}, 12
+    \subitem {TaskFn}, 12
+    \subitem {unlock}, 16
+    \subitem {yield}, 17
+  \item {tk::Actor$<$ MsgType, QueueSize $>$}, 19
+    \subitem {$\sim$Actor}, 20
+    \subitem {Actor}, 20
+    \subitem {handle}, 20
+    \subitem {on\_message}, 20
+    \subitem {on\_start}, 21
+    \subitem {post}, 21
+    \subitem {start}, 22
+  \item {tk::detail}, 17
+    \subitem {block\_current\_task\_locked}, 17
+    \subitem {current\_task\_slot}, 17
+    \subitem {find\_highest\_prio\_waiter}, 17
+    \subitem {sched\_lock}, 17
+    \subitem {sched\_unlock}, 18
+    \subitem {static\_register}, 18
+    \subitem {wake\_task\_locked}, 18
+  \item {tk::EventHub$<$ MsgType, MaxSubscribers $>$}, 22
+    \subitem {publish}, 23
+    \subitem {subscribe}, 23
+    \subitem {subscriber\_count}, 24
+    \subitem {unsubscribe}, 24
+  \item {tk::LockGuard$<$ Lockable $>$}, 25
+    \subitem {$\sim$LockGuard}, 26
+    \subitem {LockGuard}, 25, 26
+    \subitem {operator=}, 26
+  \item {tk::Message}, 26
+    \subitem {arg}, 27
+    \subitem {id}, 27
+  \item {tk::Mutex}, 27
+    \subitem {is\_locked}, 28
+    \subitem {lock}, 28
+    \subitem {Mutex}, 28
+    \subitem {try\_lock}, 28
+    \subitem {unlock}, 28
+  \item {tk::PreemptGuard}, 29
+    \subitem {$\sim$PreemptGuard}, 29
+    \subitem {operator=}, 30
+    \subitem {PreemptGuard}, 29
+  \item {tk::Semaphore}, 30
+    \subitem {acquire}, 31
+    \subitem {count}, 31
+    \subitem {release}, 31
+    \subitem {Semaphore}, 30
+    \subitem {try\_acquire}, 31
+  \item {tk::TaskHandle}, 32
+    \subitem {is\_valid}, 32
+    \subitem {slot}, 32
+  \item {TK\_DEFAULT\_STACK\_SIZE}
+    \subitem {kernel.hpp}, 37
+  \item {tk\_fpu\_scratch}
+    \subitem {scheduler.cpp}, 45
+  \item {TK\_MAX\_TASKS}
+    \subitem {kernel.hpp}, 37
+  \item {tk\_port\_init}
+    \subitem {port\_m33.c}, 43
+    \subitem {port\_m33.h}, 43
+  \item {tk\_port\_make\_frame}
+    \subitem {port\_m33.h}, 43
+  \item {tk\_port\_start}
+    \subitem {port\_m33.h}, 43
+  \item {tk\_switch\_context}
+    \subitem {scheduler.cpp}, 45
+  \item {TK\_TASK}
+    \subitem {kernel.hpp}, 38
+  \item {tk\_task\_return\_trampoline}
+    \subitem {scheduler.cpp}, 45
+  \item {TK\_TICKS\_PER\_SEC}
+    \subitem {kernel.hpp}, 38
+  \item {TK\_TIME\_SLICE\_MS}
+    \subitem {kernel.hpp}, 38
+  \item {try\_acquire}
+    \subitem {tk::Semaphore}, 31
+  \item {try\_lock}
+    \subitem {tk::Mutex}, 28
+
+  \indexspace
+
+  \item {unlock}
+    \subitem {tk}, 16
+    \subitem {tk::Mutex}, 28
+  \item {unsubscribe}
+    \subitem {tk::EventHub$<$ MsgType, MaxSubscribers $>$}, 24
+
+  \indexspace
+
+  \item {wake\_task\_locked}
+    \subitem {tk::detail}, 18
+
+  \indexspace
+
+  \item {yield}
+    \subitem {tk}, 17
+
+\end{theindex}

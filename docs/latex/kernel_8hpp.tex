@@ -1,112 +1,111 @@
-\doxysection{C:/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\+kernel.hpp File Reference}
-\hypertarget{kernel_8hpp}{}\label{kernel_8hpp}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp}}
+\doxysection{C:/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\+kernel.hpp ファイル}
+\label{kernel_8hpp}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp}}
 {\ttfamily \+\#include $<$stdint.\+h$>$}\newline
 {\ttfamily \+\#include $<$stddef.\+h$>$}\newline
 {\ttfamily \+\#include "{}pico/\+runtime.\+h"{}}\newline
-\doxysubsubsection*{Classes}
+\doxysubsubsection*{クラス}
 \begin{DoxyCompactItemize}
 \item 
-struct \doxymbox{\hyperlink{structtk_1_1_task_handle}{tk::\+\+Task\+Handle}}
+struct \textbf{ tk::\+\+Task\+Handle}
 \begin{DoxyCompactList}\small\item\em タスクの識別ハンドル \end{DoxyCompactList}\item 
-class \doxymbox{\hyperlink{classtk_1_1_preempt_guard}{tk::\+\+Preempt\+Guard}}
+class \textbf{ tk::\+\+Preempt\+Guard}
 \begin{DoxyCompactList}\small\item\em プリエンプション禁止をスコープ単位で安全に管理する RAII クラス \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Namespaces}
+\doxysubsubsection*{名前空間}
 \begin{DoxyCompactItemize}
 \item 
-namespace \doxymbox{\hyperlink{namespacetk}{tk}}
+namespace \textbf{ tk}
 \item 
-namespace \doxymbox{\hyperlink{namespacetk_1_1detail}{tk::\+detail}}
+namespace \textbf{ tk::\+detail}
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Macros}
+\doxysubsubsection*{マクロ定義}
 \begin{DoxyCompactItemize}
 \item 
-\+\#define \doxymbox{\hyperlink{kernel_8hpp_a5c791131c5ad22ed87a8d3ca2cd57d33}{TK\+\_\+\+TICKS\+\_\+\+PER\+\_\+\+SEC}}~1000u
+\+\#define \textbf{ TK\+\_\+\+TICKS\+\_\+\+PER\+\_\+\+SEC}~1000u
 \item 
-\+\#define \doxymbox{\hyperlink{kernel_8hpp_af32989639aecb5479b4239639fd133f7}{TK\+\_\+\+TIME\+\_\+\+SLICE\+\_\+\+MS}}~10u
+\+\#define \textbf{ TK\+\_\+\+TIME\+\_\+\+SLICE\+\_\+\+MS}~10u
 \item 
-\+\#define \doxymbox{\hyperlink{kernel_8hpp_a22e1d9f532aa297014c125110226443c}{TK\+\_\+\+MAX\+\_\+\+TASKS}}~32u
+\+\#define \textbf{ TK\+\_\+\+MAX\+\_\+\+TASKS}~32u
 \item 
-\+\#define \doxymbox{\hyperlink{kernel_8hpp_afde197f9493ef5bdb5b715ce8b52148d}{TK\+\_\+\+DEFAULT\+\_\+\+STACK\+\_\+\+SIZE}}~(4 \texorpdfstring{$\ast$}{*} 1024)
+\+\#define \textbf{ TK\+\_\+\+DEFAULT\+\_\+\+STACK\+\_\+\+SIZE}~(4 $\ast$ 1024)
 \item 
-\+\#define \doxymbox{\hyperlink{kernel_8hpp_af57e92069cc01608150a45032c5ad473}{TK\+\_\+\+TASK}}(fn,  prio)
+\+\#define \textbf{ TK\+\_\+\+TASK}(fn,  prio)
 \begin{DoxyCompactList}\small\item\em リンク時にタスクを自動登録するマクロ (静的タスク登録) \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Typedefs}
+\doxysubsubsection*{型定義}
 \begin{DoxyCompactItemize}
 \item 
-using \doxymbox{\hyperlink{namespacetk_a8908cf1e54cdc4e14ac3003126722cfc}{tk::\+\+Task\+Fn}} = void (\texorpdfstring{$\ast$}{*})(void\texorpdfstring{$\ast$}{*} arg)
+using \textbf{ tk::\+\+Task\+Fn} = void ($\ast$)(void$\ast$ arg)
 \item 
-using \doxymbox{\hyperlink{namespacetk_add371a241ec6c1695ef4e67935317edd}{tk::\+task\+\_\+mask\+\_\+t}} = uint32\+\_\+t
+using \textbf{ tk::\+task\+\_\+mask\+\_\+t} = uint32\+\_\+t
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Enumerations}
+\doxysubsubsection*{列挙型}
 \begin{DoxyCompactItemize}
 \item 
-enum \doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50e}{tk::\+\+Prio}} : uint32\+\_\+t \{ \doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50eabbefd771d1fb2ac0708c1bd5371e5a75}{tk::\+\+PRIO\+\_\+\+REALTIME}} = 1
-, \doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50ea614240a3a3fc1094c6daa0fdca92ba37}{tk::\+\+PRIO\+\_\+\+HIGH}} = 5
-, \doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca}{tk::\+\+PRIO\+\_\+\+NORMAL}} = 9
-, \doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50eacf084edcfe985b77c205a37c3bd60519}{tk::\+\+PRIO\+\_\+\+LOW}} = 13
+enum \textbf{ tk::\+\+Prio} : uint32\+\_\+t \{ \textbf{ tk::\+\+PRIO\+\_\+\+REALTIME} = 1
+, \textbf{ tk::\+\+PRIO\+\_\+\+HIGH} = 5
+, \textbf{ tk::\+\+PRIO\+\_\+\+NORMAL} = 9
+, \textbf{ tk::\+\+PRIO\+\_\+\+LOW} = 13
  \}
 \begin{DoxyCompactList}\small\item\em タスクの優先度レベル \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Functions}
+\doxysubsubsection*{関数}
 \begin{DoxyCompactItemize}
 \item 
-\doxymbox{\hyperlink{structtk_1_1_task_handle}{Task\+Handle}} \doxymbox{\hyperlink{namespacetk_a6e721332f5a7d85998345ed218de7394}{tk::\+create}} (\doxymbox{\hyperlink{namespacetk_a8908cf1e54cdc4e14ac3003126722cfc}{Task\+Fn}} fn, void \texorpdfstring{$\ast$}{*}arg=nullptr, uint32\+\_\+t prio=\doxymbox{\hyperlink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca}{PRIO\+\_\+\+NORMAL}})
+\textbf{ Task\+Handle} \textbf{ tk::\+create} (\textbf{ Task\+Fn} fn, void $\ast$arg=nullptr, uint32\+\_\+t prio=\textbf{ PRIO\+\_\+\+NORMAL})
 \begin{DoxyCompactList}\small\item\em タスクを生成・登録します \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{namespacetk_a675f1829b87e2a43239b6f80a526d0ed}{tk::\+start}} ()
+void \textbf{ tk::\+start} ()
 \begin{DoxyCompactList}\small\item\em tinykernel スケジューラを起動します \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{namespacetk_a8081956b0a19b87d5b7c81b772373397}{tk::\+yield}} ()
+void \textbf{ tk::\+yield} ()
 \begin{DoxyCompactList}\small\item\em 現在実行中のタスクを一時中断し、同優先度の他のタスクへ CPU を譲渡します \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{namespacetk_aae83f84121085578a7568437a8dc2447}{tk::\+sleep\+\_\+ms}} (uint32\+\_\+t ms)
+void \textbf{ tk::\+sleep\+\_\+ms} (uint32\+\_\+t ms)
 \begin{DoxyCompactList}\small\item\em 現在のタスクを指定時間スリープさせます \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{namespacetk_aba50cfc62cb8be71cf96df7f495a7a3d}{tk::\+exit}} (int code=0)
+void \textbf{ tk::\+exit} (int code=0)
 \begin{DoxyCompactList}\small\item\em 現在のタスクを終了・破棄します \end{DoxyCompactList}\item 
-uint64\+\_\+t \doxymbox{\hyperlink{namespacetk_a46e15375fba47cbd1a93278f17e77848}{tk::\+now\+\_\+ms}} ()
+uint64\+\_\+t \textbf{ tk::\+now\+\_\+ms} ()
 \begin{DoxyCompactList}\small\item\em システム起動時からの経過時間をミリ秒単位で取得します \end{DoxyCompactList}\item 
-bool \doxymbox{\hyperlink{namespacetk_a6540aa25eb8562f6d6c8b37977d6cfe8}{tk::\+lock}} ()
+bool \textbf{ tk::\+lock} ()
 \begin{DoxyCompactList}\small\item\em ハードウェアスピンロックと全割り込み禁止によるクリティカルセクションに入ります \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{namespacetk_a752b12f6862815c94a52347af52578b7}{tk::\+unlock}} (bool was\+\_\+enabled)
-\begin{DoxyCompactList}\small\item\em \doxylink{namespacetk_a6540aa25eb8562f6d6c8b37977d6cfe8}{tk::\+lock()} で入ったクリティカルセクションを抜けます \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{namespacetk_a3254a7e2a9f5ed3abe44e8cf62a8dcfe}{tk::\+preempt\+\_\+disable}} ()
+void \textbf{ tk::\+unlock} (bool was\+\_\+enabled)
+\begin{DoxyCompactList}\small\item\em \doxyref{tk::\+lock()}{p.}{namespacetk_a6540aa25eb8562f6d6c8b37977d6cfe8} で入ったクリティカルセクションを抜けます \end{DoxyCompactList}\item 
+void \textbf{ tk::\+preempt\+\_\+disable} ()
 \begin{DoxyCompactList}\small\item\em 自コアのタスクスイッチ (プリエンプション) を一時的に禁止します \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{namespacetk_a70e6ee5f456e67a24ce13ff0fd04e4d9}{tk::\+preempt\+\_\+enable}} ()
+void \textbf{ tk::\+preempt\+\_\+enable} ()
 \begin{DoxyCompactList}\small\item\em 自コアのタスクスイッチ (プリエンプション) を再開します \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{namespacetk_1_1detail_a447e4ec89b3f2748451891219b7e3738}{tk::\+detail::\+static\+\_\+register}} (const char \texorpdfstring{$\ast$}{*}name, \doxymbox{\hyperlink{namespacetk_a8908cf1e54cdc4e14ac3003126722cfc}{Task\+Fn}} fn, uint32\+\_\+t prio)
+void \textbf{ tk::\+detail::\+static\+\_\+register} (const char $\ast$name, \textbf{ Task\+Fn} fn, uint32\+\_\+t prio)
 \item 
-uint32\+\_\+t \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{tk::\+detail::\+sched\+\_\+lock}} ()
+uint32\+\_\+t \textbf{ tk::\+detail::\+sched\+\_\+lock} ()
 \item 
-void \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{tk::\+detail::\+sched\+\_\+unlock}} (uint32\+\_\+t save)
+void \textbf{ tk::\+detail::\+sched\+\_\+unlock} (uint32\+\_\+t save)
 \item 
-void \doxymbox{\hyperlink{namespacetk_1_1detail_a400363f36b5fb5dfc8aec11334471d0d}{tk::\+detail::\+block\+\_\+current\+\_\+task\+\_\+locked}} ()
+void \textbf{ tk::\+detail::\+block\+\_\+current\+\_\+task\+\_\+locked} ()
 \item 
-void \doxymbox{\hyperlink{namespacetk_1_1detail_ab19385598f18560cb574cc86174ececa}{tk::\+detail::\+wake\+\_\+task\+\_\+locked}} (\doxymbox{\hyperlink{structtk_1_1_task_handle}{Task\+Handle}} handle)
+void \textbf{ tk::\+detail::\+wake\+\_\+task\+\_\+locked} (\textbf{ Task\+Handle} handle)
 \item 
-uint8\+\_\+t \doxymbox{\hyperlink{namespacetk_1_1detail_a73a80d92a172d565201f99e8f31278e4}{tk::\+detail::\+current\+\_\+task\+\_\+slot}} ()
+uint8\+\_\+t \textbf{ tk::\+detail::\+current\+\_\+task\+\_\+slot} ()
 \item 
-uint8\+\_\+t \doxymbox{\hyperlink{namespacetk_1_1detail_a70ba35e0daee086ad86770f1e39c9b35}{tk::\+detail::\+find\+\_\+highest\+\_\+prio\+\_\+waiter}} (\doxymbox{\hyperlink{namespacetk_add371a241ec6c1695ef4e67935317edd}{task\+\_\+mask\+\_\+t}} wait\+\_\+mask)
+uint8\+\_\+t \textbf{ tk::\+detail::\+find\+\_\+highest\+\_\+prio\+\_\+waiter} (\textbf{ task\+\_\+mask\+\_\+t} wait\+\_\+mask)
 \end{DoxyCompactItemize}
 
 
 \label{kernel_8hpp_doc-define-members}
-\Hypertarget{kernel_8hpp_doc-define-members}
-\doxysubsection{Macro Definition Documentation}
-\Hypertarget{kernel_8hpp_afde197f9493ef5bdb5b715ce8b52148d}\index{kernel.hpp@{kernel.hpp}!TK\_DEFAULT\_STACK\_SIZE@{TK\_DEFAULT\_STACK\_SIZE}}
+\doxysubsection{マクロ定義詳解}
+\index{kernel.hpp@{kernel.hpp}!TK\_DEFAULT\_STACK\_SIZE@{TK\_DEFAULT\_STACK\_SIZE}}
 \index{TK\_DEFAULT\_STACK\_SIZE@{TK\_DEFAULT\_STACK\_SIZE}!kernel.hpp@{kernel.hpp}}
-\doxysubsubsection{\texorpdfstring{TK\_DEFAULT\_STACK\_SIZE}{TK\_DEFAULT\_STACK\_SIZE}}
+\doxysubsubsection{TK\_DEFAULT\_STACK\_SIZE}
 {\footnotesize\ttfamily \label{kernel_8hpp_afde197f9493ef5bdb5b715ce8b52148d} 
-\+\#define TK\+\_\+\+DEFAULT\+\_\+\+STACK\+\_\+\+SIZE~(4 \texorpdfstring{$\ast$}{*} 1024)}
+\+\#define TK\+\_\+\+DEFAULT\+\_\+\+STACK\+\_\+\+SIZE~(4 $\ast$ 1024)}
 
-1タスクあたりのスタックサイズ (バイト) \Hypertarget{kernel_8hpp_a22e1d9f532aa297014c125110226443c}\index{kernel.hpp@{kernel.hpp}!TK\_MAX\_TASKS@{TK\_MAX\_TASKS}}
+1タスクあたりのスタックサイズ (バイト) \index{kernel.hpp@{kernel.hpp}!TK\_MAX\_TASKS@{TK\_MAX\_TASKS}}
 \index{TK\_MAX\_TASKS@{TK\_MAX\_TASKS}!kernel.hpp@{kernel.hpp}}
-\doxysubsubsection{\texorpdfstring{TK\_MAX\_TASKS}{TK\_MAX\_TASKS}}
+\doxysubsubsection{TK\_MAX\_TASKS}
 {\footnotesize\ttfamily \label{kernel_8hpp_a22e1d9f532aa297014c125110226443c} 
 \+\#define TK\+\_\+\+MAX\+\_\+\+TASKS~32u}
 
-最大タスク数 (スロット0は\+Core0アイドル、スロット1は\+Core1アイドル専用) \Hypertarget{kernel_8hpp_af57e92069cc01608150a45032c5ad473}\index{kernel.hpp@{kernel.hpp}!TK\_TASK@{TK\_TASK}}
+最大タスク数 (スロット0は\+Core0アイドル、スロット1は\+Core1アイドル専用) \index{kernel.hpp@{kernel.hpp}!TK\_TASK@{TK\_TASK}}
 \index{TK\_TASK@{TK\_TASK}!kernel.hpp@{kernel.hpp}}
-\doxysubsubsection{\texorpdfstring{TK\_TASK}{TK\_TASK}}
+\doxysubsubsection{TK\_TASK}
 {\footnotesize\ttfamily \label{kernel_8hpp_af57e92069cc01608150a45032c5ad473} 
 \+\#define TK\+\_\+\+TASK(\begin{DoxyParamCaption}\item[{}]{fn}{, }\item[{}]{prio}{}\end{DoxyParamCaption})}
 
-{\bfseries Value:}
+{\bfseries 値:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ tk\_register\_\#\#fn(\textcolor{keywordtype}{void})\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ \ \ ::tk::detail::static\_register(\#fn,\ fn,\ (prio));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
@@ -121,21 +120,21 @@ uint8\+\_\+t \doxymbox{\hyperlink{namespacetk_1_1detail_a70ba35e0daee086ad86770f
 main() の開始前に Pico SDK のランタイムイニシャライザを利用してタスクを登録します。
 
 
-\begin{DoxyParams}{Parameters}
-{\em fn} & タスク関数名 (void fn(void\texorpdfstring{$\ast$}{*} arg)) \\
+\begin{DoxyParams}{引数}
+{\em fn} & タスク関数名 (void fn(void$\ast$ arg)) \\
 \hline
-{\em prio} & タスク優先度 (例: \doxylink{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca}{tk::\+\+PRIO\+\_\+\+NORMAL}) \\
+{\em prio} & タスク優先度 (例: \doxyref{tk::\+\+PRIO\+\_\+\+NORMAL}{p.}{namespacetk_a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca}) \\
 \hline
 \end{DoxyParams}
-\Hypertarget{kernel_8hpp_a5c791131c5ad22ed87a8d3ca2cd57d33}\index{kernel.hpp@{kernel.hpp}!TK\_TICKS\_PER\_SEC@{TK\_TICKS\_PER\_SEC}}
+\index{kernel.hpp@{kernel.hpp}!TK\_TICKS\_PER\_SEC@{TK\_TICKS\_PER\_SEC}}
 \index{TK\_TICKS\_PER\_SEC@{TK\_TICKS\_PER\_SEC}!kernel.hpp@{kernel.hpp}}
-\doxysubsubsection{\texorpdfstring{TK\_TICKS\_PER\_SEC}{TK\_TICKS\_PER\_SEC}}
+\doxysubsubsection{TK\_TICKS\_PER\_SEC}
 {\footnotesize\ttfamily \label{kernel_8hpp_a5c791131c5ad22ed87a8d3ca2cd57d33} 
 \+\#define TK\+\_\+\+TICKS\+\_\+\+PER\+\_\+\+SEC~1000u}
 
-1秒あたりのタイマースケジューラtick数 (Hz) \Hypertarget{kernel_8hpp_af32989639aecb5479b4239639fd133f7}\index{kernel.hpp@{kernel.hpp}!TK\_TIME\_SLICE\_MS@{TK\_TIME\_SLICE\_MS}}
+1秒あたりのタイマースケジューラtick数 (Hz) \index{kernel.hpp@{kernel.hpp}!TK\_TIME\_SLICE\_MS@{TK\_TIME\_SLICE\_MS}}
 \index{TK\_TIME\_SLICE\_MS@{TK\_TIME\_SLICE\_MS}!kernel.hpp@{kernel.hpp}}
-\doxysubsubsection{\texorpdfstring{TK\_TIME\_SLICE\_MS}{TK\_TIME\_SLICE\_MS}}
+\doxysubsubsection{TK\_TIME\_SLICE\_MS}
 {\footnotesize\ttfamily \label{kernel_8hpp_af32989639aecb5479b4239639fd133f7} 
 \+\#define TK\+\_\+\+TIME\+\_\+\+SLICE\+\_\+\+MS~10u}
 

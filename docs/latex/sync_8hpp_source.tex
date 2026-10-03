@@ -1,144 +1,144 @@
 \doxysection{sync.\+hpp}
-\hypertarget{sync_8hpp_source}{}\label{sync_8hpp_source}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp}}
-\doxymbox{\hyperlink{sync_8hpp}{Go to the documentation of this file.}}
+\label{sync_8hpp_source}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp}}
+\textbf{ [詳解]}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{kernel_8hpp}{kernel.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}kernel.hpp"{}}}
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cstdint>}}
 \DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacetk}{tk}}\ \{}
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }tk\ \{}
 \DoxyCodeLine{00007\ }
-\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classtk_1_1_semaphore_a66c5ac90338a6fcc6a9c2f22f1586de8}{Semaphore}}\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }Semaphore\ \{}
 \DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{classtk_1_1_semaphore_a66c5ac90338a6fcc6a9c2f22f1586de8}{Semaphore}}(int32\_t\ initial\_count\ =\ 1,\ int32\_t\ max\_count\ =\ 1)}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{explicit}\ Semaphore(int32\_t\ initial\_count\ =\ 1,\ int32\_t\ max\_count\ =\ 1)}
 \DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ :\ count\_(initial\_count),\ max\_count\_(max\_count)\ \{\}}
 \DoxyCodeLine{00033\ }
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classtk_1_1_semaphore_a863ccee07bc701a78342c14503955d73}{acquire}}()\ \{}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ acquire()\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ detail::sched\_lock();}
 \DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (count\_\ <=\ 0)\ \{}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ slot\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a73a80d92a172d565201f99e8f31278e4}{detail::current\_task\_slot}}();}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ wait\_mask\_\ |=\ (\doxymbox{\hyperlink{namespacetk_add371a241ec6c1695ef4e67935317edd}{task\_mask\_t}}\{1\}\ <<\ slot);}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a400363f36b5fb5dfc8aec11334471d0d}{detail::block\_current\_task\_locked}}();}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ slot\ =\ detail::current\_task\_slot();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ wait\_mask\_\ |=\ (task\_mask\_t\{1\}\ <<\ slot);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ detail::block\_current\_task\_locked();}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ detail::sched\_unlock(save);}
 \DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 他タスクから\ release()\ されて再開したら再チェック}}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ save\ =\ detail::sched\_lock();}
 \DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ count\_-\/-\/;}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ detail::sched\_unlock(save);}
 \DoxyCodeLine{00051\ \ \ \ \ \}}
 \DoxyCodeLine{00052\ }
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{classtk_1_1_semaphore_a3a246c8afc866dc438186d0a53cad5c2}{try\_acquire}}()\ \{}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{bool}\ try\_acquire()\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ detail::sched\_lock();}
 \DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ success\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\_\ >\ 0)\ \{}
 \DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ count\_-\/-\/;}
 \DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ \textcolor{keyword}{true};}
 \DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ detail::sched\_unlock(save);}
 \DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ success;}
 \DoxyCodeLine{00068\ \ \ \ \ \}}
 \DoxyCodeLine{00069\ }
-\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classtk_1_1_semaphore_a7bb8eb8b0bd69b2f6b0a4d89d0f5b07b}{release}}()\ \{}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ release()\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ detail::sched\_lock();}
 \DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\_\ <\ max\_count\_)\ \{}
 \DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ count\_++;}
 \DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (wait\_mask\_\ !=\ 0)\ \{}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ slot\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a70ba35e0daee086ad86770f1e39c9b35}{detail::find\_highest\_prio\_waiter}}(wait\_mask\_);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ slot\ =\ detail::find\_highest\_prio\_waiter(wait\_mask\_);}
 \DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (slot\ !=\ 0xFF)\ \{}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wait\_mask\_\ \&=\ \string~(\doxymbox{\hyperlink{namespacetk_add371a241ec6c1695ef4e67935317edd}{task\_mask\_t}}\{1\}\ <<\ slot);}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_ab19385598f18560cb574cc86174ececa}{detail::wake\_task\_locked}}(\doxymbox{\hyperlink{structtk_1_1_task_handle}{TaskHandle}}\{slot\});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wait\_mask\_\ \&=\ \string~(task\_mask\_t\{1\}\ <<\ slot);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detail::wake\_task\_locked(TaskHandle\{slot\});}
 \DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ detail::sched\_unlock(save);}
 \DoxyCodeLine{00086\ \ \ \ \ \}}
 \DoxyCodeLine{00087\ }
-\DoxyCodeLine{00089\ \ \ \ \ int32\_t\ \doxymbox{\hyperlink{classtk_1_1_semaphore_ae53b9c57cc25fafb242a21776f112701}{count}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00089\ \ \ \ \ int32\_t\ count()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ detail::sched\_lock();}
 \DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ int32\_t\ c\ =\ count\_;}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ detail::sched\_unlock(save);}
 \DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ c;}
 \DoxyCodeLine{00094\ \ \ \ \ \}}
 \DoxyCodeLine{00095\ }
 \DoxyCodeLine{00096\ \textcolor{keyword}{private}:}
 \DoxyCodeLine{00097\ \ \ \ \ int32\_t\ count\_;}
 \DoxyCodeLine{00098\ \ \ \ \ int32\_t\ max\_count\_;}
-\DoxyCodeLine{00099\ \ \ \ \ \doxymbox{\hyperlink{namespacetk_add371a241ec6c1695ef4e67935317edd}{task\_mask\_t}}\ wait\_mask\_\{0\};}
+\DoxyCodeLine{00099\ \ \ \ \ task\_mask\_t\ wait\_mask\_\{0\};}
 \DoxyCodeLine{00100\ \};}
 \DoxyCodeLine{00101\ }
-\DoxyCodeLine{00105\ \textcolor{keyword}{using\ }\doxymbox{\hyperlink{namespacetk_ab1f2fa3d79e99f13610bd330a0df928b}{BinarySemaphore}}\ =\ \doxymbox{\hyperlink{classtk_1_1_semaphore}{Semaphore}};}
+\DoxyCodeLine{00105\ \textcolor{keyword}{using\ }BinarySemaphore\ =\ Semaphore;}
 \DoxyCodeLine{00106\ }
-\DoxyCodeLine{00123\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classtk_1_1_mutex_a8b17431db60f4ab48a3859b2ca722eb1}{Mutex}}\ \{}
+\DoxyCodeLine{00123\ \textcolor{keyword}{class\ }Mutex\ \{}
 \DoxyCodeLine{00124\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00125\ \ \ \ \ \doxymbox{\hyperlink{classtk_1_1_mutex_a8b17431db60f4ab48a3859b2ca722eb1}{Mutex}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00125\ \ \ \ \ Mutex()\ =\ \textcolor{keywordflow}{default};}
 \DoxyCodeLine{00126\ }
-\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classtk_1_1_mutex_a7f5645bba55df2db263f92a954802c27}{lock}}()\ \{}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ uint8\_t\ my\_slot\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a73a80d92a172d565201f99e8f31278e4}{detail::current\_task\_slot}}();}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{void}\ lock()\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ detail::sched\_lock();}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ uint8\_t\ my\_slot\ =\ detail::current\_task\_slot();}
 \DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (locked\_)\ \{}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ wait\_mask\_\ |=\ (\doxymbox{\hyperlink{namespacetk_add371a241ec6c1695ef4e67935317edd}{task\_mask\_t}}\{1\}\ <<\ my\_slot);}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a400363f36b5fb5dfc8aec11334471d0d}{detail::block\_current\_task\_locked}}();}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ wait\_mask\_\ |=\ (task\_mask\_t\{1\}\ <<\ my\_slot);}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ detail::block\_current\_task\_locked();}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ detail::sched\_unlock(save);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ save\ =\ detail::sched\_lock();}
 \DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ locked\_\ =\ \textcolor{keyword}{true};}
 \DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ owner\_slot\_\ =\ my\_slot;}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ detail::sched\_unlock(save);}
 \DoxyCodeLine{00144\ \ \ \ \ \}}
 \DoxyCodeLine{00145\ }
-\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{classtk_1_1_mutex_a666dd03fb22c5cb855e3145f76a58b9c}{try\_lock}}()\ \{}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ uint8\_t\ my\_slot\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a73a80d92a172d565201f99e8f31278e4}{detail::current\_task\_slot}}();}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{bool}\ try\_lock()\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ detail::sched\_lock();}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ uint8\_t\ my\_slot\ =\ detail::current\_task\_slot();}
 \DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ success\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!locked\_)\ \{}
 \DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ locked\_\ =\ \textcolor{keyword}{true};}
 \DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ owner\_slot\_\ =\ my\_slot;}
 \DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ \textcolor{keyword}{true};}
 \DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ detail::sched\_unlock(save);}
 \DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ success;}
 \DoxyCodeLine{00163\ \ \ \ \ \}}
 \DoxyCodeLine{00164\ }
-\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classtk_1_1_mutex_ae8d5dfd5655b5aa54d63db6e0cf2f707}{unlock}}()\ \{}
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ uint8\_t\ my\_slot\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a73a80d92a172d565201f99e8f31278e4}{detail::current\_task\_slot}}();}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{void}\ unlock()\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ detail::sched\_lock();}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ uint8\_t\ my\_slot\ =\ detail::current\_task\_slot();}
 \DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (locked\_\ \&\&\ owner\_slot\_\ ==\ my\_slot)\ \{}
 \DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ locked\_\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ owner\_slot\_\ =\ 0xFF;}
 \DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (wait\_mask\_\ !=\ 0)\ \{}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ slot\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a70ba35e0daee086ad86770f1e39c9b35}{detail::find\_highest\_prio\_waiter}}(wait\_mask\_);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ slot\ =\ detail::find\_highest\_prio\_waiter(wait\_mask\_);}
 \DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (slot\ !=\ 0xFF)\ \{}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wait\_mask\_\ \&=\ \string~(\doxymbox{\hyperlink{namespacetk_add371a241ec6c1695ef4e67935317edd}{task\_mask\_t}}\{1\}\ <<\ slot);}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_ab19385598f18560cb574cc86174ececa}{detail::wake\_task\_locked}}(\doxymbox{\hyperlink{structtk_1_1_task_handle}{TaskHandle}}\{slot\});}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wait\_mask\_\ \&=\ \string~(task\_mask\_t\{1\}\ <<\ slot);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detail::wake\_task\_locked(TaskHandle\{slot\});}
 \DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ detail::sched\_unlock(save);}
 \DoxyCodeLine{00186\ \ \ \ \ \}}
 \DoxyCodeLine{00187\ }
-\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{classtk_1_1_mutex_acf574e35540879481f1f6e5452a504ab}{is\_locked}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ \doxymbox{\hyperlink{namespacetk_1_1detail_a5b8fa6406a867edf8c4410fcb03c6523}{detail::sched\_lock}}();}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_locked()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ uint32\_t\ save\ =\ detail::sched\_lock();}
 \DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ lk\ =\ locked\_;}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacetk_1_1detail_a80be9b2429346faf161eab01f595684b}{detail::sched\_unlock}}(save);}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ detail::sched\_unlock(save);}
 \DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lk;}
 \DoxyCodeLine{00194\ \ \ \ \ \}}
 \DoxyCodeLine{00195\ }
 \DoxyCodeLine{00196\ \textcolor{keyword}{private}:}
 \DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{bool}\ locked\_\{\textcolor{keyword}{false}\};}
 \DoxyCodeLine{00198\ \ \ \ \ uint8\_t\ owner\_slot\_\{0xFF\};}
-\DoxyCodeLine{00199\ \ \ \ \ \doxymbox{\hyperlink{namespacetk_add371a241ec6c1695ef4e67935317edd}{task\_mask\_t}}\ wait\_mask\_\{0\};}
+\DoxyCodeLine{00199\ \ \ \ \ task\_mask\_t\ wait\_mask\_\{0\};}
 \DoxyCodeLine{00200\ \};}
 \DoxyCodeLine{00201\ }
 \DoxyCodeLine{00210\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Lockable>}
-\DoxyCodeLine{00211\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classtk_1_1_lock_guard_a3a922c7edf84ce25ef67151c322bb0eb}{LockGuard}}\ \{}
+\DoxyCodeLine{00211\ \textcolor{keyword}{class\ }LockGuard\ \{}
 \DoxyCodeLine{00212\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{classtk_1_1_lock_guard_a3a922c7edf84ce25ef67151c322bb0eb}{LockGuard}}(Lockable\&\ m)\ :\ m\_(m)\ \{\ m\_.lock();\ \}}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{explicit}\ LockGuard(Lockable\&\ m)\ :\ m\_(m)\ \{\ m\_.lock();\ \}}
 \DoxyCodeLine{00218\ }
-\DoxyCodeLine{00220\ \ \ \ \ \doxymbox{\hyperlink{classtk_1_1_lock_guard_a52eeb50abee00bd0ed16cfa6618ce40f}{\string~LockGuard}}()\ \{\ m\_.unlock();\ \}}
+\DoxyCodeLine{00220\ \ \ \ \ \string~LockGuard()\ \{\ m\_.unlock();\ \}}
 \DoxyCodeLine{00221\ }
-\DoxyCodeLine{00222\ \ \ \ \ \doxymbox{\hyperlink{classtk_1_1_lock_guard_af9bc86bc2036c4b8e54633ddee811604}{LockGuard}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classtk_1_1_lock_guard_a3a922c7edf84ce25ef67151c322bb0eb}{LockGuard}}\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00223\ \ \ \ \ \doxymbox{\hyperlink{classtk_1_1_lock_guard_a3a922c7edf84ce25ef67151c322bb0eb}{LockGuard}}\&\ \doxymbox{\hyperlink{classtk_1_1_lock_guard_a3f121f8aa1307f0f6e6e608cf138340c}{operator=}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classtk_1_1_lock_guard_a3a922c7edf84ce25ef67151c322bb0eb}{LockGuard}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00222\ \ \ \ \ LockGuard(\textcolor{keyword}{const}\ LockGuard\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00223\ \ \ \ \ LockGuard\&\ operator=(\textcolor{keyword}{const}\ LockGuard\&)\ =\ \textcolor{keyword}{delete};}
 \DoxyCodeLine{00224\ }
 \DoxyCodeLine{00225\ \textcolor{keyword}{private}:}
 \DoxyCodeLine{00226\ \ \ \ \ Lockable\&\ m\_;}

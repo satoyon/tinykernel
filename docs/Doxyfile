@@ -93,7 +93,7 @@ ALLOW_UNICODE_NAMES    = NO
 # Slovene, Spanish, Swedish, Turkish, UkrainianとVietnamese.
 # デフォルト値は English です。
 
-OUTPUT_LANGUAGE        = English
+OUTPUT_LANGUAGE        = Japanese
 
 # BRIEF_MEMBER_DESC タグが YES
 # に設定されている場合、Doxygenはファイルおよびクラスのドキュメントにリストされているメンバーの後に概要説明を含めます（ Javadoc
@@ -1752,7 +1752,7 @@ LATEX_OUTPUT           = latex
 # によって上書きされます。特定の出力言語では、デフォルトが異なって設定されている可能性があり、これは出力言語の実装に依存します。
 # このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
 
-LATEX_CMD_NAME         =
+LATEX_CMD_NAME         = xelatex
 
 # MAKEINDEX_CMD_NAME タグを使用して、LaTeXのインデックスを生成するコマンド名を指定できます。
 # 注: このタグはMakefile / make.batで使用されます。
@@ -1838,7 +1838,7 @@ LATEX_EXTRA_FILES      =
 # デフォルト値は YES です。
 # このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
 
-PDF_HYPERLINKS         = YES
+PDF_HYPERLINKS         = NO
 
 # USE_PDFLATEX タグが YES に設定されている場合、DoxygenはLATEX_CMD_NAMEで指定されたエンジンを使用して、LaTeXファ
 # イルから直接PDFファイルを生成します。より高品質のPDFドキュメントを取得するには、このオプションを YES に設定します。
@@ -1847,7 +1847,7 @@ PDF_HYPERLINKS         = YES
 # デフォルト値は YES です。
 # このタグはタグ GENERATE_LATEX を YES に設定する必要があります。
 
-USE_PDFLATEX           = YES
+USE_PDFLATEX           = NO
 
 # LATEX_BATCHMODE タグは、エラーが発生した場合のLaTeXの動作を制御します。
 # 可能な値は:NO ERROR_STOPと同じ, YES BATCHと同じ, BATCH バッチモードでは端末に何も印刷されず、エラーは各エラーで<retur
@@ -1981,7 +1981,7 @@ MAN_LINKS              = NO
 # に設定されている場合、Doxygenはすべてのドキュメントを含むコードの構造を記録したXMLファイルを生成します。
 # デフォルト値は NO です。
 
-GENERATE_XML           = NO
+GENERATE_XML           = YES
 
 # XML_OUTPUT
 # タグは、XMLページが配置される場所を指定するために使用されます。相対パスが入力された場合、OUTPUT_DIRECTORYの値がその前に配置されます。

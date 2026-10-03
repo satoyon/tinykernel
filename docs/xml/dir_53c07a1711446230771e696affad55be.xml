@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="dir_53c07a1711446230771e696affad55be" kind="dir">
+    <compoundname>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel</compoundname>
+    <innerfile refid="actor_8hpp">actor.hpp</innerfile>
+    <innerfile refid="kernel_8hpp">kernel.hpp</innerfile>
+    <innerfile refid="sync_8hpp">sync.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,475 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="namespacetk" kind="namespace" language="C++">
+    <compoundname>tk</compoundname>
+    <innerclass refid="classtk_1_1_actor" prot="public">tk::Actor</innerclass>
+    <innerclass refid="classtk_1_1_event_hub" prot="public">tk::EventHub</innerclass>
+    <innerclass refid="classtk_1_1_lock_guard" prot="public">tk::LockGuard</innerclass>
+    <innerclass refid="structtk_1_1_message" prot="public">tk::Message</innerclass>
+    <innerclass refid="classtk_1_1_mutex" prot="public">tk::Mutex</innerclass>
+    <innerclass refid="classtk_1_1_preempt_guard" prot="public">tk::PreemptGuard</innerclass>
+    <innerclass refid="classtk_1_1_semaphore" prot="public">tk::Semaphore</innerclass>
+    <innerclass refid="structtk_1_1_task_handle" prot="public">tk::TaskHandle</innerclass>
+    <innernamespace refid="namespacetk_1_1detail">tk::detail</innernamespace>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50e" prot="public" static="no" strong="no">
+        <type>uint32_t</type>
+        <name>Prio</name>
+        <qualifiedname>tk::Prio</qualifiedname>
+        <enumvalue id="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50eabbefd771d1fb2ac0708c1bd5371e5a75" prot="public">
+          <name>PRIO_REALTIME</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>リアルタイム最優先 </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50ea614240a3a3fc1094c6daa0fdca92ba37" prot="public">
+          <name>PRIO_HIGH</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+<para>高優先度 </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca" prot="public">
+          <name>PRIO_NORMAL</name>
+          <initializer>= 9</initializer>
+          <briefdescription>
+<para>通常優先度 (デフォルト) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50eacf084edcfe985b77c205a37c3bd60519" prot="public">
+          <name>PRIO_LOW</name>
+          <initializer>= 13</initializer>
+          <briefdescription>
+<para>低優先度 </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>タスクの優先度レベル </para>
+        </briefdescription>
+        <detaileddescription>
+<para>数値が小さいほど高優先度です。0..15 の範囲で指定します (15 はアイドルタスク専用)。 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="39" column="1" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" bodystart="39" bodyend="44"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="namespacetk_1a8908cf1e54cdc4e14ac3003126722cfc" prot="public" static="no">
+        <type>void(*)(void *arg)</type>
+        <definition>using tk::TaskFn = void (*)(void* arg)</definition>
+        <argsstring></argsstring>
+        <name>TaskFn</name>
+        <qualifiedname>tk::TaskFn</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>タスク関数のシグネチャ (void func(void* arg)) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="32" column="1" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacetk_1add371a241ec6c1695ef4e67935317edd" prot="public" static="no">
+        <type>uint32_t</type>
+        <definition>using tk::task_mask_t = uint32_t</definition>
+        <argsstring></argsstring>
+        <name>task_mask_t</name>
+        <qualifiedname>tk::task_mask_t</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="165" column="1" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacetk_1ab1f2fa3d79e99f13610bd330a0df928b" prot="public" static="no">
+        <type><ref refid="classtk_1_1_semaphore" kindref="compound">Semaphore</ref></type>
+        <definition>using tk::BinarySemaphore = Semaphore</definition>
+        <argsstring></argsstring>
+        <name>BinarySemaphore</name>
+        <qualifiedname>tk::BinarySemaphore</qualifiedname>
+        <briefdescription>
+<para>バイナリセマフォ (初期値1, 最大1) の型エイリアス </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="105" column="1" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="105" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacetk_1a083495c9bf857a63f6c20a20aac0ca52" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename MsgType</type>
+          </param>
+        </templateparamlist>
+        <type>size_t</type>
+        <definition>size_t tk::publish</definition>
+        <argsstring>(const MsgType &amp;msg)</argsstring>
+        <name>publish</name>
+        <qualifiedname>tk::publish</qualifiedname>
+        <param>
+          <type>const MsgType &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>メッセージの型を指定して、購読しているすべての <ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> へ同報配信します </para>
+        </briefdescription>
+        <detaileddescription>
+<para>送信側は <ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> のインスタンスや名前を知る必要がありません (完全疎結合)。 メッセージの実体は各 <ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> のキューへ値コピーされるため、スタック上のローカル変数でも安全に渡せます。</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>MsgType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>配信するメッセージ型 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>送信するメッセージ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>size_t 配信に成功した <ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> の数</para>
+</simplesect>
+<programlisting><codeline><highlight class="normal">MyEvent<sp/>ev{1,<sp/></highlight><highlight class="stringliteral">&quot;Button<sp/>Pressed&quot;</highlight><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="namespacetk_1a083495c9bf857a63f6c20a20aac0ca52" kindref="member">tk::publish</ref>(ev);<sp/></highlight><highlight class="comment">//<sp/>MyEvent<sp/>を受け付けるすべての<sp/>Actor<sp/>に届く</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="135" column="15" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="135" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1a5549bec310750722a1964de1145b9fed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t tk::publish</definition>
+        <argsstring>(uint32_t id, uintptr_t arg=0)</argsstring>
+        <name>publish</name>
+        <qualifiedname>tk::publish</qualifiedname>
+        <param>
+          <type>uint32_t</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>uintptr_t</type>
+          <declname>arg</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para><ref refid="structtk_1_1_message" kindref="compound">tk::Message</ref> 型の同報配信ショートカット </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージID </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>引数 (省略時: 0) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>size_t 配信に成功した <ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> の数 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="146" column="15" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="146" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1a6e721332f5a7d85998345ed218de7394" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structtk_1_1_task_handle" kindref="compound">TaskHandle</ref></type>
+        <definition>tk::TaskHandle tk::create</definition>
+        <argsstring>(TaskFn fn, void *arg=nullptr, uint32_t prio=PRIO_NORMAL)</argsstring>
+        <name>create</name>
+        <qualifiedname>tk::create</qualifiedname>
+        <param>
+          <type><ref refid="namespacetk_1a8908cf1e54cdc4e14ac3003126722cfc" kindref="member">TaskFn</ref></type>
+          <declname>fn</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>arg</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>prio</declname>
+          <defval><ref refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca" kindref="member">PRIO_NORMAL</ref></defval>
+        </param>
+        <briefdescription>
+<para>タスクを生成・登録します </para>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="namespacetk_1a675f1829b87e2a43239b6f80a526d0ed" kindref="member">tk::start()</ref> を呼び出す前に登録する必要があります。</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>タスク関数ポインタ (void (*)(void* arg)) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>タスク関数に渡すユーザー引数ポインタ (省略時: nullptr) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>タスクの優先度 (省略時: <ref refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca" kindref="member">tk::PRIO_NORMAL</ref>) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structtk_1_1_task_handle" kindref="compound">TaskHandle</ref> 生成されたタスクのハンドル。登録失敗時は is_valid() が false </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="66" column="12" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="204" bodyend="220" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="66" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1a675f1829b87e2a43239b6f80a526d0ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::start</definition>
+        <argsstring>()</argsstring>
+        <name>start</name>
+        <qualifiedname>tk::start</qualifiedname>
+        <briefdescription>
+<para>tinykernel スケジューラを起動します </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Core 0 のスケジューラを開始し、Core 1 を自動ブートしてデュアルコア並行実行を開始します。 この関数から制御が戻ることはありません (Never returns)。 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="74" column="6" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="247" bodyend="274" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="74" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1a8081956b0a19b87d5b7c81b772373397" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::yield</definition>
+        <argsstring>()</argsstring>
+        <name>yield</name>
+        <qualifiedname>tk::yield</qualifiedname>
+        <briefdescription>
+<para>現在実行中のタスクを一時中断し、同優先度の他のタスクへ CPU を譲渡します </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>タスクコンテキスト内から呼び出す必要があります。 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="81" column="6" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="276" bodyend="282" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="81" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1aae83f84121085578a7568437a8dc2447" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::sleep_ms</definition>
+        <argsstring>(uint32_t ms)</argsstring>
+        <name>sleep_ms</name>
+        <qualifiedname>tk::sleep_ms</qualifiedname>
+        <param>
+          <type>uint32_t</type>
+          <declname>ms</declname>
+        </param>
+        <briefdescription>
+<para>現在のタスクを指定時間スリープさせます </para>
+        </briefdescription>
+        <detaileddescription>
+<para>スリープ中はタスクが休止状態になり、CPU は他のタスクへ自動的に割り当てられます (CPU消費ゼロ)。</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>スリープする時間 (ミリ秒) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>タスクコンテキスト内から呼び出す必要があります。 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="91" column="6" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="284" bodyend="296" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="91" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1aba50cfc62cb8be71cf96df7f495a7a3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::exit</definition>
+        <argsstring>(int code=0)</argsstring>
+        <name>exit</name>
+        <qualifiedname>tk::exit</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>code</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>現在のタスクを終了・破棄します </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>code</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>終了コード (予約用、省略時: 0) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>タスク関数の末尾に到達した場合は自動的に呼ばれます。 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="99" column="6" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="298" bodyend="306" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="99" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1a46e15375fba47cbd1a93278f17e77848" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t tk::now_ms</definition>
+        <argsstring>()</argsstring>
+        <name>now_ms</name>
+        <qualifiedname>tk::now_ms</qualifiedname>
+        <briefdescription>
+<para>システム起動時からの経過時間をミリ秒単位で取得します </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>uint64_t 経過ミリ秒数 (分解能: 1 / TK_TICKS_PER_SEC 秒) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="106" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="312" bodyend="314" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="106" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1a6540aa25eb8562f6d6c8b37977d6cfe8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tk::lock</definition>
+        <argsstring>()</argsstring>
+        <name>lock</name>
+        <qualifiedname>tk::lock</qualifiedname>
+        <briefdescription>
+<para>ハードウェアスピンロックと全割り込み禁止によるクリティカルセクションに入ります </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true 呼び出し前の割り込みが有効だった場合 </para>
+</simplesect>
+<simplesect kind="return"><para>false 呼び出し前の割り込みが無効だった場合 </para>
+</simplesect>
+<simplesect kind="warning"><para>長時間のロックは避けてください。数マイクロ秒以内のレジスタ操作等に使用します。 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="115" column="6" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="316" bodyend="319" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="115" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1a752b12f6862815c94a52347af52578b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::unlock</definition>
+        <argsstring>(bool was_enabled)</argsstring>
+        <name>unlock</name>
+        <qualifiedname>tk::unlock</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>was_enabled</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="namespacetk_1a6540aa25eb8562f6d6c8b37977d6cfe8" kindref="member">tk::lock()</ref> で入ったクリティカルセクションを抜けます </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>was_enabled</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="namespacetk_1a6540aa25eb8562f6d6c8b37977d6cfe8" kindref="member">tk::lock()</ref> の戻り値 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="122" column="6" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="321" bodyend="323" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="122" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1a3254a7e2a9f5ed3abe44e8cf62a8dcfe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::preempt_disable</definition>
+        <argsstring>()</argsstring>
+        <name>preempt_disable</name>
+        <qualifiedname>tk::preempt_disable</qualifiedname>
+        <briefdescription>
+<para>自コアのタスクスイッチ (プリエンプション) を一時的に禁止します </para>
+        </briefdescription>
+        <detaileddescription>
+<para>割り込み (SysTick やタイマー、NVIC) は停止しないため、通信クロックや時刻更新を 阻害することなく、自タスクの処理をアトミックに実行できます。ネスト (入れ子) 呼び出しに対応しています。</para>
+<para><simplesect kind="see"><para><ref refid="classtk_1_1_preempt_guard" kindref="compound">tk::PreemptGuard</ref>, <ref refid="namespacetk_1a70e6ee5f456e67a24ce13ff0fd04e4d9" kindref="member">tk::preempt_enable()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="132" column="6" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="369" bodyend="374" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="132" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetk_1a70e6ee5f456e67a24ce13ff0fd04e4d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::preempt_enable</definition>
+        <argsstring>()</argsstring>
+        <name>preempt_enable</name>
+        <qualifiedname>tk::preempt_enable</qualifiedname>
+        <briefdescription>
+<para>自コアのタスクスイッチ (プリエンプション) を再開します </para>
+        </briefdescription>
+        <detaileddescription>
+<para>ネストカウンタが 0 に戻った時点で、保留されていたタスクスイッチが即座に実行されます。</para>
+<para><simplesect kind="see"><para><ref refid="classtk_1_1_preempt_guard" kindref="compound">tk::PreemptGuard</ref>, <ref refid="namespacetk_1a3254a7e2a9f5ed3abe44e8cf62a8dcfe" kindref="member">tk::preempt_disable()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="141" column="6" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="376" bodyend="386" declfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" declline="141" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="9" column="1"/>
+  </compounddef>
+</doxygen>

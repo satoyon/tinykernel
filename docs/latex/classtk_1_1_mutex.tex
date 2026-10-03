@@ -1,5 +1,5 @@
-\doxysection{tk::Mutex Class Reference}
-\hypertarget{classtk_1_1_mutex}{}\label{classtk_1_1_mutex}\index{tk::Mutex@{tk::Mutex}}
+\doxysection{tk::Mutex クラス}
+\label{classtk_1_1_mutex}\index{tk::Mutex@{tk::Mutex}}
 
 
 所有権・優先度順ウェイクアップ・\+RAII 対応のミューテックス (排他ロック)  
@@ -9,32 +9,32 @@
 
 {\ttfamily \+\#include $<$sync.\+hpp$>$}
 
-\doxysubsubsection*{Public Member Functions}
+\doxysubsubsection*{公開メンバ関数}
 \begin{DoxyCompactItemize}
 \item 
-\doxymbox{\hyperlink{classtk_1_1_mutex_a8b17431db60f4ab48a3859b2ca722eb1}{Mutex}} ()=default
+\textbf{ Mutex} ()=default
 \item 
-void \doxymbox{\hyperlink{classtk_1_1_mutex_a7f5645bba55df2db263f92a954802c27}{lock}} ()
+void \textbf{ lock} ()
 \begin{DoxyCompactList}\small\item\em ミューテックスをロックします (空くまでブロック待機) \end{DoxyCompactList}\item 
-bool \doxymbox{\hyperlink{classtk_1_1_mutex_a666dd03fb22c5cb855e3145f76a58b9c}{try\+\_\+lock}} ()
+bool \textbf{ try\+\_\+lock} ()
 \begin{DoxyCompactList}\small\item\em ミューテックスのロックを試みます (ノンブロッキング) \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{classtk_1_1_mutex_ae8d5dfd5655b5aa54d63db6e0cf2f707}{unlock}} ()
+void \textbf{ unlock} ()
 \begin{DoxyCompactList}\small\item\em ミューテックスのロックを解除します \end{DoxyCompactList}\item 
-bool \doxymbox{\hyperlink{classtk_1_1_mutex_acf574e35540879481f1f6e5452a504ab}{is\+\_\+locked}} () const
+bool \textbf{ is\+\_\+locked} () const
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsection{詳解}
 所有権・優先度順ウェイクアップ・\+RAII 対応のミューテックス (排他ロック) 
 
-共有リソースやペリフェラルへの同時アクセスを防止します。 ロックしたタスク本人以外の誤った {\ttfamily \doxylink{classtk_1_1_mutex_ae8d5dfd5655b5aa54d63db6e0cf2f707}{unlock()}} は安全に無視されます。 C++ の {\ttfamily Basic\+Lockable} を満たしており、{\ttfamily std::\+lock\+\_\+guard} や {\ttfamily \doxylink{classtk_1_1_lock_guard}{tk::\+\+Lock\+Guard}} が利用可能です。
+共有リソースやペリフェラルへの同時アクセスを防止します。 ロックしたタスク本人以外の誤った {\ttfamily \doxyref{unlock()}{p.}{classtk_1_1_mutex_ae8d5dfd5655b5aa54d63db6e0cf2f707}} は安全に無視されます。 C++ の {\ttfamily Basic\+Lockable} を満たしており、{\ttfamily std::\+lock\+\_\+guard} や {\ttfamily \doxyref{tk::\+\+Lock\+Guard}{p.}{classtk_1_1_lock_guard}} が利用可能です。
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{tk::Mutex\ mtx;}
 \DoxyCodeLine{}
 \DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ \ \ tk::LockGuard<tk::Mutex>\ \doxymbox{\hyperlink{classtk_1_1_mutex_a7f5645bba55df2db263f92a954802c27}{lock}}(mtx);}
+\DoxyCodeLine{\ \ \ \ tk::LockGuard<tk::Mutex>\ lock(mtx);}
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ クリティカルセクション...}}
 \DoxyCodeLine{\}\ \textcolor{comment}{//\ 自動でアンロック}}
 
@@ -42,28 +42,26 @@ bool \doxymbox{\hyperlink{classtk_1_1_mutex_acf574e35540879481f1f6e5452a504ab}{i
  
 
 \label{classtk_1_1_mutex_doc-constructors}
-\Hypertarget{classtk_1_1_mutex_doc-constructors}
-\doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classtk_1_1_mutex_a8b17431db60f4ab48a3859b2ca722eb1}\index{tk::Mutex@{tk::Mutex}!Mutex@{Mutex}}
+\doxysubsection{構築子と解体子}
+\index{tk::Mutex@{tk::Mutex}!Mutex@{Mutex}}
 \index{Mutex@{Mutex}!tk::Mutex@{tk::Mutex}}
-\doxysubsubsection{\texorpdfstring{Mutex()}{Mutex()}}
+\doxysubsubsection{Mutex()}
 {\footnotesize\ttfamily \label{classtk_1_1_mutex_a8b17431db60f4ab48a3859b2ca722eb1} 
 tk::\+\+Mutex::\+\+Mutex (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
 
 
 \label{classtk_1_1_mutex_doc-func-members}
-\Hypertarget{classtk_1_1_mutex_doc-func-members}
-\doxysubsection{Member Function Documentation}
-\Hypertarget{classtk_1_1_mutex_acf574e35540879481f1f6e5452a504ab}\index{tk::Mutex@{tk::Mutex}!is\_locked@{is\_locked}}
+\doxysubsection{関数詳解}
+\index{tk::Mutex@{tk::Mutex}!is\_locked@{is\_locked}}
 \index{is\_locked@{is\_locked}!tk::Mutex@{tk::Mutex}}
-\doxysubsubsection{\texorpdfstring{is\_locked()}{is\_locked()}}
+\doxysubsubsection{is\_locked()}
 {\footnotesize\ttfamily \label{classtk_1_1_mutex_acf574e35540879481f1f6e5452a504ab} 
 bool tk::\+\+Mutex::\+is\+\_\+locked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-現在ロックされているかどうかを判定 \Hypertarget{classtk_1_1_mutex_a7f5645bba55df2db263f92a954802c27}\index{tk::Mutex@{tk::Mutex}!lock@{lock}}
+現在ロックされているかどうかを判定 \index{tk::Mutex@{tk::Mutex}!lock@{lock}}
 \index{lock@{lock}!tk::Mutex@{tk::Mutex}}
-\doxysubsubsection{\texorpdfstring{lock()}{lock()}}
+\doxysubsubsection{lock()}
 {\footnotesize\ttfamily \label{classtk_1_1_mutex_a7f5645bba55df2db263f92a954802c27} 
 void tk::\+\+Mutex::\+lock (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -71,9 +69,9 @@ void tk::\+\+Mutex::\+lock (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\
 
 ミューテックスをロックします (空くまでブロック待機) 
 
-他のタスクが保持している場合は、解放されるまで自タスクを {\ttfamily State::\+\+Blocked} にして休止します。 \Hypertarget{classtk_1_1_mutex_a666dd03fb22c5cb855e3145f76a58b9c}\index{tk::Mutex@{tk::Mutex}!try\_lock@{try\_lock}}
+他のタスクが保持している場合は、解放されるまで自タスクを {\ttfamily State::\+\+Blocked} にして休止します。 \index{tk::Mutex@{tk::Mutex}!try\_lock@{try\_lock}}
 \index{try\_lock@{try\_lock}!tk::Mutex@{tk::Mutex}}
-\doxysubsubsection{\texorpdfstring{try\_lock()}{try\_lock()}}
+\doxysubsubsection{try\_lock()}
 {\footnotesize\ttfamily \label{classtk_1_1_mutex_a666dd03fb22c5cb855e3145f76a58b9c} 
 bool tk::\+\+Mutex::\+try\+\_\+lock (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -81,14 +79,14 @@ bool tk::\+\+Mutex::\+try\+\_\+lock (\begin{DoxyParamCaption}{}{}\end{DoxyParamC
 
 ミューテックスのロックを試みます (ノンブロッキング) 
 
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{戻り値}
 true ロック獲得成功 
 
 false 他のタスクが保持しているため獲得失敗 (ブロックせず即座に復帰) 
 \end{DoxyReturn}
-\Hypertarget{classtk_1_1_mutex_ae8d5dfd5655b5aa54d63db6e0cf2f707}\index{tk::Mutex@{tk::Mutex}!unlock@{unlock}}
+\index{tk::Mutex@{tk::Mutex}!unlock@{unlock}}
 \index{unlock@{unlock}!tk::Mutex@{tk::Mutex}}
-\doxysubsubsection{\texorpdfstring{unlock()}{unlock()}}
+\doxysubsubsection{unlock()}
 {\footnotesize\ttfamily \label{classtk_1_1_mutex_ae8d5dfd5655b5aa54d63db6e0cf2f707} 
 void tk::\+\+Mutex::\+unlock (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -98,6 +96,6 @@ void tk::\+\+Mutex::\+unlock (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}
 
 ロックを保持しているタスク本人だけが解除できます。 待機中のタスクが存在する場合、最も優先度が高いタスクを 1 つ起床させます。 
 
-The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+このクラス詳解は次のファイルから抽出されました:\begin{DoxyCompactItemize}
 \item 
-C:\+/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\doxymbox{\hyperlink{sync_8hpp}{sync.\+hpp}}\end{DoxyCompactItemize}
+C:\+/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\textbf{ sync.\+hpp}\end{DoxyCompactItemize}

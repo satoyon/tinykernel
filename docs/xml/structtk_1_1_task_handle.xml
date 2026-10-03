@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="structtk_1_1_task_handle" kind="struct" language="C++" prot="public">
+    <compoundname>tk::TaskHandle</compoundname>
+    <includes refid="kernel_8hpp" local="no">kernel.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtk_1_1_task_handle_1a425e4877384e92ad75fee388bd54a7c3" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t tk::TaskHandle::slot</definition>
+        <argsstring></argsstring>
+        <name>slot</name>
+        <qualifiedname>tk::TaskHandle::slot</qualifiedname>
+        <initializer>{0xFF}</initializer>
+        <briefdescription>
+<para>タスクスロット番号 (0xFF は無効/失敗) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="50" column="13" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtk_1_1_task_handle_1afe8adf95998f82fe6d03a80700ef7927" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tk::TaskHandle::is_valid</definition>
+        <argsstring>() const</argsstring>
+        <name>is_valid</name>
+        <qualifiedname>tk::TaskHandle::is_valid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>ハンドルが有効かどうかを判定 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="53" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" bodystart="53" bodyend="53"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>タスクの識別ハンドル </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" line="49" column="1" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/kernel.hpp" bodystart="49" bodyend="54"/>
+    <listofallmembers>
+      <member refid="structtk_1_1_task_handle_1afe8adf95998f82fe6d03a80700ef7927" prot="public" virt="non-virtual"><scope>tk::TaskHandle</scope><name>is_valid</name></member>
+      <member refid="structtk_1_1_task_handle_1a425e4877384e92ad75fee388bd54a7c3" prot="public" virt="non-virtual"><scope>tk::TaskHandle</scope><name>slot</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

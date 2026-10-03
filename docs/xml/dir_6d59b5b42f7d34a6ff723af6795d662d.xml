@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="dir_6d59b5b42f7d34a6ff723af6795d662d" kind="dir">
+    <compoundname>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port</compoundname>
+    <innerdir refid="dir_98155c543e4e99bbf758f6a26c81127c">C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/"/>
+  </compounddef>
+</doxygen>

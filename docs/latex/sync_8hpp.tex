@@ -1,23 +1,23 @@
-\doxysection{C:/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\+sync.hpp File Reference}
-\hypertarget{sync_8hpp}{}\label{sync_8hpp}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp}}
+\doxysection{C:/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\+sync.hpp ファイル}
+\label{sync_8hpp}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp}}
 {\ttfamily \+\#include "{}kernel.\+hpp"{}}\newline
 {\ttfamily \+\#include $<$cstdint$>$}\newline
-\doxysubsubsection*{Classes}
+\doxysubsubsection*{クラス}
 \begin{DoxyCompactItemize}
 \item 
-class \doxymbox{\hyperlink{classtk_1_1_semaphore}{tk::\+\+Semaphore}}
-\begin{DoxyCompactList}\small\item\em 計数セマフォ (Counting \doxylink{classtk_1_1_semaphore}{Semaphore}) / バイナリセマフォ \end{DoxyCompactList}\item 
-class \doxymbox{\hyperlink{classtk_1_1_mutex}{tk::\+\+Mutex}}
+class \textbf{ tk::\+\+Semaphore}
+\begin{DoxyCompactList}\small\item\em 計数セマフォ (Counting \doxyref{Semaphore}{p.}{classtk_1_1_semaphore}) / バイナリセマフォ \end{DoxyCompactList}\item 
+class \textbf{ tk::\+\+Mutex}
 \begin{DoxyCompactList}\small\item\em 所有権・優先度順ウェイクアップ・\+RAII 対応のミューテックス (排他ロック) \end{DoxyCompactList}\item 
-class \doxymbox{\hyperlink{classtk_1_1_lock_guard}{tk::\+\+Lock\+Guard$<$ Lockable $>$}}
+class \textbf{ tk::\+\+Lock\+Guard$<$ Lockable $>$}
 \begin{DoxyCompactList}\small\item\em ミューテックスのロックをスコープ単位で安全に管理する RAII クラス (std::\+lock\+\_\+guard 相当) \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Namespaces}
+\doxysubsubsection*{名前空間}
 \begin{DoxyCompactItemize}
 \item 
-namespace \doxymbox{\hyperlink{namespacetk}{tk}}
+namespace \textbf{ tk}
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Typedefs}
+\doxysubsubsection*{型定義}
 \begin{DoxyCompactItemize}
 \item 
-using \doxymbox{\hyperlink{namespacetk_ab1f2fa3d79e99f13610bd330a0df928b}{tk::\+\+Binary\+Semaphore}} = \doxymbox{\hyperlink{classtk_1_1_semaphore}{Semaphore}}
+using \textbf{ tk::\+\+Binary\+Semaphore} = \textbf{ Semaphore}
 \begin{DoxyCompactList}\small\item\em バイナリセマフォ (初期値1, 最大1) の型エイリアス \end{DoxyCompactList}\end{DoxyCompactItemize}

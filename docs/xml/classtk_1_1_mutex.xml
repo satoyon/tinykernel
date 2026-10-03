@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="classtk_1_1_mutex" kind="class" language="C++" prot="public">
+    <compoundname>tk::Mutex</compoundname>
+    <includes refid="sync_8hpp" local="no">sync.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtk_1_1_mutex_1af9c0ef5790eb8dd480eafb5b240346c7" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tk::Mutex::locked_</definition>
+        <argsstring></argsstring>
+        <name>locked_</name>
+        <qualifiedname>tk::Mutex::locked_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="197" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="197" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtk_1_1_mutex_1af1e61669758d602826e01ba0504f3c22" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t tk::Mutex::owner_slot_</definition>
+        <argsstring></argsstring>
+        <name>owner_slot_</name>
+        <qualifiedname>tk::Mutex::owner_slot_</qualifiedname>
+        <initializer>{0xFF}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="198" column="13" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="198" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtk_1_1_mutex_1aeac0965733267f9ba05bdb552676670d" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacetk_1add371a241ec6c1695ef4e67935317edd" kindref="member">task_mask_t</ref></type>
+        <definition>task_mask_t tk::Mutex::wait_mask_</definition>
+        <argsstring></argsstring>
+        <name>wait_mask_</name>
+        <qualifiedname>tk::Mutex::wait_mask_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="199" column="17" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="199" bodyend="199"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtk_1_1_mutex_1a8b17431db60f4ab48a3859b2ca722eb1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tk::Mutex::Mutex</definition>
+        <argsstring>()=default</argsstring>
+        <name>Mutex</name>
+        <qualifiedname>tk::Mutex::Mutex</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="125" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_mutex_1a7f5645bba55df2db263f92a954802c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::Mutex::lock</definition>
+        <argsstring>()</argsstring>
+        <name>lock</name>
+        <qualifiedname>tk::Mutex::lock</qualifiedname>
+        <briefdescription>
+<para>ミューテックスをロックします (空くまでブロック待機) </para>
+        </briefdescription>
+        <detaileddescription>
+<para>他のタスクが保持している場合は、解放されるまで自タスクを <computeroutput>State::Blocked</computeroutput> にして休止します。 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="132" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="132" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_mutex_1a666dd03fb22c5cb855e3145f76a58b9c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tk::Mutex::try_lock</definition>
+        <argsstring>()</argsstring>
+        <name>try_lock</name>
+        <qualifiedname>tk::Mutex::try_lock</qualifiedname>
+        <briefdescription>
+<para>ミューテックスのロックを試みます (ノンブロッキング) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true ロック獲得成功 </para>
+</simplesect>
+<simplesect kind="return"><para>false 他のタスクが保持しているため獲得失敗 (ブロックせず即座に復帰) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="152" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="152" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_mutex_1ae8d5dfd5655b5aa54d63db6e0cf2f707" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::Mutex::unlock</definition>
+        <argsstring>()</argsstring>
+        <name>unlock</name>
+        <qualifiedname>tk::Mutex::unlock</qualifiedname>
+        <briefdescription>
+<para>ミューテックスのロックを解除します </para>
+        </briefdescription>
+        <detaileddescription>
+<para>ロックを保持しているタスク本人だけが解除できます。 待機中のタスクが存在する場合、最も優先度が高いタスクを 1 つ起床させます。 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="171" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="171" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_mutex_1acf574e35540879481f1f6e5452a504ab" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tk::Mutex::is_locked</definition>
+        <argsstring>() const</argsstring>
+        <name>is_locked</name>
+        <qualifiedname>tk::Mutex::is_locked</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>現在ロックされているかどうかを判定 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="189" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="189" bodyend="194"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>所有権・優先度順ウェイクアップ・RAII 対応のミューテックス (排他ロック) </para>
+    </briefdescription>
+    <detaileddescription>
+<para>共有リソースやペリフェラルへの同時アクセスを防止します。 ロックしたタスク本人以外の誤った <computeroutput><ref refid="classtk_1_1_mutex_1ae8d5dfd5655b5aa54d63db6e0cf2f707" kindref="member">unlock()</ref></computeroutput> は安全に無視されます。 C++ の <computeroutput>BasicLockable</computeroutput> を満たしており、<computeroutput>std::lock_guard</computeroutput> や <computeroutput><ref refid="classtk_1_1_lock_guard" kindref="compound">tk::LockGuard</ref></computeroutput> が利用可能です。</para>
+<para><programlisting><codeline><highlight class="normal">tk::Mutex<sp/>mtx;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tk::LockGuard&lt;tk::Mutex&gt;<sp/><ref refid="classtk_1_1_mutex_1a7f5645bba55df2db263f92a954802c27" kindref="member">lock</ref>(mtx);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>クリティカルセクション...</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>自動でアンロック</highlight></codeline>
+</programlisting> </para>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" line="123" column="1" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/sync.hpp" bodystart="123" bodyend="200"/>
+    <listofallmembers>
+      <member refid="classtk_1_1_mutex_1acf574e35540879481f1f6e5452a504ab" prot="public" virt="non-virtual"><scope>tk::Mutex</scope><name>is_locked</name></member>
+      <member refid="classtk_1_1_mutex_1a7f5645bba55df2db263f92a954802c27" prot="public" virt="non-virtual"><scope>tk::Mutex</scope><name>lock</name></member>
+      <member refid="classtk_1_1_mutex_1af9c0ef5790eb8dd480eafb5b240346c7" prot="private" virt="non-virtual"><scope>tk::Mutex</scope><name>locked_</name></member>
+      <member refid="classtk_1_1_mutex_1a8b17431db60f4ab48a3859b2ca722eb1" prot="public" virt="non-virtual"><scope>tk::Mutex</scope><name>Mutex</name></member>
+      <member refid="classtk_1_1_mutex_1af1e61669758d602826e01ba0504f3c22" prot="private" virt="non-virtual"><scope>tk::Mutex</scope><name>owner_slot_</name></member>
+      <member refid="classtk_1_1_mutex_1a666dd03fb22c5cb855e3145f76a58b9c" prot="public" virt="non-virtual"><scope>tk::Mutex</scope><name>try_lock</name></member>
+      <member refid="classtk_1_1_mutex_1ae8d5dfd5655b5aa54d63db6e0cf2f707" prot="public" virt="non-virtual"><scope>tk::Mutex</scope><name>unlock</name></member>
+      <member refid="classtk_1_1_mutex_1aeac0965733267f9ba05bdb552676670d" prot="private" virt="non-virtual"><scope>tk::Mutex</scope><name>wait_mask_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

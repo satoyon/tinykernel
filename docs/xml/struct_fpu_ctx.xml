@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="struct_fpu_ctx" kind="struct" language="C++" prot="public">
+    <compoundname>FpuCtx</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_fpu_ctx_1ad2c3227e92b86055b7c97fbd0ee5c445" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float FpuCtx::s[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>s</name>
+        <qualifiedname>FpuCtx::s</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" line="12" column="11" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" line="11" column="1" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="11" bodyend="13"/>
+    <listofallmembers>
+      <member refid="struct_fpu_ctx_1ad2c3227e92b86055b7c97fbd0ee5c445" prot="public" virt="non-virtual"><scope>FpuCtx</scope><name>s</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

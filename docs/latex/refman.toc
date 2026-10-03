@@ -1,0 +1,148 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}ディレクトリ索引}{1}{}%
+\contentsline {section}{\numberline {1.1}ディレクトリ}{1}{}%
+\contentsline {chapter}{\numberline {2}名前空間索引}{3}{}%
+\contentsline {section}{\numberline {2.1}名前空間一覧}{3}{}%
+\contentsline {chapter}{\numberline {3}クラス索引}{5}{}%
+\contentsline {section}{\numberline {3.1}クラス一覧}{5}{}%
+\contentsline {chapter}{\numberline {4}ファイル索引}{7}{}%
+\contentsline {section}{\numberline {4.1}ファイル一覧}{7}{}%
+\contentsline {chapter}{\numberline {5}ディレクトリ詳解}{9}{}%
+\contentsline {section}{\numberline {5.1}C:/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}yoneda/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pico\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}include ディレクトリリファレンス}{9}{}%
+\contentsline {section}{\numberline {5.2}C:/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}yoneda/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pico\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}port/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}m33 ディレクトリリファレンス}{9}{}%
+\contentsline {section}{\numberline {5.3}C:/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}yoneda/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pico\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}port ディレクトリリファレンス}{9}{}%
+\contentsline {section}{\numberline {5.4}C:/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}yoneda/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pico\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src ディレクトリリファレンス}{9}{}%
+\contentsline {section}{\numberline {5.5}C:/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}yoneda/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pico\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel ディレクトリリファレンス}{10}{}%
+\contentsline {section}{\numberline {5.6}C:/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}yoneda/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pico\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel ディレクトリリファレンス}{10}{}%
+\contentsline {chapter}{\numberline {6}名前空間詳解}{11}{}%
+\contentsline {section}{\numberline {6.1}tk 名前空間}{11}{}%
+\contentsline {subsection}{\numberline {6.1.1}型定義詳解}{12}{}%
+\contentsline {subsubsection}{\numberline {6.1.1.1}BinarySemaphore}{12}{}%
+\contentsline {subsubsection}{\numberline {6.1.1.2}task\_mask\_t}{12}{}%
+\contentsline {subsubsection}{\numberline {6.1.1.3}TaskFn}{13}{}%
+\contentsline {subsection}{\numberline {6.1.2}列挙型詳解}{13}{}%
+\contentsline {subsubsection}{\numberline {6.1.2.1}Prio}{13}{}%
+\contentsline {subsection}{\numberline {6.1.3}関数詳解}{13}{}%
+\contentsline {subsubsection}{\numberline {6.1.3.1}create()}{13}{}%
+\contentsline {subsubsection}{\numberline {6.1.3.2}exit()}{13}{}%
+\contentsline {subsubsection}{\numberline {6.1.3.3}lock()}{14}{}%
+\contentsline {subsubsection}{\numberline {6.1.3.4}now\_ms()}{14}{}%
+\contentsline {subsubsection}{\numberline {6.1.3.5}preempt\_disable()}{14}{}%
+\contentsline {subsubsection}{\numberline {6.1.3.6}preempt\_enable()}{15}{}%
+\contentsline {subsubsection}{\numberline {6.1.3.7}publish()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{15}{}%
+\contentsline {subsubsection}{\numberline {6.1.3.8}publish()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{15}{}%
+\contentsline {subsubsection}{\numberline {6.1.3.9}sleep\_ms()}{16}{}%
+\contentsline {subsubsection}{\numberline {6.1.3.10}start()}{16}{}%
+\contentsline {subsubsection}{\numberline {6.1.3.11}unlock()}{16}{}%
+\contentsline {subsubsection}{\numberline {6.1.3.12}yield()}{17}{}%
+\contentsline {section}{\numberline {6.2}tk::detail 名前空間}{17}{}%
+\contentsline {subsection}{\numberline {6.2.1}関数詳解}{17}{}%
+\contentsline {subsubsection}{\numberline {6.2.1.1}block\_current\_task\_locked()}{17}{}%
+\contentsline {subsubsection}{\numberline {6.2.1.2}current\_task\_slot()}{17}{}%
+\contentsline {subsubsection}{\numberline {6.2.1.3}find\_highest\_prio\_waiter()}{17}{}%
+\contentsline {subsubsection}{\numberline {6.2.1.4}sched\_lock()}{18}{}%
+\contentsline {subsubsection}{\numberline {6.2.1.5}sched\_unlock()}{18}{}%
+\contentsline {subsubsection}{\numberline {6.2.1.6}static\_register()}{18}{}%
+\contentsline {subsubsection}{\numberline {6.2.1.7}wake\_task\_locked()}{18}{}%
+\contentsline {chapter}{\numberline {7}クラス詳解}{19}{}%
+\contentsline {section}{\numberline {7.1}tk::Actor$<$ Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Type, Queue\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Size $>$ クラステンプレート}{19}{}%
+\contentsline {subsection}{\numberline {7.1.1}詳解}{19}{}%
+\contentsline {subsection}{\numberline {7.1.2}構築子と解体子}{20}{}%
+\contentsline {subsubsection}{\numberline {7.1.2.1}Actor()}{20}{}%
+\contentsline {subsubsection}{\numberline {7.1.2.2}$\sim $Actor()}{20}{}%
+\contentsline {subsection}{\numberline {7.1.3}関数詳解}{20}{}%
+\contentsline {subsubsection}{\numberline {7.1.3.1}handle()}{20}{}%
+\contentsline {subsubsection}{\numberline {7.1.3.2}on\_message()}{20}{}%
+\contentsline {subsubsection}{\numberline {7.1.3.3}on\_start()}{21}{}%
+\contentsline {subsubsection}{\numberline {7.1.3.4}post()\hspace {0.1cm}{\footnotesize \ttfamily [1/3]}}{21}{}%
+\contentsline {subsubsection}{\numberline {7.1.3.5}post()\hspace {0.1cm}{\footnotesize \ttfamily [2/3]}}{21}{}%
+\contentsline {subsubsection}{\numberline {7.1.3.6}post()\hspace {0.1cm}{\footnotesize \ttfamily [3/3]}}{22}{}%
+\contentsline {subsubsection}{\numberline {7.1.3.7}start()}{22}{}%
+\contentsline {section}{\numberline {7.2}tk::Event\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hub$<$ Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Type, Max\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subscribers $>$ クラステンプレート}{22}{}%
+\contentsline {subsection}{\numberline {7.2.1}詳解}{23}{}%
+\contentsline {subsection}{\numberline {7.2.2}関数詳解}{23}{}%
+\contentsline {subsubsection}{\numberline {7.2.2.1}publish()}{23}{}%
+\contentsline {subsubsection}{\numberline {7.2.2.2}subscribe()}{23}{}%
+\contentsline {subsubsection}{\numberline {7.2.2.3}subscriber\_count()}{24}{}%
+\contentsline {subsubsection}{\numberline {7.2.2.4}unsubscribe()}{24}{}%
+\contentsline {section}{\numberline {7.3}Fpu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Ctx 構造体}{24}{}%
+\contentsline {subsection}{\numberline {7.3.1}メンバ詳解}{25}{}%
+\contentsline {subsubsection}{\numberline {7.3.1.1}s}{25}{}%
+\contentsline {section}{\numberline {7.4}tk::Lock\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Guard$<$ Lockable $>$ クラステンプレート}{25}{}%
+\contentsline {subsection}{\numberline {7.4.1}詳解}{25}{}%
+\contentsline {subsection}{\numberline {7.4.2}構築子と解体子}{25}{}%
+\contentsline {subsubsection}{\numberline {7.4.2.1}LockGuard()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{25}{}%
+\contentsline {subsubsection}{\numberline {7.4.2.2}$\sim $LockGuard()}{26}{}%
+\contentsline {subsubsection}{\numberline {7.4.2.3}LockGuard()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{26}{}%
+\contentsline {subsection}{\numberline {7.4.3}関数詳解}{26}{}%
+\contentsline {subsubsection}{\numberline {7.4.3.1}operator=()}{26}{}%
+\contentsline {section}{\numberline {7.5}tk::Message 構造体}{26}{}%
+\contentsline {subsection}{\numberline {7.5.1}詳解}{27}{}%
+\contentsline {subsection}{\numberline {7.5.2}メンバ詳解}{27}{}%
+\contentsline {subsubsection}{\numberline {7.5.2.1}arg}{27}{}%
+\contentsline {subsubsection}{\numberline {7.5.2.2}id}{27}{}%
+\contentsline {section}{\numberline {7.6}tk::Mutex クラス}{27}{}%
+\contentsline {subsection}{\numberline {7.6.1}詳解}{28}{}%
+\contentsline {subsection}{\numberline {7.6.2}構築子と解体子}{28}{}%
+\contentsline {subsubsection}{\numberline {7.6.2.1}Mutex()}{28}{}%
+\contentsline {subsection}{\numberline {7.6.3}関数詳解}{28}{}%
+\contentsline {subsubsection}{\numberline {7.6.3.1}is\_locked()}{28}{}%
+\contentsline {subsubsection}{\numberline {7.6.3.2}lock()}{28}{}%
+\contentsline {subsubsection}{\numberline {7.6.3.3}try\_lock()}{28}{}%
+\contentsline {subsubsection}{\numberline {7.6.3.4}unlock()}{29}{}%
+\contentsline {section}{\numberline {7.7}tk::Preempt\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Guard クラス}{29}{}%
+\contentsline {subsection}{\numberline {7.7.1}詳解}{29}{}%
+\contentsline {subsection}{\numberline {7.7.2}構築子と解体子}{29}{}%
+\contentsline {subsubsection}{\numberline {7.7.2.1}PreemptGuard()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{29}{}%
+\contentsline {subsubsection}{\numberline {7.7.2.2}$\sim $PreemptGuard()}{29}{}%
+\contentsline {subsubsection}{\numberline {7.7.2.3}PreemptGuard()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{30}{}%
+\contentsline {subsection}{\numberline {7.7.3}関数詳解}{30}{}%
+\contentsline {subsubsection}{\numberline {7.7.3.1}operator=()}{30}{}%
+\contentsline {section}{\numberline {7.8}tk::Semaphore クラス}{30}{}%
+\contentsline {subsection}{\numberline {7.8.1}詳解}{30}{}%
+\contentsline {subsection}{\numberline {7.8.2}構築子と解体子}{30}{}%
+\contentsline {subsubsection}{\numberline {7.8.2.1}Semaphore()}{30}{}%
+\contentsline {subsection}{\numberline {7.8.3}関数詳解}{31}{}%
+\contentsline {subsubsection}{\numberline {7.8.3.1}acquire()}{31}{}%
+\contentsline {subsubsection}{\numberline {7.8.3.2}count()}{31}{}%
+\contentsline {subsubsection}{\numberline {7.8.3.3}release()}{31}{}%
+\contentsline {subsubsection}{\numberline {7.8.3.4}try\_acquire()}{31}{}%
+\contentsline {section}{\numberline {7.9}tk::Task\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Handle 構造体}{32}{}%
+\contentsline {subsection}{\numberline {7.9.1}詳解}{32}{}%
+\contentsline {subsection}{\numberline {7.9.2}関数詳解}{32}{}%
+\contentsline {subsubsection}{\numberline {7.9.2.1}is\_valid()}{32}{}%
+\contentsline {subsection}{\numberline {7.9.3}メンバ詳解}{32}{}%
+\contentsline {subsubsection}{\numberline {7.9.3.1}slot}{32}{}%
+\contentsline {chapter}{\numberline {8}ファイル詳解}{33}{}%
+\contentsline {section}{\numberline {8.1}C:/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}yoneda/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pico\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}actor.hpp ファイル}{33}{}%
+\contentsline {section}{\numberline {8.2}actor.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{34}{}%
+\contentsline {section}{\numberline {8.3}C:/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}yoneda/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pico\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kernel.hpp ファイル}{36}{}%
+\contentsline {subsection}{\numberline {8.3.1}マクロ定義詳解}{37}{}%
+\contentsline {subsubsection}{\numberline {8.3.1.1}TK\_DEFAULT\_STACK\_SIZE}{37}{}%
+\contentsline {subsubsection}{\numberline {8.3.1.2}TK\_MAX\_TASKS}{38}{}%
+\contentsline {subsubsection}{\numberline {8.3.1.3}TK\_TASK}{38}{}%
+\contentsline {subsubsection}{\numberline {8.3.1.4}TK\_TICKS\_PER\_SEC}{38}{}%
+\contentsline {subsubsection}{\numberline {8.3.1.5}TK\_TIME\_SLICE\_MS}{38}{}%
+\contentsline {section}{\numberline {8.4}kernel.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{39}{}%
+\contentsline {section}{\numberline {8.5}C:/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}yoneda/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pico\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}sync.hpp ファイル}{40}{}%
+\contentsline {section}{\numberline {8.6}sync.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{40}{}%
+\contentsline {section}{\numberline {8.7}C:/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}yoneda/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pico\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}port/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}m33/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}port\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}m33.c ファイル}{42}{}%
+\contentsline {subsection}{\numberline {8.7.1}マクロ定義詳解}{43}{}%
+\contentsline {subsubsection}{\numberline {8.7.1.1}FPCCR\_ASPEN}{43}{}%
+\contentsline {subsubsection}{\numberline {8.7.1.2}FPCCR\_LSPEN}{43}{}%
+\contentsline {subsection}{\numberline {8.7.2}関数詳解}{43}{}%
+\contentsline {subsubsection}{\numberline {8.7.2.1}tk\_port\_init()}{43}{}%
+\contentsline {section}{\numberline {8.8}C:/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}yoneda/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pico\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}port/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}m33/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}port\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}m33.h ファイル}{43}{}%
+\contentsline {subsection}{\numberline {8.8.1}関数詳解}{43}{}%
+\contentsline {subsubsection}{\numberline {8.8.1.1}tk\_port\_init()}{43}{}%
+\contentsline {subsubsection}{\numberline {8.8.1.2}tk\_port\_make\_frame()}{43}{}%
+\contentsline {subsubsection}{\numberline {8.8.1.3}tk\_port\_start()}{44}{}%
+\contentsline {section}{\numberline {8.9}port\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}m33.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{44}{}%
+\contentsline {section}{\numberline {8.10}C:/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Users/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}yoneda/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Documents/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pico\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Projects/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}tinykernel/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}scheduler.cpp ファイル}{44}{}%
+\contentsline {subsection}{\numberline {8.10.1}関数詳解}{45}{}%
+\contentsline {subsubsection}{\numberline {8.10.1.1}isr\_systick()}{45}{}%
+\contentsline {subsubsection}{\numberline {8.10.1.2}tk\_switch\_context()}{45}{}%
+\contentsline {subsubsection}{\numberline {8.10.1.3}tk\_task\_return\_trampoline()}{45}{}%
+\contentsline {subsection}{\numberline {8.10.2}変数詳解}{45}{}%
+\contentsline {subsubsection}{\numberline {8.10.2.1}tk\_fpu\_scratch}{45}{}%
+\contentsline {chapter}{Index}{47}{}%

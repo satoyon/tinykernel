@@ -1,5 +1,5 @@
-\doxysection{tk::Preempt\+Guard Class Reference}
-\hypertarget{classtk_1_1_preempt_guard}{}\label{classtk_1_1_preempt_guard}\index{tk::PreemptGuard@{tk::PreemptGuard}}
+\doxysection{tk::Preempt\+Guard クラス}
+\label{classtk_1_1_preempt_guard}\index{tk::PreemptGuard@{tk::PreemptGuard}}
 
 
 プリエンプション禁止をスコープ単位で安全に管理する RAII クラス  
@@ -9,23 +9,23 @@
 
 {\ttfamily \+\#include $<$kernel.\+hpp$>$}
 
-\doxysubsubsection*{Public Member Functions}
+\doxysubsubsection*{公開メンバ関数}
 \begin{DoxyCompactItemize}
 \item 
-\doxymbox{\hyperlink{classtk_1_1_preempt_guard_a39e396ce51420c942e7d6549ec63f88e}{Preempt\+Guard}} ()
+\textbf{ Preempt\+Guard} ()
 \item 
-\doxymbox{\hyperlink{classtk_1_1_preempt_guard_a329ea4d806861d9455168aeb01f41f86}{\texorpdfstring{$\sim$}{\string~}\+Preempt\+Guard}} ()
+\textbf{ $\sim$\+Preempt\+Guard} ()
 \item 
-\doxymbox{\hyperlink{classtk_1_1_preempt_guard_a360ac2b073064abc0f21db3127e7f389}{Preempt\+Guard}} (const Preempt\+Guard \&)=delete
+\textbf{ Preempt\+Guard} (const Preempt\+Guard \&)=delete
 \item 
-\doxymbox{\hyperlink{classtk_1_1_preempt_guard_a39e396ce51420c942e7d6549ec63f88e}{Preempt\+Guard}} \& \doxymbox{\hyperlink{classtk_1_1_preempt_guard_ad651c301bd81f95866e1cd380c2a2417}{operator=}} (const \doxymbox{\hyperlink{classtk_1_1_preempt_guard_a39e396ce51420c942e7d6549ec63f88e}{Preempt\+Guard}} \&)=delete
+\textbf{ Preempt\+Guard} \& \textbf{ operator=} (const \textbf{ Preempt\+Guard} \&)=delete
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\doxysubsection{詳解}
 プリエンプション禁止をスコープ単位で安全に管理する RAII クラス 
 
-生成時に自動で {\ttfamily \doxylink{namespacetk_a3254a7e2a9f5ed3abe44e8cf62a8dcfe}{tk::\+preempt\+\_\+disable()}} を呼び、スコープを抜けた際に自動で {\ttfamily \doxylink{namespacetk_a70e6ee5f456e67a24ce13ff0fd04e4d9}{tk::\+preempt\+\_\+enable()}} を呼びます。
+生成時に自動で {\ttfamily \doxyref{tk::\+preempt\+\_\+disable()}{p.}{namespacetk_a3254a7e2a9f5ed3abe44e8cf62a8dcfe}} を呼び、スコープを抜けた際に自動で {\ttfamily \doxyref{tk::\+preempt\+\_\+enable()}{p.}{namespacetk_a70e6ee5f456e67a24ce13ff0fd04e4d9}} を呼びます。
 
 
 \begin{DoxyCode}{0}
@@ -39,39 +39,37 @@
  
 
 \label{classtk_1_1_preempt_guard_doc-constructors}
-\Hypertarget{classtk_1_1_preempt_guard_doc-constructors}
-\doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classtk_1_1_preempt_guard_a39e396ce51420c942e7d6549ec63f88e}\index{tk::PreemptGuard@{tk::PreemptGuard}!PreemptGuard@{PreemptGuard}}
+\doxysubsection{構築子と解体子}
+\index{tk::PreemptGuard@{tk::PreemptGuard}!PreemptGuard@{PreemptGuard}}
 \index{PreemptGuard@{PreemptGuard}!tk::PreemptGuard@{tk::PreemptGuard}}
-\doxysubsubsection{\texorpdfstring{PreemptGuard()}{PreemptGuard()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{PreemptGuard()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \label{classtk_1_1_preempt_guard_a39e396ce51420c942e7d6549ec63f88e} 
 tk::\+\+Preempt\+Guard::\+\+Preempt\+Guard (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\Hypertarget{classtk_1_1_preempt_guard_a329ea4d806861d9455168aeb01f41f86}\index{tk::PreemptGuard@{tk::PreemptGuard}!````~PreemptGuard@{\texorpdfstring{$\sim$}{\string~}PreemptGuard}}
-\index{````~PreemptGuard@{\texorpdfstring{$\sim$}{\string~}PreemptGuard}!tk::PreemptGuard@{tk::PreemptGuard}}
-\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}PreemptGuard()}{\string~PreemptGuard()}}
+\index{tk::PreemptGuard@{tk::PreemptGuard}!````~PreemptGuard@{$\sim$PreemptGuard}}
+\index{````~PreemptGuard@{$\sim$PreemptGuard}!tk::PreemptGuard@{tk::PreemptGuard}}
+\doxysubsubsection{$\sim$PreemptGuard()}
 {\footnotesize\ttfamily \label{classtk_1_1_preempt_guard_a329ea4d806861d9455168aeb01f41f86} 
-tk::\+\+Preempt\+Guard::\+\texorpdfstring{$\sim$}{\string~}\+Preempt\+Guard (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+tk::\+\+Preempt\+Guard::\+$\sim$\+Preempt\+Guard (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\Hypertarget{classtk_1_1_preempt_guard_a360ac2b073064abc0f21db3127e7f389}\index{tk::PreemptGuard@{tk::PreemptGuard}!PreemptGuard@{PreemptGuard}}
+\index{tk::PreemptGuard@{tk::PreemptGuard}!PreemptGuard@{PreemptGuard}}
 \index{PreemptGuard@{PreemptGuard}!tk::PreemptGuard@{tk::PreemptGuard}}
-\doxysubsubsection{\texorpdfstring{PreemptGuard()}{PreemptGuard()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxysubsubsection{PreemptGuard()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \label{classtk_1_1_preempt_guard_a360ac2b073064abc0f21db3127e7f389} 
 tk::\+\+Preempt\+Guard::\+\+Preempt\+Guard (\begin{DoxyParamCaption}\item[{const Preempt\+Guard \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 
 
 \label{classtk_1_1_preempt_guard_doc-func-members}
-\Hypertarget{classtk_1_1_preempt_guard_doc-func-members}
-\doxysubsection{Member Function Documentation}
-\Hypertarget{classtk_1_1_preempt_guard_ad651c301bd81f95866e1cd380c2a2417}\index{tk::PreemptGuard@{tk::PreemptGuard}!operator=@{operator=}}
+\doxysubsection{関数詳解}
+\index{tk::PreemptGuard@{tk::PreemptGuard}!operator=@{operator=}}
 \index{operator=@{operator=}!tk::PreemptGuard@{tk::PreemptGuard}}
-\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+\doxysubsubsection{operator=()}
 {\footnotesize\ttfamily \label{classtk_1_1_preempt_guard_ad651c301bd81f95866e1cd380c2a2417} 
-\doxymbox{\hyperlink{classtk_1_1_preempt_guard_a39e396ce51420c942e7d6549ec63f88e}{Preempt\+Guard}} \& tk::\+\+Preempt\+Guard::\+operator= (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{classtk_1_1_preempt_guard_a39e396ce51420c942e7d6549ec63f88e}{Preempt\+Guard}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+\textbf{ Preempt\+Guard} \& tk::\+\+Preempt\+Guard::\+operator= (\begin{DoxyParamCaption}\item[{const \textbf{ Preempt\+Guard} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 
 
-The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+このクラス詳解は次のファイルから抽出されました:\begin{DoxyCompactItemize}
 \item 
-C:\+/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\doxymbox{\hyperlink{kernel_8hpp}{kernel.\+hpp}}\end{DoxyCompactItemize}
+C:\+/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\textbf{ kernel.\+hpp}\end{DoxyCompactItemize}

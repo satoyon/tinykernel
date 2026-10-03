@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="structtk_1_1_event_hub_1_1_subscriber" kind="struct" language="C++" prot="private">
+    <compoundname>tk::EventHub::Subscriber</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtk_1_1_event_hub_1_1_subscriber_1a11441366dc9bb5d6f6c44960c416ea75" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* tk::EventHub&lt; MsgType, MaxSubscribers &gt;::Subscriber::actor</definition>
+        <argsstring></argsstring>
+        <name>actor</name>
+        <qualifiedname>tk::EventHub::Subscriber::actor</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="31" column="14" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtk_1_1_event_hub_1_1_subscriber_1a88af3bf6846b63cb3200f6f4de550d6e" prot="public" static="no" mutable="no">
+        <type>bool(*)</type>
+        <definition>bool(*) tk::EventHub&lt; MsgType, MaxSubscribers &gt;::Subscriber::post_fn(void *, const MsgType &amp;)</definition>
+        <argsstring>(void *, const MsgType &amp;)</argsstring>
+        <name>post_fn</name>
+        <qualifiedname>tk::EventHub::Subscriber::post_fn</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="32" column="9" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="32" bodyend="32"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="30" column="5" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="30" bodyend="33"/>
+    <listofallmembers>
+      <member refid="structtk_1_1_event_hub_1_1_subscriber_1a11441366dc9bb5d6f6c44960c416ea75" prot="public" virt="non-virtual"><scope>tk::EventHub::Subscriber</scope><name>actor</name></member>
+      <member refid="structtk_1_1_event_hub_1_1_subscriber_1a88af3bf6846b63cb3200f6f4de550d6e" prot="public" virt="non-virtual"><scope>tk::EventHub::Subscriber</scope><name>post_fn</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

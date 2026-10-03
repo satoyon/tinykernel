@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="classtk_1_1_event_hub" kind="class" language="C++" prot="public">
+    <compoundname>tk::EventHub</compoundname>
+    <includes refid="actor_8hpp" local="no">actor.hpp</includes>
+    <innerclass refid="structtk_1_1_event_hub_1_1_subscriber" prot="private">tk::EventHub::Subscriber</innerclass>
+    <templateparamlist>
+      <param>
+        <type>typename MsgType</type>
+      </param>
+      <param>
+        <type>size_t</type>
+        <declname>MaxSubscribers</declname>
+        <defname>MaxSubscribers</defname>
+        <defval>4</defval>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classtk_1_1_event_hub_1a48a7c13cc13e36ea8440b8729a3f731e" prot="private" static="yes" mutable="no">
+        <type>Subscriber</type>
+        <definition>Subscriber tk::EventHub&lt; MsgType, MaxSubscribers &gt;::subs_[MaxSubscribers]</definition>
+        <argsstring>[MaxSubscribers]</argsstring>
+        <name>subs_</name>
+        <qualifiedname>tk::EventHub::subs_</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="35" column="30" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtk_1_1_event_hub_1a14777e37000a8151f2edec5956ec6993" prot="private" static="yes" mutable="no">
+        <type>size_t</type>
+        <definition>size_t tk::EventHub&lt; MsgType, MaxSubscribers &gt;::count_</definition>
+        <argsstring></argsstring>
+        <name>count_</name>
+        <qualifiedname>tk::EventHub::count_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="36" column="26" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="36" bodyend="36"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classtk_1_1_event_hub_1a50ebe29eaa2657604a1c85bf5125d490" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool tk::EventHub&lt; MsgType, MaxSubscribers &gt;::subscribe</definition>
+        <argsstring>(void *actor, bool(*post_fn)(void *, const MsgType &amp;))</argsstring>
+        <name>subscribe</name>
+        <qualifiedname>tk::EventHub::subscribe</qualifiedname>
+        <param>
+          <type>void *</type>
+          <declname>actor</declname>
+        </param>
+        <param>
+          <type>bool(*)(void *, const MsgType &amp;)</type>
+          <declname>post_fn</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> をこのメッセージ型の購読者として登録します </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>actor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> インスタンスポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>post_fn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージ投入関数ポインタ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true 登録成功, false 購読者上限に達した </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="45" column="17" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="45" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_event_hub_1a09c779ce8c594ea44c831adfd7e287f8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool tk::EventHub&lt; MsgType, MaxSubscribers &gt;::unsubscribe</definition>
+        <argsstring>(void *actor)</argsstring>
+        <name>unsubscribe</name>
+        <qualifiedname>tk::EventHub::unsubscribe</qualifiedname>
+        <param>
+          <type>void *</type>
+          <declname>actor</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> の購読登録を解除します </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>actor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>解除する <ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> インスタンスポインタ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true 解除成功, false 未登録 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="67" column="17" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="67" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_event_hub_1a3a59a641ad3fe121c0da7e1c81dc300b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>static size_t tk::EventHub&lt; MsgType, MaxSubscribers &gt;::publish</definition>
+        <argsstring>(const MsgType &amp;msg)</argsstring>
+        <name>publish</name>
+        <qualifiedname>tk::EventHub::publish</qualifiedname>
+        <param>
+          <type>const MsgType &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>このメッセージ型を購読しているすべての <ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> へ同報配信します </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>配信するメッセージ実体 (各 <ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> のキューへ値コピー) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>size_t 配信に成功した <ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> の数 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="89" column="19" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="89" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_event_hub_1ac4cd6ce4e37b74385c7f4352a5516930" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>static size_t tk::EventHub&lt; MsgType, MaxSubscribers &gt;::subscriber_count</definition>
+        <argsstring>()</argsstring>
+        <name>subscriber_count</name>
+        <qualifiedname>tk::EventHub::subscriber_count</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>現在の購読者数を取得 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="111" column="19" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="111" bodyend="116"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>メッセージ型ごとの超軽量 Pub/Sub ディスパッチャ </para>
+    </briefdescription>
+    <detaileddescription>
+<para>テンプレート引数 <computeroutput>MsgType</computeroutput> ごとにコンパイル時解決される静的レジストリです。 実行時の型検索オーバーヘッドゼロ、動的メモリ確保ゼロで動作します。</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>MsgType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>配信するメッセージの型 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>MaxSubscribers</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>同一メッセージ型を購読できる最大 <ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> 数 (デフォルト: 4) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="29" column="1" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="29" bodyend="117"/>
+    <listofallmembers>
+      <member refid="classtk_1_1_event_hub_1a14777e37000a8151f2edec5956ec6993" prot="private" virt="non-virtual"><scope>tk::EventHub</scope><name>count_</name></member>
+      <member refid="classtk_1_1_event_hub_1a3a59a641ad3fe121c0da7e1c81dc300b" prot="public" virt="non-virtual"><scope>tk::EventHub</scope><name>publish</name></member>
+      <member refid="classtk_1_1_event_hub_1a48a7c13cc13e36ea8440b8729a3f731e" prot="private" virt="non-virtual"><scope>tk::EventHub</scope><name>subs_</name></member>
+      <member refid="classtk_1_1_event_hub_1a50ebe29eaa2657604a1c85bf5125d490" prot="public" virt="non-virtual"><scope>tk::EventHub</scope><name>subscribe</name></member>
+      <member refid="classtk_1_1_event_hub_1ac4cd6ce4e37b74385c7f4352a5516930" prot="public" virt="non-virtual"><scope>tk::EventHub</scope><name>subscriber_count</name></member>
+      <member refid="classtk_1_1_event_hub_1a09c779ce8c594ea44c831adfd7e287f8" prot="public" virt="non-virtual"><scope>tk::EventHub</scope><name>unsubscribe</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

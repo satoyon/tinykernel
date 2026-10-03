@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="namespace_0d352013040131305060255325033333143145213225221002" kind="namespace" language="C++">
+    <compoundname>@352013040131305060255325033333143145213225221002</compoundname>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespace_0d352013040131305060255325033333143145213225221002_1a73bb9eb72253e4eb3aee577561d0f710" prot="public" static="no" strong="yes">
+        <type>uint8_t</type>
+        <name>State</name>
+        <qualifiedname>@352013040131305060255325033333143145213225221002::State</qualifiedname>
+        <enumvalue id="namespace_0d352013040131305060255325033333143145213225221002_1a73bb9eb72253e4eb3aee577561d0f710ab24ce0cd392a5b0b8dedc66c25213594" prot="public">
+          <name>Free</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_0d352013040131305060255325033333143145213225221002_1a73bb9eb72253e4eb3aee577561d0f710ae7d31fc0602fb2ede144d18cdffd816b" prot="public">
+          <name>Ready</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_0d352013040131305060255325033333143145213225221002_1a73bb9eb72253e4eb3aee577561d0f710a5bda814c4aedb126839228f1a3d92f09" prot="public">
+          <name>Running</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_0d352013040131305060255325033333143145213225221002_1a73bb9eb72253e4eb3aee577561d0f710abddd4f44136f466c065a2c7a4c53e75b" prot="public">
+          <name>Sleeping</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_0d352013040131305060255325033333143145213225221002_1a73bb9eb72253e4eb3aee577561d0f710a4ecc0d90eec1cea3e9db96583a1bb9c2" prot="public">
+          <name>Blocked</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_0d352013040131305060255325033333143145213225221002_1a73bb9eb72253e4eb3aee577561d0f710afba9c4daa2dd29d1077d32d965320ac1" prot="public">
+          <name>Terminated</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" line="20" column="1" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" bodystart="20" bodyend="20"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/scheduler.cpp" line="16" column="1"/>
+  </compounddef>
+</doxygen>

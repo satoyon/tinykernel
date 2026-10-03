@@ -1,31 +1,31 @@
-\doxysection{tk::Semaphore Class Reference}
-\hypertarget{classtk_1_1_semaphore}{}\label{classtk_1_1_semaphore}\index{tk::Semaphore@{tk::Semaphore}}
+\doxysection{tk::Semaphore クラス}
+\label{classtk_1_1_semaphore}\index{tk::Semaphore@{tk::Semaphore}}
 
 
-計数セマフォ (Counting \doxylink{classtk_1_1_semaphore}{Semaphore}) / バイナリセマフォ  
+計数セマフォ (Counting \doxyref{Semaphore}{p.}{classtk_1_1_semaphore}) / バイナリセマフォ  
 
 
 
 
 {\ttfamily \+\#include $<$sync.\+hpp$>$}
 
-\doxysubsubsection*{Public Member Functions}
+\doxysubsubsection*{公開メンバ関数}
 \begin{DoxyCompactItemize}
 \item 
-\doxymbox{\hyperlink{classtk_1_1_semaphore_a66c5ac90338a6fcc6a9c2f22f1586de8}{Semaphore}} (int32\+\_\+t initial\+\_\+count=1, int32\+\_\+t max\+\_\+count=1)
+\textbf{ Semaphore} (int32\+\_\+t initial\+\_\+count=1, int32\+\_\+t max\+\_\+count=1)
 \begin{DoxyCompactList}\small\item\em セマフォを初期化します \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{classtk_1_1_semaphore_a863ccee07bc701a78342c14503955d73}{acquire}} ()
+void \textbf{ acquire} ()
 \begin{DoxyCompactList}\small\item\em 資源を獲得するまで現在のタスクをブロックします \end{DoxyCompactList}\item 
-bool \doxymbox{\hyperlink{classtk_1_1_semaphore_a3a246c8afc866dc438186d0a53cad5c2}{try\+\_\+acquire}} ()
+bool \textbf{ try\+\_\+acquire} ()
 \begin{DoxyCompactList}\small\item\em 資源の獲得を試みます (ノンブロッキング) \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{classtk_1_1_semaphore_a7bb8eb8b0bd69b2f6b0a4d89d0f5b07b}{release}} ()
+void \textbf{ release} ()
 \begin{DoxyCompactList}\small\item\em 資源を返却し、待機中タスクがあれば最優先度のタスクを 1 つ起床させます \end{DoxyCompactList}\item 
-int32\+\_\+t \doxymbox{\hyperlink{classtk_1_1_semaphore_ae53b9c57cc25fafb242a21776f112701}{count}} () const
+int32\+\_\+t \textbf{ count} () const
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
-計数セマフォ (Counting \doxylink{classtk_1_1_semaphore}{Semaphore}) / バイナリセマフォ 
+\doxysubsection{詳解}
+計数セマフォ (Counting \doxyref{Semaphore}{p.}{classtk_1_1_semaphore}) / バイナリセマフォ 
 
 資源の獲得・返却によるタスク間同期を行います。資源がない場合はタスクが {\ttfamily State::\+\+Blocked} に遷移して休止し、返却時に優先度の高いタスクから順に起床します。
 
@@ -43,11 +43,10 @@ int32\+\_\+t \doxymbox{\hyperlink{classtk_1_1_semaphore_ae53b9c57cc25fafb242a217
  
 
 \label{classtk_1_1_semaphore_doc-constructors}
-\Hypertarget{classtk_1_1_semaphore_doc-constructors}
-\doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classtk_1_1_semaphore_a66c5ac90338a6fcc6a9c2f22f1586de8}\index{tk::Semaphore@{tk::Semaphore}!Semaphore@{Semaphore}}
+\doxysubsection{構築子と解体子}
+\index{tk::Semaphore@{tk::Semaphore}!Semaphore@{Semaphore}}
 \index{Semaphore@{Semaphore}!tk::Semaphore@{tk::Semaphore}}
-\doxysubsubsection{\texorpdfstring{Semaphore()}{Semaphore()}}
+\doxysubsubsection{Semaphore()}
 {\footnotesize\ttfamily \label{classtk_1_1_semaphore_a66c5ac90338a6fcc6a9c2f22f1586de8} 
 tk::\+\+Semaphore::\+\+Semaphore (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{initial\+\_\+count}{ = {\ttfamily 1}, }\item[{int32\+\_\+t}]{max\+\_\+count}{ = {\ttfamily 1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
 
@@ -56,7 +55,7 @@ tk::\+\+Semaphore::\+\+Semaphore (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{
 セマフォを初期化します 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{引数}
 {\em initial\+\_\+count} & 初期資源カウント (省略時: 1) \\
 \hline
 {\em max\+\_\+count} & 最大資源カウント (省略時: 1) \\
@@ -65,11 +64,10 @@ tk::\+\+Semaphore::\+\+Semaphore (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{
 
 
 \label{classtk_1_1_semaphore_doc-func-members}
-\Hypertarget{classtk_1_1_semaphore_doc-func-members}
-\doxysubsection{Member Function Documentation}
-\Hypertarget{classtk_1_1_semaphore_a863ccee07bc701a78342c14503955d73}\index{tk::Semaphore@{tk::Semaphore}!acquire@{acquire}}
+\doxysubsection{関数詳解}
+\index{tk::Semaphore@{tk::Semaphore}!acquire@{acquire}}
 \index{acquire@{acquire}!tk::Semaphore@{tk::Semaphore}}
-\doxysubsubsection{\texorpdfstring{acquire()}{acquire()}}
+\doxysubsubsection{acquire()}
 {\footnotesize\ttfamily \label{classtk_1_1_semaphore_a863ccee07bc701a78342c14503955d73} 
 void tk::\+\+Semaphore::\+acquire (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -77,15 +75,15 @@ void tk::\+\+Semaphore::\+acquire (\begin{DoxyParamCaption}{}{}\end{DoxyParamCap
 
 資源を獲得するまで現在のタスクをブロックします 
 
-資源カウントが 0 以下の場合はタスクが休止状態になり、\+CPU は他タスクへ譲渡されます (CPU消費ゼロ)。 \Hypertarget{classtk_1_1_semaphore_ae53b9c57cc25fafb242a21776f112701}\index{tk::Semaphore@{tk::Semaphore}!count@{count}}
+資源カウントが 0 以下の場合はタスクが休止状態になり、\+CPU は他タスクへ譲渡されます (CPU消費ゼロ)。 \index{tk::Semaphore@{tk::Semaphore}!count@{count}}
 \index{count@{count}!tk::Semaphore@{tk::Semaphore}}
-\doxysubsubsection{\texorpdfstring{count()}{count()}}
+\doxysubsubsection{count()}
 {\footnotesize\ttfamily \label{classtk_1_1_semaphore_ae53b9c57cc25fafb242a21776f112701} 
 int32\+\_\+t tk::\+\+Semaphore::\+count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-現在の資源カウントを取得 \Hypertarget{classtk_1_1_semaphore_a7bb8eb8b0bd69b2f6b0a4d89d0f5b07b}\index{tk::Semaphore@{tk::Semaphore}!release@{release}}
+現在の資源カウントを取得 \index{tk::Semaphore@{tk::Semaphore}!release@{release}}
 \index{release@{release}!tk::Semaphore@{tk::Semaphore}}
-\doxysubsubsection{\texorpdfstring{release()}{release()}}
+\doxysubsubsection{release()}
 {\footnotesize\ttfamily \label{classtk_1_1_semaphore_a7bb8eb8b0bd69b2f6b0a4d89d0f5b07b} 
 void tk::\+\+Semaphore::\+release (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -93,9 +91,9 @@ void tk::\+\+Semaphore::\+release (\begin{DoxyParamCaption}{}{}\end{DoxyParamCap
 
 資源を返却し、待機中タスクがあれば最優先度のタスクを 1 つ起床させます 
 
-\Hypertarget{classtk_1_1_semaphore_a3a246c8afc866dc438186d0a53cad5c2}\index{tk::Semaphore@{tk::Semaphore}!try\_acquire@{try\_acquire}}
+\index{tk::Semaphore@{tk::Semaphore}!try\_acquire@{try\_acquire}}
 \index{try\_acquire@{try\_acquire}!tk::Semaphore@{tk::Semaphore}}
-\doxysubsubsection{\texorpdfstring{try\_acquire()}{try\_acquire()}}
+\doxysubsubsection{try\_acquire()}
 {\footnotesize\ttfamily \label{classtk_1_1_semaphore_a3a246c8afc866dc438186d0a53cad5c2} 
 bool tk::\+\+Semaphore::\+try\+\_\+acquire (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -103,13 +101,13 @@ bool tk::\+\+Semaphore::\+try\+\_\+acquire (\begin{DoxyParamCaption}{}{}\end{Dox
 
 資源の獲得を試みます (ノンブロッキング) 
 
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{戻り値}
 true 獲得成功 (カウントが 1 減算された) 
 
 false 資源がないため獲得失敗 (ブロックせず即座に復帰) 
 \end{DoxyReturn}
 
 
-The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+このクラス詳解は次のファイルから抽出されました:\begin{DoxyCompactItemize}
 \item 
-C:\+/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\doxymbox{\hyperlink{sync_8hpp}{sync.\+hpp}}\end{DoxyCompactItemize}
+C:\+/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\textbf{ sync.\+hpp}\end{DoxyCompactItemize}

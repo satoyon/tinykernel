@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.18.0" xml:lang="ja">
+  <compound refid="classtk_1_1_actor" kind="class"><name>tk::Actor</name>
+    <member refid="classtk_1_1_actor_1abf56f692a06334a14197605042b3b786" kind="variable"><name>queue_</name></member>
+    <member refid="classtk_1_1_actor_1a25817f7222356d11b2e70264e79a05a3" kind="variable"><name>head_</name></member>
+    <member refid="classtk_1_1_actor_1a546e611f32ce2e89e9bae88ef2cf1cc6" kind="variable"><name>tail_</name></member>
+    <member refid="classtk_1_1_actor_1ad829bfd39086109fd32fc6ca389d5f92" kind="variable"><name>count_</name></member>
+    <member refid="classtk_1_1_actor_1a48192d156c2b4c884f5400858ebbbbf8" kind="variable"><name>waiting_</name></member>
+    <member refid="classtk_1_1_actor_1a995adffb1431a4173f7fc892e4fc5efa" kind="variable"><name>handle_</name></member>
+    <member refid="classtk_1_1_actor_1a776aef8cdcfb4416ef976697eb518ed5" kind="function"><name>Actor</name></member>
+    <member refid="classtk_1_1_actor_1abfc63a514a3ae7cdbdf9ceee81c3b0fc" kind="function"><name>~Actor</name></member>
+    <member refid="classtk_1_1_actor_1ac98ec3132f2ded910a6899b030c06f3f" kind="function"><name>start</name></member>
+    <member refid="classtk_1_1_actor_1a224e6be4dca0d1500f2121e97bd0f92d" kind="function"><name>post</name></member>
+    <member refid="classtk_1_1_actor_1a863f28d824aaa78c75789166b1c2a010" kind="function"><name>post</name></member>
+    <member refid="classtk_1_1_actor_1a5c4f4f2f1b8011a37773617e34218c2d" kind="function"><name>post</name></member>
+    <member refid="classtk_1_1_actor_1a60a2752360fa7185ec7776f2a6ef766a" kind="function"><name>handle</name></member>
+    <member refid="classtk_1_1_actor_1afb31ec0d50d1ac97e6a4ce148a96f78d" kind="function"><name>on_start</name></member>
+    <member refid="classtk_1_1_actor_1a1147554d6ddb64d822285ca5a03506a4" kind="function"><name>on_message</name></member>
+    <member refid="classtk_1_1_actor_1ab733fa2f27a477b08ef42c269ee543a5" kind="function"><name>task_entry</name></member>
+    <member refid="classtk_1_1_actor_1aa1f824e793d168aca7af65d1254c97f6" kind="function"><name>event_loop</name></member>
+  </compound>
+  <compound refid="classtk_1_1_event_hub" kind="class"><name>tk::EventHub</name>
+    <member refid="classtk_1_1_event_hub_1a48a7c13cc13e36ea8440b8729a3f731e" kind="variable"><name>subs_</name></member>
+    <member refid="classtk_1_1_event_hub_1a14777e37000a8151f2edec5956ec6993" kind="variable"><name>count_</name></member>
+    <member refid="classtk_1_1_event_hub_1a50ebe29eaa2657604a1c85bf5125d490" kind="function"><name>subscribe</name></member>
+    <member refid="classtk_1_1_event_hub_1a09c779ce8c594ea44c831adfd7e287f8" kind="function"><name>unsubscribe</name></member>
+    <member refid="classtk_1_1_event_hub_1a3a59a641ad3fe121c0da7e1c81dc300b" kind="function"><name>publish</name></member>
+    <member refid="classtk_1_1_event_hub_1ac4cd6ce4e37b74385c7f4352a5516930" kind="function"><name>subscriber_count</name></member>
+  </compound>
+  <compound refid="struct_fpu_ctx" kind="struct"><name>FpuCtx</name>
+    <member refid="struct_fpu_ctx_1ad2c3227e92b86055b7c97fbd0ee5c445" kind="variable"><name>s</name></member>
+  </compound>
+  <compound refid="classtk_1_1_lock_guard" kind="class"><name>tk::LockGuard</name>
+    <member refid="classtk_1_1_lock_guard_1a75d98302f85bc3458b25848aa07f26f0" kind="variable"><name>m_</name></member>
+    <member refid="classtk_1_1_lock_guard_1a3a922c7edf84ce25ef67151c322bb0eb" kind="function"><name>LockGuard</name></member>
+    <member refid="classtk_1_1_lock_guard_1a52eeb50abee00bd0ed16cfa6618ce40f" kind="function"><name>~LockGuard</name></member>
+    <member refid="classtk_1_1_lock_guard_1af9bc86bc2036c4b8e54633ddee811604" kind="function"><name>LockGuard</name></member>
+    <member refid="classtk_1_1_lock_guard_1a3f121f8aa1307f0f6e6e608cf138340c" kind="function"><name>operator=</name></member>
+  </compound>
+  <compound refid="structtk_1_1_message" kind="struct"><name>tk::Message</name>
+    <member refid="structtk_1_1_message_1a9a7de43cbf3da1821cf18ae924f94c52" kind="variable"><name>id</name></member>
+    <member refid="structtk_1_1_message_1a570c5c394d2786708ce4830e4087aa9e" kind="variable"><name>arg</name></member>
+  </compound>
+  <compound refid="classtk_1_1_mutex" kind="class"><name>tk::Mutex</name>
+    <member refid="classtk_1_1_mutex_1af9c0ef5790eb8dd480eafb5b240346c7" kind="variable"><name>locked_</name></member>
+    <member refid="classtk_1_1_mutex_1af1e61669758d602826e01ba0504f3c22" kind="variable"><name>owner_slot_</name></member>
+    <member refid="classtk_1_1_mutex_1aeac0965733267f9ba05bdb552676670d" kind="variable"><name>wait_mask_</name></member>
+    <member refid="classtk_1_1_mutex_1a8b17431db60f4ab48a3859b2ca722eb1" kind="function"><name>Mutex</name></member>
+    <member refid="classtk_1_1_mutex_1a7f5645bba55df2db263f92a954802c27" kind="function"><name>lock</name></member>
+    <member refid="classtk_1_1_mutex_1a666dd03fb22c5cb855e3145f76a58b9c" kind="function"><name>try_lock</name></member>
+    <member refid="classtk_1_1_mutex_1ae8d5dfd5655b5aa54d63db6e0cf2f707" kind="function"><name>unlock</name></member>
+    <member refid="classtk_1_1_mutex_1acf574e35540879481f1f6e5452a504ab" kind="function"><name>is_locked</name></member>
+  </compound>
+  <compound refid="classtk_1_1_preempt_guard" kind="class"><name>tk::PreemptGuard</name>
+    <member refid="classtk_1_1_preempt_guard_1a39e396ce51420c942e7d6549ec63f88e" kind="function"><name>PreemptGuard</name></member>
+    <member refid="classtk_1_1_preempt_guard_1a329ea4d806861d9455168aeb01f41f86" kind="function"><name>~PreemptGuard</name></member>
+    <member refid="classtk_1_1_preempt_guard_1a360ac2b073064abc0f21db3127e7f389" kind="function"><name>PreemptGuard</name></member>
+    <member refid="classtk_1_1_preempt_guard_1ad651c301bd81f95866e1cd380c2a2417" kind="function"><name>operator=</name></member>
+  </compound>
+  <compound refid="classtk_1_1_semaphore" kind="class"><name>tk::Semaphore</name>
+    <member refid="classtk_1_1_semaphore_1a1cb192b9e595a70263818f83c6086e06" kind="variable"><name>count_</name></member>
+    <member refid="classtk_1_1_semaphore_1a3f2fbcd57ad374cfa458f2214053a230" kind="variable"><name>max_count_</name></member>
+    <member refid="classtk_1_1_semaphore_1a2133460c0c6607a86406fc7ac8dd4c3b" kind="variable"><name>wait_mask_</name></member>
+    <member refid="classtk_1_1_semaphore_1a66c5ac90338a6fcc6a9c2f22f1586de8" kind="function"><name>Semaphore</name></member>
+    <member refid="classtk_1_1_semaphore_1a863ccee07bc701a78342c14503955d73" kind="function"><name>acquire</name></member>
+    <member refid="classtk_1_1_semaphore_1a3a246c8afc866dc438186d0a53cad5c2" kind="function"><name>try_acquire</name></member>
+    <member refid="classtk_1_1_semaphore_1a7bb8eb8b0bd69b2f6b0a4d89d0f5b07b" kind="function"><name>release</name></member>
+    <member refid="classtk_1_1_semaphore_1ae53b9c57cc25fafb242a21776f112701" kind="function"><name>count</name></member>
+  </compound>
+  <compound refid="structtk_1_1_event_hub_1_1_subscriber" kind="struct"><name>tk::EventHub::Subscriber</name>
+    <member refid="structtk_1_1_event_hub_1_1_subscriber_1a11441366dc9bb5d6f6c44960c416ea75" kind="variable"><name>actor</name></member>
+    <member refid="structtk_1_1_event_hub_1_1_subscriber_1a88af3bf6846b63cb3200f6f4de550d6e" kind="variable"><name>post_fn</name></member>
+  </compound>
+  <compound refid="structtk_1_1_task_handle" kind="struct"><name>tk::TaskHandle</name>
+    <member refid="structtk_1_1_task_handle_1a425e4877384e92ad75fee388bd54a7c3" kind="variable"><name>slot</name></member>
+    <member refid="structtk_1_1_task_handle_1afe8adf95998f82fe6d03a80700ef7927" kind="function"><name>is_valid</name></member>
+  </compound>
+  <compound refid="namespace_0d352013040131305060255325033333143145213225221002" kind="namespace"><name>@352013040131305060255325033333143145213225221002</name>
+    <member refid="namespace_0d352013040131305060255325033333143145213225221002_1a73bb9eb72253e4eb3aee577561d0f710" kind="enum"><name>State</name></member>
+    <member refid="namespace_0d352013040131305060255325033333143145213225221002_1a73bb9eb72253e4eb3aee577561d0f710ab24ce0cd392a5b0b8dedc66c25213594" kind="enumvalue"><name>Free</name></member>
+    <member refid="namespace_0d352013040131305060255325033333143145213225221002_1a73bb9eb72253e4eb3aee577561d0f710ae7d31fc0602fb2ede144d18cdffd816b" kind="enumvalue"><name>Ready</name></member>
+    <member refid="namespace_0d352013040131305060255325033333143145213225221002_1a73bb9eb72253e4eb3aee577561d0f710a5bda814c4aedb126839228f1a3d92f09" kind="enumvalue"><name>Running</name></member>
+    <member refid="namespace_0d352013040131305060255325033333143145213225221002_1a73bb9eb72253e4eb3aee577561d0f710abddd4f44136f466c065a2c7a4c53e75b" kind="enumvalue"><name>Sleeping</name></member>
+    <member refid="namespace_0d352013040131305060255325033333143145213225221002_1a73bb9eb72253e4eb3aee577561d0f710a4ecc0d90eec1cea3e9db96583a1bb9c2" kind="enumvalue"><name>Blocked</name></member>
+    <member refid="namespace_0d352013040131305060255325033333143145213225221002_1a73bb9eb72253e4eb3aee577561d0f710afba9c4daa2dd29d1077d32d965320ac1" kind="enumvalue"><name>Terminated</name></member>
+  </compound>
+  <compound refid="namespacetk" kind="namespace"><name>tk</name>
+    <member refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50e" kind="enum"><name>Prio</name></member>
+    <member refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50eabbefd771d1fb2ac0708c1bd5371e5a75" kind="enumvalue"><name>PRIO_REALTIME</name></member>
+    <member refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50ea614240a3a3fc1094c6daa0fdca92ba37" kind="enumvalue"><name>PRIO_HIGH</name></member>
+    <member refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca" kind="enumvalue"><name>PRIO_NORMAL</name></member>
+    <member refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50eacf084edcfe985b77c205a37c3bd60519" kind="enumvalue"><name>PRIO_LOW</name></member>
+    <member refid="namespacetk_1a8908cf1e54cdc4e14ac3003126722cfc" kind="typedef"><name>TaskFn</name></member>
+    <member refid="namespacetk_1add371a241ec6c1695ef4e67935317edd" kind="typedef"><name>task_mask_t</name></member>
+    <member refid="namespacetk_1ab1f2fa3d79e99f13610bd330a0df928b" kind="typedef"><name>BinarySemaphore</name></member>
+    <member refid="namespacetk_1a083495c9bf857a63f6c20a20aac0ca52" kind="function"><name>publish</name></member>
+    <member refid="namespacetk_1a5549bec310750722a1964de1145b9fed" kind="function"><name>publish</name></member>
+    <member refid="namespacetk_1a6e721332f5a7d85998345ed218de7394" kind="function"><name>create</name></member>
+    <member refid="namespacetk_1a675f1829b87e2a43239b6f80a526d0ed" kind="function"><name>start</name></member>
+    <member refid="namespacetk_1a8081956b0a19b87d5b7c81b772373397" kind="function"><name>yield</name></member>
+    <member refid="namespacetk_1aae83f84121085578a7568437a8dc2447" kind="function"><name>sleep_ms</name></member>
+    <member refid="namespacetk_1aba50cfc62cb8be71cf96df7f495a7a3d" kind="function"><name>exit</name></member>
+    <member refid="namespacetk_1a46e15375fba47cbd1a93278f17e77848" kind="function"><name>now_ms</name></member>
+    <member refid="namespacetk_1a6540aa25eb8562f6d6c8b37977d6cfe8" kind="function"><name>lock</name></member>
+    <member refid="namespacetk_1a752b12f6862815c94a52347af52578b7" kind="function"><name>unlock</name></member>
+    <member refid="namespacetk_1a3254a7e2a9f5ed3abe44e8cf62a8dcfe" kind="function"><name>preempt_disable</name></member>
+    <member refid="namespacetk_1a70e6ee5f456e67a24ce13ff0fd04e4d9" kind="function"><name>preempt_enable</name></member>
+  </compound>
+  <compound refid="namespacetk_1_1detail" kind="namespace"><name>tk::detail</name>
+    <member refid="namespacetk_1_1detail_1a447e4ec89b3f2748451891219b7e3738" kind="function"><name>static_register</name></member>
+    <member refid="namespacetk_1_1detail_1a5b8fa6406a867edf8c4410fcb03c6523" kind="function"><name>sched_lock</name></member>
+    <member refid="namespacetk_1_1detail_1a80be9b2429346faf161eab01f595684b" kind="function"><name>sched_unlock</name></member>
+    <member refid="namespacetk_1_1detail_1a400363f36b5fb5dfc8aec11334471d0d" kind="function"><name>block_current_task_locked</name></member>
+    <member refid="namespacetk_1_1detail_1ab19385598f18560cb574cc86174ececa" kind="function"><name>wake_task_locked</name></member>
+    <member refid="namespacetk_1_1detail_1a73a80d92a172d565201f99e8f31278e4" kind="function"><name>current_task_slot</name></member>
+    <member refid="namespacetk_1_1detail_1a70ba35e0daee086ad86770f1e39c9b35" kind="function"><name>find_highest_prio_waiter</name></member>
+  </compound>
+  <compound refid="actor_8hpp" kind="file"><name>actor.hpp</name>
+  </compound>
+  <compound refid="kernel_8hpp" kind="file"><name>kernel.hpp</name>
+    <member refid="kernel_8hpp_1a5c791131c5ad22ed87a8d3ca2cd57d33" kind="define"><name>TK_TICKS_PER_SEC</name></member>
+    <member refid="kernel_8hpp_1af32989639aecb5479b4239639fd133f7" kind="define"><name>TK_TIME_SLICE_MS</name></member>
+    <member refid="kernel_8hpp_1a22e1d9f532aa297014c125110226443c" kind="define"><name>TK_MAX_TASKS</name></member>
+    <member refid="kernel_8hpp_1afde197f9493ef5bdb5b715ce8b52148d" kind="define"><name>TK_DEFAULT_STACK_SIZE</name></member>
+    <member refid="kernel_8hpp_1af57e92069cc01608150a45032c5ad473" kind="define"><name>TK_TASK</name></member>
+  </compound>
+  <compound refid="sync_8hpp" kind="file"><name>sync.hpp</name>
+  </compound>
+  <compound refid="port__m33_8c" kind="file"><name>port_m33.c</name>
+    <member refid="port__m33_8c_1a7b53a215b14820fae8b8e7c387f5b3b3" kind="define"><name>FPCCR_ASPEN</name></member>
+    <member refid="port__m33_8c_1a6addcb4c27c8943e5908a645233e4b1e" kind="define"><name>FPCCR_LSPEN</name></member>
+    <member refid="port__m33_8c_1ac9d435a65b90e71074dd44f97b1103f8" kind="function"><name>tk_port_init</name></member>
+  </compound>
+  <compound refid="port__m33_8h" kind="file"><name>port_m33.h</name>
+    <member refid="port__m33_8h_1ac9d435a65b90e71074dd44f97b1103f8" kind="function"><name>tk_port_init</name></member>
+    <member refid="port__m33_8h_1a57df28e1d96b701ef5b9713cae179462" kind="function"><name>tk_port_make_frame</name></member>
+    <member refid="port__m33_8h_1aaf06c4f2c498c86ed2c595d9bfe4caab" kind="function"><name>tk_port_start</name></member>
+    <member refid="port__m33_8h_1a3990f2a1d17ff136ea16aab63b670a7e" kind="function"><name>tk_port_trigger_pendsv</name></member>
+  </compound>
+  <compound refid="scheduler_8cpp" kind="file"><name>scheduler.cpp</name>
+    <member refid="scheduler_8cpp_1ad7a9acf1577e1fc4ff193d79edf9e254" kind="variable"><name>tk_fpu_scratch</name></member>
+    <member refid="scheduler_8cpp_1a4728919288dacba97228c27b1c996108" kind="function"><name>isr_systick</name></member>
+    <member refid="scheduler_8cpp_1a10d391ed68d7bf5406e9dbcd1c69d1da" kind="function"><name>tk_switch_context</name></member>
+    <member refid="scheduler_8cpp_1a155a1d0ce79cec9569b0634e8186ddfd" kind="function"><name>core_start_routine</name></member>
+    <member refid="scheduler_8cpp_1a3d2cebe4591c5bb602b5de639f66a35f" kind="function"><name>core1_entry</name></member>
+    <member refid="scheduler_8cpp_1ad29ac857f58c5bf7c0220403c6624f32" kind="function"><name>tk_task_return_trampoline</name></member>
+  </compound>
+  <compound refid="dir_acd5872930fa412076ba552147794c0b" kind="dir"><name>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include</name>
+  </compound>
+  <compound refid="dir_98155c543e4e99bbf758f6a26c81127c" kind="dir"><name>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port/m33</name>
+  </compound>
+  <compound refid="dir_6d59b5b42f7d34a6ff723af6795d662d" kind="dir"><name>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src/port</name>
+  </compound>
+  <compound refid="dir_cd190afcfbd866c24d21613b3221d9b2" kind="dir"><name>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/src</name>
+  </compound>
+  <compound refid="dir_81986ce0535ef2803d801068519a8a4c" kind="dir"><name>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel</name>
+  </compound>
+  <compound refid="dir_53c07a1711446230771e696affad55be" kind="dir"><name>C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel</name>
+  </compound>
+</doxygenindex>

@@ -1,0 +1,441 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="ja">
+  <compounddef id="classtk_1_1_actor" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>tk::Actor</compoundname>
+    <includes refid="actor_8hpp" local="no">actor.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename MsgType</type>
+        <defval><ref refid="structtk_1_1_message" kindref="compound">Message</ref></defval>
+      </param>
+      <param>
+        <type>size_t</type>
+        <declname>QueueSize</declname>
+        <defname>QueueSize</defname>
+        <defval>8</defval>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtk_1_1_actor_1abf56f692a06334a14197605042b3b786" prot="private" static="no" mutable="no">
+        <type>MsgType</type>
+        <definition>MsgType tk::Actor&lt; MsgType, QueueSize &gt;::queue_[QueueSize]</definition>
+        <argsstring>[QueueSize]</argsstring>
+        <name>queue_</name>
+        <qualifiedname>tk::Actor::queue_</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="311" column="13" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="311" bodyend="311"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtk_1_1_actor_1a25817f7222356d11b2e70264e79a05a3" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t tk::Actor&lt; MsgType, QueueSize &gt;::head_</definition>
+        <argsstring></argsstring>
+        <name>head_</name>
+        <qualifiedname>tk::Actor::head_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="312" column="12" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="312" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtk_1_1_actor_1a546e611f32ce2e89e9bae88ef2cf1cc6" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t tk::Actor&lt; MsgType, QueueSize &gt;::tail_</definition>
+        <argsstring></argsstring>
+        <name>tail_</name>
+        <qualifiedname>tk::Actor::tail_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="313" column="12" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="313" bodyend="313"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtk_1_1_actor_1ad829bfd39086109fd32fc6ca389d5f92" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t tk::Actor&lt; MsgType, QueueSize &gt;::count_</definition>
+        <argsstring></argsstring>
+        <name>count_</name>
+        <qualifiedname>tk::Actor::count_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="314" column="12" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="314" bodyend="314"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtk_1_1_actor_1a48192d156c2b4c884f5400858ebbbbf8" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tk::Actor&lt; MsgType, QueueSize &gt;::waiting_</definition>
+        <argsstring></argsstring>
+        <name>waiting_</name>
+        <qualifiedname>tk::Actor::waiting_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="315" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="315" bodyend="315"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtk_1_1_actor_1a995adffb1431a4173f7fc892e4fc5efa" prot="private" static="no" mutable="no">
+        <type><ref refid="structtk_1_1_task_handle" kindref="compound">TaskHandle</ref></type>
+        <definition>TaskHandle tk::Actor&lt; MsgType, QueueSize &gt;::handle_</definition>
+        <argsstring></argsstring>
+        <name>handle_</name>
+        <qualifiedname>tk::Actor::handle_</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="316" column="16" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="316" bodyend="316"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtk_1_1_actor_1a776aef8cdcfb4416ef976697eb518ed5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tk::Actor&lt; MsgType, QueueSize &gt;::Actor</definition>
+        <argsstring>()=default</argsstring>
+        <name>Actor</name>
+        <qualifiedname>tk::Actor::Actor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="178" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_actor_1abfc63a514a3ae7cdbdf9ceee81c3b0fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual tk::Actor&lt; MsgType, QueueSize &gt;::~Actor</definition>
+        <argsstring>()</argsstring>
+        <name>~Actor</name>
+        <qualifiedname>tk::Actor::~Actor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="179" column="13" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="179" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_actor_1ac98ec3132f2ded910a6899b030c06f3f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tk::Actor&lt; MsgType, QueueSize &gt;::start</definition>
+        <argsstring>(uint32_t prio=PRIO_NORMAL)</argsstring>
+        <name>start</name>
+        <qualifiedname>tk::Actor::start</qualifiedname>
+        <param>
+          <type>uint32_t</type>
+          <declname>prio</declname>
+          <defval><ref refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca" kindref="member">PRIO_NORMAL</ref></defval>
+        </param>
+        <briefdescription>
+<para><ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> をタスクとして生成し、EventHub へ自動登録します </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput><ref refid="namespacetk_1a675f1829b87e2a43239b6f80a526d0ed" kindref="member">tk::start()</ref></computeroutput> を呼び出す前に登録する必要があります。</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>タスク優先度 (省略時: <ref refid="namespacetk_1a3d47fbd63b95ed3b46bed70c2fa1e50ea0e6779023b97999c2cef66ba1d4d1fca" kindref="member">tk::PRIO_NORMAL</ref>) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true 登録成功, false 登録失敗 (タスク枠上限など) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="191" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="191" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_actor_1a224e6be4dca0d1500f2121e97bd0f92d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tk::Actor&lt; MsgType, QueueSize &gt;::post</definition>
+        <argsstring>(const MsgType &amp;msg)</argsstring>
+        <name>post</name>
+        <qualifiedname>tk::Actor::post</qualifiedname>
+        <param>
+          <type>const MsgType &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>この <ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> のメッセージキューへ直接メッセージを送信します (コピー渡し) </para>
+        </briefdescription>
+        <detaileddescription>
+<para>スレッドセーフ・割り込みセーフ・マルチコアセーフです。</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>送信するメッセージ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true 送信成功, false キューが満杯 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="207" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="207" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_actor_1a863f28d824aaa78c75789166b1c2a010" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tk::Actor&lt; MsgType, QueueSize &gt;::post</definition>
+        <argsstring>(MsgType &amp;&amp;msg)</argsstring>
+        <name>post</name>
+        <qualifiedname>tk::Actor::post</qualifiedname>
+        <param>
+          <type>MsgType &amp;&amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>この <ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> のメッセージキューへ直接メッセージを送信します (ムーブ渡し) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>送信するメッセージ (ムーブ) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true 送信成功, false キューが満杯 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="230" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="230" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_actor_1a5c4f4f2f1b8011a37773617e34218c2d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename U</type>
+            <defval>MsgType</defval>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt; std::is_same&lt; U, <ref refid="structtk_1_1_message" kindref="compound">Message</ref> &gt;::value, bool &gt;::type</type>
+        <definition>std::enable_if&lt; std::is_same&lt; U, Message &gt;::value, bool &gt;::type tk::Actor&lt; MsgType, QueueSize &gt;::post</definition>
+        <argsstring>(uint32_t id, uintptr_t arg=0)</argsstring>
+        <name>post</name>
+        <qualifiedname>tk::Actor::post</qualifiedname>
+        <param>
+          <type>uint32_t</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>uintptr_t</type>
+          <declname>arg</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para><ref refid="structtk_1_1_message" kindref="compound">tk::Message</ref> 型の場合のコンビニエンス送信関数 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージID </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>引数 (省略時: 0) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true 送信成功, false キューが満杯 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="256" column="5" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="256" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_actor_1a60a2752360fa7185ec7776f2a6ef766a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structtk_1_1_task_handle" kindref="compound">TaskHandle</ref></type>
+        <definition>TaskHandle tk::Actor&lt; MsgType, QueueSize &gt;::handle</definition>
+        <argsstring>() const</argsstring>
+        <name>handle</name>
+        <qualifiedname>tk::Actor::handle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>この <ref refid="classtk_1_1_actor" kindref="compound">Actor</ref> のタスクハンドルを取得 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="261" column="16" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="261" bodyend="261"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classtk_1_1_actor_1afb31ec0d50d1ac97e6a4ce148a96f78d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void tk::Actor&lt; MsgType, QueueSize &gt;::on_start</definition>
+        <argsstring>()</argsstring>
+        <name>on_start</name>
+        <qualifiedname>tk::Actor::on_start</qualifiedname>
+        <briefdescription>
+<para>タスク起動時、イベントループ突入直前に1度だけ呼ばれる初期化関数 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>タスクコンテキスト内で実行されるため、<computeroutput><ref refid="namespacetk_1aae83f84121085578a7568437a8dc2447" kindref="member">tk::sleep_ms()</ref></computeroutput> を使った初期化ウェイトも安全に行えます。 必要に応じて派生クラスでオーバーライドします。 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="270" column="18" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="270" bodyend="270"/>
+      </memberdef>
+      <memberdef kind="function" id="classtk_1_1_actor_1a1147554d6ddb64d822285ca5a03506a4" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void tk::Actor&lt; MsgType, QueueSize &gt;::on_message</definition>
+        <argsstring>(const MsgType &amp;msg)=0</argsstring>
+        <name>on_message</name>
+        <qualifiedname>tk::Actor::on_message</qualifiedname>
+        <param>
+          <type>const MsgType &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>メッセージ受信時に呼ばれるハンドラ関数 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>キューから取り出されたメッセージの実体への参照が渡されます。 派生クラスで必ず実装します。</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>受信したメッセージ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="280" column="18"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classtk_1_1_actor_1ab733fa2f27a477b08ef42c269ee543a5" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void tk::Actor&lt; MsgType, QueueSize &gt;::task_entry</definition>
+        <argsstring>(void *arg)</argsstring>
+        <name>task_entry</name>
+        <qualifiedname>tk::Actor::task_entry</qualifiedname>
+        <param>
+          <type>void *</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="283" column="17" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="283" bodyend="285"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classtk_1_1_actor_1aa1f824e793d168aca7af65d1254c97f6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tk::Actor&lt; MsgType, QueueSize &gt;::event_loop</definition>
+        <argsstring>()</argsstring>
+        <name>event_loop</name>
+        <qualifiedname>tk::Actor::event_loop</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="287" column="10" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="287" bodyend="309"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>メッセージ駆動型タスク (アクター) の基底クラス </para>
+    </briefdescription>
+    <detaileddescription>
+<para>固定長リングバッファ付きのメッセージキューを持ち、メッセージ到着時に自動起床して <computeroutput><ref refid="classtk_1_1_actor_1a1147554d6ddb64d822285ca5a03506a4" kindref="member">on_message()</ref></computeroutput> を実行します。メッセージが無い時は CPU を消費せずブロック待機します。</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>MsgType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>受信するメッセージの型 (デフォルト: <ref refid="structtk_1_1_message" kindref="compound">tk::Message</ref>) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>QueueSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージキューの最大保持件数 (デフォルト: 8)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<programlisting><codeline><highlight class="keyword">struct<sp/></highlight><highlight class="normal">SensorMsg<sp/>{<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>temp;<sp/>};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">SensorActor<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>tk::Actor&lt;SensorMsg,<sp/>8&gt;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtk_1_1_actor_1afb31ec0d50d1ac97e6a4ce148a96f78d" kindref="member">on_start</ref>()</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>デバイスの初期化</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtk_1_1_actor_1a1147554d6ddb64d822285ca5a03506a4" kindref="member">on_message</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SensorMsg&amp;<sp/>msg)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Temp:<sp/>%.1f\n&quot;</highlight><highlight class="normal">,<sp/>msg.temp);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+</programlisting> </para>
+    </detaileddescription>
+    <location file="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" line="174" column="1" bodyfile="C:/Users/yoneda/Documents/Pico_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp" bodystart="174" bodyend="317"/>
+    <listofallmembers>
+      <member refid="classtk_1_1_actor_1a776aef8cdcfb4416ef976697eb518ed5" prot="public" virt="non-virtual"><scope>tk::Actor</scope><name>Actor</name></member>
+      <member refid="classtk_1_1_actor_1ad829bfd39086109fd32fc6ca389d5f92" prot="private" virt="non-virtual"><scope>tk::Actor</scope><name>count_</name></member>
+      <member refid="classtk_1_1_actor_1aa1f824e793d168aca7af65d1254c97f6" prot="private" virt="non-virtual"><scope>tk::Actor</scope><name>event_loop</name></member>
+      <member refid="classtk_1_1_actor_1a60a2752360fa7185ec7776f2a6ef766a" prot="public" virt="non-virtual"><scope>tk::Actor</scope><name>handle</name></member>
+      <member refid="classtk_1_1_actor_1a995adffb1431a4173f7fc892e4fc5efa" prot="private" virt="non-virtual"><scope>tk::Actor</scope><name>handle_</name></member>
+      <member refid="classtk_1_1_actor_1a25817f7222356d11b2e70264e79a05a3" prot="private" virt="non-virtual"><scope>tk::Actor</scope><name>head_</name></member>
+      <member refid="classtk_1_1_actor_1a1147554d6ddb64d822285ca5a03506a4" prot="protected" virt="pure-virtual"><scope>tk::Actor</scope><name>on_message</name></member>
+      <member refid="classtk_1_1_actor_1afb31ec0d50d1ac97e6a4ce148a96f78d" prot="protected" virt="virtual"><scope>tk::Actor</scope><name>on_start</name></member>
+      <member refid="classtk_1_1_actor_1a224e6be4dca0d1500f2121e97bd0f92d" prot="public" virt="non-virtual"><scope>tk::Actor</scope><name>post</name></member>
+      <member refid="classtk_1_1_actor_1a863f28d824aaa78c75789166b1c2a010" prot="public" virt="non-virtual"><scope>tk::Actor</scope><name>post</name></member>
+      <member refid="classtk_1_1_actor_1a5c4f4f2f1b8011a37773617e34218c2d" prot="public" virt="non-virtual"><scope>tk::Actor</scope><name>post</name></member>
+      <member refid="classtk_1_1_actor_1abf56f692a06334a14197605042b3b786" prot="private" virt="non-virtual"><scope>tk::Actor</scope><name>queue_</name></member>
+      <member refid="classtk_1_1_actor_1ac98ec3132f2ded910a6899b030c06f3f" prot="public" virt="non-virtual"><scope>tk::Actor</scope><name>start</name></member>
+      <member refid="classtk_1_1_actor_1a546e611f32ce2e89e9bae88ef2cf1cc6" prot="private" virt="non-virtual"><scope>tk::Actor</scope><name>tail_</name></member>
+      <member refid="classtk_1_1_actor_1ab733fa2f27a477b08ef42c269ee543a5" prot="private" virt="non-virtual"><scope>tk::Actor</scope><name>task_entry</name></member>
+      <member refid="classtk_1_1_actor_1a48192d156c2b4c884f5400858ebbbbf8" prot="private" virt="non-virtual"><scope>tk::Actor</scope><name>waiting_</name></member>
+      <member refid="classtk_1_1_actor_1abfc63a514a3ae7cdbdf9ceee81c3b0fc" prot="public" virt="virtual"><scope>tk::Actor</scope><name>~Actor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

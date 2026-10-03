@@ -1,28 +1,28 @@
-\doxysection{C:/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\+actor.hpp File Reference}
-\hypertarget{actor_8hpp}{}\label{actor_8hpp}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp}}
+\doxysection{C:/\+\+Users/\+yoneda/\+\+Documents/\+\+Pico\+\_\+\+Projects/\+tinykernel/\+tinykernel/\+include/\+tinykernel/\+actor.hpp ファイル}
+\label{actor_8hpp}\index{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp@{C:/Users/yoneda/Documents/Pico\_Projects/tinykernel/tinykernel/include/tinykernel/actor.hpp}}
 {\ttfamily \+\#include "{}kernel.\+hpp"{}}\newline
 {\ttfamily \+\#include $<$cstdint$>$}\newline
 {\ttfamily \+\#include $<$cstddef$>$}\newline
 {\ttfamily \+\#include $<$type\+\_\+traits$>$}\newline
 {\ttfamily \+\#include $<$utility$>$}\newline
-\doxysubsubsection*{Classes}
+\doxysubsubsection*{クラス}
 \begin{DoxyCompactItemize}
 \item 
-struct \doxymbox{\hyperlink{structtk_1_1_message}{tk::\+\+Message}}
+struct \textbf{ tk::\+\+Message}
 \begin{DoxyCompactList}\small\item\em デフォルトの軽量メッセージ構造体 \end{DoxyCompactList}\item 
-class \doxymbox{\hyperlink{classtk_1_1_event_hub}{tk::\+\+Event\+Hub$<$ Msg\+Type, Max\+Subscribers $>$}}
+class \textbf{ tk::\+\+Event\+Hub$<$ Msg\+Type, Max\+Subscribers $>$}
 \begin{DoxyCompactList}\small\item\em メッセージ型ごとの超軽量 Pub/\+\+Sub ディスパッチャ \end{DoxyCompactList}\item 
-class \doxymbox{\hyperlink{classtk_1_1_actor}{tk::\+\+Actor$<$ Msg\+Type, Queue\+Size $>$}}
+class \textbf{ tk::\+\+Actor$<$ Msg\+Type, Queue\+Size $>$}
 \begin{DoxyCompactList}\small\item\em メッセージ駆動型タスク (アクター) の基底クラス \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Namespaces}
+\doxysubsubsection*{名前空間}
 \begin{DoxyCompactItemize}
 \item 
-namespace \doxymbox{\hyperlink{namespacetk}{tk}}
+namespace \textbf{ tk}
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Functions}
+\doxysubsubsection*{関数}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename Msg\+Type$>$ }\\size\+\_\+t \doxymbox{\hyperlink{namespacetk_a083495c9bf857a63f6c20a20aac0ca52}{tk::\+publish}} (const Msg\+Type \&msg)
-\begin{DoxyCompactList}\small\item\em メッセージの型を指定して、購読しているすべての \doxylink{classtk_1_1_actor}{Actor} へ同報配信します \end{DoxyCompactList}\item 
-size\+\_\+t \doxymbox{\hyperlink{namespacetk_a5549bec310750722a1964de1145b9fed}{tk::\+publish}} (uint32\+\_\+t id, uintptr\+\_\+t arg=0)
-\begin{DoxyCompactList}\small\item\em \doxylink{structtk_1_1_message}{tk::\+\+Message} 型の同報配信ショートカット \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\footnotesize template$<$typename Msg\+Type$>$ }\\size\+\_\+t \textbf{ tk::\+publish} (const Msg\+Type \&msg)
+\begin{DoxyCompactList}\small\item\em メッセージの型を指定して、購読しているすべての \doxyref{Actor}{p.}{classtk_1_1_actor} へ同報配信します \end{DoxyCompactList}\item 
+size\+\_\+t \textbf{ tk::\+publish} (uint32\+\_\+t id, uintptr\+\_\+t arg=0)
+\begin{DoxyCompactList}\small\item\em \doxyref{tk::\+\+Message}{p.}{structtk_1_1_message} 型の同報配信ショートカット \end{DoxyCompactList}\end{DoxyCompactItemize}
