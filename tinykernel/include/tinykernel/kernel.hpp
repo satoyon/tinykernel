@@ -16,7 +16,16 @@
 #define TK_TIME_SLICE_MS 10u
 #endif
 
-/** 最大タスク数 (スロット0はCore0アイドル、スロット1はCore1アイドル専用) */
+/** 使用するコア数 (1 または 2)。デフォルトは 2 (SMP) */
+#ifndef TK_NUM_CORES
+#if defined(TK_ENABLE_SMP) && !TK_ENABLE_SMP
+#define TK_NUM_CORES 1u
+#else
+#define TK_NUM_CORES 2u
+#endif
+#endif
+
+/** 最大タスク数 (スロット0はCore0アイドル、SMP時はスロット1がCore1アイドル専用) */
 #ifndef TK_MAX_TASKS
 #define TK_MAX_TASKS 32u
 #endif

@@ -15,8 +15,6 @@ static_assert(sizeof(FpuCtx) == 128, "FPU context layout must match context.S");
 
 namespace {
 
-constexpr uint32_t TK_NUM_CORES = 2;
-
 enum class State : uint8_t { Free = 0, Ready, Running, Sleeping, Blocked, Terminated };
 
 struct TaskSlot {
@@ -34,11 +32,15 @@ struct TaskSlot {
 
 static_assert(TK_MAX_TASKS <= 255, "slot index must fit in a byte");
 
-alignas(16) static TaskSlot g_slots[TK_MAX_TASKS];  // slot 0 = idle0, slot 1 = idle1
+alignas(16) static TaskSlot g_slots[TK_MAX_TASKS];  // slot 0 = idle0, slot 1 = idle1 (if SMP)
 alignas(8) static char g_stacks[TK_MAX_TASKS][TK_DEFAULT_STACK_SIZE];
 
+#if TK_NUM_CORES > 1
 static uint8_t g_cur[TK_NUM_CORES] = {0, 1};
-static volatile uint32_t g_preempt_disabled[TK_NUM_CORES] = {0, 0};
+#else
+static uint8_t g_cur[TK_NUM_CORES] = {0};
+#endif
+static volatile uint32_t g_preempt_disabled[TK_NUM_CORES] = {0};
 static int64_t g_tick = 0;
 static bool g_started = false;
 static uint8_t g_rr_last[16] = {0};
@@ -110,7 +112,7 @@ static uint32_t select_next(uint32_t core) {
 
 // Referenced (unmangled) from context.S: scratch area per-core for FPU state transfer.
 extern "C" {
-    alignas(8) FpuCtx tk_fpu_scratch[TK_NUM_CORES] = {};
+    alignas(8) FpuCtx tk_fpu_scratch[2] = {};
 }
 
 // SysTick interrupt handler: advances ticks on Core 0, wakes sleeping tasks, and checks time slices.
@@ -258,6 +260,7 @@ void tk::start() {
     idle0.is_idle = true;
     idle0.state = State::Ready;
 
+#if TK_NUM_CORES > 1
     // Core 1 Idle Task
     TaskSlot& idle1 = g_slots[1];
     idle1.fn = idle_fn;
@@ -268,6 +271,7 @@ void tk::start() {
 
     // Launch Core 1
     multicore_launch_core1(core1_entry);
+#endif
 
     // Launch Core 0
     core_start_routine(0);
