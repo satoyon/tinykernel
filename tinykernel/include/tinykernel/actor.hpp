@@ -1,6 +1,7 @@
 #pragma once
 
 #include "kernel.hpp"
+#include "thread.hpp"
 #include <cstdint>
 #include <cstddef>
 #include <type_traits>
@@ -44,15 +45,15 @@ public:
      */
     static bool subscribe(void* actor, bool (*post_fn)(void*, const MsgType&)) {
         uint32_t save = detail::sched_lock();
-        if (count_ >= MaxSubscribers) {
-            detail::sched_unlock(save);
-            return false;
-        }
         for (size_t i = 0; i < count_; ++i) {
             if (subs_[i].actor == actor) {
                 detail::sched_unlock(save);
                 return true;  // 登録済み
             }
+        }
+        if (count_ >= MaxSubscribers) {
+            detail::sched_unlock(save);
+            return false;
         }
         subs_[count_++] = {actor, post_fn};
         detail::sched_unlock(save);
@@ -148,13 +149,18 @@ inline size_t publish(uint32_t id, uintptr_t arg = 0) {
 }
 
 /**
- * @brief メッセージ駆動型タスク (アクター) の基底クラス
+ * @brief メッセージ駆動型アクターの基底クラス (`tk::Thread` 派生)
  * 
- * 固定長リングバッファ付きのメッセージキューを持ち、メッセージ到着時に自動起床して
- * `on_message()` を実行します。メッセージが無い時は CPU を消費せずブロック待機します。
+ * `tk::Thread<StackSize>` を継承しており、固定長リングバッファ付きのメッセージキューを持ちます。
+ * メッセージ到着時に自動起床して `on_message()` を実行し、メッセージが無い時は CPU を消費せずブロック待機します。
+ * 
+ * - `tk::start()` の前 (静的登録) でも、スケジューラ起動後 (動的生成) でも `start()` で起動できます。
+ * - `send_signal()` による緊急シグナルの受信 (`on_signal()`) や、`stop()` による安全な停止にも対応しています。
+ * - 停止時は `State::Terminated` で待機し、スコープ離脱や `delete` (デストラクタ) 時にスロットが解放されます。
  * 
  * @tparam MsgType 受信するメッセージの型 (デフォルト: tk::Message)
  * @tparam QueueSize メッセージキューの最大保持件数 (デフォルト: 8)
+ * @tparam StackSize スタックサイズ (バイト単位、デフォルト: TK_DEFAULT_STACK_SIZE)
  * 
  * @code
  * struct SensorMsg { float temp; };
@@ -170,30 +176,54 @@ inline size_t publish(uint32_t id, uintptr_t arg = 0) {
  * };
  * @endcode
  */
-template <typename MsgType = Message, size_t QueueSize = 8>
-class Actor {
+template <typename MsgType = Message,
+          size_t QueueSize = 8,
+          size_t StackSize = TK_DEFAULT_STACK_SIZE>
+class Actor : public Thread<StackSize> {
     static_assert(QueueSize > 0, "QueueSize must be greater than 0");
 
 public:
     Actor() = default;
-    virtual ~Actor() {
+
+    /**
+     * @brief デストラクタ
+     * 
+     * `EventHub` からの購読を解除し、アクターが実行中であれば停止 (`SIG_STOP`) と完了待ち (`join`) を
+     * 行ってからタスクスロットを解放 (`State::Free`) します。
+     */
+    ~Actor() override {
         EventHub<MsgType>::unsubscribe(this);
+        this->release_slot();
     }
 
     /**
-     * @brief Actor をタスクとして生成し、EventHub へ自動登録します
+     * @brief Actor をタスクとして起動 (または再起動) し、`EventHub` へ自動登録します
      * 
-     * `tk::start()` を呼び出す前に登録する必要があります。
+     * `tk::start()` の前でも、スケジューラ起動後でも動的に呼び出すことができます。
      * 
      * @param prio タスク優先度 (省略時: tk::PRIO_NORMAL)
-     * @return true 登録成功, false 登録失敗 (タスク枠上限など)
+     * @return true 起動成功, false 起動失敗 (すでに実行中、またはタスク枠上限など)
      */
-    bool start(uint32_t prio = PRIO_NORMAL) {
+    bool start(uint32_t prio = PRIO_NORMAL) override {
         EventHub<MsgType>::subscribe(this, [](void* obj, const MsgType& m) {
-            return static_cast<Actor<MsgType, QueueSize>*>(obj)->post(m);
+            return static_cast<Actor<MsgType, QueueSize, StackSize>*>(obj)->post(m);
         });
-        handle_ = tk::create(task_entry, this, prio);
-        return handle_.is_valid();
+        if (!Thread<StackSize>::start(prio)) {
+            EventHub<MsgType>::unsubscribe(this);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @brief Actor の購読を解除し、停止シグナル (`tk::SIG_STOP`) を送ってイベントループを終了させます
+     * 
+     * メッセージ待ち (`State::Blocked`) や `sleep_ms()` 中であっても即座に起床して停止 (`State::Terminated`) します。
+     * スロット自体はデストラクタが呼ばれるまで保持され、スコープ内であれば再度 `start()` で再開可能です。
+     */
+    void stop() override {
+        EventHub<MsgType>::unsubscribe(this);
+        Thread<StackSize>::stop();
     }
 
     /**
@@ -215,7 +245,7 @@ public:
         count_++;
         if (waiting_) {
             waiting_ = false;
-            detail::wake_task_locked(handle_);
+            detail::wake_task_locked(this->handle_);
         }
         detail::sched_unlock(save);
         return true;
@@ -238,7 +268,7 @@ public:
         count_++;
         if (waiting_) {
             waiting_ = false;
-            detail::wake_task_locked(handle_);
+            detail::wake_task_locked(this->handle_);
         }
         detail::sched_unlock(save);
         return true;
@@ -257,18 +287,7 @@ public:
         return post(Message{id, arg});
     }
 
-    /** この Actor のタスクハンドルを取得 */
-    TaskHandle handle() const { return handle_; }
-
 protected:
-    /**
-     * @brief タスク起動時、イベントループ突入直前に1度だけ呼ばれる初期化関数
-     * 
-     * タスクコンテキスト内で実行されるため、`tk::sleep_ms()` を使った初期化ウェイトも安全に行えます。
-     * 必要に応じて派生クラスでオーバーライドします。
-     */
-    virtual void on_start() {}
-
     /**
      * @brief メッセージ受信時に呼ばれるハンドラ関数
      * 
@@ -279,28 +298,34 @@ protected:
      */
     virtual void on_message(const MsgType& msg) = 0;
 
-private:
-    static void task_entry(void* arg) {
-        static_cast<Actor<MsgType, QueueSize>*>(arg)->event_loop();
-    }
-
-    void event_loop() {
-        on_start();
+    /**
+     * @brief `Thread::run()` の実装 (メッセージ待ち受け＆ディスパッチループ)
+     * 
+     * メッセージ到着、または `send_signal()` / `stop()` によって起床します。
+     */
+    void run() override {
         for (;;) {
             MsgType msg{};
             uint32_t save = detail::sched_lock();
-            while (count_ == 0) {
+            while (count_ == 0 && !detail::has_pending_signal_or_stop_locked(this->handle_)) {
                 waiting_ = true;
                 detail::block_current_task_locked();
                 detail::sched_unlock(save);
-                // コンテキストスイッチされ、他のタスクが走る。
-                // wake_task_locked で起こされたらここに戻る。
+                // post() または send_signal() / stop() で起床
                 save = detail::sched_lock();
+            }
+            waiting_ = false;
+            if (detail::has_pending_signal_or_stop_locked(this->handle_)) {
+                detail::sched_unlock(save);
+                this->check_signals();
+                if (this->should_stop()) {
+                    break;
+                }
+                continue;
             }
             msg = std::move(queue_[head_]);
             head_ = (head_ + 1) % QueueSize;
             count_--;
-            waiting_ = false;
             detail::sched_unlock(save);
 
             // メッセージディスパッチ（ロック解除状態で実行）
@@ -308,12 +333,12 @@ private:
         }
     }
 
+private:
     MsgType queue_[QueueSize]{};
     size_t head_{0};
     size_t tail_{0};
     size_t count_{0};
     bool waiting_{false};
-    TaskHandle handle_{};
 };
 
 }  // namespace tk

@@ -53,6 +53,24 @@ enum Prio : uint32_t {
 };
 
 /**
+ * @brief スレッド・アクター制御用のシステム定義シグナル
+ * 
+ * ユーザー定義シグナルは `tk::SIG_USER` (16) 以降の任意の値 (uint32_t) を使用できます。
+ * @code
+ * enum MySignal : uint32_t {
+ *     SIG_RELOAD = tk::SIG_USER,
+ *     SIG_FLUSH  = tk::SIG_USER + 1,
+ * };
+ * @endcode
+ */
+enum Signal : uint32_t {
+    SIG_NONE = 0,   ///< シグナルなし
+    SIG_STOP = 1,   ///< スレッド・アクターの停止要求
+    SIG_INTR = 2,   ///< スリープ・待機の中断要求 (終了はしない)
+    SIG_USER = 16,  ///< ユーザー定義シグナルの開始番号 (16以降を自由に使用可能)
+};
+
+/**
  * @brief タスクの識別ハンドル
  */
 struct TaskHandle {
@@ -65,7 +83,7 @@ struct TaskHandle {
 /**
  * @brief タスクを生成・登録します
  * 
- * tk::start() を呼び出す前に登録する必要があります。
+ * `tk::start()` の前でも、スケジューラ起動後でも動的に呼び出すことができます。
  * 
  * @param fn タスク関数ポインタ (void (*)(void* arg))
  * @param arg タスク関数に渡すユーザー引数ポインタ (省略時: nullptr)
@@ -77,13 +95,15 @@ TaskHandle create(TaskFn fn, void* arg = nullptr, uint32_t prio = PRIO_NORMAL);
 /**
  * @brief tinykernel スケジューラを起動します
  * 
- * Core 0 のスケジューラを開始し、Core 1 を自動ブートしてデュアルコア並行実行を開始します。
+ * Core 0 のスケジューラを開始し、SMP有効時は Core 1 を自動ブートしてデュアルコア並行実行を開始します。
  * この関数から制御が戻ることはありません (Never returns)。
  */
 void start();
 
 /**
  * @brief 現在実行中のタスクを一時中断し、同優先度の他のタスクへ CPU を譲渡します
+ * 
+ * 保留中のシグナルがある場合は、復帰時にシグナルコールバック (`on_signal`) が自動実行されます。
  * 
  * @note タスクコンテキスト内から呼び出す必要があります。
  */
@@ -93,14 +113,18 @@ void yield();
  * @brief 現在のタスクを指定時間スリープさせます
  * 
  * スリープ中はタスクが休止状態になり、CPU は他のタスクへ自動的に割り当てられます (CPU消費ゼロ)。
+ * スリープ中に外部からシグナルが送信された場合は、即座にスリープを中断して起床し、
+ * シグナルコールバック (`on_signal`) を自動実行した上で `false` を返します。
  * 
  * @param ms スリープする時間 (ミリ秒)
+ * @return true 指定時間が満了して正常に起床した場合
+ * @return false シグナルによってスリープが早期中断された場合
  * @note タスクコンテキスト内から呼び出す必要があります。
  */
-void sleep_ms(uint32_t ms);
+bool sleep_ms(uint32_t ms);
 
 /**
- * @brief 現在のタスクを終了・破棄します
+ * @brief 現在のタスクを終了し、停止状態 (`Terminated`) に遷移させます
  * 
  * @param code 終了コード (予約用、省略時: 0)
  * @note タスク関数の末尾に到達した場合は自動的に呼ばれます。
@@ -174,6 +198,8 @@ public:
 using task_mask_t = uint32_t;
 
 namespace detail {
+using SignalHandlerFn = void (*)(void* obj, uint32_t sig);
+
 void static_register(const char* name, TaskFn fn, uint32_t prio);
 uint32_t sched_lock();
 void sched_unlock(uint32_t save);
@@ -181,6 +207,19 @@ void block_current_task_locked();
 void wake_task_locked(TaskHandle handle);
 uint8_t current_task_slot();
 uint8_t find_highest_prio_waiter(task_mask_t wait_mask);
+
+// Thread / Actor lifecycle and signal helpers
+bool start_or_restart_task(TaskHandle* inout_handle, TaskFn fn, void* arg,
+                           SignalHandlerFn sig_fn, uint32_t prio,
+                           uint8_t* stack_base, size_t stack_size,
+                           const char* name);
+bool send_task_signal(TaskHandle handle, uint32_t sig);
+void dispatch_pending_signal_current();
+bool has_pending_signal_or_stop_locked(TaskHandle handle);
+bool is_task_stop_requested(TaskHandle handle);
+bool is_task_running(TaskHandle handle);
+void join_task(TaskHandle handle);
+void release_task_slot(TaskHandle* inout_handle);
 }  // namespace detail
 
 }  // namespace tk

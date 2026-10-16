@@ -162,10 +162,80 @@ static void task_preempt_demo(void* arg) {
     }
 }
 
+// ---------------------------------------------------------------------------
+// Dynamic Thread & Signal demonstration:
+// User-defined signals starting from tk::SIG_USER
+enum AppSignal : uint32_t {
+    SIG_WAKE_ACTION = tk::SIG_USER,
+    SIG_STATUS_DUMP = tk::SIG_USER + 1,
+};
+
+class EphemeralWorker : public tk::Thread<2048> {
+public:
+    explicit EphemeralWorker(uint32_t id) : id_(id) {}
+
+protected:
+    void on_start() override {
+        P("Worker#%lu [slot=%u]: started!\n", (unsigned long)id_, (unsigned)handle().slot);
+    }
+
+    void run() override {
+        while (!should_stop()) {
+            // Long 5000ms sleep; will be broken immediately when a signal arrives!
+            if (sleep_ms(5000)) {
+                P("Worker#%lu: 5000ms sleep completed naturally\n", (unsigned long)id_);
+            }
+        }
+    }
+
+    void on_signal(uint32_t sig) override {
+        if (sig == SIG_WAKE_ACTION) {
+            P("Worker#%lu: >>> interrupted sleep! Received SIG_WAKE_ACTION at %llu ms\n",
+              (unsigned long)id_, (unsigned long long)tk::now_ms());
+        } else if (sig == SIG_STATUS_DUMP) {
+            P("Worker#%lu: >>> interrupted sleep! Received SIG_STATUS_DUMP at %llu ms\n",
+              (unsigned long)id_, (unsigned long long)tk::now_ms());
+        } else if (sig == tk::SIG_STOP) {
+            P("Worker#%lu: >>> received SIG_STOP, exiting run() loop...\n", (unsigned long)id_);
+        }
+    }
+
+    void on_stop() override {
+        P("Worker#%lu [slot=%u]: halted (Terminated), waiting for destructor cleanup\n",
+          (unsigned long)id_, (unsigned)handle().slot);
+    }
+
+private:
+    uint32_t id_;
+};
+
+static void task_thread_manager(void* arg) {
+    (void)arg;
+    uint32_t gen = 1;
+    for (;;) {
+        tk::sleep_ms(1500);
+        {
+            // Scoped dynamic thread: stack lives in 'worker', slot is freed when scope exits!
+            EphemeralWorker worker(gen++);
+            worker.start(tk::PRIO_NORMAL);
+
+            tk::sleep_ms(600);
+            worker.send_signal(SIG_WAKE_ACTION);  // Breaks 5000ms sleep early!
+
+            tk::sleep_ms(600);
+            worker.send_signal(SIG_STATUS_DUMP);  // Breaks 5000ms sleep early!
+
+            tk::sleep_ms(400);
+            worker.stop();                        // Sends SIG_STOP -> halts in Terminated
+            worker.join();
+        }  // ~EphemeralWorker() runs here -> reclaims task slot back to State::Free!
+    }
+}
+
 int main() {
     stdio_init_all();
 
-    printf("tinykernel: registering dynamic tasks...\n");
+    printf("tinykernel: registering tasks...\n");
     g_led_actor.start(tk::PRIO_NORMAL);
     g_log_actor.start(tk::PRIO_NORMAL);
     auto h_sender  = tk::create(task_sender, nullptr, tk::PRIO_NORMAL);
@@ -174,11 +244,13 @@ int main() {
     auto h_waiter  = tk::create(task_sem_waiter, nullptr, tk::PRIO_HIGH);
     auto h_sig     = tk::create(task_sem_signaler, nullptr, tk::PRIO_NORMAL);
     auto h_preempt = tk::create(task_preempt_demo, nullptr, tk::PRIO_NORMAL);
+    auto h_thrmgr  = tk::create(task_thread_manager, nullptr, tk::PRIO_NORMAL);
 
     if (!g_led_actor.handle().is_valid() || !g_log_actor.handle().is_valid() ||
         !h_sender.is_valid() ||
         !h_mtx_a.is_valid() || !h_mtx_b.is_valid() ||
-        !h_waiter.is_valid() || !h_sig.is_valid() || !h_preempt.is_valid()) {
+        !h_waiter.is_valid() || !h_sig.is_valid() ||
+        !h_preempt.is_valid() || !h_thrmgr.is_valid()) {
         printf("tinykernel: task creation FAILED\n");
         for (;;) {
         }

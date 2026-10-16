@@ -112,6 +112,58 @@ int main(void) {
 
 ---
 
+## 動的スレッドとシグナル通知 (`thread.hpp`)
+
+`tk::Thread<StackSize>` を継承することで、**自身のメンバとしてスタックを内包し、シグナルによるスリープ早期中断と自動コールバックを備えたスレッド**を定義できます（`tk::Actor` もこの `tk::Thread` を継承しています）。
+
+- **`tk::start()` の前でも後（走行中）でも起動可能**: 一時的なワーカーを動的に起動できます。
+- **ユーザー定義シグナル**: `tk::SIG_STOP` や `tk::SIG_INTR` のシステムシグナルに加え、`tk::SIG_USER` (16) 以降の任意の値で独自シグナルを定義できます。
+- **安全な RAII ライフサイクル**: `stop()` や `run()` 完了時は一時停止（`State::Terminated`）状態でスロットを保持し、**スコープを抜けるか `delete` でデストラクタが呼ばれた時点で初めてスロットが解放（`State::Free`）** されます。
+
+```cpp
+#include "tinykernel/thread.hpp"
+
+// ユーザー定義シグナル (tk::SIG_USER 以降を使用)
+enum AppSignal : uint32_t {
+    SIG_WAKE_NOW = tk::SIG_USER,
+    SIG_DUMP     = tk::SIG_USER + 1,
+};
+
+class MyWorker : public tk::Thread<1024> { // 1KB スタックを内包
+protected:
+    void run() override {
+        while (!should_stop()) {
+            // 5秒スリープ。途中でシグナルが来ると即座に起床して on_signal() が自動実行され、false が返る
+            if (sleep_ms(5000)) {
+                // 5秒満了時の処理
+            }
+        }
+    }
+
+    void on_signal(uint32_t sig) override {
+        if (sig == SIG_WAKE_NOW) {
+            // スリープを中断して即座に実行される処理
+        }
+    }
+};
+
+// 他タスク内での動的な生成・シグナル送信・破棄の例
+void manager_task(void*) {
+    {
+        MyWorker worker;
+        worker.start(tk::PRIO_NORMAL);       // 動的に起動
+
+        tk::sleep_ms(500);
+        worker.send_signal(SIG_WAKE_NOW);    // 5秒スリープを即座に中断して on_signal() を発火！
+
+        worker.stop();                       // SIG_STOP 送信 -> 一時停止 (Terminated)
+        worker.join();                       // 停止完了を待機
+    } // スコープを抜けて ~MyWorker() が呼ばれ、タスクスロットが安全に解放 (Free) される
+}
+```
+
+---
+
 ## セマフォ / ミューテックス (`sync.hpp`)
 
 スレッド間の排他制御・同期プリミティブとして以下が用意されています。
@@ -288,6 +340,40 @@ int main(void) {
 ```
 
 > **Point**: The sender does not need to know the instance or name of the Actor. The EventHub delivers messages directly to the appropriate Actors based solely on the message type.
+
+## Dynamic Threads and Signals (`thread.hpp`)
+
+By inheriting from `tk::Thread<StackSize>`, you can define threads with an embedded member stack, early sleep interruption via signals, and automatic `on_signal()` callbacks (`tk::Actor` also inherits from `tk::Thread`).
+
+- **Start anytime**: Can be started both before `tk::start()` (static) and dynamically after the scheduler is running.
+- **User-defined signals**: In addition to system signals (`tk::SIG_STOP`, `tk::SIG_INTR`), custom signals can be defined starting from `tk::SIG_USER` (16).
+- **Safe RAII lifecycle**: When stopped via `stop()` or when `run()` returns, the thread halts in `State::Terminated` while retaining its slot. The slot is safely reclaimed (`State::Free`) only when the instance goes out of scope or is deleted (`~Thread()`).
+
+```cpp
+#include "tinykernel/thread.hpp"
+
+enum AppSignal : uint32_t {
+    SIG_WAKE_NOW = tk::SIG_USER,
+};
+
+class MyWorker : public tk::Thread<1024> {
+protected:
+    void run() override {
+        while (!should_stop()) {
+            // Sleeps for 5s; if a signal arrives, wakes immediately, runs on_signal(), and returns false
+            if (sleep_ms(5000)) {
+                // Periodic work after full 5s sleep
+            }
+        }
+    }
+
+    void on_signal(uint32_t sig) override {
+        if (sig == SIG_WAKE_NOW) {
+            // Handled immediately upon breaking sleep
+        }
+    }
+};
+```
 
 ## Semaphores / Mutexes (`sync.hpp`)
 

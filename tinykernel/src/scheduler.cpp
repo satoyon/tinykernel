@@ -21,11 +21,17 @@ struct TaskSlot {
     State state;
     tk::TaskFn fn;
     void* arg;
+    tk::detail::SignalHandlerFn sig_fn;
     const char* name;
-    uint32_t prio;      // 0..15, lower is higher priority
-    uintptr_t sp;       // saved SP (points at the core8 frame); 0 = not started yet
+    uint32_t prio;          // 0..15, lower is higher priority
+    uintptr_t sp;           // saved SP (points at the core8 frame); 0 = not started yet
+    uint8_t* stack_base;    // nullptr = use default g_stacks[slot]
+    size_t stack_size;      // 0 = use TK_DEFAULT_STACK_SIZE
     int64_t wake_tick;
     int32_t slice_left;
+    uint32_t pending_signal;// 0 = no pending signal
+    bool sleep_interrupted; // true if sleep/block was broken early by a signal
+    bool stop_requested;    // true if SIG_STOP was sent
     bool is_idle;
     FpuCtx fpu;
 };
@@ -65,6 +71,21 @@ static inline uint32_t sched_lock(void) {
 
 static inline void sched_unlock(uint32_t save) {
     spin_unlock(g_sched_lock, save);
+    __asm__ volatile("isb" ::: "memory");
+}
+
+static inline uintptr_t init_task_frame(uint32_t slot_idx, TaskSlot& s) {
+    uint8_t* base = s.stack_base ? s.stack_base : reinterpret_cast<uint8_t*>(&g_stacks[slot_idx][0]);
+    uint32_t sz   = s.stack_size ? (uint32_t)s.stack_size : (uint32_t)TK_DEFAULT_STACK_SIZE;
+    return tk_port_make_frame(base, sz, reinterpret_cast<void*>(s.fn), s.arg);
+}
+
+static inline bool is_slot_on_cpu_locked(uint8_t slot) {
+    if (!g_started) return false;
+    for (uint32_t c = 0; c < TK_NUM_CORES; ++c) {
+        if (g_cur[c] == slot) return true;
+    }
+    return false;
 }
 
 static void idle_fn(void* arg) {
@@ -79,6 +100,13 @@ static inline bool is_runnable(uint32_t slot_idx, uint32_t core) {
     if (s.is_idle) {
         return slot_idx == core; // Core 0 only runs idle 0, Core 1 only runs idle 1
     }
+#if TK_NUM_CORES > 1
+    for (uint32_t c = 0; c < TK_NUM_CORES; ++c) {
+        if (c != core && g_cur[c] == slot_idx) {
+            return false; // Still on the other CPU core (e.g. entering PendSV)
+        }
+    }
+#endif
     return s.state == State::Ready;
 }
 
@@ -172,8 +200,7 @@ extern "C" uintptr_t tk_switch_context(uintptr_t cur_sp) {
     uint32_t next = select_next(core);
     TaskSlot& nxt = g_slots[next];
     if (nxt.sp == 0) {
-        nxt.sp = tk_port_make_frame(reinterpret_cast<uint8_t*>(&g_stacks[next][0]),
-                                    TK_DEFAULT_STACK_SIZE, reinterpret_cast<void*>(nxt.fn), nxt.arg);
+        nxt.sp = init_task_frame(next, nxt);
     }
     nxt.state = State::Running;
     memcpy(&tk_fpu_scratch[core], &nxt.fpu, sizeof(nxt.fpu));
@@ -188,36 +215,182 @@ extern "C" uintptr_t tk_switch_context(uintptr_t cur_sp) {
 namespace tk::detail {
 
 void static_register(const char* name, TaskFn fn, uint32_t prio) {
+    TaskHandle h{0xFF};
+    start_or_restart_task(&h, fn, nullptr, nullptr, prio, nullptr, 0, name);
+}
+
+bool start_or_restart_task(TaskHandle* inout_handle, TaskFn fn, void* arg,
+                           SignalHandlerFn sig_fn, uint32_t prio,
+                           uint8_t* stack_base, size_t stack_size,
+                           const char* name) {
+    if (!inout_handle) return false;
     if (prio >= kIdlePrio) prio = 14u;
-    for (uint32_t i = TK_NUM_CORES; i < TK_MAX_TASKS; ++i) {
-        if (g_slots[i].state == State::Free) {
-            g_slots[i] = TaskSlot{};
-            g_slots[i].fn = fn;
-            g_slots[i].name = name;
-            g_slots[i].prio = prio;
-            g_slots[i].state = State::Ready;
-            return;
+
+    // Case 1: Instance already owns a slot (restarting a Terminated thread/actor)
+    if (inout_handle->is_valid() && inout_handle->slot < TK_MAX_TASKS) {
+        uint8_t slot = inout_handle->slot;
+        for (;;) {
+            uint32_t save = ::sched_lock();
+            State st = g_slots[slot].state;
+            if (st != State::Terminated && st != State::Free) {
+                ::sched_unlock(save);
+                return false;  // Already running
+            }
+            if (!is_slot_on_cpu_locked(slot)) {
+                TaskSlot& s = g_slots[slot];
+                s = TaskSlot{};
+                s.fn = fn;
+                s.arg = arg;
+                s.sig_fn = sig_fn;
+                s.name = name ? name : "thr";
+                s.prio = prio;
+                s.stack_base = stack_base;
+                s.stack_size = stack_size;
+                s.state = State::Ready;
+                if (g_started) {
+                    tk_port_trigger_pendsv();
+                    __sev();
+                }
+                ::sched_unlock(save);
+                return true;
+            }
+            ::sched_unlock(save);
+            tk::yield();
         }
     }
+
+    // Case 2: Allocate a free slot
+    uint32_t save = ::sched_lock();
+    for (uint32_t i = TK_NUM_CORES; i < TK_MAX_TASKS; ++i) {
+        if (g_slots[i].state == State::Free && !is_slot_on_cpu_locked((uint8_t)i)) {
+            TaskSlot& s = g_slots[i];
+            s = TaskSlot{};
+            s.fn = fn;
+            s.arg = arg;
+            s.sig_fn = sig_fn;
+            s.name = name ? name : "thr";
+            s.prio = prio;
+            s.stack_base = stack_base;
+            s.stack_size = stack_size;
+            s.state = State::Ready;
+            inout_handle->slot = (uint8_t)i;
+            if (g_started) {
+                tk_port_trigger_pendsv();
+                __sev();
+            }
+            ::sched_unlock(save);
+            return true;
+        }
+    }
+    ::sched_unlock(save);
+    return false;
+}
+
+bool send_task_signal(TaskHandle handle, uint32_t sig) {
+    if (handle.slot >= TK_MAX_TASKS || sig == SIG_NONE) return false;
+    uint32_t save = ::sched_lock();
+    TaskSlot& s = g_slots[handle.slot];
+    if (s.state == State::Free || s.state == State::Terminated) {
+        ::sched_unlock(save);
+        return false;
+    }
+    if (sig == SIG_STOP) {
+        s.stop_requested = true;
+    }
+    if (s.pending_signal != SIG_STOP) {
+        s.pending_signal = sig;
+    }
+    if (s.state == State::Sleeping || s.state == State::Blocked) {
+        s.sleep_interrupted = true;
+        s.state = State::Ready;
+        if (g_started) {
+            tk_port_trigger_pendsv();
+            __sev();
+        }
+    }
+    ::sched_unlock(save);
+    return true;
+}
+
+void dispatch_pending_signal_current() {
+    if (!g_started) return;
+    uint32_t save = ::sched_lock();
+    TaskSlot& cur = g_slots[g_cur[get_core_num()]];
+    uint32_t sig = cur.pending_signal;
+    cur.pending_signal = 0;
+    SignalHandlerFn sig_fn = cur.sig_fn;
+    void* arg = cur.arg;
+    ::sched_unlock(save);
+
+    if (sig != 0 && sig_fn != nullptr) {
+        sig_fn(arg, sig);
+    }
+}
+
+bool has_pending_signal_or_stop_locked(TaskHandle handle) {
+    if (handle.slot >= TK_MAX_TASKS) return false;
+    const TaskSlot& s = g_slots[handle.slot];
+    return s.pending_signal != 0 || s.stop_requested;
+}
+
+bool is_task_stop_requested(TaskHandle handle) {
+    if (handle.slot >= TK_MAX_TASKS) return true;
+    uint32_t save = ::sched_lock();
+    bool stopped = g_slots[handle.slot].stop_requested ||
+                   g_slots[handle.slot].state == State::Terminated ||
+                   g_slots[handle.slot].state == State::Free;
+    ::sched_unlock(save);
+    return stopped;
+}
+
+bool is_task_running(TaskHandle handle) {
+    if (handle.slot >= TK_MAX_TASKS) return false;
+    uint32_t save = ::sched_lock();
+    State st = g_slots[handle.slot].state;
+    bool running = (st != State::Free && st != State::Terminated) || is_slot_on_cpu_locked(handle.slot);
+    ::sched_unlock(save);
+    return running;
+}
+
+void join_task(TaskHandle handle) {
+    if (!handle.is_valid() || handle.slot >= TK_MAX_TASKS) return;
+    if (!g_started) return;
+    if (g_cur[get_core_num()] == handle.slot) return;  // Avoid self-join
+
+    for (;;) {
+        uint32_t save = ::sched_lock();
+        State st = g_slots[handle.slot].state;
+        bool on_cpu = is_slot_on_cpu_locked(handle.slot);
+        ::sched_unlock(save);
+
+        if ((st == State::Terminated || st == State::Free) && !on_cpu) {
+            break;
+        }
+        tk::sleep_ms(1);
+    }
+}
+
+void release_task_slot(TaskHandle* inout_handle) {
+    if (!inout_handle || !inout_handle->is_valid()) return;
+    uint8_t slot = inout_handle->slot;
+    if (slot >= TK_MAX_TASKS) {
+        inout_handle->slot = 0xFF;
+        return;
+    }
+    send_task_signal(*inout_handle, SIG_STOP);
+    join_task(*inout_handle);
+
+    uint32_t save = ::sched_lock();
+    g_slots[slot] = TaskSlot{};  // State::Free
+    ::sched_unlock(save);
+    inout_handle->slot = 0xFF;
 }
 
 }  // namespace tk::detail
 
 tk::TaskHandle tk::create(TaskFn fn, void* arg, uint32_t prio) {
     TaskHandle h{0xFF};
-    if (prio >= kIdlePrio) prio = 14u;
-    for (uint32_t i = TK_NUM_CORES; i < TK_MAX_TASKS; ++i) {
-        if (g_slots[i].state == State::Free) {
-            g_slots[i] = TaskSlot{};
-            g_slots[i].fn = fn;
-            g_slots[i].arg = arg;
-            g_slots[i].name = "dyn";
-            g_slots[i].prio = prio;
-            g_slots[i].state = State::Ready;
-            h.slot = (uint8_t)i;
-            return h;
-        }
-    }
+    detail::start_or_restart_task(&h, fn, arg, nullptr, prio, nullptr, 0, "dyn");
     return h;
 }
 
@@ -228,8 +401,7 @@ static void core_start_routine(uint32_t core) {
     uint32_t next = select_next(core);
     TaskSlot& nxt = g_slots[next];
     if (nxt.sp == 0) {
-        nxt.sp = tk_port_make_frame(reinterpret_cast<uint8_t*>(&g_stacks[next][0]),
-                                    TK_DEFAULT_STACK_SIZE, reinterpret_cast<void*>(nxt.fn), nxt.arg);
+        nxt.sp = init_task_frame(next, nxt);
     }
     nxt.state = State::Running;
     memcpy(&tk_fpu_scratch[core], &nxt.fpu, sizeof(nxt.fpu));
@@ -283,20 +455,50 @@ void tk::yield() {
     g_slots[g_cur[core]].slice_left = 0;
     tk_port_trigger_pendsv();
     sched_unlock(save);
+    detail::dispatch_pending_signal_current();
 }
 
-void tk::sleep_ms(uint32_t ms) {
+bool tk::sleep_ms(uint32_t ms) {
     uint64_t ticks = ((uint64_t)ms * TK_TICKS_PER_SEC + 999u) / 1000u;
     if (ticks < 1u) ticks = 1u;
     int32_t sleep_ticks = (int32_t)(ticks > 0x7FFFFFFFu ? 0x7FFFFFFFu : ticks);
 
-    uint32_t core = get_core_num();
     uint32_t save = sched_lock();
-    TaskSlot& cur = g_slots[g_cur[core]];
+    TaskSlot& cur = g_slots[g_cur[get_core_num()]];
+    if (cur.pending_signal != 0 || cur.stop_requested) {
+        uint32_t sig = cur.pending_signal;
+        cur.pending_signal = 0;
+        cur.sleep_interrupted = false;
+        detail::SignalHandlerFn sig_fn = cur.sig_fn;
+        void* arg = cur.arg;
+        sched_unlock(save);
+        if (sig != 0 && sig_fn != nullptr) {
+            sig_fn(arg, sig);
+        }
+        return false;
+    }
+
+    cur.sleep_interrupted = false;
     cur.state = State::Sleeping;
     cur.wake_tick = g_tick + sleep_ticks;
     tk_port_trigger_pendsv();
     sched_unlock(save);
+
+    // Resumed after sleep or early signal wakeup (re-query core in case of SMP migration)
+    save = sched_lock();
+    TaskSlot& resumed = g_slots[g_cur[get_core_num()]];
+    bool interrupted = resumed.sleep_interrupted;
+    resumed.sleep_interrupted = false;
+    uint32_t sig = resumed.pending_signal;
+    resumed.pending_signal = 0;
+    detail::SignalHandlerFn sig_fn = resumed.sig_fn;
+    void* arg = resumed.arg;
+    sched_unlock(save);
+
+    if (sig != 0 && sig_fn != nullptr) {
+        sig_fn(arg, sig);
+    }
+    return !interrupted && (sig == 0);
 }
 
 void tk::exit(int code) {
@@ -305,6 +507,7 @@ void tk::exit(int code) {
     uint32_t save = sched_lock();
     g_slots[g_cur[core]].state = State::Terminated;
     tk_port_trigger_pendsv();
+    __sev();
     sched_unlock(save);
     for (;;) __asm__ volatile("wfi");
 }
@@ -346,7 +549,10 @@ void tk::detail::wake_task_locked(TaskHandle handle) {
     TaskSlot& s = g_slots[handle.slot];
     if (s.state == State::Blocked) {
         s.state = State::Ready;
-        tk_port_trigger_pendsv();
+        if (g_started) {
+            tk_port_trigger_pendsv();
+            __sev();
+        }
     }
 }
 
