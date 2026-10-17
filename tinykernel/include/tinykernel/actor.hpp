@@ -298,12 +298,14 @@ protected:
      */
     virtual void on_message(const MsgType& msg) = 0;
 
+
+private:
     /**
      * @brief `Thread::run()` の実装 (メッセージ待ち受け＆ディスパッチループ)
      * 
      * メッセージ到着、または `send_signal()` / `stop()` によって起床します。
      */
-    void run() override {
+    void run() final {
         for (;;) {
             MsgType msg{};
             uint32_t save = detail::sched_lock();
@@ -333,7 +335,6 @@ protected:
         }
     }
 
-private:
     MsgType queue_[QueueSize]{};
     size_t head_{0};
     size_t tail_{0};

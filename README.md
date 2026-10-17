@@ -221,17 +221,20 @@ tinykernel はデフォルトで RP2350 のデュアルコア SMP（対称型マ
 もし Core 1 を独自の極めてビジーな処理（ベアメタル制御、専用の超高速ループなど）に専有し、tinykernel を Core 0 のみで動かしたい場合は、`TK_ENABLE_SMP` オプションを `OFF` に設定できます。
 
 - **CMake オプション設定**:
+
   ```cmake
   # add_subdirectory(tinykernel) の前に設定する場合
   set(TK_ENABLE_SMP OFF CACHE BOOL "Enable SMP dual-core support" FORCE)
   add_subdirectory(tinykernel)
   ```
+
   またはコマンドラインから設定:
+
   ```bash
   cmake -B build -DTK_ENABLE_SMP=OFF
   ```
-
 - **シングルコア構成時の動作**:
+
   - `multicore_launch_core1()` が実行されず、Core 1 は tinykernel から完全に解放されます（ユーザーコードから自由に `multicore_launch_core1(...)` などを利用可能）。
   - Core 1 用アイドルタスクが生成されないため、利用可能なユーザータスク数が 30 個から 31 個に拡張されます。
 
@@ -432,11 +435,14 @@ If you want to dedicate Core 1 to bare-metal polling / high-frequency routines a
 set(TK_ENABLE_SMP OFF CACHE BOOL "Enable SMP dual-core support" FORCE)
 add_subdirectory(tinykernel)
 ```
+
 or via CLI:
+
 ```bash
 cmake -B build -DTK_ENABLE_SMP=OFF
 ```
 
 When SMP is disabled:
+
 - `multicore_launch_core1()` is not called; Core 1 is untouched and free for custom user control.
 - Max user tasks increase from 30 to 31 (since the Core 1 idle task is omitted).
