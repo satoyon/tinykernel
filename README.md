@@ -119,6 +119,7 @@ int main(void) {
 - **`tk::start()` の前でも後（走行中）でも起動可能**: 一時的なワーカーを動的に起動できます。
 - **ユーザー定義シグナル**: `tk::SIG_STOP` や `tk::SIG_INTR` のシステムシグナルに加え、`tk::SIG_USER` (16) 以降の任意の値で独自シグナルを定義できます。
 - **安全な RAII ライフサイクル**: `stop()` や `run()` 完了時は一時停止（`State::Terminated`）状態でスロットを保持し、**スコープを抜けるか `delete` でデストラクタが呼ばれた時点で初めてスロットが解放（`State::Free`）** されます。
+- **終了時クリーンアップの保証 (`on_stop`)**: 外部からの `stop()` による停止であっても、`run()` の自然終了であっても、**どのような終了経路でも `on_stop()` は 100% 確実に呼ばれます**（※スレッドが `while (!should_stop())` で即座にループを抜けた場合など、`on_signal(SIG_STOP)` は通らないことがあります。リソース解放や終了処理は `on_signal` ではなく必ず `on_stop` で行ってください）。
 
 ```cpp
 #include "tinykernel/thread.hpp"
@@ -142,8 +143,12 @@ protected:
 
     void on_signal(uint32_t sig) override {
         if (sig == SIG_WAKE_NOW) {
-            // スリープを中断して即座に実行される処理
+            // スリープを中断して即座に実行される処理 (走行中のイベント処理)
         }
+    }
+
+    void on_stop() override {
+        // ★ 終了処理はここで行う (stop() でも自然終了でも必ず呼ばれる)
     }
 };
 
@@ -351,15 +356,18 @@ By inheriting from `tk::Thread<StackSize>`, you can define threads with an embed
 - **Start anytime**: Can be started both before `tk::start()` (static) and dynamically after the scheduler is running.
 - **User-defined signals**: In addition to system signals (`tk::SIG_STOP`, `tk::SIG_INTR`), custom signals can be defined starting from `tk::SIG_USER` (16).
 - **Safe RAII lifecycle**: When stopped via `stop()` or when `run()` returns, the thread halts in `State::Terminated` while retaining its slot. The slot is safely reclaimed (`State::Free`) only when the instance goes out of scope or is deleted (`~Thread()`).
+- **Guaranteed cleanup on termination (`on_stop`)**: Whether terminated externally via `stop()` or completing naturally when `run()` returns, **`on_stop()` is guaranteed to be called 100% of the time** (*Note: If a thread exits immediately upon `while (!should_stop())`, `on_signal(SIG_STOP)` may not be called. Always perform cleanup and resource deallocation in `on_stop()`, not in `on_signal()*).
 
 ```cpp
 #include "tinykernel/thread.hpp"
 
+// User-defined signals (use tk::SIG_USER and above)
 enum AppSignal : uint32_t {
     SIG_WAKE_NOW = tk::SIG_USER,
+    SIG_DUMP     = tk::SIG_USER + 1,
 };
 
-class MyWorker : public tk::Thread<1024> {
+class MyWorker : public tk::Thread<1024> { // Embedded 1KB stack
 protected:
     void run() override {
         while (!should_stop()) {
@@ -372,10 +380,28 @@ protected:
 
     void on_signal(uint32_t sig) override {
         if (sig == SIG_WAKE_NOW) {
-            // Handled immediately upon breaking sleep
+            // Handled immediately upon breaking sleep (runtime events)
         }
     }
+
+    void on_stop() override {
+        // Cleanup resources here (guaranteed to be called on stop() or run() exit)
+    }
 };
+
+// Example of dynamic creation, signalling, and RAII cleanup in another task:
+void manager_task(void*) {
+    {
+        MyWorker worker;
+        worker.start(tk::PRIO_NORMAL);       // Start dynamically
+
+        tk::sleep_ms(500);
+        worker.send_signal(SIG_WAKE_NOW);    // Wake sleep immediately and trigger on_signal()
+
+        worker.stop();                       // Send SIG_STOP -> paused (Terminated)
+        worker.join();                       // Wait for termination
+    } // Scope exit calls ~MyWorker(), safely freeing the task slot (Free)
+}
 ```
 
 ## Semaphores / Mutexes (`sync.hpp`)

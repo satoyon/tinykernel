@@ -204,6 +204,7 @@ void static_register(const char* name, TaskFn fn, uint32_t prio);
 uint32_t sched_lock();
 void sched_unlock(uint32_t save);
 void block_current_task_locked();
+void block_current_task_interruptible_locked();
 void wake_task_locked(TaskHandle handle);
 uint8_t current_task_slot();
 uint8_t find_highest_prio_waiter(task_mask_t wait_mask);

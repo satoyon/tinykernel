@@ -311,7 +311,7 @@ private:
             uint32_t save = detail::sched_lock();
             while (count_ == 0 && !detail::has_pending_signal_or_stop_locked(this->handle_)) {
                 waiting_ = true;
-                detail::block_current_task_locked();
+                detail::block_current_task_interruptible_locked();
                 detail::sched_unlock(save);
                 // post() または send_signal() / stop() で起床
                 save = detail::sched_lock();

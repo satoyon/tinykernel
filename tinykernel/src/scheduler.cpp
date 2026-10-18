@@ -32,6 +32,7 @@ struct TaskSlot {
     uint32_t pending_signal;// 0 = no pending signal
     bool sleep_interrupted; // true if sleep/block was broken early by a signal
     bool stop_requested;    // true if SIG_STOP was sent
+    bool block_interruptible; // true if Blocked state can be interrupted by signals
     bool is_idle;
     FpuCtx fpu;
 };
@@ -300,9 +301,11 @@ bool send_task_signal(TaskHandle handle, uint32_t sig) {
     if (s.pending_signal != SIG_STOP) {
         s.pending_signal = sig;
     }
-    if (s.state == State::Sleeping || s.state == State::Blocked) {
+    // Sleeping, または中断可能 (block_interruptible) な Blocked の場合のみ即時起床
+    if (s.state == State::Sleeping || (s.state == State::Blocked && s.block_interruptible)) {
         s.sleep_interrupted = true;
         s.state = State::Ready;
+        s.block_interruptible = false;
         if (g_started) {
             tk_port_trigger_pendsv();
             __sev();
@@ -541,6 +544,15 @@ void tk::detail::block_current_task_locked() {
     uint32_t core = get_core_num();
     TaskSlot& cur = g_slots[g_cur[core]];
     cur.state = State::Blocked;
+    cur.block_interruptible = false;
+    tk_port_trigger_pendsv();
+}
+
+void tk::detail::block_current_task_interruptible_locked() {
+    uint32_t core = get_core_num();
+    TaskSlot& cur = g_slots[g_cur[core]];
+    cur.state = State::Blocked;
+    cur.block_interruptible = true;
     tk_port_trigger_pendsv();
 }
 
@@ -549,6 +561,7 @@ void tk::detail::wake_task_locked(TaskHandle handle) {
     TaskSlot& s = g_slots[handle.slot];
     if (s.state == State::Blocked) {
         s.state = State::Ready;
+        s.block_interruptible = false;
         if (g_started) {
             tk_port_trigger_pendsv();
             __sev();
